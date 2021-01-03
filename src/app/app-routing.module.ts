@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 	imports: [RouterModule.forRoot([
 		{
 			path: "",
-			loadChildren: () => import("./app.module").then(m => m.AppModule)
+			loadChildren: () => import("./home/home.module").then(m => m.HomeModule)
 		}
 	])],
 	exports: [
