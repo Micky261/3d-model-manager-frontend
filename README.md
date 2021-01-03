@@ -1,6 +1,6 @@
 # 3D Model Manager - Frontend
 
-This project is build with Angular 11.0.5 and TypeScript. The package manager used is Yarn and not npm/node.
+This project is build with Angular 10 and TypeScript. The package manager used is Yarn and not npm/node.
 
 
 

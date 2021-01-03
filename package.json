@@ -4,29 +4,37 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build"
+    "build": "ng build",
+    "lint": "ng lint",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.0.5",
-    "@angular/common": "~11.0.5",
-    "@angular/compiler": "~11.0.5",
-    "@angular/core": "~11.0.5",
-    "@angular/forms": "~11.0.5",
-    "@angular/platform-browser": "~11.0.5",
-    "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
-    "angular-l10n": "^11.0.0",
+    "@angular/animations": "v10-lts",
+    "@angular/common": "v10-lts",
+    "@angular/compiler": "v10-lts",
+    "@angular/core": "v10-lts",
+    "@angular/forms": "v10-lts",
+    "@angular/localize": "v10-lts",
+    "@angular/platform-browser": "v10-lts",
+    "@angular/platform-browser-dynamic": "v10-lts",
+    "@angular/router": "v10-lts",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "angular-l10n": "v10-lts",
+    "bootstrap": "^4.5.3",
+    "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.5",
-    "@angular/cli": "~11.0.5",
-    "@angular/compiler-cli": "~11.0.5",
+    "@angular-devkit/build-angular": "v10-lts",
+    "@angular/cli": "v10-lts",
+    "@angular/compiler-cli": "v10-lts",
     "@types/node": "^12.11.1",
     "ts-node": "~8.3.0",
+    "tslint": "^6.1.3",
     "typescript": "~4.0.2"
   }
 }

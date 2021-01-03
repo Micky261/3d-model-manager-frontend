@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/" (click)="isCollapsed = true">
+        <img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top"
+             alt="">
+        3D Model Manager
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            (click)="isCollapsed = !isCollapsed">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{"home" | translate:locale.language}}</a>
+            </li>
+        </ul>
+
+        <!-- Right -->
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                    <span class="fas fa-globe-europe"></span> {{"changeLocale" | translate:locale.language}}
+                </a>
+                <ul class="dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
+                    <li>
+                        <button class="dropdown-item text-center" ngbDropdownItem
+                                [class.active]="locale.language === 'de-DE'"
+                                (click)="isCollapsed = true; setLocale(locales.de)">
+                            Deutsch
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item text-center" ngbDropdownItem
+                                [class.active]="locale.language === 'en-GB'"
+                                (click)="isCollapsed = true; setLocale(locales.en)">
+                            English
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" [placeholder]="'search' | translate:locale.language" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{"search" | translate:locale.language}}</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
