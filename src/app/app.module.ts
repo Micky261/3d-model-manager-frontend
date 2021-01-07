@@ -10,7 +10,8 @@ import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
 import {NavbarModule} from "../navbar/navbar.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -30,6 +31,11 @@ registerLocaleData(localeEn);
 		NgbModule
 	],
 	providers: [
+		{
+			provide : HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi   : true,
+		},
 		{
 			provide: APP_INITIALIZER,
 			useFactory: initL10n,
