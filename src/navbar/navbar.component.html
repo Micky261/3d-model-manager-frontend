@@ -2,7 +2,7 @@
     <a class="navbar-brand" href="/" (click)="isCollapsed = true">
         <img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top"
              alt="">
-        3D Model Manager
+        {{"3DModelManager" | translate:locale.language}}
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,7 +22,7 @@
         <!-- Right -->
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
                     <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
                 </a>
