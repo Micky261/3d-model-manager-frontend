@@ -1,0 +1,60 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "config/*.js",
+      "tslint/*.js",
+      "**/*.type.ts"
+    ]
+  },
+  "rules": {
+    "array-type": [
+      true,
+      "array"
+    ],
+    "eofline": true,
+    "indent": [
+      true,
+      "spaces",
+      4
+    ],
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "max-line-length": [
+      true,
+      160
+    ],
+    "newline-before-return": true,
+    "no-consecutive-blank-lines": [
+      true,
+      1
+    ],
+    "no-empty": false,
+    "no-var-keyword": true,
+    "number-literal-format": true,
+    "quotemark": [
+      true,
+      "double"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-operator",
+      "check-typecast"
+    ]
+  },
+  "rulesDirectory": []
+}

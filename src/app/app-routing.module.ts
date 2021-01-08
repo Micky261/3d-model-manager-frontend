@@ -1,16 +1,17 @@
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
+import {AuthGuardService} from "./core/auth/auth-guard.service";
 
 @NgModule({
-	imports: [RouterModule.forRoot([
-		{
-			path: "",
-			loadChildren: () => import("./home/home.module").then(m => m.HomeModule)
-		}
-	])],
-	exports: [
-		RouterModule
-	]
+    imports: [RouterModule.forRoot([
+        {
+            path: "",
+            loadChildren: () => import("./home/home.module").then(m => m.HomeModule),
+        }
+    ])],
+    exports: [
+        RouterModule
+    ]
 })
 export class AppRoutingModule {
 }

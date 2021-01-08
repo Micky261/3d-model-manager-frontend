@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "lint": "ng lint",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "fixlint": "tslint --fix -c tslint.json 'src/**/*.ts'",
     "postinstall": "ngcc"
   },
   "private": true,
