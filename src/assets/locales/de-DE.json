@@ -1,6 +1,13 @@
 {
   "3DModelManager": "3D Modellverwaltung",
   "ChangeLocale": "Sprache ändern",
+  "Email": "E-Mail-Adresse",
   "Home": "Startseite",
-  "Search": "Suchen"
+  "Login": "Anmelden",
+  "Password": "Passwort",
+  "Search": "Suchen",
+  "error": {
+    "EnterPassword": "Bitte gib dein Passwort ein.",
+    "EnterValidEmail": "Bitte gib eine valide E-Mail-Adresse ein."
+  }
 }

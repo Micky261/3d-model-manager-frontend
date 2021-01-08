@@ -1,6 +1,13 @@
 {
   "3DModelManager": "3D Model Manager",
   "ChangeLocale": "Change locale",
+  "Email": "E-Mail address",
   "Home": "Home",
-  "Search": "Search"
+  "Login": "Login",
+  "Password": "Password",
+  "Search": "Search",
+  "error": {
+    "EnterPassword": "Enter your password, please.",
+    "EnterValidEmail": "Enter a valid e-mail address, please."
+  }
 }
