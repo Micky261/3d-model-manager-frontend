@@ -8,6 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (localStorage.getItem("Token") != null) {
             req = req.clone({
                 setHeaders: {
+                    // eslint-disable-next-line @typescript-eslint/naming-convention
                     "Authorization": `Bearer ${localStorage.getItem("Token")}`,
                 },
             });

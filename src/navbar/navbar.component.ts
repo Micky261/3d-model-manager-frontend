@@ -20,6 +20,6 @@ export class NavbarComponent implements OnInit {
     }
 
     setLocale(locale: L10nLocale): void {
-        this.translation.setLocale(locale).then(() => true);
+        void this.translation.setLocale(locale).then(() => true);
     }
 }
