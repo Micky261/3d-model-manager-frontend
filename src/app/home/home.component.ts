@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ModelsService} from "../core/models.service";
-import {Models} from "../core/models.type";
+import {Models} from "../core/types/models.type";
 
 @Component({
     selector: "app-home",
