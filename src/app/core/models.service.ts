@@ -11,10 +11,10 @@ export class ModelsService {
     private readonly apiUrl: string;
 
     constructor(private readonly httpClient: HttpClient) {
-        this.apiUrl = Configuration.server;
+        this.apiUrl = Configuration.server + Configuration.folder;
     }
 
     getRandomModels(num: number): Observable<Models[]> {
-        return this.httpClient.get<Models[]>(`${this.apiUrl}/api/models/random/${encodeURIComponent(String(num))}`);
+        return this.httpClient.get<Models[]>(`${this.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
     }
 }
