@@ -8,6 +8,18 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
             path: "",
             loadChildren: () => import("./home/home.module").then(m => m.HomeModule),
             canActivate: [AuthGuardService]
+        },
+        {
+            path: "login",
+            loadChildren: () => import("./login/login.module").then(m => m.LoginModule)
+        },
+        {
+            path: "register",
+            loadChildren: () => import("./register/register.module").then(m => m.RegisterModule)
+        },
+        {
+            path: "email-resend",
+            loadChildren: () => import("./email-resend/email-resend.module").then(m => m.EmailResendModule)
         }
     ])],
     exports: [
