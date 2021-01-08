@@ -1,26 +1,26 @@
 import {L10nConfig, L10nLoader} from "angular-l10n";
 
-import {i18nAsset} from "./i18n";
-
 export const locales = {
-    "en": {language: "en-GB", currency: "GBP", timeZone: "Europe/London"},
-    "de": {language: "de-DE", currency: "EUR", timeZone: "Europe/Berlin"}
+    "en-GB": {language: "en-GB", currency: "GBP", timeZone: "Europe/London"},
+    "de-DE": {language: "de-DE", currency: "EUR", timeZone: "Europe/Berlin"}
 };
 
 export const l10nConfig: L10nConfig = {
     format: "language-region",
-    providers: [{name: "app", asset: i18nAsset}],
+    providers: [
+        {name: "app", asset: "./assets/locales/", options: { version: "1.0.0" } },
+    ],
     cache: true,
     keySeparator: ".",
-    defaultLocale: locales.en,
+    defaultLocale: locales["en-GB"],
     schema: [
         {
-            locale: locales.en,
+            locale: locales["en-GB"],
             dir: "ltr",
             text: "England"
         },
         {
-            locale: locales.de,
+            locale: locales["de-DE"],
             dir: "ltr",
             text: "Germany"
         }

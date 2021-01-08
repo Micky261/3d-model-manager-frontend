@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_CONFIG, L10N_LOCALE, L10nConfig, L10nLocale, L10nTranslationService} from "angular-l10n";
-import {locales} from "../i18n/l10-config";
+import {locales} from "../i18n/l10n-config";
 
 @Component({
     selector: "navbar",
@@ -13,7 +13,8 @@ export class NavbarComponent implements OnInit {
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
         @Inject(L10N_CONFIG) private l10nConfig: L10nConfig,
-        private translation: L10nTranslationService) {
+        private translation: L10nTranslationService
+    ) {
     }
 
     ngOnInit(): void {

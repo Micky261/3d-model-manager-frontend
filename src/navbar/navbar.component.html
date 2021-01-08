@@ -15,7 +15,7 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">{{"home" | translate:locale.language}}</a>
+                <a class="nav-link" href="#">{{"Home" | translate:locale.language}}</a>
             </li>
         </ul>
 
@@ -24,20 +24,20 @@
             <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-                    <span class="fas fa-globe-europe"></span> {{"changeLocale" | translate:locale.language}}
+                    <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
                 </a>
                 <ul class="dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
                     <li>
                         <button class="dropdown-item text-center" ngbDropdownItem
                                 [class.active]="locale.language === 'de-DE'"
-                                (click)="isCollapsed = true; setLocale(locales.de)">
+                                (click)="isCollapsed = true; setLocale(locales['de-DE'])">
                             Deutsch
                         </button>
                     </li>
                     <li>
                         <button class="dropdown-item text-center" ngbDropdownItem
                                 [class.active]="locale.language === 'en-GB'"
-                                (click)="isCollapsed = true; setLocale(locales.en)">
+                                (click)="isCollapsed = true; setLocale(locales['en-GB'])">
                             English
                         </button>
                     </li>
@@ -47,7 +47,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <!-- TODO: Button group, button in field -->
                     <input class="form-control mr-sm-2" type="search" [placeholder]="'search' | translate:locale.language" aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">{{"search" | translate:locale.language}}</button>
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">{{"Search" | translate:locale.language}}</button>
                 </form>
             </li>
         </ul>
