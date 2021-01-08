@@ -7,6 +7,7 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
         {
             path: "",
             loadChildren: () => import("./home/home.module").then(m => m.HomeModule),
+            canActivate: [AuthGuardService]
         }
     ])],
     exports: [
