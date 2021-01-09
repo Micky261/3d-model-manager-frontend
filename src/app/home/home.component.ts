@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {ModelsService} from "../core/models.service";
+import {ModelService} from "../core/model.service";
 import {Models} from "../core/types/models.type";
 
 @Component({
@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
-        private readonly modelsService: ModelsService
+        private readonly modelService: ModelService
     ) {
     }
 
     ngOnInit(): void {
-        this.modelsService.getRandomModels(6).subscribe(models => this.randomModels = models);
+        this.modelService.getRandomModels(6).subscribe(models => this.randomModels = models);
     }
 
 }
