@@ -7,11 +7,11 @@ import {locales} from "../i18n/l10n-config";
 
 @Component({
     selector: "navbar",
-    templateUrl: "./navbar.component.html"
+    templateUrl: "./navbar.component.html",
+    styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
     locales = locales;
-    localStorage = localStorage;
 
     isCollapsed = true;
 
