@@ -6,6 +6,7 @@
     "Login": "Login",
     "Logout": "Logout",
     "Password": "Password",
+    "Register": "Sign Up",
     "Search": "Search",
     "error": {
         "Unknown": "Unknown error",
