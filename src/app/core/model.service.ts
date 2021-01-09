@@ -24,4 +24,8 @@ export class ModelService {
 
         return this.httpClient.post<ServerMessage>(`${this.apiUrl}/model/import`, body);
     }
+
+    uploadModel(model: Model): Observable<Model> {
+        return this.httpClient.post<Model>(`${this.apiUrl}/model`, model);
+    }
 }

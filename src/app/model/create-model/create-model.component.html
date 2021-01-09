@@ -37,7 +37,47 @@
     </div>
     <div class="row mt-4" *ngIf="creationMethod === 'upload'">
         <div class="col">
-            WIP
+            <form [formGroup]="uploadForm">
+                <div class="row">
+                    <div class="col">
+                        <label for="modelName">{{'ModelName' | translate:locale.language}}:</label>
+                        <input id="modelName" type="text" class="form-control"
+                               formControlName="name" required
+                               [placeholder]="'Name' | translate:locale.language">
+                    </div>
+                    <div class="col">
+                        <label for="author">{{'Author' | translate:locale.language}}:</label>
+                        <input id="author" type="text" class="form-control"
+                               formControlName="author" required
+                               [placeholder]="'Author' | translate:locale.language">
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline mt-4">
+                            <input id="favorite" type="checkbox" class="form-check-input"
+                                   formControlName="favorite">
+                            <label for="favorite" class="form-check-label">
+                                {{'Favorite' | translate:locale.language}}?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="desc">{{'Description' | translate:locale.language}}</label>:
+                        <textarea id="desc" class="form-control"
+                                  formControlName="description"
+                                  [placeholder]="'Description' | translate:locale.language"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit"
+                                (click)="createModel()">
+                            {{"CreateModel" | translate:locale.language}}
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="row mt-4" *ngIf="creationMethod === 'import'">
