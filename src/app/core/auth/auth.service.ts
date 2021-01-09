@@ -11,6 +11,7 @@ import {ServerMessage} from "../types/serverMessage.type";
     providedIn: "root"
 })
 export class AuthService {
+    static readonly localStorageTokenKey = "Token";
     private readonly apiUrl: string;
 
     constructor(private readonly httpClient: HttpClient) {
@@ -23,5 +24,9 @@ export class AuthService {
 
     register(register: Register): Observable<ServerMessage> {
         return this.httpClient.post<ServerMessage>(`${this.apiUrl}/register`, register);
+    }
+
+    isLoggedIn(): boolean {
+        return localStorage.getItem(AuthService.localStorageTokenKey) != null;
     }
 }

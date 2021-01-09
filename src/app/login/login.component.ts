@@ -9,7 +9,9 @@ import {Login} from "../core/types/login.type";
 import {ServerMessage} from "../core/types/serverMessage.type";
 
 @Component({
-    selector: "app-login", templateUrl: "./login.component.html", styleUrls: ["./login.component.css"]
+    selector: "app-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
     loginForm = new FormBuilder().group({
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
 
         const login: Login = new Login(this.loginForm.get("email").value, this.loginForm.get("password").value);
         this.authService.login(login).subscribe((token: AccessToken) => {
-            localStorage.setItem("Token", token.access_token);
+            localStorage.setItem(AuthService.localStorageTokenKey, token.access_token);
 
             this.toast.showSuccess("Login");
 

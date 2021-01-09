@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
+import {AuthService} from "../app/core/auth/auth.service";
 import {ToastService} from "../app/core/error/toast.service";
 import {locales} from "../i18n/l10n-config";
 
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
+        readonly authService: AuthService,
         private readonly translation: L10nTranslationService,
         private readonly router: Router,
         private readonly toast: ToastService
@@ -30,7 +32,7 @@ export class NavbarComponent implements OnInit {
     }
 
     logout(): void {
-        localStorage.removeItem("Token");
+        localStorage.removeItem(AuthService.localStorageTokenKey);
         this.toast.showSuccess("Logout");
         void this.router.navigate(["/login"]).then(() => true);
     }
