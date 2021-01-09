@@ -27,6 +27,11 @@
 
         <!-- Right -->
         <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item" *ngIf="localStorage.getItem('Token') != null">
+                <a class="nav-link" href="javascript:" (click)="logout()">
+                    <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                </a>
+            </li>
             <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
                 <a class="nav-link dropdown-toggle"
                    href="javascript:"
