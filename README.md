@@ -1,34 +1,43 @@
-# 3D Model Manager - Frontend
+# 3D Model Manager (Frontend)
+The 3D Model Manager is a webservice to collect and manage your 3D models.
 
-This project is build with Angular 10 and TypeScript. The package manager used is Yarn and not npm/node.
+Currently, the project is still in its early stages and contributions are welcome, but there is no documentation on how to set up the development environment or the server itself.
 
+## Structure of the software
+The backend ([another repository](https://github.com/Micky261/3d-model-manager-backend)) is based on Laravel 8 (PHP) and a MySQL/MariaDB database. The frontend of laravel is not used and will (hopefully) be discarded, only the API server is used. Composer is required.
 
+The frontend (this repository) is based on Angular 10 with Typescript and Bootstrap. Yarn is required.
 
+The frontend and backend are completely separated and shall work independently, which means that you should be able to set up a frontend yourself and use any available 3D Model Manager API available.
 
+## Planned features (first version)
+### Features
+- Separated User Spaces (without sharing any data -> later version) with Registration for new users
+- Creating+Uploading "Models" with 3D files, images, diagrams, ..., descriptions, notes, links, ... (and downloading, of course)
+- Tagging system to tag models
+- Importer for 3D model repositories
+    - Thingiverse
+    - Cults3D
+    - MyMiniFactory
+    - TinkerCAD
+- Simple text search
+- German and English language
 
+### Repositories
+- CI for linting (and possibly other build processes)
+- Example live server
+- Documentation & Guides
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+## Future planning
+### Features
+- Besides tags also sets (collections)
+- Sharing of models between users and making them available to the public
+- Better search (if needed)
+- More importers for other services, e.g. PinShape
+- Support of more data formats for documents and diagrams (pdf, eagle, CAD, ...) (viewers in frontend)
+- Set limits for users (by admin)
+- Generally more settings in the frontend
+- More languages (if someone can translate English or German to another language)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Code
+- Use OpenAPI/Swagger in backend with auto-generation for TypeScript.
