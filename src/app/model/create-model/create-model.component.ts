@@ -41,8 +41,10 @@ export class CreateModelComponent implements OnInit {
 
         this.modelService.importModel(this.importForm.get("url").value).subscribe(
             (message: ServerMessage) => {
+                // TODO
             },
             error => {
+                // TODO
             });
     }
 }
