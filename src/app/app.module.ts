@@ -40,10 +40,10 @@ registerLocaleData(localeEn);
         NgbModule,
         ToastNoAnimationModule.forRoot({
             closeButton: true,
-            timeOut: 10000,
-            extendedTimeOut: 2000,
+            timeOut: 7000,
+            extendedTimeOut: 1000,
             easing: "ease-in"
-        })
+        }),
     ],
     providers: [
         {
