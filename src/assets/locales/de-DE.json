@@ -1,13 +1,24 @@
 {
-  "3DModelManager": "3D Modellverwaltung",
-  "ChangeLocale": "Sprache ändern",
-  "Email": "E-Mail-Adresse",
-  "Home": "Startseite",
-  "Login": "Anmelden",
-  "Password": "Passwort",
-  "Search": "Suchen",
-  "error": {
-    "EnterPassword": "Bitte gib dein Passwort ein.",
-    "EnterValidEmail": "Bitte gib eine valide E-Mail-Adresse ein."
-  }
+    "3DModelManager": "3D Modellverwaltung",
+    "ChangeLocale": "Sprache ändern",
+    "Email": "E-Mail-Adresse",
+    "Home": "Startseite",
+    "Login": "Anmelden",
+    "Password": "Passwort",
+    "Search": "Suche",
+    "error": {
+        "Unknown": "Unbekannter Fehler",
+        "backend": {
+            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
+        },
+        "validation": {
+            "EnterPassword": "Bitte gib dein Passwort ein.",
+            "EnterValidEmail": "Bitte gib eine valide E-Mail-Adresse ein."
+        }
+    },
+    "success": {
+        "Login": "Erfolgreich angemeldet.",
+        "Logout": "Erfolgreich abgemeldet.",
+        "Unknown": "Unbekannter Erfolg"
+    }
 }

@@ -1,13 +1,24 @@
 {
-  "3DModelManager": "3D Model Manager",
-  "ChangeLocale": "Change locale",
-  "Email": "E-Mail address",
-  "Home": "Home",
-  "Login": "Login",
-  "Password": "Password",
-  "Search": "Search",
-  "error": {
-    "EnterPassword": "Enter your password, please.",
-    "EnterValidEmail": "Enter a valid e-mail address, please."
-  }
+    "3DModelManager": "3D Model Manager",
+    "ChangeLocale": "Change locale",
+    "Email": "E-Mail address",
+    "Home": "Home",
+    "Login": "Login",
+    "Password": "Password",
+    "Search": "Search",
+    "error": {
+        "Unknown": "Unknown error",
+        "backend": {
+            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login."
+        },
+        "validation": {
+            "EnterPassword": "Enter your password, please.",
+            "EnterValidEmail": "Enter a valid e-mail address, please."
+        }
+    },
+    "success": {
+        "Login": "Login successful.",
+        "Logout": "Logout successful.",
+        "Unknown": "Unknown success"
+    }
 }

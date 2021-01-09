@@ -5,7 +5,9 @@ import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/rout
     providedIn: "root"
 })
 export class AuthGuardService {
-    constructor(private router: Router) {
+    constructor(
+        private readonly router: Router
+    ) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
