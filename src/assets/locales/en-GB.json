@@ -1,10 +1,13 @@
 {
     "3DModelManager": "3D Model Manager",
     "ChangeLocale": "Change locale",
+    "CreateModel": "Create 3D Model",
     "Email": "E-Mail address",
     "Home": "Home",
+    "Import": "Import",
     "Login": "Login",
     "Logout": "Logout",
+    "Manual": "Manual",
     "Password": "Password",
     "Register": "Sign Up",
     "Search": "Search",

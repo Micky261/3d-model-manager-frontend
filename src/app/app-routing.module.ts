@@ -20,6 +20,10 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
         {
             path: "email-resend",
             loadChildren: () => import("./email-resend/email-resend.module").then(m => m.EmailResendModule)
+        },
+        {
+            path: "model",
+            loadChildren: () => import("./model/model.module").then(m => m.ModelModule)
         }
     ])],
     exports: [

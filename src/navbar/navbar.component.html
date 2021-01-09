@@ -33,6 +33,11 @@
                     <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
                 </a>
             </li>
+            <li class="nav-item" *ngIf="authService.isLoggedIn()">
+                <a class="nav-link" routerLink="/model/create">
+                    <span class="fas fa-plus-square"></span> {{"CreateModel" | translate:locale.language}}
+                </a>
+            </li>
         </ul>
 
         <!-- Right -->

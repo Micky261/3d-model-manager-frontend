@@ -1,10 +1,13 @@
 {
     "3DModelManager": "3D Modellverwaltung",
     "ChangeLocale": "Sprache ändern",
+    "CreateModel": "3D Modell erstellen",
     "Email": "E-Mail-Adresse",
     "Home": "Startseite",
+    "Import": "Importieren",
     "Login": "Anmelden",
     "Logout": "Abmelden",
+    "Manual": "Manuell",
     "Password": "Passwort",
     "Register": "Registrieren",
     "Search": "Suche",
