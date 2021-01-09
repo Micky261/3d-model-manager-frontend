@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Configuration} from "../../configuration";
-import {Models} from "./types/models.type";
+import {Model} from "./types/model.type";
 import {ServerMessage} from "./types/serverMessage.type";
 
 @Injectable({
@@ -15,8 +15,8 @@ export class ModelService {
         this.apiUrl = Configuration.server + Configuration.folder;
     }
 
-    getRandomModels(num: number): Observable<Models[]> {
-        return this.httpClient.get<Models[]>(`${this.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
+    getRandomModels(num: number): Observable<Model[]> {
+        return this.httpClient.get<Model[]>(`${this.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
     }
 
     importModel(importUrl: string): Observable<ServerMessage> {

@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ModelService} from "../core/model.service";
-import {Models} from "../core/types/models.type";
+import {Model} from "../core/types/model.type";
 
 @Component({
     selector: "app-home",
@@ -9,7 +9,7 @@ import {Models} from "../core/types/models.type";
     styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-    randomModels: Models[];
+    randomModels: Model[];
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
