@@ -28,4 +28,8 @@ export class ModelService {
     uploadModel(model: Model): Observable<Model> {
         return this.httpClient.post<Model>(`${this.apiUrl}/model`, model);
     }
+
+    getModel(id: number): Observable<Model> {
+        return this.httpClient.get<Model>(`${this.apiUrl}/model/${encodeURIComponent(String(id))}`);
+    }
 }

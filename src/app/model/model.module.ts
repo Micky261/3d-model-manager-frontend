@@ -9,6 +9,10 @@ import {RouterModule} from "@angular/router";
             {
                 path: "create",
                 loadChildren: () => import("./create-model/create-model.module").then(m => m.CreateModelModule)
+            },
+            { // Must be last
+                path: ":id",
+                loadChildren: () => import("./show/show.module").then(m => m.ShowModule)
             }
         ]),
     ]
