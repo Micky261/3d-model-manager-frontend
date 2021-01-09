@@ -2,23 +2,30 @@
     "3DModelManager": "3D Modellverwaltung",
     "ChangeLocale": "Sprache ändern",
     "CreateModel": "3D Modell erstellen",
+    "CreateModelImport": "Aus Quelle importieren (Link)",
+    "CreateModelManually": "Manuell erstellen (Hochladen)",
     "Email": "E-Mail-Adresse",
+    "EnterURL": "URL eingeben",
     "Home": "Startseite",
-    "Import": "Importieren",
     "Login": "Anmelden",
     "Logout": "Abmelden",
-    "Manual": "Manuell",
+    "ModelURL": "URL des Modells",
+    "Models": "Modelle",
     "Password": "Passwort",
     "Register": "Registrieren",
     "Search": "Suche",
+    "StartImport": "Import starten",
+    "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "error": {
         "Unknown": "Unbekannter Fehler",
         "backend": {
             "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
         },
         "validation": {
+            "EnterName": "Bitte gib einen Namen ein.",
             "EnterPassword": "Bitte gib dein Passwort ein.",
-            "EnterValidEmail": "Bitte gib eine valide E-Mail-Adresse ein."
+            "EnterValidEmail": "Bitte gib eine valide E-Mail-Adresse ein.",
+            "InvalidUrl": "Bitte gib eine valide URL ein."
         }
     },
     "success": {

@@ -15,8 +15,47 @@
             <h2>{{"CreateModel" | translate:locale.language}}</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col">
+            <div class="btn-group w-100" role="group">
+                <button type="button"
+                        class="btn"
+                        [class.btn-primary]="creationMethod === 'upload'"
+                        [class.btn-outline-primary]="creationMethod != 'upload'"
+                        (click)="creationMethod = 'upload'">
+                    {{"CreateModelManually" | translate:locale.language}}
+                </button>
+                <button type="button"
+                        class="btn"
+                        [class.btn-primary]="creationMethod === 'import'"
+                        [class.btn-outline-primary]="creationMethod != 'import'"
+                        (click)="creationMethod = 'import'">
+                    {{"CreateModelImport" | translate:locale.language}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="creationMethod === 'upload'">
+        <div class="col">
+            WIP
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="creationMethod === 'import'">
+        <div class="col">
+            <form [formGroup]="importForm">
+                <label for="url">{{"ModelURL" | translate:locale.language}}</label>:
+                <div class="input-group mb-3">
+                    <input id="url" type="url" class="form-control"
+                           formControlName="url"
+                           [placeholder]="'EnterURL' | translate:locale.language">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit"
+                                (click)="startImport()">
+                            {{"StartImport" | translate:locale.language}}
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
