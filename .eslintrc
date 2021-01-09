@@ -179,12 +179,7 @@
             "never"
         ],
         "padding-line-between-statements": [
-            "warn",
-            {
-                "blankLine": "always",
-                "prev": "*",
-                "next": "return"
-            }
+            "warn"
         ],
         "prefer-arrow/prefer-arrow-functions": "warn",
         "prefer-const": "warn",
