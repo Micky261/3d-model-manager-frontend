@@ -1,12 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/" (click)="isCollapsed = true">
-        <img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top"
-             alt="">
-        {{"3DModelManager" | translate:locale.language}}
+    <a class="navbar-brand" routerLink="/" (click)="isCollapsed = true">
+        <!--<img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top" alt="">-->
+        <span class="fas fa-cubes"></span> {{"3DModelManager" | translate:locale.language}}
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
             (click)="isCollapsed = !isCollapsed">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,30 +19,38 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">{{"Home" | translate:locale.language}}</a>
+                <a class="nav-link" routerLink="/">
+                    <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
+                </a>
             </li>
         </ul>
 
         <!-- Right -->
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
-                <a class="nav-link dropdown-toggle" href="javascript:" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                <a class="nav-link dropdown-toggle"
+                   href="javascript:"
+                   id="navbarDropdown"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false"
+                   ngbDropdownToggle>
                     <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
                 </a>
                 <ul class="dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
                     <li>
-                        <button class="dropdown-item text-center" ngbDropdownItem
+                        <button class="dropdown-item" ngbDropdownItem
                                 [class.active]="locale.language === 'de-DE'"
                                 (click)="isCollapsed = true; setLocale(locales['de-DE'])">
-                            Deutsch
+                            <flag code="de" size="s"></flag> Deutsch
                         </button>
                     </li>
                     <li>
-                        <button class="dropdown-item text-center" ngbDropdownItem
+                        <button class="dropdown-item" ngbDropdownItem
                                 [class.active]="locale.language === 'en-GB'"
                                 (click)="isCollapsed = true; setLocale(locales['en-GB'])">
-                            English
+                            <flag code="gb" size="s"></flag> English
                         </button>
                     </li>
                 </ul>

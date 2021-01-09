@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nIntlModule, L10nLoader, L10nTranslationModule} from "angular-l10n";
+import {NgxFlagsModule} from "ngx-flags";
 import {ToastNoAnimationModule} from "ngx-toastr";
 import {initL10n, l10nConfig} from "../i18n/l10n-config";
 import {Storage} from "../i18n/l10n-storage";
@@ -44,6 +45,7 @@ registerLocaleData(localeEn);
             extendedTimeOut: 1000,
             easing: "ease-in"
         }),
+        NgxFlagsModule,
     ],
     providers: [
         {

@@ -8,6 +8,8 @@ import {locales} from "../i18n/l10n-config";
 })
 export class NavbarComponent implements OnInit {
     locales = locales;
+    localStorage = localStorage;
+
     isCollapsed = true;
 
     constructor(
