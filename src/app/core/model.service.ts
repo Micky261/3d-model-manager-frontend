@@ -25,8 +25,22 @@ export class ModelService {
         return this.httpClient.post<ServerMessage>(`${this.apiUrl}/model/import`, body);
     }
 
-    uploadModel(model: Model): Observable<Model> {
+    /**
+     * This method creates a new model on the server.
+     *
+     * @param model Model to create
+     */
+    postModel(model: Model): Observable<Model> {
         return this.httpClient.post<Model>(`${this.apiUrl}/model/data`, model);
+    }
+
+    /**
+     * Update the given model (with its identifier)
+     *
+     * @param model Model to update
+     */
+    updateModel(model: Model): Observable<Model> {
+        return this.httpClient.put<Model>(`${this.apiUrl}/model/data/${encodeURIComponent(String(model.id))}`, model);
     }
 
     getModel(id: number): Observable<Model> {

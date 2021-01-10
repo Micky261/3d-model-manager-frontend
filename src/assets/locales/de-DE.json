@@ -25,7 +25,8 @@
     "error": {
         "Unknown": "Unbekannter Fehler",
         "backend": {
-            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
+            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich.",
+            "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden."
         },
         "validation": {
             "EnterAuthor": "Bitte gib einen Autor an.",

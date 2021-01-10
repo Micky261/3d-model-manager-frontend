@@ -72,7 +72,7 @@ export class CreateModelComponent implements OnInit {
             this.uploadForm.get("favorite").value,
             this.uploadForm.get("author").value, "");
 
-        this.modelService.uploadModel(model).subscribe(
+        this.modelService.postModel(model).subscribe(
             (serverModel: Model) => {
                 void this.router.navigate(["/model", serverModel.id]).then(() => true);
             },

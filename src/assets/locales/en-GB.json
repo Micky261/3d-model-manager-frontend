@@ -13,7 +13,7 @@
     "Login": "Login",
     "Logout": "Logout",
     "Model": "Model",
-    "ModelName": "Name des Modells",
+    "ModelName": "Name of the model",
     "ModelURL": "URL of the model",
     "Models": "Models",
     "Name": "Name",
@@ -25,7 +25,8 @@
     "error": {
         "Unknown": "Unknown error",
         "backend": {
-            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login."
+            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login.",
+            "ModelUpdateFailed": "The model data could not be updated on the server."
         },
         "validation": {
             "EnterAuthor": "Enter an author, please.",

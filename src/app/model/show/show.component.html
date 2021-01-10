@@ -7,14 +7,57 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h2>
-                <span class="fas fa-cube"></span>
-                {{"Model" | translate:locale.language}}:
-                <span *ngIf="model">{{model.name}}</span>
-            </h2>
+            <form class="form-inline">
+                <div class="form-group mx-1">
+                    <h2>
+                        <span class="fas fa-cube mx-1"></span>
+                        <!--<span class="mx-1">{{"Model" | translate:locale.language}}:</span>-->
+                        <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
+                    </h2>
+                </div>
+                <div class="form-group mx-1" *ngIf="editName && model">
+                    <input class="form-control" type="text"
+                           #inputName [value]="model.name"
+                           (change)="updateField(inputName, 'name')"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-sm text-secondary"
+                            (click)="toggleField('name')">
+                        <span class="fas fa-pencil-alt"></span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="row">
-        WIP
+    <div class="row my-3" *ngIf="model">
+        <div class="col-9">
+            Renderings, Images, Diagrams, ...
+        </div>
+        <div class="col-3">
+            <div class="list-group my-2">
+                <button class="list-group-item list-group-item-action bg-primary text-white">
+                    <span class="fas fa-upload text-white mr-2"></span>
+                    {{"Upload" | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        [class.bg-primary]="model.favorite"
+                        [class.text-white]="model.favorite"
+                        (click)="changeFavorite()">
+                    <span class="fa-heart mr-2"
+                          [class.far]="!model.favorite" [class.text-primary]="!model.favorite"
+                          [class.text-white]="model.favorite" [class.bg-primary]="model.favorite"
+                          [class.fas]="model.favorite"></span>
+                    {{"Favorite" | translate:locale.language}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-3">
+            Navigation
+        </div>
+        <div class="col-9">
+            Description
+        </div>
     </div>
 </div>
