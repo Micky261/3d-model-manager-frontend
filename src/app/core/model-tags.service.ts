@@ -15,7 +15,7 @@ export class ModelTagsService {
     }
 
     getModelTags(modelId: number): Observable<ModelTag[]> {
-        return this.httpClient.get<ModelTag[]>(`${this.apiUrl}/models/tags/${encodeURIComponent(String(modelId))}`);
+        return this.httpClient.get<ModelTag[]>(`${this.apiUrl}/model/tags/${encodeURIComponent(String(modelId))}`);
     }
 
     postModelTag(modelId: number, tag: string): Observable<ModelTag> {
