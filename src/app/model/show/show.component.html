@@ -16,7 +16,8 @@
                     </h2>
                 </div>
                 <div class="form-group mx-1" *ngIf="editName && model">
-                    <input class="form-control" type="text"
+                    <label for="modelName" class="sr-only">{{"ModelName" | translate:locale.language}}</label>
+                    <input class="form-control" type="text" id="modelName"
                            #inputName [value]="model.name"
                            (change)="updateField(inputName, 'name')"/>
                 </div>
@@ -49,6 +50,43 @@
                           [class.fas]="model.favorite"></span>
                     {{"Favorite" | translate:locale.language}}
                 </button>
+                <div class="list-group-item list-group-item-action">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <span class="fas fa-tags text-primary mr-2"></span>
+                            {{"Tags" | translate:locale.language}}
+                        </div>
+                    </div>
+                    <div class="row my-2" *ngIf="tagsWithCount">
+                        <div class="col">
+                            <ng-select [items]="tagsWithCount" bindLabel="tag" bindValue="tag"
+                                       (change)="setTag($event)"
+                                       (search)="saveSearch($event)"
+                                       #selectTag>
+                                <ng-template ng-option-tmp let-item="item">
+                                    {{item.tag}} <span class="text-sm-left">({{item.count}})</span>
+                                </ng-template>
+                                <ng-template ng-footer-tmp>
+                                    <button (click)="addTag()" class="btn btn-primary btn-sm w-100">
+                                        {{"CreateTag" | translate:locale.language}}
+                                    </button>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="row mt-2" *ngIf="modelTags">
+                        <div class="col">
+                            <div class="btn-group btn-group-xs m-1" *ngFor="let tag of modelTags">
+                                <button type="button" class="btn btn-primary" routerLink="/tags/{{tag.tag}}">
+                                    {{tag.tag}}
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    <span class="fas fa-trash-alt small"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

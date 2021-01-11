@@ -5,6 +5,7 @@
     "CreateModel": "3D Modell erstellen",
     "CreateModelImport": "Aus Quelle importieren (Link)",
     "CreateModelManually": "Manuell erstellen (Hochladen)",
+    "CreateTag": "Tag erstellen",
     "Description": "Beschreibung",
     "Email": "E-Mail-Adresse",
     "EnterURL": "URL eingeben",
@@ -23,11 +24,15 @@
     "Search": "Suche",
     "StartImport": "Import starten",
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
+    "Tags": "Tags",
     "error": {
         "Unknown": "Unbekannter Fehler",
         "backend": {
-            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich.",
-            "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden."
+            "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden.",
+            "ServerDidNotAnswer": "Der Server hat nicht zeitgerecht geantwortet. Ihre Verbindung ist zu langsam oder der Server ist nicht verfügbar.",
+            "TagCouldNotBeSet": "Der Tag konnte nicht gesetzt werden.",
+            "TagsNotReceived": "Die Tags des Modells konnten nicht abgerufen werden.",
+            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
         },
         "validation": {
             "EnterAuthor": "Bitte gib einen Autor an.",
