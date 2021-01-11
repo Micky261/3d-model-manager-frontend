@@ -22,8 +22,8 @@ export class ModelTagsService {
         return this.httpClient.get<ModelTag[]>(`${this.apiUrl}/model/tags/${encodeURIComponent(String(modelId))}`);
     }
 
-    postModelTag(modelId: number, tag: string): Observable<ModelTag> {
-        return this.httpClient.post<ModelTag>(`${this.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`, null);
+    postModelTag(modelId: number, tag: string): Observable<ModelTag|null> {
+        return this.httpClient.post<ModelTag|null>(`${this.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`, null);
     }
 
     deleteModelTag(modelId: number, tag: string): Observable<any> {
