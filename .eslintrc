@@ -1,6 +1,7 @@
 {
-
-    "ignorePatterns": [ "src/**/*.type.ts" ],
+    "ignorePatterns": [
+        "src/**/*.type.ts"
+    ],
     "env": {
         "browser": true,
         "es6": true,
@@ -167,7 +168,12 @@
             }
         ],
         "no-throw-literal": "warn",
-        "no-trailing-spaces": "warn",
+        "no-trailing-spaces": [
+            "warn",
+            {
+                "skipBlankLines": true
+            }
+        ],
         "no-undef-init": "warn",
         "no-underscore-dangle": "warn",
         "no-unsafe-finally": "warn",
