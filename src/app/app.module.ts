@@ -16,6 +16,7 @@ import {NavbarModule} from "../navbar/navbar.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -28,6 +29,7 @@ registerLocaleData(localeEn);
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        NgSelectModule,
         FormsModule,
         L10nTranslationModule.forRoot(
             l10nConfig,
