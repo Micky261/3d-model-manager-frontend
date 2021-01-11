@@ -14,6 +14,10 @@ export class ModelTagsService {
         this.apiUrl = Configuration.server + Configuration.folder;
     }
 
+    getAllTags(): Observable<{ tag: string; count: number }[]> {
+        return this.httpClient.get<{ tag: string; count: number }[]>(`${this.apiUrl}/tags/all`);
+    }
+
     getModelTags(modelId: number): Observable<ModelTag[]> {
         return this.httpClient.get<ModelTag[]>(`${this.apiUrl}/model/tags/${encodeURIComponent(String(modelId))}`);
     }
