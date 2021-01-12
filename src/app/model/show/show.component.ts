@@ -88,7 +88,7 @@ export class ShowComponent implements OnInit {
     }
 
     deleteLink(link: Link): void {
-        this.model.links.remove(this.model.links, link);
+        this.model.links.remove(link);
         this.updateModelOnServer();
     }
 

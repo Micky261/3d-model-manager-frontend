@@ -53,7 +53,7 @@ export class TagsElementComponent implements OnInit {
 
     deleteTag(tag: ModelTag): void {
         this.modelTagsService.deleteModelTag(this.modelId, tag.tag).subscribe(
-            () => this.modelTags.remove(this.modelTags, tag),
+            () => this.modelTags.remove(tag),
             () => this.toast.showBackendError("TagCouldNotBeDeleted")
         );
     }
