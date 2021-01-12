@@ -16,7 +16,9 @@ export class ShowComponent implements OnInit {
     modelId: number;
     model: Model;
     @ViewChild("inputName") inputName: ElementRef<HTMLInputElement>;
+    @ViewChild("inputAuthor") inputAuthor: ElementRef<HTMLInputElement>;
     editName = false;
+    editAuthor = false;
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
@@ -47,6 +49,12 @@ export class ShowComponent implements OnInit {
             case "name": {
                 this.model.name = input.value;
                 this.editName = false;
+                break;
+            }
+            case "author": {
+                this.model.author = input.value;
+                this.editAuthor = false;
+                break;
             }
         }
 
@@ -62,6 +70,16 @@ export class ShowComponent implements OnInit {
                         this.inputName.nativeElement.focus();
                     }, 0);
                 }
+                break;
+            }
+            case "author": {
+                this.editAuthor = !this.editAuthor;
+                if (this.editAuthor) {
+                    setTimeout(() => {
+                        this.inputAuthor.nativeElement.focus();
+                    }, 0);
+                }
+                break;
             }
         }
     }

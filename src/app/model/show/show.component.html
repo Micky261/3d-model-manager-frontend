@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col">
             <form class="form-inline">
-                <div class="form-group mx-1">
+                <div class="mx-1">
                     <h2>
                         <span class="fas fa-cube mx-1"></span>
-                        <!--<span class="mx-1">{{"Model" | translate:locale.language}}:</span>-->
+                        <!--<span class="mx-1">{{"Model" | translate:locale.language}}: </span>-->
                         <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
                     </h2>
                 </div>
@@ -21,9 +21,39 @@
                            #inputName [value]="model.name"
                            (change)="updateField(inputName, 'name')"/>
                 </div>
-                <div class="form-group">
+                <div class="mx-1">
+                    <small class="text-muted mx-1" *ngIf="model && model.imported_name">{{model.imported_name}}</small>
+                </div>
+                <div class="ml-1">
                     <button class="btn btn-sm text-secondary"
                             (click)="toggleField('name')">
+                        <span class="fas fa-pencil-alt"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form class="form-inline">
+                <div class="mx-1">
+                    <span class="fas fa-user mr-1 ml-4 text-secondary"></span>
+                    <!--<span class="mx-1 text-secondary">{{"Author" | translate:locale.language}}: </span>-->
+                    <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{model.author}}</span>
+                </div>
+                <div class="form-group mx-1" *ngIf="editAuthor && model">
+                    <label for="modelAuthor" class="sr-only">{{"ModelAuthor" | translate:locale.language}}</label>
+                    <input class="form-control form-control-sm" type="text" id="modelAuthor"
+                           #inputAuthor [value]="model.author"
+                           (change)="updateField(inputAuthor, 'author')"/>
+                </div>
+                <div class="mx-1">
+                    <small class="text-muted mx-1"
+                           *ngIf="model && model.imported_author">{{model.imported_author}}</small>
+                </div>
+                <div class="ml-1">
+                    <button class="btn btn-xs text-secondary"
+                            (click)="toggleField('author')">
                         <span class="fas fa-pencil-alt"></span>
                     </button>
                 </div>
