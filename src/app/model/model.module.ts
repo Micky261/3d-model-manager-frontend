@@ -14,7 +14,7 @@ import {RouterModule} from "@angular/router";
                 path: ":id",
                 loadChildren: () => import("./show/show.module").then(m => m.ShowModule)
             }
-        ]),
+        ])
     ]
 })
 export class ModelModule {

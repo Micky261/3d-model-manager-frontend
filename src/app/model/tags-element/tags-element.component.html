@@ -1,0 +1,38 @@
+<div class="row mb-2">
+    <div class="col">
+        <span class="fas fa-tags text-primary mr-2"></span>
+        {{"Tags" | translate:locale.language}}
+    </div>
+</div>
+<div class="row my-2" *ngIf="tagsWithCount">
+    <div class="col">
+        <ng-select bindLabel="tag" bindValue="tag"
+                   [items]="tagsWithCount | objectArraySort:'tag':false"
+                   (change)="setTag($event)"
+                   (search)="saveSearch($event)"
+                   #selectTag>
+            <ng-template ng-option-tmp let-item="item">
+                {{item.tag}} <span class="text-sm-left">({{item.count}})</span>
+            </ng-template>
+            <ng-template ng-footer-tmp>
+                <button (click)="addTag()" class="btn btn-primary btn-sm w-100">
+                    {{"CreateTag" | translate:locale.language}}
+                </button>
+            </ng-template>
+        </ng-select>
+    </div>
+</div>
+<div class="row mt-2" *ngIf="modelTags">
+    <div class="col">
+        <div class="btn-group btn-group-xs m-1"
+             *ngFor="let tag of modelTags | objectArraySort:'tag':false">
+            <button type="button" class="btn btn-primary" routerLink="/tags/{{tag.tag}}">
+                {{tag.tag}}
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    (click)="deleteTag(tag)">
+                <span class="fas fa-trash-alt small"></span>
+            </button>
+        </div>
+    </div>
+</div>
