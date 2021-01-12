@@ -25,6 +25,9 @@
     "StartImport": "Start import",
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
+	"ImportedDescription": "Imported description",
+	"Notes": "Notes",
+	"Links": "Links",
     "error": {
         "Unknown": "Unknown error",
         "backend": {

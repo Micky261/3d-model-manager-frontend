@@ -15,10 +15,14 @@ import {Model} from "../../core/types/model.type";
 export class ShowComponent implements OnInit {
     modelId: number;
     model: Model;
+
     @ViewChild("inputName") inputName: ElementRef<HTMLInputElement>;
     @ViewChild("inputAuthor") inputAuthor: ElementRef<HTMLInputElement>;
+
     editName = false;
     editAuthor = false;
+
+    navigation = "description";
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,

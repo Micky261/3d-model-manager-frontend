@@ -66,8 +66,8 @@
         </div>
         <div class="col-3">
             <div class="list-group my-2">
-                <button class="list-group-item list-group-item-action bg-primary text-white">
-                    <span class="fas fa-upload text-white mr-2"></span>
+                <button class="list-group-item list-group-item-action">
+                    <span class="fas fa-upload text-primary mr-2"></span>
                     {{"Upload" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
@@ -88,10 +88,57 @@
     </div>
     <div class="row my-3">
         <div class="col-3">
-            Navigation
+            <div class="list-group my-2">
+                <button class="list-group-item list-group-item-action"
+                        [class.active]="navigation === 'description'"
+                        (click)="navigation = 'description'">
+                    <span class="fas fa-edit text-primary mr-2"
+                          [class.text-primary]="navigation !== 'description'"
+                          [class.text-white]="navigation === 'description'"></span>
+                    {{"Description" | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        [class.active]="navigation === 'import_description'"
+                        (click)="navigation = 'import_description'"
+                        *ngIf="model.imported_description">
+                    <span class="far fa-edit text-primary mr-2"
+                          [class.text-primary]="navigation !== 'import_description'"
+                          [class.text-white]="navigation === 'import_description'"></span>
+                    {{"ImportedDescription" | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        [class.active]="navigation === 'notes'"
+                        (click)="navigation = 'notes'">
+                    <span class="fas fa-sticky-note text-primary mr-2"
+                          [class.text-primary]="navigation !== 'notes'"
+                          [class.text-white]="navigation === 'notes'"></span>
+                    {{"Notes" | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        [class.active]="navigation === 'links'"
+                        (click)="navigation = 'links'">
+                    <span class="fas fa-link text-primary mr-2"
+                          [class.text-primary]="navigation !== 'links'"
+                          [class.text-white]="navigation === 'links'"></span>
+                    {{"Links" | translate:locale.language}}
+                </button>
+            </div>
         </div>
         <div class="col-9">
-            Description
+            <ng-container [ngSwitch]="navigation">
+                <div *ngSwitchDefault>
+                    A
+                </div>
+                <div *ngSwitchCase="'import_description'">
+                    b
+                </div>
+                <div *ngSwitchCase="'notes'">
+                    c
+                </div>
+                <div *ngSwitchCase="'links'">
+                    d
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>
