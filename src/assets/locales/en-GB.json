@@ -1,5 +1,6 @@
 {
     "3DModelManager": "3D Model Manager",
+    "Actions": "Actions",
     "Author": "Author",
     "ChangeLocale": "Change locale",
     "CreateModel": "Create 3D Model",
@@ -11,6 +12,9 @@
     "EnterURL": "Enter URL",
     "Favorite": "Favorite",
     "Home": "Home",
+    "ImportedDescription": "Imported description",
+    "Link": "Link",
+    "Links": "Links",
     "Login": "Login",
     "Logout": "Logout",
     "Model": "Model",
@@ -18,25 +22,26 @@
     "ModelURL": "URL of the model",
     "Models": "Models",
     "Name": "Name",
+    "Notes": "Notes",
     "NothingFound": "Nothing found",
     "Password": "Password",
     "Register": "Sign Up",
+    "Save": "Save",
     "Search": "Search",
+    "ShowAddEditLinkForm": "Add or edit link",
     "StartImport": "Start import",
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
-	"ImportedDescription": "Imported description",
-	"Notes": "Notes",
-	"Links": "Links",
+    "Title": "Title",
     "error": {
         "Unknown": "Unknown error",
         "backend": {
             "ModelUpdateFailed": "The model data could not be updated on the server.",
             "ServerDidNotAnswer": "The server didn't answer in time. Your connection is to slow or the server is down.",
+            "TagCouldNotBeDeleted": "The tag could not be deleted.",
             "TagCouldNotBeSet": "The tag could not be set.",
             "TagsNotReceived": "The models' tags could not be received.",
-            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login.",
-			"TagCouldNotBeDeleted": "The tag could not be deleted."
+            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login."
         },
         "validation": {
             "EnterAuthor": "Enter an author, please.",

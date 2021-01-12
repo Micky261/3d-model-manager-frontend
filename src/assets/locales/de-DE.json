@@ -1,5 +1,6 @@
 {
     "3DModelManager": "3D Modellverwaltung",
+    "Actions": "Aktionen",
     "Author": "Autor",
     "ChangeLocale": "Sprache ändern",
     "CreateModel": "3D Modell erstellen",
@@ -11,6 +12,9 @@
     "EnterURL": "URL eingeben",
     "Favorite": "Favorit",
     "Home": "Startseite",
+    "ImportedDescription": "Importierte Beschreibung",
+    "Link": "Link",
+    "Links": "Links",
     "Login": "Anmelden",
     "Logout": "Abmelden",
     "Model": "Modell",
@@ -18,25 +22,26 @@
     "ModelURL": "URL des Modells",
     "Models": "Modelle",
     "Name": "Name",
+    "Notes": "Notizen",
     "NothingFound": "Nichts gefunden",
     "Password": "Passwort",
     "Register": "Registrieren",
+    "Save": "Speichern",
     "Search": "Suche",
+    "ShowAddEditLinkForm": "Link bearbeiten oder erstellen",
     "StartImport": "Import starten",
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
-	"ImportedDescription": "Importierte Beschreibung",
-	"Notes": "Notizen",
-	"Links": "Links",
+    "Title": "Titel",
     "error": {
         "Unknown": "Unbekannter Fehler",
         "backend": {
             "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden.",
             "ServerDidNotAnswer": "Der Server hat nicht zeitgerecht geantwortet. Ihre Verbindung ist zu langsam oder der Server ist nicht verfügbar.",
+            "TagCouldNotBeDeleted": "Der Tag konnte nicht gelöscht werden.",
             "TagCouldNotBeSet": "Der Tag konnte nicht gesetzt werden.",
             "TagsNotReceived": "Die Tags des Modells konnten nicht abgerufen werden.",
-            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich.",
-			"TagCouldNotBeDeleted": "Der Tag konnte nicht gelöscht werden."
+            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
         },
         "validation": {
             "EnterAuthor": "Bitte gib einen Autor an.",

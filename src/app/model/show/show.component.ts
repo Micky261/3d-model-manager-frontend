@@ -2,6 +2,7 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
+import "../../../shared/string.extension";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelService} from "../../core/model.service";
 import {Link} from "../../core/types/link.type";
@@ -18,11 +19,16 @@ export class ShowComponent implements OnInit {
 
     @ViewChild("inputName") inputName: ElementRef<HTMLInputElement>;
     @ViewChild("inputAuthor") inputAuthor: ElementRef<HTMLInputElement>;
+    @ViewChild("inputLinkLink") inputLinkLink: ElementRef<HTMLInputElement>;
+    @ViewChild("inputLinkTitle") inputLinkTitle: ElementRef<HTMLInputElement>;
+    @ViewChild("inputLinkDescription") inputLinkDescription: ElementRef<HTMLTextAreaElement>;
 
     editName = false;
     editAuthor = false;
+    editLink: Link = null;
 
     navigation = "description";
+    openLinkForm = false;
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
@@ -85,6 +91,39 @@ export class ShowComponent implements OnInit {
                 break;
             }
         }
+    }
+
+    preFillEditLinkForm(link: Link): void {
+        this.openLinkForm = true;
+        setTimeout(() => {
+            this.inputLinkTitle.nativeElement.value = link.title;
+            this.inputLinkLink.nativeElement.value = link.link;
+            this.inputLinkDescription.nativeElement.value = link.description;
+
+            this.editLink = link;
+
+            this.inputLinkLink.nativeElement.focus();
+        }, 5);
+    }
+
+    saveLink(): void {
+        const lT = this.inputLinkTitle.nativeElement.value;
+        const lL = this.inputLinkLink.nativeElement.value;
+        const lD = this.inputLinkDescription.nativeElement.value;
+
+        if (this.editLink != null) {
+            this.editLink.title = lT;
+            this.editLink.link = lL;
+            this.editLink.description = lD;
+        } else {
+            this.model.links.push(new Link(lT, lT, lD));
+        }
+
+        this.updateModelOnServer();
+        this.inputLinkTitle.nativeElement.value = "";
+        this.inputLinkLink.nativeElement.value = "";
+        this.inputLinkDescription.nativeElement.value = "";
+        this.editLink = null;
     }
 
     deleteLink(link: Link): void {
