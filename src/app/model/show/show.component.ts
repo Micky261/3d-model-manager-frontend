@@ -3,8 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ToastService} from "../../core/error/toast.service";
-import {ModelTagsService} from "../../core/model-tags.service";
 import {ModelService} from "../../core/model.service";
+import {Link} from "../../core/types/link.type";
 import {Model} from "../../core/types/model.type";
 
 @Component({
@@ -28,7 +28,6 @@ export class ShowComponent implements OnInit {
         @Inject(L10N_LOCALE) public locale: L10nLocale,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
-        private readonly modelTagsService: ModelTagsService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
@@ -86,6 +85,11 @@ export class ShowComponent implements OnInit {
                 break;
             }
         }
+    }
+
+    deleteLink(link: Link): void {
+        this.model.links.remove(this.model.links, link);
+        this.updateModelOnServer();
     }
 
     private updateModelOnServer(): void {

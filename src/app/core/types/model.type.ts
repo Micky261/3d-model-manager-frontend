@@ -1,8 +1,10 @@
+import {Link} from "./link.type";
+
 export class Model {
     constructor(
         public id: number,
         public name: string,
-        public links: string[],
+        public links: Link[],
         public description: string,
         public notes: string,
         public favorite: boolean,

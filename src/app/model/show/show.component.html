@@ -65,7 +65,7 @@
             Renderings, Images, Diagrams, ...
         </div>
         <div class="col-3">
-            <div class="list-group my-2">
+            <div class="list-group">
                 <button class="list-group-item list-group-item-action">
                     <span class="fas fa-upload text-primary mr-2"></span>
                     {{"Upload" | translate:locale.language}}
@@ -88,7 +88,7 @@
     </div>
     <div class="row my-3">
         <div class="col-3">
-            <div class="list-group my-2">
+            <div class="list-group">
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'description'"
                         (click)="navigation = 'description'">
@@ -126,17 +126,51 @@
         </div>
         <div class="col-9">
             <ng-container [ngSwitch]="navigation">
-                <div *ngSwitchDefault>
-                    A
-                </div>
-                <div *ngSwitchCase="'import_description'">
-                    b
-                </div>
-                <div *ngSwitchCase="'notes'">
-                    c
-                </div>
-                <div *ngSwitchCase="'links'">
-                    d
+                <div class="border border-secondary rounded p-2">
+                    <div *ngSwitchDefault>
+                        {{model.description}}
+                    </div>
+                    <div *ngSwitchCase="'import_description'">
+                        {{model.imported_description}}
+                    </div>
+                    <div *ngSwitchCase="'notes'">
+                        {{model.notes}}
+                    </div>
+                    <div *ngSwitchCase="'links'">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="col-3">{{"Link" | translate:locale.language}}</th>
+                                <th class="col-6">{{"Description" | translate:locale.language}}</th>
+                                <th class="col-3">{{"Actions" | translate:locale.language}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let link of model.links">
+                                <td>
+                                    <a href="{{link.link}}" target="_blank">{{link.title}}</a>
+                                </td>
+                                <td>
+                                    {{link.description}}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{link.link}}" target="_blank" class="btn btn-primary">
+                                            <span class="fas fa-external-link-alt"></span>
+                                        </a>
+                                        <button type="button" class="btn btn-danger"
+                                                (click)="deleteLink(link)">
+                                            <span class="fas fa-trash-alt"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary">
+                                            <span class="fas fa-pencil-alt"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </ng-container>
         </div>
