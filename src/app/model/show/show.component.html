@@ -59,7 +59,8 @@
                     </div>
                     <div class="row my-2" *ngIf="tagsWithCount">
                         <div class="col">
-                            <ng-select [items]="tagsWithCount" bindLabel="tag" bindValue="tag"
+                            <ng-select bindLabel="tag" bindValue="tag"
+                                       [items]="tagsWithCount | objectArraySort:'tag':false"
                                        (change)="setTag($event)"
                                        (search)="saveSearch($event)"
                                        #selectTag>
@@ -76,7 +77,8 @@
                     </div>
                     <div class="row mt-2" *ngIf="modelTags">
                         <div class="col">
-                            <div class="btn-group btn-group-xs m-1" *ngFor="let tag of modelTags">
+                            <div class="btn-group btn-group-xs m-1"
+                                 *ngFor="let tag of modelTags | objectArraySort:'tag':false">
                                 <button type="button" class="btn btn-primary" routerLink="/tags/{{tag.tag}}">
                                     {{tag.tag}}
                                 </button>

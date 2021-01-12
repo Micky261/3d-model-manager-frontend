@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nTranslationModule} from "angular-l10n";
+import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
 import {ShowComponent} from "./show.component";
 
 @NgModule({
@@ -20,6 +21,7 @@ import {ShowComponent} from "./show.component";
         L10nTranslationModule,
         ReactiveFormsModule,
         NgSelectModule,
+        CustomPipesModule,
     ]
 })
 export class ShowModule {

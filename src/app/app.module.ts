@@ -6,6 +6,7 @@ import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nIntlModule, L10nLoader, L10nTranslationModule} from "angular-l10n";
 import {NgxFlagsModule} from "ngx-flags";
 import {ToastNoAnimationModule} from "ngx-toastr";
@@ -16,7 +17,6 @@ import {NavbarModule} from "../navbar/navbar.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
-import {NgSelectModule} from "@ng-select/ng-select";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
