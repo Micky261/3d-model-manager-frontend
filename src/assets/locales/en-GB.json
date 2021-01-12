@@ -32,7 +32,8 @@
             "ServerDidNotAnswer": "The server didn't answer in time. Your connection is to slow or the server is down.",
             "TagCouldNotBeSet": "The tag could not be set.",
             "TagsNotReceived": "The models' tags could not be received.",
-            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login."
+            "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login.",
+			"TagCouldNotBeDeleted": "The tag could not be deleted."
         },
         "validation": {
             "EnterAuthor": "Enter an author, please.",

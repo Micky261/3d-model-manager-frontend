@@ -32,7 +32,8 @@
             "ServerDidNotAnswer": "Der Server hat nicht zeitgerecht geantwortet. Ihre Verbindung ist zu langsam oder der Server ist nicht verfügbar.",
             "TagCouldNotBeSet": "Der Tag konnte nicht gesetzt werden.",
             "TagsNotReceived": "Die Tags des Modells konnten nicht abgerufen werden.",
-            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich."
+            "USER_DATA_INCORRECT": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich.",
+			"TagCouldNotBeDeleted": "Der Tag konnte nicht gelöscht werden."
         },
         "validation": {
             "EnterAuthor": "Bitte gib einen Autor an.",

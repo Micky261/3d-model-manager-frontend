@@ -80,7 +80,8 @@
                                 <button type="button" class="btn btn-primary" routerLink="/tags/{{tag.tag}}">
                                     {{tag.tag}}
                                 </button>
-                                <button type="button" class="btn btn-outline-primary">
+                                <button type="button" class="btn btn-outline-primary"
+                                        (click)="deleteTag(tag)">
                                     <span class="fas fa-trash-alt small"></span>
                                 </button>
                             </div>

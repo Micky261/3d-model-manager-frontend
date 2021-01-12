@@ -2,6 +2,7 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgSelectComponent} from "@ng-select/ng-select";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
+import "../../../shared/array.extension";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelTagsService} from "../../core/model-tags.service";
 import {ModelService} from "../../core/model.service";
@@ -93,6 +94,13 @@ export class ShowComponent implements OnInit {
 
     saveSearch(event: { term: string; items: any[] }): void {
         this.lastTagSearchTerm = event.term;
+    }
+
+    deleteTag(tag: ModelTag): void {
+        this.modelTagsService.deleteModelTag(this.modelId, tag.tag).subscribe(
+            () => this.modelTags.remove(this.modelTags, tag),
+            () => this.toast.showBackendError("TagCouldNotBeDeleted")
+        );
     }
 
     private updateModelOnServer(): void {
