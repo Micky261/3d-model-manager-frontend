@@ -44,7 +44,7 @@ export class ShowComponent implements OnInit {
         this.modelService.getModel(this.modelId).subscribe((m: Model) => {
             this.model = m;
         }, () => {
-            void this.router.navigateByUrl("/not-found").then(() => true);
+            void this.router.navigate(["static", "not-found"]).then(() => true);
         });
     }
 

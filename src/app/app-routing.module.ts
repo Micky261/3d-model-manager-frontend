@@ -10,6 +10,10 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
             canActivate: [AuthGuardService]
         },
         {
+            path: "static",
+            loadChildren: () => import("./static/static.module").then(m => m.StaticModule)
+        },
+        {
             path: "login",
             loadChildren: () => import("./login/login.module").then(m => m.LoginModule)
         },
