@@ -1,6 +1,14 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Home</li>
+        <li class="breadcrumb-item active">
+            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/model">{{"Models" | translate:locale.language}}</a>
+        </li>
+        <li class="breadcrumb-item active" *ngIf="model">
+            {{"Model" | translate:locale.language}}: {{model.name}}
+        </li>
     </ol>
 </nav>
 
