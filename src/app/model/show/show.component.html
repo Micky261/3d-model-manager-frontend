@@ -197,9 +197,13 @@
                                         <input type="text" id="linkTitle" #inputLinkTitle class="form-control">
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <button type="submit" class="btn btn-success w-100"
+                                        <button type="submit" class="btn btn-success w-100 mb-1"
                                                 (click)="saveLink()">
                                             {{"Save" | translate:locale.language}}
+                                        </button>
+                                        <button type="submit" class="btn btn-danger w-100 mt-1"
+                                                (click)="clearLinkForm()">
+                                            {{"Abort" | translate:locale.language}}
                                         </button>
                                     </div>
                                 </div>

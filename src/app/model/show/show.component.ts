@@ -120,6 +120,10 @@ export class ShowComponent implements OnInit {
         }
 
         this.updateModelOnServer();
+        this.clearLinkForm();
+    }
+
+    clearLinkForm(): void {
         this.inputLinkTitle.nativeElement.value = "";
         this.inputLinkLink.nativeElement.value = "";
         this.inputLinkDescription.nativeElement.value = "";
