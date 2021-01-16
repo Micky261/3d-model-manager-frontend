@@ -5,7 +5,6 @@ import "../../../shared/array.extension";
 import "../../../shared/string.extension";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelService} from "../../core/model.service";
-import {Link} from "../../core/types/link.type";
 import {Model} from "../../core/types/model.type";
 
 @Component({
@@ -19,16 +18,11 @@ export class ShowComponent implements OnInit {
 
     @ViewChild("inputName") inputName: ElementRef<HTMLInputElement>;
     @ViewChild("inputAuthor") inputAuthor: ElementRef<HTMLInputElement>;
-    @ViewChild("inputLinkLink") inputLinkLink: ElementRef<HTMLInputElement>;
-    @ViewChild("inputLinkTitle") inputLinkTitle: ElementRef<HTMLInputElement>;
-    @ViewChild("inputLinkDescription") inputLinkDescription: ElementRef<HTMLTextAreaElement>;
 
     editName = false;
     editAuthor = false;
-    editLink: Link = null;
 
     navigation = "description";
-    openLinkForm = false;
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
@@ -93,51 +87,9 @@ export class ShowComponent implements OnInit {
         }
     }
 
-    preFillEditLinkForm(link: Link): void {
-        this.openLinkForm = true;
-        setTimeout(() => {
-            this.inputLinkTitle.nativeElement.value = link.title;
-            this.inputLinkLink.nativeElement.value = link.link;
-            this.inputLinkDescription.nativeElement.value = link.description;
-
-            this.editLink = link;
-
-            this.inputLinkLink.nativeElement.focus();
-        }, 5);
-    }
-
-    saveLink(): void {
-        const lT = this.inputLinkTitle.nativeElement.value;
-        const lL = this.inputLinkLink.nativeElement.value;
-        const lD = this.inputLinkDescription.nativeElement.value;
-
-        if (this.editLink != null) {
-            this.editLink.title = lT;
-            this.editLink.link = lL;
-            this.editLink.description = lD;
-        } else {
-            this.model.links.push(new Link(lT, lT, lD));
-        }
-
-        this.updateModelOnServer();
-        this.clearLinkForm();
-    }
-
-    clearLinkForm(): void {
-        this.inputLinkTitle.nativeElement.value = "";
-        this.inputLinkLink.nativeElement.value = "";
-        this.inputLinkDescription.nativeElement.value = "";
-        this.editLink = null;
-    }
-
-    deleteLink(link: Link): void {
-        this.model.links.remove(link);
-        this.updateModelOnServer();
-    }
-
     private updateModelOnServer(): void {
         void this.modelService.updateModel(this.model).subscribe(
-            model => this.model = model,
+            () => true,
             () => this.toast.showBackendError("ModelUpdateFailed")
         );
     }
