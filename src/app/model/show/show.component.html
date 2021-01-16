@@ -135,15 +135,9 @@
         <div class="col-9" *ngIf="model">
             <ng-container [ngSwitch]="navigation">
                 <div class="border border-secondary rounded p-3">
-                    <div *ngSwitchDefault>
-                        {{model.description}}
-                    </div>
-                    <div *ngSwitchCase="'import_description'">
-                        {{model.imported_description}}
-                    </div>
-                    <div *ngSwitchCase="'notes'">
-                        {{model.notes}}
-                    </div>
+                    <div *ngSwitchDefault [innerHTML]="model.description"></div>
+                    <div *ngSwitchCase="'import_description'" [innerHTML]="model.imported_description"></div>
+                    <div *ngSwitchCase="'notes'" [innerHTML]="model.notes"></div>
                     <div *ngSwitchCase="'links'">
                         <table class="table table-striped">
                             <thead>
