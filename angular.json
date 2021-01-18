@@ -51,7 +51,13 @@
                         "main": "src/main.ts",
                         "outputPath": "dist/threed-model-manager-frontend",
                         "polyfills": "src/polyfills.ts",
-                        "scripts": [],
+                        "scripts": [
+                            "node_modules/marked/lib/marked.js",
+                            "node_modules/prismjs/prism.js",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+                            "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
+                            "node_modules/katex/dist/katex.min.js"
+                        ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
                                 "src/sass"
@@ -65,6 +71,9 @@
                             "node_modules/@fortawesome/fontawesome-free/css/brands.css",
                             "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
                             "node_modules/@ng-select/ng-select/themes/default.theme.css",
+                            "node_modules/prismjs/themes/prism.css",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+                            "node_modules/katex/dist/katex.min.css",
                             "src/styles.css",
                             "src/sass/styles.sass"
                         ],
