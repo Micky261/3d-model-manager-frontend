@@ -6,6 +6,7 @@ import {L10nTranslationModule} from "angular-l10n";
 import {MarkdownModule} from "ngx-markdown";
 import {LinksElementModule} from "../links-element/links-element.module";
 import {TagsElementModule} from "../tags-element/tags-element.module";
+import {UploadElementModule} from "../upload-element/upload-element.module";
 import {ShowComponent} from "./show.component";
 import {AutosizeModule} from "ngx-autosize";
 
@@ -26,6 +27,7 @@ import {AutosizeModule} from "ngx-autosize";
         LinksElementModule,
         MarkdownModule,
         AutosizeModule,
+        UploadElementModule,
     ]
 })
 export class ShowModule {

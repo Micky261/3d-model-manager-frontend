@@ -25,6 +25,7 @@ export class ShowComponent implements OnInit {
 
     navigation: "description" | "imported_description" | "notes" | "links" = "description";
     editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
+    uploadMode = false;
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,

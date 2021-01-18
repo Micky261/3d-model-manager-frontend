@@ -1,19 +1,19 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {L10nTranslationModule} from "angular-l10n";
-import {LinksElementComponent} from "./links-element.component";
+import {UploadElementComponent} from "./upload-element.component";
 
 @NgModule({
     declarations: [
-        LinksElementComponent
+        UploadElementComponent
     ],
     imports: [
         CommonModule,
         L10nTranslationModule
     ],
     exports: [
-        LinksElementComponent
+        UploadElementComponent
     ]
 })
-export class LinksElementModule {
+export class UploadElementModule {
 }

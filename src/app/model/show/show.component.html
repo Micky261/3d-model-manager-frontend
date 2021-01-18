@@ -74,22 +74,29 @@
         </div>
         <div class="col-3">
             <div class="list-group">
-                <button class="list-group-item list-group-item-action">
-                    <span class="fas fa-upload text-primary mr-2"></span>
+                <button class="list-group-item list-group-item-action"
+                        (click)="uploadMode = !uploadMode"
+                        [class.active]="uploadMode">
+                    <span class="fas fa-upload mr-2"
+                          [class.text-primary]="!uploadMode"
+                          [class.text-white]="uploadMode"></span>
                     {{"Upload" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
-                        [class.bg-primary]="model.favorite"
-                        [class.text-white]="model.favorite"
+                        *ngIf="!uploadMode"
+                        [class.active]="model.favorite"
                         (click)="changeFavorite()">
                     <span class="fa-heart mr-2"
-                          [class.far]="!model.favorite" [class.text-primary]="!model.favorite"
-                          [class.text-white]="model.favorite" [class.bg-primary]="model.favorite"
-                          [class.fas]="model.favorite"></span>
+                          [class.far]="!model.favorite" [class.fas]="model.favorite"
+                          [class.text-primary]="!model.favorite" [class.text-white]="model.favorite"
+                          [class.bg-primary]="model.favorite"></span>
                     {{"Favorite" | translate:locale.language}}
                 </button>
-                <div class="list-group-item list-group-item-action">
+                <div class="list-group-item list-group-item-action" *ngIf="!uploadMode">
                     <app-tags-element [modelId]="modelId"></app-tags-element>
+                </div>
+                <div class="list-group-item list-group-item-action p-1" *ngIf="uploadMode">
+                    <app-upload-element></app-upload-element>
                 </div>
             </div>
         </div>
@@ -135,7 +142,7 @@
         <div class="col-9" *ngIf="model">
             <div class="border border-secondary rounded p-2">
                 <div class="row"
-                *ngIf="navigation == 'description' || navigation == 'notes'">
+                     *ngIf="navigation == 'description' || navigation == 'notes'">
                     <div class="col text-right">
                         <small class="text-muted mr-2" #saved></small>
                         <div class="btn-group btn-group-sm">

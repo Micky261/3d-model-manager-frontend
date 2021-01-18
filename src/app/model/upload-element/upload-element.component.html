@@ -1,0 +1,16 @@
+<div (click)="fileInput.click()" (dragover)="onDragOver($event)" (drop)="uploadFile($event)"
+     class="m-2 rounded border border-primary" style="height: 100px; cursor: pointer;">
+    <input hidden type="file" #fileInput (change)="uploadFile($event)" multiple>
+</div>
+<div class="m-2" style="max-height: 200px; overflow-y: auto;">
+    <div class="input-group mt-1" *ngFor="let file of this.files">
+        <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden; ">
+            {{file}}
+        </span>
+        <div class="input-group-append">
+            <button class="btn btn-sm btn-danger" (click)="this.files.remove(file)">
+                <span class="fas fa-trash"></span>
+            </button>
+        </div>
+    </div>
+</div>
