@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {L10N_LOCALE, L10nLocale} from "angular-l10n";
+import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
 import {ToastService} from "../../core/error/toast.service";
@@ -18,14 +18,17 @@ export class ShowComponent implements OnInit {
 
     @ViewChild("inputName") inputName: ElementRef<HTMLInputElement>;
     @ViewChild("inputAuthor") inputAuthor: ElementRef<HTMLInputElement>;
+    @ViewChild("saved") saved: ElementRef<HTMLSpanElement>;
 
     editName = false;
     editAuthor = false;
 
-    navigation = "description";
+    navigation: "description" | "imported_description" | "notes" | "links" = "description";
+    editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
+        private readonly translator: L10nTranslationService,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
         private readonly route: ActivatedRoute,
@@ -90,6 +93,32 @@ export class ShowComponent implements OnInit {
     private updateModelOnServer(): void {
         void this.modelService.updateModel(this.model).subscribe(
             () => true,
+            () => this.toast.showBackendError("ModelUpdateFailed")
+        );
+    }
+
+    switchEditMode(): void {
+        switch (this.editMode) {
+            case "splitView": this.editMode = "onlyView"; break;
+            case "onlyEdit": this.editMode = "splitView"; break;
+            case "onlyView": this.editMode = "onlyEdit"; break;
+        }
+
+        if (this.editMode !== "onlyView") {
+            this.saved.nativeElement.textContent = this.translator.translate("ChangesAutomaticallySaved");
+        }
+    }
+
+    saveText(e: Event | number) :void{
+        void this.modelService.updateModel(this.model).subscribe(
+            () => {
+                if (typeof e != "number") {
+                    this.saved.nativeElement.textContent = this.translator.translate("Saved");
+                    setTimeout(() => {
+                        this.saved.nativeElement.textContent = "";
+                    }, 3000);
+                }
+            },
             () => this.toast.showBackendError("ModelUpdateFailed")
         );
     }

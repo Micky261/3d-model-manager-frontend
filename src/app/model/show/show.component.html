@@ -133,16 +133,67 @@
             </div>
         </div>
         <div class="col-9" *ngIf="model">
-            <ng-container [ngSwitch]="navigation">
-                <div class="border border-secondary rounded p-3">
-                    <div *ngSwitchDefault [innerHTML]="model.description"></div>
-                    <div *ngSwitchCase="'import_description'" [innerHTML]="model.imported_description"></div>
-                    <div *ngSwitchCase="'notes'" [innerHTML]="model.notes"></div>
-                    <div *ngSwitchCase="'links'">
-                        <app-links-element [model]="model"></app-links-element>
+            <div class="border border-secondary rounded p-2">
+                <div class="row"
+                *ngIf="navigation == 'description' || navigation == 'notes'">
+                    <div class="col text-right">
+                        <small class="text-muted mr-2" #saved></small>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-success" (click)="saveText($event)"
+                                    *ngIf="editMode != 'onlyView'">
+                                <span class="fas fa-save"></span>
+                            </button>
+                            <button class="btn btn-outline-secondary" (click)="switchEditMode()">
+                                <span class="fas fa-pencil-alt"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </ng-container>
+                <ng-container [ngSwitch]="navigation">
+                    <ng-container *ngSwitchDefault>
+                        <div class="row mx-0 mb-3 mt-2">
+                            <div *ngIf="editMode != 'onlyView'"
+                                 [class.col-6]="editMode == 'splitView'"
+                                 [class.col]="editMode == 'onlyEdit'">
+                                <label for="modelDescription" class="sr-only">Edit description</label>
+                                <textarea id="modelDescription" [(ngModel)]="model.description"
+                                          autosize [minRows]="10"
+                                          (resized)="saveText($event)" (change)="saveText($event)"
+                                          class="form-control text-monospace small"></textarea>
+                            </div>
+                            <div *ngIf="editMode != 'onlyEdit'"
+                                 [class.col-6]="editMode == 'splitView'"
+                                 [class.col]="editMode == 'onlyView'">
+                                <markdown [data]="model.description" emoji katex lineNumbers
+                                          class="h-100"></markdown>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div *ngSwitchCase="'import_description'" [innerHTML]="model.imported_description"></div>
+                    <div *ngSwitchCase="'notes'">
+                        <div class="row mx-0 mb-3 mt-2">
+                            <div *ngIf="editMode != 'onlyView'"
+                                 [class.col-6]="editMode == 'splitView'"
+                                 [class.col]="editMode == 'onlyEdit'">
+                                <label for="modelNotes" class="sr-only">Edit notes</label>
+                                <textarea id="modelNotes" [(ngModel)]="model.notes"
+                                          autosize [minRows]="10"
+                                          (resized)="saveText($event)" (change)="saveText($event)"
+                                          class="form-control text-monospace small"></textarea>
+                            </div>
+                            <div *ngIf="editMode != 'onlyEdit'"
+                                 [class.col-6]="editMode == 'splitView'"
+                                 [class.col]="editMode == 'onlyView'">
+                                <markdown [data]="model.notes" emoji katex lineNumbers
+                                          class="h-100"></markdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'links'" class="m-3">
+                        <app-links-element [model]="model"></app-links-element>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>

@@ -3,9 +3,11 @@ import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
+import {MarkdownModule} from "ngx-markdown";
 import {LinksElementModule} from "../links-element/links-element.module";
 import {TagsElementModule} from "../tags-element/tags-element.module";
 import {ShowComponent} from "./show.component";
+import {AutosizeModule} from "ngx-autosize";
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import {ShowComponent} from "./show.component";
         L10nTranslationModule,
         ReactiveFormsModule,
         TagsElementModule,
-        LinksElementModule
+        LinksElementModule,
+        MarkdownModule,
+        AutosizeModule,
     ]
 })
 export class ShowModule {
