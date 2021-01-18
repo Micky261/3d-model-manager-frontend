@@ -44,7 +44,7 @@
                             {
                                 "glob": "**/*",
                                 "input": "./node_modules/ngx-flags/img/flags",
-                                "output": "./src/assets/flags"
+                                "output": "./assets/flags"
                             }
                         ],
                         "index": "src/index.html",

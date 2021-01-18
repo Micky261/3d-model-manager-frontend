@@ -5,10 +5,15 @@ export const locales = {
     "de-DE": {language: "de-DE", currency: "EUR", timeZone: "Europe/Berlin"}
 };
 
+export const langCodes = {
+    "en-GB": {iana: "en"},
+    "de-DE": {iana: "de"}
+};
+
 export const l10nConfig: L10nConfig = {
     format: "language-region",
     providers: [
-        {name: "app", asset: "./assets/locales/", options: { version: "1.0.0" } },
+        {name: "app", asset: "./assets/locales/", options: {version: "1.0.0"}},
     ],
     cache: true,
     keySeparator: ".",
