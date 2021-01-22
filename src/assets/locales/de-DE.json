@@ -57,6 +57,12 @@
             "InvalidUrl": "Bitte gib eine valide URL ein."
         }
     },
+    "filetype": {
+        "diagram": "Diagramm",
+        "document": "Dokument",
+        "image": "Bild",
+        "model": "3D Modell"
+    },
     "success": {
         "Login": "Erfolgreich angemeldet.",
         "Logout": "Erfolgreich abgemeldet.",

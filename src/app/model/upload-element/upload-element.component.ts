@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ToastService} from "../../core/error/toast.service";
@@ -13,7 +13,7 @@ export class UploadElementComponent implements OnInit {
     @Input() modelId: number;
 
     files: any = [];
-    selectedFileType: "image" | "model" | "diagram" | "document" = "image";
+    selectedFileType: "model" | "image" | "diagram" | "document" = "model";
 
     progress: Map<string, { current: number; total: number }> = new Map();
 

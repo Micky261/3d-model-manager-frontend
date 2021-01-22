@@ -1,16 +1,25 @@
-<div (click)="fileInput.click()" (dragover)="onDragOver($event)" (drop)="uploadFile($event)"
-     class="m-2 rounded border border-primary" style="height: 100px; cursor: pointer;">
-    <input hidden type="file" #fileInput (change)="uploadFile($event)" multiple>
-</div>
-<div class="m-2" style="max-height: 200px; overflow-y: auto;">
-    <div class="input-group mt-1" *ngFor="let file of this.files">
-        <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden; ">
+<div class="m-2">
+    <ng-select [(ngModel)]="selectedFileType" [searchable]="false" [clearable]="false" class="mb-2">
+        <ng-option *ngFor="let type of [ 'model', 'image', 'diagram', 'document']"
+                   [value]="type">{{"filetype." + type | translate:locale.language}}</ng-option>
+    </ng-select>
+    <div (click)="fileInput.click()" #dragDrop
+         (dragover)="onDragOver($event)" (drop)="uploadFile($event, 'drop')" (dragleave)="onDragLeave($event)"
+         class="rounded border border-primary d-flex justify-content-center align-items-center my-2"
+         style="height: 100px; cursor: pointer; background: repeating-linear-gradient( 135deg, #fff, #fff 10px, rgba(0, 123, 255, 0.2) 10px, rgba(0, 123, 255, 0.2) 20px );">
+        <span class="fas fa-cloud-upload-alt" style="font-size: 3rem;"></span>
+        <input hidden type="file" #fileInput (change)="uploadFile($event, 'input')" multiple>
+    </div>
+    <div class="mt-2" style="max-height: 200px; overflow-y: auto;">
+        <div class="input-group mt-1" *ngFor="let file of this.files">
+        <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
             {{file}}
         </span>
-        <div class="input-group-append">
-            <button class="btn btn-sm btn-danger" (click)="this.files.remove(file)">
-                <span class="fas fa-trash"></span>
-            </button>
+            <div class="input-group-append">
+                <button class="btn btn-sm btn-outline-success" (click)="this.files.remove(file)">
+                    <span class="fas fa-check"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
