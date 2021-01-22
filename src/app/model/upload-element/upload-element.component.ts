@@ -28,15 +28,22 @@ export class UploadElementComponent implements OnInit {
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    uploadFile(event: any): void {
-        const files: FileList = event.target.files;
+    uploadFile(event: any, source: "drop" | "input"): void {
+        event.preventDefault();
+        event.stopPropagation();
+
+        let files: FileList;
+        if (source === "drop") {
+            files = event.dataTransfer.files;
+        } else {
+            files = event.target.files;
+        }
+
         for (let i = 0; i < files.length; i++) {
-            const filename = files.item(i).name;
+            const name = files.item(i).name;
 
-            this.files.push(filename);
-
-            this.progress.set(filename,  { current: 0, total: 0 });
-            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(filename)).then();
+            this.progress.set(name, {current: 0, total: 0});
+            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(() => this.files.push(name));
         }
     }
 
@@ -45,7 +52,7 @@ export class UploadElementComponent implements OnInit {
         event.stopPropagation();
     }
 
-    public onDragLeave(event: Event): void {
+    onDragLeave(event: Event): void {
         event.preventDefault();
         event.stopPropagation();
     }
