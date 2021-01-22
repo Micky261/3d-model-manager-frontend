@@ -17,6 +17,8 @@ export class UploadElementComponent implements OnInit {
 
     progress: Map<string, { current: number; total: number }> = new Map();
 
+    @ViewChild("dragDrop") dragDrop: ElementRef<HTMLDivElement>;
+
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
         private readonly toast: ToastService,
@@ -50,10 +52,12 @@ export class UploadElementComponent implements OnInit {
     onDragOver(event: Event): void {
         event.preventDefault();
         event.stopPropagation();
+        this.dragDrop.nativeElement.style.opacity = "0.6";
     }
 
     onDragLeave(event: Event): void {
         event.preventDefault();
         event.stopPropagation();
+        this.dragDrop.nativeElement.style.opacity = "1";
     }
 }
