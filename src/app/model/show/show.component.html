@@ -165,7 +165,7 @@
                                 <label for="modelDescription" class="sr-only">Edit description</label>
                                 <textarea id="modelDescription" [(ngModel)]="model.description"
                                           autosize [minRows]="10"
-                                          (resized)="saveText($event)" (change)="saveText($event)"
+                                          (change)="saveText($event)"
                                           class="form-control text-monospace small"></textarea>
                             </div>
                             <div *ngIf="editMode != 'onlyEdit'"
@@ -185,7 +185,7 @@
                                 <label for="modelNotes" class="sr-only">Edit notes</label>
                                 <textarea id="modelNotes" [(ngModel)]="model.notes"
                                           autosize [minRows]="10"
-                                          (resized)="saveText($event)" (change)="saveText($event)"
+                                          (change)="saveText($event)"
                                           class="form-control text-monospace small"></textarea>
                             </div>
                             <div *ngIf="editMode != 'onlyEdit'"
