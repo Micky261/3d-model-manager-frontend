@@ -4,7 +4,9 @@ import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
 import {ToastService} from "../../core/error/toast.service";
+import {ModelFilesService} from "../../core/model-files.service";
 import {ModelService} from "../../core/model.service";
+import {ModelFile} from "../../core/types/model-file.type";
 import {Model} from "../../core/types/model.type";
 
 @Component({
@@ -25,13 +27,17 @@ export class ShowComponent implements OnInit {
 
     navigation: "description" | "imported_description" | "notes" | "links" = "description";
     editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
+    fileNavigation: "image" | "model" | "diagram" = "image";
     uploadMode = false;
+
+    filesMap: Map<string, ModelFile[]> = new Map();
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
         private readonly translator: L10nTranslationService,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
+        readonly modelFilesService: ModelFilesService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
@@ -44,6 +50,8 @@ export class ShowComponent implements OnInit {
         }, () => {
             void this.router.navigate(["static", "not-found"]).then(() => true);
         });
+
+        this.modelFilesService.getFiles(this.modelId, "image").subscribe(t => this.filesMap.set("image", t));
     }
 
     changeFavorite(): void {
@@ -91,18 +99,17 @@ export class ShowComponent implements OnInit {
         }
     }
 
-    private updateModelOnServer(): void {
-        void this.modelService.updateModel(this.model).subscribe(
-            () => true,
-            () => this.toast.showBackendError("ModelUpdateFailed")
-        );
-    }
-
     switchEditMode(): void {
         switch (this.editMode) {
-            case "splitView": this.editMode = "onlyView"; break;
-            case "onlyEdit": this.editMode = "splitView"; break;
-            case "onlyView": this.editMode = "onlyEdit"; break;
+            case "splitView":
+                this.editMode = "onlyView";
+                break;
+            case "onlyEdit":
+                this.editMode = "splitView";
+                break;
+            case "onlyView":
+                this.editMode = "onlyEdit";
+                break;
         }
 
         if (this.editMode !== "onlyView") {
@@ -110,7 +117,7 @@ export class ShowComponent implements OnInit {
         }
     }
 
-    saveText(e: Event | number) :void{
+    saveText(e: Event | number): void {
         void this.modelService.updateModel(this.model).subscribe(
             () => {
                 if (typeof e != "number") {
@@ -120,6 +127,13 @@ export class ShowComponent implements OnInit {
                     }, 3000);
                 }
             },
+            () => this.toast.showBackendError("ModelUpdateFailed")
+        );
+    }
+
+    private updateModelOnServer(): void {
+        void this.modelService.updateModel(this.model).subscribe(
+            () => true,
             () => this.toast.showBackendError("ModelUpdateFailed")
         );
     }

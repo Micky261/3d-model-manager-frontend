@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
+        <div class="col-md">
             <form class="form-inline">
                 <div class="mx-1">
                     <h2>
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-md">
             <form class="form-inline">
                 <div class="mx-1">
                     <span class="fas fa-user mr-1 ml-4 text-secondary"></span>
@@ -69,10 +69,49 @@
         </div>
     </div>
     <div class="row my-3" *ngIf="model">
-        <div class="col-9">
-            Renderings, Images, Diagrams, ...
+        <div class="col-md-9 my-1">
+            <div class="row">
+                <div class="col-md">
+                    <ng-container *ngIf="filesMap.get(fileNavigation) && filesMap.get(fileNavigation).length > 0">
+                        <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;">
+                            <ng-template ngbSlide *ngFor="let file of filesMap.get(fileNavigation)">
+                                <div class="container w-100 d-flex align-items-center justify-content-center my-1">
+                                    <img style="height: 50vh;"
+                                         [alt]="file.filename"
+                                         [src]="modelFilesService.getFileUrl(modelId, fileNavigation, file.filename) | secure | async">
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
+                    </ng-container>
+                    <div class="container w-100 d-flex align-items-center justify-content-center my-1"
+                         *ngIf="!filesMap.get(fileNavigation) || filesMap.get(fileNavigation).length == 0">
+                        {{"NoFiles" | translate:locale.language}}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md">
+                    <div class="btn-group btn-group-sm w-100">
+                        <button class="btn btn-outline-primary"
+                                [class.active]="fileNavigation == 'image'"
+                                (click)="fileNavigation = 'image'">
+                            {{"Images" | translate:locale.language}}
+                        </button>
+                        <button class="btn btn-outline-primary"
+                                [class.active]="fileNavigation == 'model'"
+                                (click)="fileNavigation = 'model'">
+                            {{"Models" | translate:locale.language}}
+                        </button>
+                        <button class="btn btn-outline-primary"
+                                [class.active]="fileNavigation == 'diagram'"
+                                (click)="fileNavigation = 'diagram'">
+                            {{"Diagrams" | translate:locale.language}}
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 my-1">
             <div class="list-group">
                 <button class="list-group-item list-group-item-action"
                         (click)="uploadMode = !uploadMode"
@@ -102,7 +141,7 @@
         </div>
     </div>
     <div class="row my-3">
-        <div class="col-3">
+        <div class="col-md-3 my-1">
             <div class="list-group">
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'description'"
@@ -139,11 +178,11 @@
                 </button>
             </div>
         </div>
-        <div class="col-9" *ngIf="model">
+        <div class="col-md-9 my-1" *ngIf="model">
             <div class="border border-secondary rounded p-2">
                 <div class="row"
                      *ngIf="navigation == 'description' || navigation == 'notes'">
-                    <div class="col text-right">
+                    <div class="col-md text-right">
                         <small class="text-muted mr-2" #saved></small>
                         <div class="btn-group btn-group-sm">
                             <button class="btn btn-outline-success" (click)="saveText($event)"
@@ -160,8 +199,8 @@
                     <ng-container *ngSwitchDefault>
                         <div class="row mx-0 mb-3 mt-2">
                             <div *ngIf="editMode != 'onlyView'"
-                                 [class.col-6]="editMode == 'splitView'"
-                                 [class.col]="editMode == 'onlyEdit'">
+                                 [class.col-md-6]="editMode == 'splitView'"
+                                 [class.col-md]="editMode == 'onlyEdit'">
                                 <label for="modelDescription" class="sr-only">Edit description</label>
                                 <textarea id="modelDescription" [(ngModel)]="model.description"
                                           autosize [minRows]="10"
@@ -169,8 +208,8 @@
                                           class="form-control text-monospace small"></textarea>
                             </div>
                             <div *ngIf="editMode != 'onlyEdit'"
-                                 [class.col-6]="editMode == 'splitView'"
-                                 [class.col]="editMode == 'onlyView'">
+                                 [class.col-md-6]="editMode == 'splitView'"
+                                 [class.col-md]="editMode == 'onlyView'">
                                 <markdown [data]="model.description" emoji katex lineNumbers
                                           class="h-100"></markdown>
                             </div>
@@ -180,8 +219,8 @@
                     <div *ngSwitchCase="'notes'">
                         <div class="row mx-0 mb-3 mt-2">
                             <div *ngIf="editMode != 'onlyView'"
-                                 [class.col-6]="editMode == 'splitView'"
-                                 [class.col]="editMode == 'onlyEdit'">
+                                 [class.col-md-6]="editMode == 'splitView'"
+                                 [class.col-md]="editMode == 'onlyEdit'">
                                 <label for="modelNotes" class="sr-only">Edit notes</label>
                                 <textarea id="modelNotes" [(ngModel)]="model.notes"
                                           autosize [minRows]="10"
@@ -189,8 +228,8 @@
                                           class="form-control text-monospace small"></textarea>
                             </div>
                             <div *ngIf="editMode != 'onlyEdit'"
-                                 [class.col-6]="editMode == 'splitView'"
-                                 [class.col]="editMode == 'onlyView'">
+                                 [class.col-md-6]="editMode == 'splitView'"
+                                 [class.col-md]="editMode == 'onlyView'">
                                 <markdown [data]="model.notes" emoji katex lineNumbers
                                           class="h-100"></markdown>
                             </div>

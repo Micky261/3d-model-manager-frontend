@@ -10,10 +10,13 @@
     "CreateModelManually": "Create manually (Upload)",
     "CreateTag": "Create tag",
     "Description": "Description",
+    "Diagrams": "Diagrams",
     "Email": "E-Mail address",
     "EnterURL": "Enter URL",
     "Favorite": "Favorite",
+    "GoToModel": "Go to model",
     "Home": "Home",
+    "Images": "Images",
     "ImportedDescription": "Imported description",
     "Link": "Link",
     "Links": "Links",
@@ -24,6 +27,7 @@
     "ModelURL": "URL of the model",
     "Models": "Models",
     "Name": "Name",
+    "NoFiles": "No files",
     "NotFound": "This page was not found.",
     "Notes": "Notes",
     "NothingFound": "Nothing found",
@@ -38,12 +42,6 @@
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
     "Title": "Title",
-    "filetype": {
-        "diagram": "Diagram",
-        "document": "Document",
-        "image": "Image",
-        "model": "3D Model"
-    },
     "error": {
         "Unknown": "Unknown error",
         "backend": {
@@ -62,6 +60,12 @@
             "EnterValidEmail": "Enter a valid e-mail address, please.",
             "InvalidUrl": "Enter a valid url, please."
         }
+    },
+    "filetype": {
+        "diagram": "Diagram",
+        "document": "Document",
+        "image": "Image",
+        "model": "3D Model"
     },
     "success": {
         "Login": "Login successful.",
