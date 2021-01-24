@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 import {AutosizeModule} from "ngx-autosize";
 import {MarkdownModule} from "ngx-markdown";
 import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
@@ -32,6 +33,7 @@ import {ShowComponent} from "./show.component";
         UploadElementModule,
         CustomPipesModule,
         NgbModule,
+        PdfViewerModule,
     ]
 })
 export class ShowModule {

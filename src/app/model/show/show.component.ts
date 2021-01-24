@@ -1,9 +1,12 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
+import {PDFSource} from "ng2-pdf-viewer";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
+import {AuthService} from "../../core/auth/auth.service";
 import {ToastService} from "../../core/error/toast.service";
+import {FileTypesService} from "../../core/file-types.service";
 import {ModelFilesService} from "../../core/model-files.service";
 import {ModelService} from "../../core/model.service";
 import {ModelFile} from "../../core/types/model-file.type";
@@ -27,10 +30,11 @@ export class ShowComponent implements OnInit {
 
     navigation: "description" | "imported_description" | "notes" | "links" = "description";
     editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
-    fileNavigation: "image" | "model" | "diagram" = "image";
+    fileNavigation: "image" | "model" | "diagram" = "image"; // TODO: image
     uploadMode = false;
 
     filesMap: Map<string, ModelFile[]> = new Map();
+    viewableFilesMap: Map<string, ModelFile[]> = new Map();
 
     constructor(
         @Inject(L10N_LOCALE) public locale: L10nLocale,
@@ -38,6 +42,7 @@ export class ShowComponent implements OnInit {
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
         readonly modelFilesService: ModelFilesService,
+        readonly fileTypesService: FileTypesService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
@@ -51,7 +56,19 @@ export class ShowComponent implements OnInit {
             void this.router.navigate(["static", "not-found"]).then(() => true);
         });
 
-        this.modelFilesService.getFiles(this.modelId, "image").subscribe(t => this.filesMap.set("image", t));
+        this.modelFilesService.getFiles(this.modelId, "image").subscribe(imageFiles => {
+            this.filesMap.set("image", imageFiles);
+            this.viewableFilesMap.set("image", imageFiles.filter(file => {
+                return ["video", "pdf", "image"].includes(this.fileTypesService.getApplicationFromName(file.filename));
+            }));
+        });
+
+        this.modelFilesService.getFiles(this.modelId, "diagram").subscribe(imageFiles => {
+            this.filesMap.set("diagram", imageFiles);
+            this.viewableFilesMap.set("diagram", imageFiles.filter(file => {
+                return ["video", "pdf", "image"].includes(this.fileTypesService.getApplicationFromName(file.filename));
+            }));
+        });
     }
 
     changeFavorite(): void {
@@ -129,6 +146,15 @@ export class ShowComponent implements OnInit {
             },
             () => this.toast.showBackendError("ModelUpdateFailed")
         );
+    }
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    getAuthLink(modelId: number, type: string, filename: string): PDFSource {
+        return {
+            url: this.modelFilesService.getFileUrl(modelId, type, filename),
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            httpHeaders: {Authorization: `Bearer ${localStorage.getItem(AuthService.localStorageTokenKey)}`}
+        };
     }
 
     private updateModelOnServer(): void {

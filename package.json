@@ -25,6 +25,7 @@
         "@ng-select/ng-select": "^5.0.15",
         "angular-l10n": "v10-lts",
         "bootstrap": "^4.5.3",
+        "ng2-pdf-viewer": "^6.3.2",
         "ngx-autosize": "^1.8.4",
         "ngx-flags": "^0.1.2",
         "ngx-markdown": "^10.1.1",

@@ -72,19 +72,54 @@
         <div class="col-md-9 my-1">
             <div class="row">
                 <div class="col-md">
-                    <ng-container *ngIf="filesMap.get(fileNavigation) && filesMap.get(fileNavigation).length > 0">
-                        <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;">
-                            <ng-template ngbSlide *ngFor="let file of filesMap.get(fileNavigation)">
-                                <div class="container w-100 d-flex align-items-center justify-content-center my-1">
-                                    <img style="height: 50vh;"
-                                         [alt]="file.filename"
-                                         [src]="modelFilesService.getFileUrl(modelId, fileNavigation, file.filename) | secure | async">
-                                </div>
-                            </ng-template>
-                        </ngb-carousel>
+                    <ng-container *ngFor='let fileType of ["image" , "model" , "diagram"]'>
+                        <ng-container
+                            *ngIf="viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType">
+                            <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;">
+                                <ng-template ngbSlide
+                                             *ngFor="let file of viewableFilesMap.get(fileType) | objectArraySort:'position':false">
+                                    <div class="container w-100 d-flex align-items-center justify-content-center my-1">
+                                        <ng-container
+                                            [ngSwitch]="fileTypesService.getApplicationFromName(file.filename)">
+                                            <img style="height: 50vh;" *ngSwitchCase="'image'"
+                                                 [alt]="file.filename"
+                                                 [src]="modelFilesService.getFileUrl(modelId, fileType, file.filename) | secure | async">
+                                            <div *ngSwitchCase="'video'" style="height: 50vh;"
+                                                 class="d-flex align-items-center justify-content-center">
+                                                {{"VideosNotSupported" | translate:locale.language}}
+                                            </div>
+                                            <div *ngSwitchCase="'pdf'" style="height: 50vh;"
+                                                 class="d-flex align-items-center justify-content-center">
+                                                {{"PDFsNotSupported" | translate:locale.language}}
+                                            </div>
+                                            <!--
+                                            <video style="height: 50vh;"
+                                                [src]="modelFilesService.getFileUrl(modelId, fileNavigation, file.filename) | secure | async"
+                                                *ngSwitchCase="'video'">
+                                                {{"error.VideoDoesntWork" | translate:locale.language}}
+                                            </video>
+                                            Doesn't work with auth - need to build token URL into backend
+                                            -->
+                                            <!--
+                                            <div *ngSwitchCase="'pdf'">
+                                                Jo
+                                                <pdf-viewer style="height: 50vh;"
+                                                            [src]="x">
+                                                </pdf-viewer>
+                                            </div>
+                                            Doesn't work within ngSwitch (doesn't request file)
+                                            -->
+                                            <div *ngSwitchDefault style="height: 50vh;">
+                                                {{"error.Unknown" | translate:locale.language}}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </ng-container>
                     </ng-container>
                     <div class="container w-100 d-flex align-items-center justify-content-center my-1"
-                         *ngIf="!filesMap.get(fileNavigation) || filesMap.get(fileNavigation).length == 0">
+                         *ngIf="!viewableFilesMap.get(fileNavigation) || viewableFilesMap.get(fileNavigation).length == 0">
                         {{"NoFiles" | translate:locale.language}}
                     </div>
                 </div>
@@ -93,16 +128,19 @@
                 <div class="col-md">
                     <div class="btn-group btn-group-sm w-100">
                         <button class="btn btn-outline-primary"
+                                *ngIf="viewableFilesMap.get('image') && viewableFilesMap.get('image').length > 0"
                                 [class.active]="fileNavigation == 'image'"
                                 (click)="fileNavigation = 'image'">
                             {{"Images" | translate:locale.language}}
                         </button>
                         <button class="btn btn-outline-primary"
+                                *ngIf="viewableFilesMap.get('model') && viewableFilesMap.get('model').length > 0"
                                 [class.active]="fileNavigation == 'model'"
                                 (click)="fileNavigation = 'model'">
                             {{"Models" | translate:locale.language}}
                         </button>
                         <button class="btn btn-outline-primary"
+                                *ngIf="viewableFilesMap.get('diagram') && viewableFilesMap.get('diagram').length > 0"
                                 [class.active]="fileNavigation == 'diagram'"
                                 (click)="fileNavigation = 'diagram'">
                             {{"Diagrams" | translate:locale.language}}

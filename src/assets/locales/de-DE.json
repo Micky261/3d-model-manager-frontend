@@ -31,6 +31,7 @@
     "NotFound": "Diese Seite wurde nicht gefunden.",
     "Notes": "Notizen",
     "NothingFound": "Nichts gefunden",
+    "PDFsNotSupported": "PDFs können noch nicht angezeigt werden.",
     "Password": "Passwort",
     "RandomModels": "Zufällige Modelle",
     "Register": "Registrieren",
@@ -42,8 +43,10 @@
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
     "Title": "Titel",
+    "VideosNotSupported": "Videos können noch nicht angezeigt werden.",
     "error": {
         "Unknown": "Unbekannter Fehler",
+        "VideoDoesntWork": "Das Video scheint in diesem Browser nicht abspielbar zu sein. Du kannst es dir in der Dateiübersicht herunterladen.",
         "backend": {
             "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden.",
             "ServerDidNotAnswer": "Der Server hat nicht zeitgerecht geantwortet. Ihre Verbindung ist zu langsam oder der Server ist nicht verfügbar.",

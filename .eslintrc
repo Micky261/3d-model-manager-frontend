@@ -187,7 +187,6 @@
         "padding-line-between-statements": [
             "warn"
         ],
-        "prefer-arrow/prefer-arrow-functions": "warn",
         "prefer-const": "warn",
         "radix": "warn",
         "use-isnan": "warn",

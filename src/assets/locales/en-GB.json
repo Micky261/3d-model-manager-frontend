@@ -31,6 +31,7 @@
     "NotFound": "This page was not found.",
     "Notes": "Notes",
     "NothingFound": "Nothing found",
+    "PDFsNotSupported": "PDFs cannot yet be viewed.",
     "Password": "Password",
     "RandomModels": "Random models",
     "Register": "Sign Up",
@@ -42,8 +43,10 @@
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
     "Title": "Title",
+    "VideosNotSupported": "Videos cannot yet be viewed.",
     "error": {
         "Unknown": "Unknown error",
+        "VideoDoesntWork": "The video does not seem to be playable in this browser. You can download it in the file overview.",
         "backend": {
             "ModelUpdateFailed": "The model data could not be updated on the server.",
             "ServerDidNotAnswer": "The server didn't answer in time. Your connection is to slow or the server is down.",
