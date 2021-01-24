@@ -12,6 +12,7 @@ import {ServerMessage} from "../types/serverMessage.type";
 })
 export class AuthService {
     static readonly localStorageTokenKey = "Token";
+    static readonly localStorageTokenExp = "TokenExpiration";
     private readonly apiUrl: string;
 
     constructor(private readonly httpClient: HttpClient) {
@@ -27,6 +28,10 @@ export class AuthService {
     }
 
     isLoggedIn(): boolean {
-        return localStorage.getItem(AuthService.localStorageTokenKey) != null;
+        const keySet = localStorage.getItem(AuthService.localStorageTokenKey) != null;
+        const tokenExp = parseInt(localStorage.getItem(AuthService.localStorageTokenExp), 10);
+        const now = Date.now();
+
+        return (keySet && now < tokenExp);
     }
 }

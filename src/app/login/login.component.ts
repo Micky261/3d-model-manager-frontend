@@ -27,10 +27,14 @@ export class LoginComponent implements OnInit {
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
-        this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
     }
 
     ngOnInit(): void {
+        this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
+
+        if (this.authService.isLoggedIn()) {
+            void this.router.navigateByUrl(this.returnUrl).then(() => true);
+        }
     }
 
     login(): void {
@@ -49,6 +53,7 @@ export class LoginComponent implements OnInit {
         const login: Login = new Login(this.loginForm.get("email").value, this.loginForm.get("password").value);
         this.authService.login(login).subscribe((token: AccessToken) => {
             localStorage.setItem(AuthService.localStorageTokenKey, token.access_token);
+            localStorage.setItem(AuthService.localStorageTokenExp, String(new Date().setHours(24 * 7).valueOf()));
 
             this.toast.showSuccess("Login");
 
