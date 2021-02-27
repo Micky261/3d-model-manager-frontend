@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {urlValidator} from "../../../shared/form-validators";
 import {ToastService} from "../../core/error/toast.service";
-import {ModelService} from "../../core/model.service";
+import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
 import {ServerMessage} from "../../core/types/serverMessage.type";
 

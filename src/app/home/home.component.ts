@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {ModelService} from "../core/model.service";
+import {ModelService} from "../core/services/model.service";
 import {Model} from "../core/types/model.type";
 
 @Component({

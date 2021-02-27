@@ -1,9 +1,9 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Configuration} from "../../configuration";
+import {Configuration} from "../../../configuration";
 import {ChunkedUploadService} from "./chunked-upload.service";
-import {ModelFile} from "./types/model-file.type";
+import {ModelFile} from "../types/model-file.type";
 
 @Injectable({
     providedIn: "root"

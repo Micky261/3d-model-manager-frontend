@@ -2,7 +2,7 @@ import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ToastService} from "../../core/error/toast.service";
-import {ModelFilesService} from "../../core/model-files.service";
+import {ModelFilesService} from "../../core/services/model-files.service";
 
 @Component({
     selector: "app-upload-element",

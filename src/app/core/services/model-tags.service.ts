@@ -1,8 +1,8 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Configuration} from "../../configuration";
-import {ModelTag} from "./types/model-tag.type";
+import {Configuration} from "../../../configuration";
+import {ModelTag} from "../types/model-tag.type";
 
 @Injectable({
     providedIn: "root"

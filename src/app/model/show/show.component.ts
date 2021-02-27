@@ -4,9 +4,8 @@ import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
 import {ToastService} from "../../core/error/toast.service";
-import {FileTypesService} from "../../core/file-types.service";
-import {ModelFilesService} from "../../core/model-files.service";
-import {ModelService} from "../../core/model.service";
+import {ModelFilesService} from "../../core/services/model-files.service";
+import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
 
 @Component({
@@ -35,7 +34,6 @@ export class ShowComponent implements OnInit {
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
         readonly modelFilesService: ModelFilesService,
-        readonly fileTypesService: FileTypesService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {

@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
-import {ModelService} from "../../core/model.service";
+import {ModelService} from "../../core/services/model.service";
 import {Link} from "../../core/types/link.type";
 import {Model} from "../../core/types/model.type";
 

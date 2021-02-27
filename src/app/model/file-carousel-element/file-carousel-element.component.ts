@@ -3,8 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {PDFSource} from "ng2-pdf-viewer";
 import {AuthService} from "../../core/auth/auth.service";
-import {FileTypesService} from "../../core/file-types.service";
-import {ModelFilesService} from "../../core/model-files.service";
+import {FileTypesService} from "../../core/services/file-types.service";
+import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelFile} from "../../core/types/model-file.type";
 
 @Component({
