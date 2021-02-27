@@ -32,14 +32,14 @@ export class FileCarouselElementComponent implements OnInit {
     ngOnInit(): void {
         this.modelId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
 
-        this.modelFilesService.getFiles(this.modelId, "image").subscribe(imageFiles => {
+        this.modelFilesService.getFilesWithType(this.modelId, "image").subscribe(imageFiles => {
             this.filesMap.set("image", imageFiles);
             this.viewableFilesMap.set("image", imageFiles.filter(file => {
                 return ["video", "pdf", "image"].includes(this.fileTypesService.getApplicationFromName(file.filename));
             }));
         });
 
-        this.modelFilesService.getFiles(this.modelId, "diagram").subscribe(imageFiles => {
+        this.modelFilesService.getFilesWithType(this.modelId, "diagram").subscribe(imageFiles => {
             this.filesMap.set("diagram", imageFiles);
             this.viewableFilesMap.set("diagram", imageFiles.filter(file => {
                 return ["video", "pdf", "image"].includes(this.fileTypesService.getApplicationFromName(file.filename));

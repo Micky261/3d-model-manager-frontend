@@ -21,7 +21,11 @@ export class ModelFilesService {
         );
     }
 
-    getFiles(modelId: number, type: string): Observable<ModelFile[]> {
+    getFiles(modelId: number): Observable<ModelFile[]> {
+        return this.httpClient.get<ModelFile[]>(`${this.apiUrl}/model/files/${encodeURIComponent(String(modelId))}`);
+    }
+
+    getFilesWithType(modelId: number, type: string): Observable<ModelFile[]> {
         return this.httpClient.get<ModelFile[]>(`${this.apiUrl}/model/files/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(type))}`);
     }
 
