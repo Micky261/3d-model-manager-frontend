@@ -79,8 +79,18 @@
                         [class.active]="uploadMode">
                     <span class="fas fa-upload mr-2"
                           [class.text-primary]="!uploadMode"
-                          [class.text-white]="uploadMode"></span>
-                    {{"Upload" | translate:locale.language}}
+                          [class.text-white]="uploadMode">
+                    </span> {{"Upload" | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        (click)="downloadZip('all')">
+                    <span class="fas fa-file-archive text-primary mr-2">
+                    </span> {{'DownloadAllFiles' | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        (click)="downloadZip('model')">
+                    <span class="far fa-file-archive text-primary mr-2">
+                    </span> {{'Download3DModels' | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         *ngIf="!uploadMode"

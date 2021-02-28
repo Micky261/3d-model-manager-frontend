@@ -2,6 +2,7 @@ import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {AutosizeModule} from "ngx-autosize";
@@ -36,6 +37,7 @@ import {ShowComponent} from "./show.component";
         PdfViewerModule,
         FileCarouselElementModule,
         FilesListElementModule,
+        NgbTooltipModule,
     ]
 })
 export class ShowModule {

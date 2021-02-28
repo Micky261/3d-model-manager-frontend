@@ -128,6 +128,22 @@ export class ShowComponent implements OnInit {
         );
     }
 
+    downloadZip(type: string): void {
+        this.modelFilesService.getZip(this.modelId, type).subscribe(response => {
+            const blob = new Blob([response.body], {type: "application/octet-stream"});
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement("a") ;
+            a.style.display = "none";
+            a.href = url;
+            a.download = `${this.model.name} - ${type}.zip`;
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+        });
+    }
+
     private updateModelOnServer(): void {
         void this.modelService.updateModel(this.model).subscribe(
             () => true,
