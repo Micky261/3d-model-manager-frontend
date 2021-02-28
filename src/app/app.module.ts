@@ -8,7 +8,6 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nIntlModule, L10nLoader, L10nTranslationModule} from "angular-l10n";
-import {PdfViewerModule} from "ng2-pdf-viewer";
 import {NgxFlagsModule} from "ngx-flags";
 import {MarkdownModule} from "ngx-markdown";
 import {ToastNoAnimationModule} from "ngx-toastr";
