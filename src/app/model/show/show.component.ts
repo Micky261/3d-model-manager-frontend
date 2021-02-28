@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
+import {EditModes} from "../../core/enums/edit-modes.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelService} from "../../core/services/model.service";
@@ -14,6 +15,8 @@ import {Model} from "../../core/types/model.type";
     styleUrls: ["./show.component.css"]
 })
 export class ShowComponent implements OnInit {
+    EditModes = EditModes;
+
     modelId: number;
     model: Model;
 
@@ -25,7 +28,7 @@ export class ShowComponent implements OnInit {
     editAuthor = false;
 
     navigation: "description" | "imported_description" | "notes" | "links" | "files" | "file_viewer" = "description";
-    editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
+    editMode: EditModes = EditModes.OnlyView;
     uploadMode = false;
 
     constructor(
@@ -96,20 +99,19 @@ export class ShowComponent implements OnInit {
 
     switchEditMode(): void {
         switch (this.editMode) {
-            case "splitView":
-                this.editMode = "onlyView";
+            case EditModes.SplitView:
+                this.editMode = EditModes.OnlyView;
                 break;
-            case "onlyEdit":
-                this.editMode = "splitView";
+            case EditModes.OnlyEdit:
+                this.editMode = EditModes.SplitView;
                 break;
-            case "onlyView":
-                this.editMode = "onlyEdit";
+            case EditModes.OnlyView:
+                this.editMode = EditModes.OnlyEdit;
                 break;
         }
 
-        if (this.editMode !== "onlyView") {
-            this.saved.nativeElement.textContent = this.translator.translate("ChangesAutomaticallySaved");
-        }
+        this.saved.nativeElement.textContent = (this.editMode === EditModes.OnlyView) ? "" :
+            this.translator.translate("ChangesAutomaticallySaved");
     }
 
     saveText(e: Event | number): void {

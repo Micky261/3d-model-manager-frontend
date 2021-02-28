@@ -145,6 +145,14 @@
                           [class.text-white]="navigation === 'files'"></span>
                     {{"Files" | translate:locale.language}}
                 </button>
+                <button class="list-group-item list-group-item-action disabled"
+                        [class.active]="navigation === 'file_viewer'"
+                        (click)="navigation = 'file_viewer'">
+                    <span class="fas fa-eye text-primary mr-2"
+                          [class.text-primary]="navigation !== 'file_viewer'"
+                          [class.text-white]="navigation === 'file_viewer'"></span>
+                    {{"FileViewer" | translate:locale.language}}
+                </button>
             </div>
         </div>
         <div class="col-md-9 my-1" *ngIf="model">
@@ -155,7 +163,7 @@
                         <small class="text-muted mr-2" #saved></small>
                         <div class="btn-group btn-group-sm">
                             <button class="btn btn-outline-success" (click)="saveText($event)"
-                                    *ngIf="editMode != 'onlyView'">
+                                    *ngIf="editMode != EditModes.OnlyView">
                                 <span class="fas fa-save"></span>
                             </button>
                             <button class="btn btn-outline-secondary" (click)="switchEditMode()">
@@ -167,18 +175,18 @@
                 <ng-container [ngSwitch]="navigation">
                     <ng-container *ngSwitchDefault>
                         <div class="row mx-0 mb-3 mt-2">
-                            <div *ngIf="editMode != 'onlyView'"
-                                 [class.col-md-6]="editMode == 'splitView'"
-                                 [class.col-md]="editMode == 'onlyEdit'">
+                            <div *ngIf="editMode != EditModes.OnlyView"
+                                 [class.col-md-6]="editMode == EditModes.SplitView"
+                                 [class.col-md]="editMode == EditModes.OnlyEdit">
                                 <label for="modelDescription" class="sr-only">Edit description</label>
                                 <textarea id="modelDescription" [(ngModel)]="model.description"
                                           autosize [minRows]="10"
                                           (change)="saveText($event)"
                                           class="form-control text-monospace small"></textarea>
                             </div>
-                            <div *ngIf="editMode != 'onlyEdit'"
-                                 [class.col-md-6]="editMode == 'splitView'"
-                                 [class.col-md]="editMode == 'onlyView'">
+                            <div *ngIf="editMode != EditModes.OnlyEdit"
+                                 [class.col-md-6]="editMode == EditModes.SplitView"
+                                 [class.col-md]="editMode == EditModes.OnlyView">
                                 <markdown [data]="model.description" emoji katex lineNumbers
                                           class="h-100"></markdown>
                             </div>
@@ -187,18 +195,18 @@
                     <div *ngSwitchCase="'import_description'" [innerHTML]="model.imported_description"></div>
                     <div *ngSwitchCase="'notes'">
                         <div class="row mx-0 mb-3 mt-2">
-                            <div *ngIf="editMode != 'onlyView'"
-                                 [class.col-md-6]="editMode == 'splitView'"
-                                 [class.col-md]="editMode == 'onlyEdit'">
+                            <div *ngIf="editMode != EditModes.OnlyView"
+                                 [class.col-md-6]="editMode == EditModes.SplitView"
+                                 [class.col-md]="editMode == EditModes.OnlyEdit">
                                 <label for="modelNotes" class="sr-only">Edit notes</label>
                                 <textarea id="modelNotes" [(ngModel)]="model.notes"
                                           autosize [minRows]="10"
                                           (change)="saveText($event)"
                                           class="form-control text-monospace small"></textarea>
                             </div>
-                            <div *ngIf="editMode != 'onlyEdit'"
-                                 [class.col-md-6]="editMode == 'splitView'"
-                                 [class.col-md]="editMode == 'onlyView'">
+                            <div *ngIf="editMode != EditModes.OnlyEdit"
+                                 [class.col-md-6]="editMode == EditModes.SplitView"
+                                 [class.col-md]="editMode == EditModes.OnlyView">
                                 <markdown [data]="model.notes" emoji katex lineNumbers
                                           class="h-100"></markdown>
                             </div>
@@ -209,6 +217,8 @@
                     </div>
                     <div *ngSwitchCase="'files'" class="m-3">
                         <app-files-list-element [modelId]="model.id"></app-files-list-element>
+                    </div>
+                    <div *ngSwitchCase="'file_viewer'" class="m-3">
                     </div>
                 </ng-container>
             </div>
