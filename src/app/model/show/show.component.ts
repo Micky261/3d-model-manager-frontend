@@ -24,7 +24,7 @@ export class ShowComponent implements OnInit {
     editName = false;
     editAuthor = false;
 
-    navigation: "description" | "imported_description" | "notes" | "links" = "description";
+    navigation: "description" | "imported_description" | "notes" | "links" | "files" | "file_viewer" = "description";
     editMode: "onlyEdit" | "onlyView" | "splitView" = "onlyView";
     uploadMode = false;
 

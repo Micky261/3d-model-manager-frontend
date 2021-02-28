@@ -137,6 +137,14 @@
                           [class.text-white]="navigation === 'links'"></span>
                     {{"Links" | translate:locale.language}}
                 </button>
+                <button class="list-group-item list-group-item-action"
+                        [class.active]="navigation === 'files'"
+                        (click)="navigation = 'files'">
+                    <span class="fas fa-copy text-primary mr-2"
+                          [class.text-primary]="navigation !== 'files'"
+                          [class.text-white]="navigation === 'files'"></span>
+                    {{"Files" | translate:locale.language}}
+                </button>
             </div>
         </div>
         <div class="col-md-9 my-1" *ngIf="model">
@@ -198,6 +206,9 @@
                     </div>
                     <div *ngSwitchCase="'links'" class="m-3">
                         <app-links-element [model]="model"></app-links-element>
+                    </div>
+                    <div *ngSwitchCase="'files'" class="m-3">
+                        <app-files-list-element [modelId]="model.id"></app-files-list-element>
                     </div>
                 </ng-container>
             </div>

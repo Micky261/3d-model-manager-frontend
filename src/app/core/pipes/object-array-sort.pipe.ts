@@ -4,10 +4,18 @@ import {Pipe, PipeTransform} from "@angular/core";
     name: "objectArraySort"
 })
 export class ObjectArraySortPipe implements PipeTransform {
-    transform<T>(array: T[], field: string, descending: boolean): T[] {
+    /**
+     * Sort the objects by a given field or fields
+     *
+     * @param array Array of objects to sort
+     * @param field Single field as string or multiple fields as array of strings
+     * @param descending Sort descending (defaults to false)
+     */
+    transform<T>(array: T[], field: string | string[], descending = false): T[] {
         if (!Array.isArray(array)) {
             return;
         }
+        const fields: string[] = (!Array.isArray(field)) ? [field] : field;
 
         let descSwitch = 0;
         if (descending === true) {
@@ -15,12 +23,17 @@ export class ObjectArraySortPipe implements PipeTransform {
         }
 
         array.sort((a: any, b: any) => {
-            if (a[field] < b[field]) {
-                return descSwitch - 1;
-            } else if (a[field] > b[field]) {
-                return 1 - descSwitch;
-            } else {
-                return 0;
+            for (let i = 0; i < fields.length; i++) {
+                if (a[fields[i]] < b[fields[i]]) {
+                    return descSwitch - 1;
+                } else if (a[fields[i]] > b[fields[i]]) {
+                    return 1 - descSwitch;
+                } else {
+                    if (fields.length === (i + 1)) { // Last iteration
+                        return 0;
+                    }
+                    // else -> go to loop start
+                }
             }
         });
 

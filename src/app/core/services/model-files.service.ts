@@ -2,8 +2,9 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Configuration} from "../../../configuration";
-import {ChunkedUploadService} from "./chunked-upload.service";
 import {ModelFile} from "../types/model-file.type";
+import {Model} from "../types/model.type";
+import {ChunkedUploadService} from "./chunked-upload.service";
 
 @Injectable({
     providedIn: "root"
@@ -38,5 +39,9 @@ export class ModelFilesService {
         const f = encodeURIComponent(String(filename));
         const t = encodeURIComponent(String(type));
         return this.httpClient.get<ModelFile[]>(`${this.apiUrl}/model/file/${m}/${f}/${t}`);
+    }
+
+    updateFiles(modelId: number, modelFiles: ModelFile[]): Observable<ModelFile[]> {
+        return this.httpClient.post<ModelFile[]>(`${this.apiUrl}/model/files/${encodeURIComponent(String(modelId))}`, modelFiles);
     }
 }

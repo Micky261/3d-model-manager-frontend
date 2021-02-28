@@ -8,6 +8,7 @@ import {AutosizeModule} from "ngx-autosize";
 import {MarkdownModule} from "ngx-markdown";
 import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
 import {FileCarouselElementModule} from "../file-carousel-element/file-carousel-element.module";
+import {FilesListElementModule} from "../files-list-element/files-list-element.module";
 import {LinksElementModule} from "../links-element/links-element.module";
 import {TagsElementModule} from "../tags-element/tags-element.module";
 import {UploadElementModule} from "../upload-element/upload-element.module";
@@ -34,6 +35,7 @@ import {ShowComponent} from "./show.component";
         CustomPipesModule,
         PdfViewerModule,
         FileCarouselElementModule,
+        FilesListElementModule,
     ]
 })
 export class ShowModule {
