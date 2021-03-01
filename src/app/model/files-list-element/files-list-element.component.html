@@ -1,9 +1,9 @@
 <div class="mb-3 text-muted small"
      [innerHTML]="'FileListHint' | translate:locale.language"></div>
 <div class="my-3 text-right">
-    <div class="mr-1" *ngIf="lastSaved">
+    <span class="mr-1" *ngIf="lastSaved">
         {{"LastSavedAt" | translate:locale.language}}: {{lastSaved | date:'mediumTime':undefined:locale.language}}
-    </div>
+    </span>
     <button class="btn btn-success" (click)="saveFileList()">
         {{"Save" | translate:locale.language}}
     </button>
@@ -62,9 +62,9 @@
     </tbody>
 </table>
 <div class="mt-3 text-right">
-    <div class="mr-1" *ngIf="lastSaved">
+    <span class="mr-1" *ngIf="lastSaved">
         {{"LastSavedAt" | translate:locale.language}}: {{lastSaved | date:'mediumTime':undefined:locale.language}}
-    </div>
+    </span>
     <button class="btn btn-success" (click)="saveFileList()">
         {{"Save" | translate:locale.language}}
     </button>

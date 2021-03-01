@@ -44,6 +44,7 @@
     "PDFsNotSupported": "PDFs cannot yet be viewed.",
     "Password": "Password",
     "Position": "Position",
+    "ProblematicFile": "Problematic file",
     "RandomModels": "Random models",
     "Register": "Sign Up",
     "Save": "Save",
@@ -65,6 +66,7 @@
             "TagCouldNotBeDeleted": "The tag could not be deleted.",
             "TagCouldNotBeSet": "The tag could not be set.",
             "TagsNotReceived": "The models' tags could not be received.",
+            "TargetAlreadyExists": "The target file already exists.",
             "USER_DATA_INCORRECT": "The e-mail address or password you entered were wrong. Could not login."
         },
         "validation": {
