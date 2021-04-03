@@ -63,14 +63,14 @@
                         <button class="dropdown-item" ngbDropdownItem
                                 [class.active]="locale.language === 'de-DE'"
                                 (click)="isCollapsed = true; setLocale(locales['de-DE'])">
-                            <flag code="de" size="s"></flag> Deutsch
+                            <flag country="de" size="s"></flag> Deutsch
                         </button>
                     </li>
                     <li>
                         <button class="dropdown-item" ngbDropdownItem
                                 [class.active]="locale.language === 'en-GB'"
                                 (click)="isCollapsed = true; setLocale(locales['en-GB'])">
-                            <flag code="gb" size="s"></flag> English
+                            <flag country="us" size="s"></flag> English
                         </button>
                     </li>
                 </ul>
