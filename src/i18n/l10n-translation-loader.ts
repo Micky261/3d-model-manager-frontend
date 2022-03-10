@@ -16,7 +16,7 @@ export class TranslationLoader implements L10nTranslationLoader {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             headers: new HttpHeaders({"Content-Type": "application/json"}),
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            params: new HttpParams().set("v", provider.options.version)
+            params: new HttpParams().set("v", provider.options.version as string|number|boolean)
         };
 
         return this.http.get(url, options);

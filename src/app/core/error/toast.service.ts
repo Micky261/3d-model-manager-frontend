@@ -15,9 +15,9 @@ export class ToastService {
 
     showSuccess(messageCode: string): void {
         if (this.messageCodeAvailable(messageCode)) {
-            this.toastr.success(this.translator.translate(`success.${messageCode}`));
+            this.toastr.success(this.translator.translate(`success.${messageCode}`) as string);
         } else {
-            this.toastr.success(this.translator.translate("success.Unknown"));
+            this.toastr.success(this.translator.translate("success.Unknown") as string);
         }
     }
 
@@ -31,9 +31,9 @@ export class ToastService {
 
     private showErrorMessage(messageCode: string, errorType: string): void {
         if (this.messageCodeAvailable(messageCode, true, errorType)) {
-            this.toastr.error(this.translator.translate(`error.${errorType}.${messageCode}`));
+            this.toastr.error(this.translator.translate(`error.${errorType}.${messageCode}`) as string);
         } else {
-            this.toastr.error(this.translator.translate("error.Unknown"));
+            this.toastr.error(this.translator.translate("error.Unknown") as string);
         }
     }
 

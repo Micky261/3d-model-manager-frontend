@@ -43,7 +43,7 @@ export class TagsElementComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setTag(event: any): void {
         if (event) {
-            this.setTagOnServer(event.tag);
+            this.setTagOnServer(event.tag as string);
         }
     }
 

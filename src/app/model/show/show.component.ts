@@ -133,7 +133,7 @@ export class ShowComponent implements OnInit {
             const blob = new Blob([response.body], {type: "application/octet-stream"});
             const url = window.URL.createObjectURL(blob);
 
-            const a = document.createElement("a") ;
+            const a = document.createElement("a");
             a.style.display = "none";
             a.href = url;
             a.download = `${this.model.name} - ${type}.zip`;

@@ -20,8 +20,7 @@
     "plugins": [
         "eslint-plugin-jsdoc",
         "eslint-plugin-prefer-arrow",
-        "@typescript-eslint",
-        "@typescript-eslint/tslint"
+        "@typescript-eslint"
     ],
     "rules": {
         "@typescript-eslint/no-unsafe-member-access": "off",
@@ -198,20 +197,6 @@
         "prefer-const": "warn",
         "radix": "warn",
         "use-isnan": "warn",
-        "valid-typeof": "off",
-        "@typescript-eslint/tslint/config": [
-            "error",
-            {
-                "rules": {
-                    "number-literal-format": true,
-                    "whitespace": [
-                        true,
-                        "check-branch",
-                        "check-operator",
-                        "check-typecast"
-                    ]
-                }
-            }
-        ]
+        "valid-typeof": "off"
     }
 }

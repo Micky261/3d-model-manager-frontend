@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        const login: Login = new Login(this.loginForm.get("email").value, this.loginForm.get("password").value);
+        const login: Login = new Login(this.loginForm.get("email").value as string, this.loginForm.get("password").value as string);
         this.authService.login(login).subscribe((token: AccessToken) => {
             localStorage.setItem(AuthService.localStorageTokenKey, token.access_token);
             localStorage.setItem(AuthService.localStorageTokenExp, String(new Date().setHours(24 * 7).valueOf()));

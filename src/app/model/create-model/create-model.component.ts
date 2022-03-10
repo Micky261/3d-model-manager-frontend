@@ -1,7 +1,9 @@
 import {Component, Inject, OnInit} from "@angular/core";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Is used
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Is used
 import {urlValidator} from "../../../shared/form-validators";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelService} from "../../core/services/model.service";
@@ -43,7 +45,7 @@ export class CreateModelComponent implements OnInit {
             return;
         }
 
-        this.modelService.importModel(this.importForm.get("url").value).subscribe(
+        this.modelService.importModel(this.importForm.get("url").value as string).subscribe(
             (message: ServerMessage) => {
                 // TODO
             },
@@ -67,10 +69,10 @@ export class CreateModelComponent implements OnInit {
         }
 
         const model = new Model(undefined,
-            this.uploadForm.get("name").value, [],
-            this.uploadForm.get("description").value, "",
-            this.uploadForm.get("favorite").value,
-            this.uploadForm.get("author").value, "");
+            this.uploadForm.get("name").value as string, [],
+            this.uploadForm.get("description").value as string, "",
+            this.uploadForm.get("favorite").value as boolean,
+            this.uploadForm.get("author").value as string, "");
 
         this.modelService.postModel(model).subscribe(
             (serverModel: Model) => {
