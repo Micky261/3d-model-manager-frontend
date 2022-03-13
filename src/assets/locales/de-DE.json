@@ -9,7 +9,7 @@
     "CreateModelImport": "Aus Quelle importieren (Link)",
     "CreateModelManually": "Manuell erstellen (Hochladen)",
     "CreateTag": "Tag erstellen",
-    "CreatedAt_UpdatedAt": "Erstellt am /<br /> Zuletzt geändert am",
+    "CreatedAt": "Erstellt am",
     "Description": "Beschreibung",
     "Diagrams": "Diagramme",
     "Download3DModels": "3D Modelle",
@@ -55,6 +55,7 @@
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
     "Title": "Titel",
+    "UpdatedAt": "Zuletzt geändert am",
     "Upload": "Hochladen",
     "VideosNotSupported": "Videos können noch nicht angezeigt werden.",
     "error": {

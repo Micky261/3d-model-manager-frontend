@@ -14,7 +14,8 @@
         <th class="col-4">{{"Filename" | translate:locale.language}}</th>
         <th class="col-2">{{"FileType" | translate:locale.language}}</th>
         <th class="col-2">{{"Position" | translate:locale.language}}</th>
-        <th class="col-2" [innerHTML]="'CreatedAt_UpdatedAt' | translate:locale.language"></th>
+        <th class="col-1">{{"CreatedAt" | translate:locale.language}}</th>
+        <th class="col-1">{{"UpdatedAt" | translate:locale.language}}</th>
         <th class="col-2">{{"Actions" | translate:locale.language}}</th>
     </tr>
     </thead>
@@ -41,12 +42,10 @@
                    [value]="file.position">
         </td>
         <td class="align-middle small">
-            <div>
-                {{file.created_at | date:'medium':undefined:locale.language}}
-            </div>
-            <div>
-                {{file.updated_at | date:'medium':undefined:locale.language}}
-            </div>
+            {{file.created_at | date:'medium':undefined:locale.language}}
+        </td>
+        <td class="align-middle small">
+            {{file.updated_at | date:'medium':undefined:locale.language}}
         </td>
         <td class="align-middle">
             <div class="btn-group btn-group-sm">
