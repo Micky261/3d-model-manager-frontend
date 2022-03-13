@@ -44,4 +44,8 @@ export class ModelService {
     getModel(id: number): Observable<Model> {
         return this.httpClient.get<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(id))}`);
     }
+
+    getNewestModels(num: number): Observable<Model[]> {
+        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/newest/${encodeURIComponent(String(num))}`);
+    }
 }

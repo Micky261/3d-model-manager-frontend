@@ -1,0 +1,28 @@
+<div class="card-deck my-2" *ngFor="let model of models">
+    <div class="card text-center">
+        <img class="card-img-top bg-light w-100" src="assets/images/NoModelImage.jpg" [alt]="model.name">
+        <div class="d-flex flex-column justify-content-between card-body">
+            <h5 class="card-title">
+                {{model.name}}<br />
+                <small *ngIf="model.imported_name" class="ml-2 text-muted">
+                    {{model.imported_name}}
+                </small>
+            </h5>
+            <p class="card-text">
+                <span class="fas fa-user"></span> {{model.author}}
+                <small class="text-muted" *ngIf="model.imported_author"> ({{model.imported_author}})</small>
+            </p>
+            <p class="card-text">
+                <span class="fas fa-clock"></span>
+                {{model.created_at | date:"mediumDate":undefined:locale.language}},
+                {{model.created_at | date:"shortTime":undefined:locale.language}}
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            <a routerLink="/model/{{model.id}}" class="btn btn-primary btn-block">
+                <small class="fas fa-arrow-right mr-2"></small>
+                {{"GoToModel" | translate:locale.language}}
+            </a>
+        </div>
+    </div>
+</div>

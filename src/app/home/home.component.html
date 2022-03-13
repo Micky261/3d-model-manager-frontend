@@ -8,34 +8,24 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <h2>{{"RandomModels" | translate:locale.language}}</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col flex-space-wrap">
-            <div class="card-deck my-2" *ngFor="let model of randomModels">
-                <div class="card text-center">
-                    <img class="card-img-top bg-light w-100" src="assets/images/NoModelImage.jpg" [alt]="model.name">
-                    <div class="d-flex flex-column justify-content-between card-body">
-                        <h5 class="card-title">{{model.name}}</h5>
-                        <p class="card-text" *ngIf="model.imported_name">
-                            <small class="text-muted">
-                                {{model.imported_name}}
-                            </small>
-                        </p>
-                        <p class="card-text">
-                            <span class="fas fa-user"></span> {{model.author}}
-                            <small class="text-muted" *ngIf="model.imported_author"> ({{model.imported_author}})</small>
-                        </p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <a routerLink="/model/{{model.id}}" class="btn btn-primary btn-block">
-                            <small class="fas fa-arrow-right mr-2"></small>
-                            {{"GoToModel" | translate:locale.language}}
-                        </a>
-                    </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <h2>{{"RandomModels" | translate:locale.language}}</h2>
                 </div>
+            </div>
+            <div class="row">
+                <app-model-cards-element type="random" number="6" class="col flex-space-wrap"></app-model-cards-element>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <h2>{{"NewestModels" | translate:locale.language}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <app-model-cards-element type="newest" number="6" class="col flex-space-wrap"></app-model-cards-element>
             </div>
         </div>
     </div>

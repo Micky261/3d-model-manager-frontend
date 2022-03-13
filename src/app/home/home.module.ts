@@ -4,10 +4,12 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
 import {HomeComponent} from "./home.component";
+import {ModelCardsElementComponent} from "./model-cards-element/model-cards-element.component";
 
 @NgModule({
     declarations: [
-        HomeComponent
+        HomeComponent,
+        ModelCardsElementComponent
     ],
     imports: [
         CommonModule,
