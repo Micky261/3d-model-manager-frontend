@@ -8,7 +8,7 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 })
 export class NotFoundComponent implements OnInit {
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale
     ) {
     }
 

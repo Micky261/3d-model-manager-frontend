@@ -32,7 +32,7 @@ export class ShowComponent implements OnInit {
     uploadMode = false;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly translator: L10nTranslationService,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,

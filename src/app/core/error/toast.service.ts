@@ -7,7 +7,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ToastService {
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly translator: L10nTranslationService,
         private readonly toastr: ToastrService
     ) {

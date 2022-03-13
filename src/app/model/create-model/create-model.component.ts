@@ -29,7 +29,7 @@ export class CreateModelComponent implements OnInit {
     });
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
         private readonly router: Router

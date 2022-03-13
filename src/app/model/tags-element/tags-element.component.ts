@@ -22,7 +22,7 @@ export class TagsElementComponent implements OnInit {
     @Input() modelId: number;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly toast: ToastService,
         private readonly modelTagsService: ModelTagsService,
     ) {

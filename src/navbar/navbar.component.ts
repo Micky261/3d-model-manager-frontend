@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     isCollapsed = true;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         readonly authService: AuthService,
         private readonly translation: L10nTranslationService,
         private readonly router: Router,

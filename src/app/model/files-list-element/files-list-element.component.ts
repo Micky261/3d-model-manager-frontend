@@ -18,7 +18,7 @@ export class FilesListElementComponent implements OnInit {
     lastSaved: number;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly modelFilesService: ModelFilesService,
         private readonly toast: ToastService,
         private readonly toastr: ToastrService,

@@ -10,7 +10,7 @@ import {langCodes} from "../i18n/l10n-config";
 })
 export class AppComponent implements OnInit {
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly translationService: L10nTranslationService,
         private readonly ngSelectConfig: NgSelectConfig,
         @Inject(DOCUMENT) private document: Document

@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     randomModels: Model[];
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly modelService: ModelService
     ) {
     }

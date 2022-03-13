@@ -2,6 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Configuration} from "../../../configuration";
+import {Environment} from "../../../environment";
 import {Model} from "../types/model.type";
 import {ServerMessage} from "../types/serverMessage.type";
 
@@ -9,20 +10,17 @@ import {ServerMessage} from "../types/serverMessage.type";
     providedIn: "root"
 })
 export class ModelService {
-    private readonly apiUrl: string;
-
     constructor(private readonly httpClient: HttpClient) {
-        this.apiUrl = Configuration.server + Configuration.folder;
     }
 
     getRandomModels(num: number): Observable<Model[]> {
-        return this.httpClient.get<Model[]>(`${this.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
+        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
     }
 
     importModel(importUrl: string): Observable<ServerMessage> {
         const body = JSON.stringify({"url": importUrl});
 
-        return this.httpClient.post<ServerMessage>(`${this.apiUrl}/model/import`, body);
+        return this.httpClient.post<ServerMessage>(`${Environment.apiUrl}/model/import`, body);
     }
 
     /**
@@ -31,7 +29,7 @@ export class ModelService {
      * @param model Model to create
      */
     postModel(model: Model): Observable<Model> {
-        return this.httpClient.post<Model>(`${this.apiUrl}/model/data`, model);
+        return this.httpClient.post<Model>(`${Environment.apiUrl}/model/data`, model);
     }
 
     /**
@@ -40,10 +38,10 @@ export class ModelService {
      * @param model Model to update
      */
     updateModel(model: Model): Observable<Model> {
-        return this.httpClient.put<Model>(`${this.apiUrl}/model/data/${encodeURIComponent(String(model.id))}`, model);
+        return this.httpClient.put<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(model.id))}`, model);
     }
 
     getModel(id: number): Observable<Model> {
-        return this.httpClient.get<Model>(`${this.apiUrl}/model/data/${encodeURIComponent(String(id))}`);
+        return this.httpClient.get<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(id))}`);
     }
 }

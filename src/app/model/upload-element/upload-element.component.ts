@@ -20,7 +20,7 @@ export class UploadElementComponent implements OnInit {
     @ViewChild("dragDrop") dragDrop: ElementRef<HTMLDivElement>;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly toast: ToastService,
         private readonly modelFilesService: ModelFilesService
     ) {

@@ -21,7 +21,7 @@ export class FileCarouselElementComponent implements OnInit {
     viewableFilesMap: Map<string, ModelFile[]> = new Map();
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly translator: L10nTranslationService,
         readonly modelFilesService: ModelFilesService,
         readonly fileTypesService: FileTypesService,

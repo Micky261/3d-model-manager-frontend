@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
 
     constructor(
-        @Inject(L10N_LOCALE) public locale: L10nLocale,
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly authService: AuthService,
         private readonly toast: ToastService,
         private readonly route: ActivatedRoute,

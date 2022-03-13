@@ -1,4 +1,4 @@
 export class Configuration {
-    public static server = "http://localhost:8000";
-    public static folder = "/api";
+    public static readonly server = "http://localhost:8000";
+    public static readonly folder = "/api";
 }
