@@ -5,11 +5,14 @@
     "Author": "Autor",
     "ChangeLocale": "Sprache ändern",
     "ChangesAutomaticallySaved": "Änderungen werden automatisch gespeichert.",
+    "ConfirmDeletionOfFile": "Soll die Datei wirklich gelöscht werden?",
     "CreateModel": "3D Modell erstellen",
     "CreateModelImport": "Aus Quelle importieren (Link)",
     "CreateModelManually": "Manuell erstellen (Hochladen)",
     "CreateTag": "Tag erstellen",
     "CreatedAt": "Erstellt am",
+    "Delete": "Löschen",
+    "DeleteFile": "Datei löschen",
     "Description": "Beschreibung",
     "Diagrams": "Diagramme",
     "Download3DModels": "3D Modelle",
@@ -62,6 +65,7 @@
         "Unknown": "Unbekannter Fehler",
         "VideoDoesntWork": "Das Video scheint in diesem Browser nicht abspielbar zu sein. Du kannst es dir in der Dateiübersicht herunterladen.",
         "backend": {
+            "FileNotFoundOnStorage": "Die Datei konnte nicht im Speicher des Servers gefunden werden.",
             "ModelUpdateFailed": "Die Daten des Modells konnten auf dem Server nicht aktualisiert werden.",
             "ServerDidNotAnswer": "Der Server hat nicht zeitgerecht geantwortet. Ihre Verbindung ist zu langsam oder der Server ist nicht verfügbar.",
             "TagCouldNotBeDeleted": "Der Tag konnte nicht gelöscht werden.",
@@ -86,6 +90,7 @@
         "model": "3D Modell"
     },
     "success": {
+        "FileDeleted": "Die Datei wurde erfolgreich gelöscht.",
         "Login": "Erfolgreich angemeldet.",
         "Logout": "Erfolgreich abgemeldet.",
         "Unknown": "Unbekannter Erfolg"

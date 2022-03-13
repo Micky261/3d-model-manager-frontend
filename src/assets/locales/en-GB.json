@@ -5,11 +5,14 @@
     "Author": "Author",
     "ChangeLocale": "Change locale",
     "ChangesAutomaticallySaved": "Changes automatically saved.",
+    "ConfirmDeletionOfFile": "Do you really want to delete the file?",
     "CreateModel": "Create 3D Model",
     "CreateModelImport": "Import from repository (Link)",
     "CreateModelManually": "Create manually (Upload)",
     "CreateTag": "Create tag",
     "CreatedAt": "Created on",
+    "Delete": "Delete",
+    "DeleteFile": "Delete file",
     "Description": "Description",
     "Diagrams": "Diagrams",
     "Download3DModels": "3D models",
@@ -62,6 +65,7 @@
         "Unknown": "Unknown error",
         "VideoDoesntWork": "The video does not seem to be playable in this browser. You can download it in the file overview.",
         "backend": {
+            "FileNotFoundOnStorage": "The file could not be found in the server's storage",
             "ModelUpdateFailed": "The model data could not be updated on the server.",
             "ServerDidNotAnswer": "The server didn't answer in time. Your connection is to slow or the server is down.",
             "TagCouldNotBeDeleted": "The tag could not be deleted.",
@@ -86,6 +90,7 @@
         "model": "3D Model"
     },
     "success": {
+        "FileDeleted": "The file was deleted successfully.",
         "Login": "Login successful.",
         "Logout": "Logout successful.",
         "Unknown": "Unknown success"
