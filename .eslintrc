@@ -20,7 +20,8 @@
     "plugins": [
         "eslint-plugin-jsdoc",
         "eslint-plugin-prefer-arrow",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "html"
     ],
     "rules": {
         "@typescript-eslint/no-unsafe-member-access": "off",
