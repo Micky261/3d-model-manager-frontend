@@ -1,25 +1,25 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
-import {SharedModule} from "../shared/shared.module";
-import {HomeComponent} from "./home.component";
+import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
+import {SharedModule} from "../../shared/shared.module";
+import {ListComponent} from "./list.component";
 
 @NgModule({
     declarations: [
-        HomeComponent,
+        ListComponent
     ],
     imports: [
         CommonModule,
-        FormsModule,
         RouterModule.forChild([{
             path: "",
-            component: HomeComponent
+            component: ListComponent
         }]),
         L10nTranslationModule,
+        CustomPipesModule,
         SharedModule,
     ]
 })
-export class HomeModule {
+export class ListModule {
 }

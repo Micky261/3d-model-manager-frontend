@@ -1,0 +1,19 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a routerLink="/model/list">{{"Models" | translate:locale.language}}</a>
+        </li>
+    </ol>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2>{{"Models" | translate:locale.language}}</h2>
+        </div>
+    </div>
+    <app-model-cards-element listType="all" pageSize="20"></app-model-cards-element>
+</div>

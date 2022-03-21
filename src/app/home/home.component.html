@@ -14,9 +14,7 @@
                     <h2>{{"RandomModels" | translate:locale.language}}</h2>
                 </div>
             </div>
-            <div class="row">
-                <app-model-cards-element type="random" number="6" class="col flex-space-wrap"></app-model-cards-element>
-            </div>
+            <app-model-cards-element halfSize="true" listType="random" numberOfModels="4"></app-model-cards-element>
         </div>
         <div class="col-6">
             <div class="row">
@@ -24,9 +22,7 @@
                     <h2>{{"NewestModels" | translate:locale.language}}</h2>
                 </div>
             </div>
-            <div class="row">
-                <app-model-cards-element type="newest" number="6" class="col flex-space-wrap"></app-model-cards-element>
-            </div>
+            <app-model-cards-element halfSize="true" listType="newest" numberOfModels="4"></app-model-cards-element>
         </div>
     </div>
 </div>

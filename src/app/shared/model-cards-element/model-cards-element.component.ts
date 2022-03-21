@@ -11,9 +11,12 @@ import {Model} from "../../core/types/model.type";
 })
 export class ModelCardsElementComponent implements OnInit {
     @Input() listType: "newest" | "random" | "all" = "random";
-    @Input() numberOfModels = 4;
-    @Input() pageSize = 20;
+    @Input() numberOfModels: number;
+    @Input() pageSize: number;
+    @Input() halfSize = false;
     models: Model[];
+    page = 1; // Pages are 1-based
+    cssClasses = "row row-cols-1 justify-content-center ";
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -22,6 +25,11 @@ export class ModelCardsElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.cssClasses += (this.halfSize)
+            ? "row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4"
+            : "row-cols-sm-3 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 row-cols-xxl-8";
+        this.pageSize = (this.pageSize) ? this.pageSize : this.numberOfModels;
+
         let subscription: Observable<Model[]>;
         switch (this.listType) {
             case "random":

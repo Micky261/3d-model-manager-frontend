@@ -12,6 +12,10 @@ export class ModelService {
     constructor(private readonly httpClient: HttpClient) {
     }
 
+    getAllModels(): Observable<Model[]> {
+        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models`);
+    }
+
     getRandomModels(num: number): Observable<Model[]> {
         return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
     }
