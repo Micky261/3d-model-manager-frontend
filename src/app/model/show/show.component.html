@@ -13,61 +13,57 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md">
-            <form class="form-inline">
-                <div class="mx-1">
-                    <h2>
-                        <span class="fas fa-cube mx-1"></span>
-                        <!--<span class="mx-1">{{"Model" | translate:locale.language}}: </span>-->
-                        <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
-                    </h2>
-                </div>
-                <div class="form-group mx-1" *ngIf="editName && model">
-                    <label for="modelName" class="sr-only">{{"ModelName" | translate:locale.language}}</label>
-                    <input class="form-control" type="text" id="modelName"
-                           #inputName [value]="model.name"
-                           (change)="updateField(inputName, 'name')"/>
-                </div>
-                <div class="mx-1">
-                    <small class="text-muted mx-1" *ngIf="model && model.imported_name">{{model.imported_name}}</small>
-                </div>
-                <div class="ml-1">
-                    <button class="btn btn-sm text-secondary"
-                            (click)="toggleField('name')">
-                        <span class="fas fa-pencil-alt"></span>
-                    </button>
-                </div>
-            </form>
+    <form class="row row-cols-auto align-items-center ms-1">
+        <div class="p-0">
+            <h2>
+                <span class="fas fa-cube mx-1"></span>
+                <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
+            </h2>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md">
-            <form class="form-inline">
-                <div class="mx-1">
-                    <span class="fas fa-user mr-1 ml-4 text-secondary"></span>
-                    <!--<span class="mx-1 text-secondary">{{"Author" | translate:locale.language}}: </span>-->
-                    <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{model.author}}</span>
-                </div>
-                <div class="form-group mx-1" *ngIf="editAuthor && model">
-                    <label for="modelAuthor" class="sr-only">{{"ModelAuthor" | translate:locale.language}}</label>
-                    <input class="form-control form-control-sm" type="text" id="modelAuthor"
-                           #inputAuthor [value]="model.author"
-                           (change)="updateField(inputAuthor, 'author')"/>
-                </div>
-                <div class="mx-1">
-                    <small class="text-muted mx-1"
-                           *ngIf="model && model.imported_author">{{model.imported_author}}</small>
-                </div>
-                <div class="ml-1">
-                    <button class="btn btn-xs text-secondary"
-                            (click)="toggleField('author')">
-                        <span class="fas fa-pencil-alt"></span>
-                    </button>
-                </div>
-            </form>
+        <div class="p-0" *ngIf="editName && model">
+            <label for="modelName" class="visually-hidden form-label">
+                {{"ModelName" | translate:locale.language}}
+            </label>
+            <input class="form-control" type="text" id="modelName"
+                   #inputName [value]="model.name"
+                   (change)="updateField(inputName, 'name')"/>
         </div>
-    </div>
+        <div class="p-0">
+            <button class="btn btn-sm text-secondary" (click)="toggleField('name')">
+                <span class="fas fa-pencil-alt"></span>
+            </button>
+        </div>
+        <div class="p-0 ps-2" *ngIf="model && model.imported_name">
+            <small class="text-muted mx-1">
+                {{"OriginalName" | translate:locale.language}}: {{model.imported_name}}
+            </small>
+        </div>
+    </form>
+    <form class="row row-cols-auto align-items-center ms-1">
+        <div class="p-0">
+            <span class="fas fa-user me-1 ms-4 text-secondary"></span>
+            <!--<span class="mx-1 text-secondary">{{"Author" | translate:locale.language}}: </span>-->
+            <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{model.author}}</span>
+        </div>
+        <div class="p-0" *ngIf="editAuthor && model">
+            <label for="modelAuthor" class="visually-hidden form-label">
+                {{"ModelAuthor" | translate:locale.language}}
+            </label>
+            <input class="form-control form-control-sm" type="text" id="modelAuthor"
+                   #inputAuthor [value]="model.author"
+                   (change)="updateField(inputAuthor, 'author')"/>
+        </div>
+        <div class="p-0">
+            <button class="btn btn-xs text-secondary" (click)="toggleField('author')">
+                <span class="fas fa-pencil-alt"></span>
+            </button>
+        </div>
+        <div class="p-0 ps-2" *ngIf="model && model.imported_author">
+            <small class="text-muted mx-1">
+                {{"OriginalBy" | translate:locale.language}}: {{model.imported_author}}
+            </small>
+        </div>
+    </form>
     <div class="row my-3" *ngIf="model">
         <div class="col-md-9 my-1">
             <file-carousel-element [modelId]="modelId"></file-carousel-element>
@@ -77,26 +73,26 @@
                 <button class="list-group-item list-group-item-action"
                         (click)="uploadMode = !uploadMode"
                         [class.active]="uploadMode">
-                    <span class="fas fa-upload mr-2"
+                    <span class="fas fa-upload me-2"
                           [class.text-primary]="!uploadMode"
                           [class.text-white]="uploadMode">
                     </span> {{"Upload" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         (click)="downloadZip('all')">
-                    <span class="fas fa-file-archive text-primary mr-2">
+                    <span class="fas fa-file-archive text-primary me-2">
                     </span> {{'DownloadAllFiles' | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         (click)="downloadZip('model')">
-                    <span class="far fa-file-archive text-primary mr-2">
+                    <span class="far fa-file-archive text-primary me-2">
                     </span> {{'Download3DModels' | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         *ngIf="!uploadMode"
                         [class.active]="model.favorite"
                         (click)="changeFavorite()">
-                    <span class="fa-heart mr-2"
+                    <span class="fa-heart me-2"
                           [class.far]="!model.favorite" [class.fas]="model.favorite"
                           [class.text-primary]="!model.favorite" [class.text-white]="model.favorite"
                           [class.bg-primary]="model.favorite"></span>
@@ -117,7 +113,7 @@
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'description'"
                         (click)="navigation = 'description'">
-                    <span class="fas fa-edit text-primary mr-2"
+                    <span class="fas fa-edit text-primary me-2"
                           [class.text-primary]="navigation !== 'description'"
                           [class.text-white]="navigation === 'description'"></span>
                     {{"Description" | translate:locale.language}}
@@ -126,7 +122,7 @@
                         [class.active]="navigation === 'import_description'"
                         (click)="navigation = 'import_description'"
                         *ngIf="model && model.imported_description">
-                    <span class="far fa-edit text-primary mr-2"
+                    <span class="far fa-edit text-primary me-2"
                           [class.text-primary]="navigation !== 'import_description'"
                           [class.text-white]="navigation === 'import_description'"></span>
                     {{"ImportedDescription" | translate:locale.language}}
@@ -134,7 +130,7 @@
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'notes'"
                         (click)="navigation = 'notes'">
-                    <span class="fas fa-sticky-note text-primary mr-2"
+                    <span class="fas fa-sticky-note text-primary me-2"
                           [class.text-primary]="navigation !== 'notes'"
                           [class.text-white]="navigation === 'notes'"></span>
                     {{"Notes" | translate:locale.language}}
@@ -142,7 +138,7 @@
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'links'"
                         (click)="navigation = 'links'">
-                    <span class="fas fa-link text-primary mr-2"
+                    <span class="fas fa-link text-primary me-2"
                           [class.text-primary]="navigation !== 'links'"
                           [class.text-white]="navigation === 'links'"></span>
                     {{"Links" | translate:locale.language}}
@@ -150,7 +146,7 @@
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'files'"
                         (click)="navigation = 'files'">
-                    <span class="fas fa-copy text-primary mr-2"
+                    <span class="fas fa-copy text-primary me-2"
                           [class.text-primary]="navigation !== 'files'"
                           [class.text-white]="navigation === 'files'"></span>
                     {{"Files" | translate:locale.language}}
@@ -158,7 +154,7 @@
                 <button class="list-group-item list-group-item-action disabled"
                         [class.active]="navigation === 'file_viewer'"
                         (click)="navigation = 'file_viewer'">
-                    <span class="fas fa-eye text-primary mr-2"
+                    <span class="fas fa-eye text-primary me-2"
                           [class.text-primary]="navigation !== 'file_viewer'"
                           [class.text-white]="navigation === 'file_viewer'"></span>
                     {{"FileViewer" | translate:locale.language}}
@@ -169,8 +165,8 @@
             <div class="border border-secondary rounded p-2">
                 <div class="row"
                      *ngIf="navigation == 'description' || navigation == 'notes'">
-                    <div class="col-md text-right">
-                        <small class="text-muted mr-2" #saved></small>
+                    <div class="col-md text-end">
+                        <small class="text-muted me-2" #saved></small>
                         <div class="btn-group btn-group-sm">
                             <button class="btn btn-outline-success" (click)="saveText($event)"
                                     *ngIf="editMode != EditModes.OnlyView">
@@ -188,7 +184,8 @@
                             <div *ngIf="editMode != EditModes.OnlyView"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyEdit">
-                                <label for="modelDescription" class="sr-only">Edit description</label>
+                                <label for="modelDescription" class="visually-hidden form-label">Edit
+                                    description</label>
                                 <textarea id="modelDescription" [(ngModel)]="model.description"
                                           autosize [minRows]="10"
                                           (change)="saveText($event)"
@@ -208,7 +205,7 @@
                             <div *ngIf="editMode != EditModes.OnlyView"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyEdit">
-                                <label for="modelNotes" class="sr-only">Edit notes</label>
+                                <label for="modelNotes" class="visually-hidden form-label">Edit notes</label>
                                 <textarea id="modelNotes" [(ngModel)]="model.notes"
                                           autosize [minRows]="10"
                                           (change)="saveText($event)"

@@ -43,13 +43,13 @@
             <form [formGroup]="uploadForm">
                 <div class="row">
                     <div class="col">
-                        <label for="modelName">{{'ModelName' | translate:locale.language}}:</label>
+                        <label for="modelName" class="form-label">{{'ModelName' | translate:locale.language}}:</label>
                         <input id="modelName" type="text" class="form-control"
                                formControlName="name" required
                                [placeholder]="'Name' | translate:locale.language">
                     </div>
                     <div class="col">
-                        <label for="author">{{'Author' | translate:locale.language}}:</label>
+                        <label for="author" class="form-label">{{'Author' | translate:locale.language}}:</label>
                         <input id="author" type="text" class="form-control"
                                formControlName="author" required
                                [placeholder]="'Author' | translate:locale.language">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="desc">{{'Description' | translate:locale.language}}</label>:
+                        <label for="desc" class="form-label">{{'Description' | translate:locale.language}}</label>:
                         <textarea id="desc" class="form-control"
                                   formControlName="description"
                                   [placeholder]="'Description' | translate:locale.language"></textarea>
@@ -86,17 +86,15 @@
     <div class="row mt-4" *ngIf="creationMethod === 'import'">
         <div class="col">
             <form [formGroup]="importForm">
-                <label for="url">{{"ModelURL" | translate:locale.language}}</label>:
+                <label for="url" class="form-label">{{"ModelURL" | translate:locale.language}}</label>:
                 <div class="input-group mb-3">
                     <input id="url" type="url" class="form-control"
                            formControlName="url"
                            [placeholder]="'EnterURL' | translate:locale.language">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit"
-                                (click)="startImport()">
-                            {{"StartImport" | translate:locale.language}}
-                        </button>
-                    </div>
+                    <button class="btn btn-primary" type="submit"
+                            (click)="startImport()">
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
                 </div>
             </form>
         </div>

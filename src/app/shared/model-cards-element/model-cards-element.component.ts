@@ -10,8 +10,9 @@ import {Model} from "../../core/types/model.type";
     styleUrls: ["./model-cards-element.component.css"]
 })
 export class ModelCardsElementComponent implements OnInit {
-    @Input() number: number = 3;
-    @Input() type: "newest" | "random" = "random";
+    @Input() listType: "newest" | "random" | "all" = "random";
+    @Input() numberOfModels = 4;
+    @Input() pageSize = 20;
     models: Model[];
 
     constructor(
@@ -22,13 +23,16 @@ export class ModelCardsElementComponent implements OnInit {
 
     ngOnInit(): void {
         let subscription: Observable<Model[]>;
-        switch (this.type) {
-            case "newest":
-                subscription = this.modelService.getNewestModels(this.number);
-                break;
+        switch (this.listType) {
             case "random":
-                subscription = this.modelService.getRandomModels(this.number);
+                subscription = this.modelService.getRandomModels(this.numberOfModels);
                 break;
+            case "all":
+                subscription = this.modelService.getAllModels();
+                break;
+            default:
+                subscription = this.modelService.getNewestModels(this.numberOfModels);
+
         }
 
         subscription.subscribe(models => this.models = models);

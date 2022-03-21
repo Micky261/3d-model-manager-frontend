@@ -12,14 +12,12 @@
     </div>
     <div class="mt-2" style="max-height: 200px; overflow-y: auto;">
         <div class="input-group mt-1" *ngFor="let file of this.files">
-        <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
-            {{file}}
-        </span>
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-outline-success" (click)="this.files.remove(file)">
-                    <span class="fas fa-check"></span>
-                </button>
-            </div>
+            <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
+                {{file}}
+            </span>
+            <button class="btn btn-sm btn-outline-success" (click)="this.files.remove(file)">
+                <span class="fas fa-check"></span>
+            </button>
         </div>
     </div>
 </div>

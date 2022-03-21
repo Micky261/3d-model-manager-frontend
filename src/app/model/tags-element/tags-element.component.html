@@ -1,6 +1,6 @@
 <div class="row mb-2">
     <div class="col">
-        <span class="fas fa-tags text-primary mr-2"></span>
+        <span class="fas fa-tags text-primary me-2"></span>
         {{"Tags" | translate:locale.language}}
     </div>
 </div>
@@ -12,7 +12,7 @@
                    (search)="saveSearch($event)"
                    #selectTag>
             <ng-template ng-option-tmp let-item="item">
-                {{item.tag}} <span class="text-sm-left">({{item.count}})</span>
+                {{item.tag}} <span class="text-sm-start">({{item.count}})</span>
             </ng-template>
             <ng-template ng-footer-tmp>
                 <button (click)="addTag()" class="btn btn-primary btn-sm w-100">

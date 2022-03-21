@@ -1,91 +1,102 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" routerLink="/" (click)="isCollapsed = true">
-        <!--<img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top" alt="">-->
-        <span class="fas fa-cubes"></span> {{"3DModelManager" | translate:locale.language}}
-    </a>
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/" (click)="isCollapsed = true">
+            <!--<img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top" alt="">-->
+            <span class="fas fa-cubes"></span> {{"3DModelManager" | translate:locale.language}}
+        </a>
 
-    <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            (click)="isCollapsed = !isCollapsed">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                (click)="isCollapsed = !isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-        <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" *ngIf="!authService.isLoggedIn()">
-                <a class="nav-link" routerLink="/register">
-                    <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
-                </a>
-            </li>
-            <li class="nav-item" *ngIf="!authService.isLoggedIn()">
-                <a class="nav-link" routerLink="/login">
-                    <span class="fas fa-sign-in-alt"></span> {{"Login" | translate:locale.language}}
-                </a>
-            </li>
-            <li class="nav-item" *ngIf="authService.isLoggedIn()">
-                <a class="nav-link" routerLink="/">
-                    <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
-                </a>
-            </li>
-            <li class="nav-item" *ngIf="authService.isLoggedIn()">
-                <a class="nav-link" routerLink="/model/create">
-                    <span class="fas fa-plus-square"></span> {{"CreateModel" | translate:locale.language}}
-                </a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+            <!-- Left -->
+            <ul class="navbar-nav me-auto" *ngIf="!authService.isLoggedIn()">
+                <!-- for non-logged-in users -->
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/register">
+                        <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login">
+                        <span class="fas fa-sign-in-alt"></span> {{"Login" | translate:locale.language}}
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto" *ngIf="authService.isLoggedIn()">
+                <!-- for logged-in users -->
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">
+                        <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/model/list">
+                        <span class="fas fa-table-list"></span> {{"Models" | translate:locale.language}}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/model/create">
+                        <span class="fas fa-plus-square"></span> {{"CreateModel" | translate:locale.language}}
+                    </a>
+                </li>
+            </ul>
 
-        <!-- Right -->
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item" *ngIf="authService.isLoggedIn()">
-                <a class="nav-link" href="javascript:" (click)="logout()">
-                    <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
-                </a>
-            </li>
-            <li class="nav-item dropdown" ngbDropdown [placement]="'bottom-right'">
-                <a class="nav-link dropdown-toggle"
-                   href="javascript:"
-                   id="navbarDropdown"
-                   role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true"
-                   aria-expanded="false"
-                   ngbDropdownToggle>
-                    <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
-                </a>
-                <ul class="dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
-                    <li>
-                        <button class="dropdown-item" ngbDropdownItem
-                                [class.active]="locale.language === 'de-DE'"
-                                (click)="isCollapsed = true; setLocale(locales['de-DE'])">
-                            <flag country="de" size="s"></flag> Deutsch
-                        </button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" ngbDropdownItem
-                                [class.active]="locale.language === 'en-GB'"
-                                (click)="isCollapsed = true; setLocale(locales['en-GB'])">
-                            <flag country="us" size="s"></flag> English
-                        </button>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <form class="input-group input-group-sm my-1">
-                    <input class="form-control" type="search"
-                           [placeholder]="'Search' | translate:locale.language" aria-label="Search">
-                    <div class="input-group-append">
+            <!-- Right -->
+            <ul class="nav navbar-nav ms-auto">
+                <li class="nav-item">
+                    <form class="input-group input-group-sm my-1">
+                        <input class="form-control" type="search"
+                               [placeholder]="'Search' | translate:locale.language" aria-label="Search">
                         <button class="btn btn-success" type="submit">
                             {{"Search" | translate:locale.language}}
                         </button>
-                    </div>
-                </form>
-            </li>
-        </ul>
+                    </form>
+                </li>
+                <li class="nav-item dropdown" ngbDropdown placement="bottom-end">
+                    <a class="nav-link dropdown-toggle"
+                       href="javascript:"
+                       id="navbarDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       ngbDropdownToggle>
+                        <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
+                    </a>
+                    <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
+                        <li>
+                            <button class="dropdown-item" ngbDropdownItem
+                                    [class.active]="locale.language === 'de-DE'"
+                                    (click)="isCollapsed = true; setLocale(locales['de-DE'])">
+                                <flag country="de" size="s"></flag>
+                                Deutsch
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" ngbDropdownItem
+                                    [class.active]="locale.language === 'en-GB'"
+                                    (click)="isCollapsed = true; setLocale(locales['en-GB'])">
+                                <flag country="us" size="s"></flag>
+                                English
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="authService.isLoggedIn()">
+                    <a class="nav-link" href="javascript:" (click)="logout()">
+                        <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

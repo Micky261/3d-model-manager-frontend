@@ -32,30 +32,29 @@
     </tbody>
 </table>
 <hr class="my-3">
-<div class="my-3">
-    <button class="btn btn-block btn-primary"
-            (click)="openLinkForm = !openLinkForm">
+<div class="my-3 d-grid">
+    <button class="btn btn-primary" (click)="openLinkForm = !openLinkForm">
         {{"ShowAddEditLinkForm" | translate:locale.language}}
-        <span class="fas fa-chevron-down ml-2" *ngIf="!openLinkForm"></span>
-        <span class="fas fa-chevron-up ml-2" *ngIf="openLinkForm"></span>
+        <span class="fas fa-chevron-down ms-2" *ngIf="!openLinkForm"></span>
+        <span class="fas fa-chevron-up ms-2" *ngIf="openLinkForm"></span>
     </button>
 </div>
 <div class="mt-3" *ngIf="openLinkForm">
     <form>
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label for="linkLink">
+        <div class="row">
+            <div class="col-md-5">
+                <label for="linkLink" class="form-label">
                     {{"Link" | translate:locale.language}}
                 </label>
                 <input type="url" id="linkLink" #inputLinkLink class="form-control">
             </div>
-            <div class="form-group col-md-5">
-                <label for="linkTitle">
+            <div class="col-md-5">
+                <label for="linkTitle" class="form-label">
                     {{"Title" | translate:locale.language}}
                 </label>
                 <input type="text" id="linkTitle" #inputLinkTitle class="form-control">
             </div>
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <button type="submit" class="btn btn-success w-100 mb-1"
                         (click)="saveLink($event)">
                     {{"Save" | translate:locale.language}}
@@ -66,12 +65,14 @@
                 </button>
             </div>
         </div>
-        <div class="form-group">
-            <label for="linkDescription">
-                {{"Description" | translate:locale.language}}
-            </label>
-            <textarea id="linkDescription" #inputLinkDescription
-                      class="form-control"></textarea>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="linkDescription" class="form-label">
+                    {{"Description" | translate:locale.language}}
+                </label>
+                <textarea id="linkDescription" #inputLinkDescription
+                          class="form-control"></textarea>
+            </div>
         </div>
     </form>
 </div>
