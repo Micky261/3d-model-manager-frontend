@@ -1,7 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Configuration} from "../../../configuration";
 import {Environment} from "../../../environment";
 import {AccessToken} from "../types/accessToken.type";
 import {Login} from "../types/login.type";
