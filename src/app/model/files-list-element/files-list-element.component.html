@@ -22,7 +22,11 @@
     <tbody>
     <tr *ngFor="let file of files | objectArraySort:['type','position','filename']">
         <td class="align-middle" style="word-break:break-all;">
-            {{file.filename}}
+            <label for="fileName" class="visually-hidden form-label">{{"Filename" | translate:locale.language}}</label>
+            <input id="fileName" type="text"
+                   class="form-control"
+                   [(ngModel)]="file.filename"
+                   [value]="file.filename">
         </td>
         <td class="align-middle">
             <label for="fileType" class="visually-hidden form-label">{{"FileType" | translate:locale.language}}</label>
