@@ -138,10 +138,6 @@
         "id-match": "warn",
         "jsdoc/check-alignment": "warn",
         "jsdoc/newline-after-description": "warn",
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
         "max-classes-per-file": [
             "warn",
             1

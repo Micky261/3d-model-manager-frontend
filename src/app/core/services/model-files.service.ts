@@ -52,10 +52,8 @@ export class ModelFilesService {
     }
 
     deleteFile(modelId: number, type: string, filename: string): Observable<any> {
-        const m = encodeURIComponent(String(modelId));
-        const f = encodeURIComponent(String(filename));
-        const t = encodeURIComponent(String(type));
-        return this.httpClient.delete<any>(`${Environment.apiUrl}/model/file/${m}/${f}/${t}`);
+        const url = this.getFileUrl(modelId, type, filename);
+        return this.httpClient.delete<any>(url);
     }
 
     updateFiles(modelId: number, modelFiles: ModelFile[]): Observable<ModelFile[]> {

@@ -1,7 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Configuration} from "../../../configuration";
 import {Environment} from "../../../environment";
 import {ModelTag} from "../types/model-tag.type";
 
@@ -21,11 +20,16 @@ export class ModelTagsService {
         return this.httpClient.get<ModelTag[]>(`${Environment.apiUrl}/model/tags/${encodeURIComponent(String(modelId))}`);
     }
 
-    postModelTag(modelId: number, tag: string): Observable<ModelTag|null> {
-        return this.httpClient.post<ModelTag|null>(`${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`, null);
+    postModelTag(modelId: number, tag: string): Observable<ModelTag | null> {
+        return this.httpClient.post<ModelTag | null>(
+            `${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`,
+            null
+        );
     }
 
     deleteModelTag(modelId: number, tag: string): Observable<any> {
-        return this.httpClient.delete(`${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`);
+        return this.httpClient.delete(
+            `${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`
+        );
     }
 }
