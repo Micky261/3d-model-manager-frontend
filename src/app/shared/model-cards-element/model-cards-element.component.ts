@@ -1,6 +1,8 @@
 import {Component, Inject, Input, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {Observable} from "rxjs";
+import {Environment} from "../../../environment";
+import {AuthService} from "../../core/auth/auth.service";
 import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
 
@@ -18,9 +20,14 @@ export class ModelCardsElementComponent implements OnInit {
     page = 1; // Pages are 1-based
     cssClasses = "row row-cols-1 justify-content-center ";
 
+    sessionName = AuthService.sessionCookieName;
+    sessionId: string;
+    apiUrl = Environment.apiUrl;
+
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
-        private readonly modelService: ModelService
+        private readonly modelService: ModelService,
+        private readonly authService: AuthService
     ) {
     }
 
@@ -29,6 +36,8 @@ export class ModelCardsElementComponent implements OnInit {
             ? "row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4"
             : "row-cols-sm-3 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 row-cols-xxl-8";
         this.pageSize = (this.pageSize) ? this.pageSize : this.numberOfModels;
+
+        this.sessionId = this.authService.getSession();
 
         let subscription: Observable<Model[]>;
         switch (this.listType) {
