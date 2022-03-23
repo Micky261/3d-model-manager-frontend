@@ -59,7 +59,7 @@ export class FilesListElementComponent implements OnInit {
     }
 
     downloadFile(file: ModelFile): void {
-        this.modelFilesService.getFile(file.model_id, file.type, file.filename).subscribe(
+        this.modelFilesService.getFile(file.id).subscribe(
             data => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 const blob = new Blob([data]);
@@ -83,7 +83,7 @@ export class FilesListElementComponent implements OnInit {
     }
 
     deleteFile(): void {
-        this.modelFilesService.deleteFile(this.fileForDeletion.model_id, this.fileForDeletion.type, this.fileForDeletion.filename).subscribe(() => {
+        this.modelFilesService.deleteFile(this.fileForDeletion.id).subscribe(() => {
             this.toast.showSuccess("FileDeleted");
             this.files.remove(this.fileForDeletion);
             this.fileForDeletion = undefined;

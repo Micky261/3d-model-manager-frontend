@@ -6,12 +6,12 @@
                 <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;">
                     <ng-template ngbSlide
                                  *ngFor="let file of viewableFilesMap.get(fileType) | objectArraySort:'position':false">
-                        <div class="container w-100 d-flex align-items-center justify-content-center my-1">
+                        <div class="container w-100 d-flex align-items-center justify-content-center my-1" *ngIf="sessionId">
                             <ng-container
                                 [ngSwitch]="fileTypesService.getApplicationFromName(file.filename)">
                                 <img style="height: 50vh;" *ngSwitchCase="'image'"
                                      [alt]="file.filename"
-                                     [src]="modelFilesService.getFileUrl(modelId, fileType, file.filename) | secure | async">
+                                     [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                 <div *ngSwitchCase="'video'" style="height: 50vh;"
                                      class="d-flex align-items-center justify-content-center">
                                     {{"VideosNotSupported" | translate:locale.language}}
@@ -20,23 +20,16 @@
                                      class="d-flex align-items-center justify-content-center">
                                     {{"PDFsNotSupported" | translate:locale.language}}
                                 </div>
-                                <!--
                                 <video style="height: 50vh;"
-                                    [src]="modelFilesService.getFileUrl(modelId, fileNavigation, file.filename) | secure | async"
+                                    [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId"
                                     *ngSwitchCase="'video'">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
-                                Doesn't work with auth - need to build token URL into backend
-                                -->
-                                <!--
                                 <div *ngSwitchCase="'pdf'">
-                                    Jo
                                     <pdf-viewer style="height: 50vh;"
-                                                [src]="x">
+                                                [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
                                 </div>
-                                Doesn't work within ngSwitch (doesn't request file)
-                                -->
                                 <div *ngSwitchDefault style="height: 50vh;">
                                     {{"error.Unknown" | translate:locale.language}}
                                 </div>
@@ -53,7 +46,8 @@
         </div>
     </div>
 </div>
-<div class="row mt-2">
+
+<div class="row mt-2" *ngIf="viewableFilesMap.size >= 2">
     <div class="col-md">
         <div class="btn-group btn-group-sm w-100">
             <button class="btn btn-outline-primary"

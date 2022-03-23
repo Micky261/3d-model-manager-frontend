@@ -39,21 +39,12 @@ export class ModelFilesService {
         );
     }
 
-    getFileUrl(modelId: number, type: string, filename: string): string {
-        const m = encodeURIComponent(String(modelId));
-        const f = encodeURIComponent(String(filename));
-        const t = encodeURIComponent(String(type));
-        return `${Environment.apiUrl}/model/file/${m}/${f}/${t}`;
+    getFile(fileId: number): Observable<any> {
+        return this.httpClient.get<any>(`${Environment.apiUrl}/model/file/${encodeURIComponent(String(fileId))}`);
     }
 
-    getFile(modelId: number, type: string, filename: string): Observable<any> {
-        const url = this.getFileUrl(modelId, type, filename);
-        return this.httpClient.get<any>(url);
-    }
-
-    deleteFile(modelId: number, type: string, filename: string): Observable<any> {
-        const url = this.getFileUrl(modelId, type, filename);
-        return this.httpClient.delete<any>(url);
+    deleteFile(fileId: number): Observable<any> {
+        return this.httpClient.delete<any>(`${Environment.apiUrl}/model/file/${encodeURIComponent(String(fileId))}`);
     }
 
     updateFiles(modelId: number, modelFiles: ModelFile[]): Observable<ModelFile[]> {

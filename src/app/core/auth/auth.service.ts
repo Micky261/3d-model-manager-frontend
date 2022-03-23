@@ -32,4 +32,7 @@ export class AuthService {
         return this.cookieService.check(AuthService.sessionCookieName);
     }
 
+    getSession(): string {
+        return this.cookieService.get(AuthService.sessionCookieName);
+    }
 }
