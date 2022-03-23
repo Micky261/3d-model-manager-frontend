@@ -52,7 +52,7 @@ export class FileCarouselElementComponent implements OnInit {
         return {
             url: this.modelFilesService.getFileUrl(modelId, type, filename),
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            httpHeaders: {Authorization: `Bearer ${localStorage.getItem(AuthService.localStorageTokenKey)}`}
+            httpHeaders: {Authorization: `Bearer ${localStorage.getItem(AuthService.sessionCookieName)}`}
         };
     }
 }

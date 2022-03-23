@@ -1,8 +1,9 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {CookieService} from "ngx-cookie-service";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
-import {AccessToken} from "../types/accessToken.type";
+import {Session} from "../types/session.type";
 import {Login} from "../types/login.type";
 import {Register} from "../types/register.type";
 import {ServerMessage} from "../types/serverMessage.type";
@@ -11,13 +12,15 @@ import {ServerMessage} from "../types/serverMessage.type";
     providedIn: "root"
 })
 export class AuthService {
-    static readonly localStorageTokenKey = "Token";
-    static readonly localStorageTokenExp = "TokenExpiration";
+    static readonly sessionCookieName: string = "3DMM_Session";
 
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly cookieService: CookieService
+    ) {
     }
 
-    login(login: Login): Observable<AccessToken> {
+    login(login: Login): Observable<Session> {
         return this.httpClient.post<any>(`${Environment.apiUrl}/login`, login);
     }
 
@@ -26,10 +29,7 @@ export class AuthService {
     }
 
     isLoggedIn(): boolean {
-        const keySet = localStorage.getItem(AuthService.localStorageTokenKey) != null;
-        const tokenExp = parseInt(localStorage.getItem(AuthService.localStorageTokenExp), 10);
-        const now = Date.now();
-
-        return (keySet && now < tokenExp);
+        return this.cookieService.check(AuthService.sessionCookieName);
     }
+
 }

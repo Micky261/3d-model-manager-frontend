@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
+import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../app/core/auth/auth.service";
 import {ToastService} from "../app/core/error/toast.service";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Is used
@@ -21,7 +22,8 @@ export class NavbarComponent implements OnInit {
         readonly authService: AuthService,
         private readonly translation: L10nTranslationService,
         private readonly router: Router,
-        private readonly toast: ToastService
+        private readonly toast: ToastService,
+        private readonly cookieService: CookieService
     ) {
     }
 
@@ -33,7 +35,7 @@ export class NavbarComponent implements OnInit {
     }
 
     logout(): void {
-        localStorage.removeItem(AuthService.localStorageTokenKey);
+        this.cookieService.delete(AuthService.sessionCookieName);
         this.toast.showSuccess("Logout");
         void this.router.navigate(["/login"]).then(() => true);
     }

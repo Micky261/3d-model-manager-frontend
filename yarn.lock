@@ -6954,6 +6954,18 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"ngx-cookie-service@npm:^13.1.2":
+  version: 13.1.2
+  resolution: "ngx-cookie-service@npm:13.1.2"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    "@angular/common": ^13.0.0
+    "@angular/core": ^13.0.0
+  checksum: 8ef5b90b1936d8d207b70e5ea9bf26c50426c3bb2e068eb800fc0e4398699528b5a7eb6471be20c376c10a6916b7b7a388950efe276b8ac70282e4c77cbae102
+  languageName: node
+  linkType: hard
+
 "ngx-flags@npm:^2.0.0":
   version: 2.0.0
   resolution: "ngx-flags@npm:2.0.0"
@@ -9493,6 +9505,7 @@ resolve@^1.1.7:
     eslint-plugin-prefer-arrow: ^1.2.3
     ng2-pdf-viewer: ^6.3.2
     ngx-autosize: ^1.8.7
+    ngx-cookie-service: ^13.1.2
     ngx-flags: ^2.0.0
     ngx-markdown: ^13.0.0
     ngx-toastr: ^14.0.0

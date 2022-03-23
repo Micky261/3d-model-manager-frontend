@@ -2,9 +2,10 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
+import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../core/auth/auth.service";
 import {ToastService} from "../core/error/toast.service";
-import {AccessToken} from "../core/types/accessToken.type";
+import {Session} from "../core/types/session.type";
 import {Login} from "../core/types/login.type";
 import {ServerMessage} from "../core/types/serverMessage.type";
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
         private readonly authService: AuthService,
         private readonly toast: ToastService,
         private readonly route: ActivatedRoute,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly cookieService: CookieService
     ) {
     }
 
@@ -51,12 +53,14 @@ export class LoginComponent implements OnInit {
         }
 
         const login: Login = new Login(this.loginForm.get("email").value as string, this.loginForm.get("password").value as string);
-        this.authService.login(login).subscribe((token: AccessToken) => {
-            localStorage.setItem(AuthService.localStorageTokenKey, token.access_token);
-            localStorage.setItem(AuthService.localStorageTokenExp, String(new Date().setHours(24 * 7).valueOf()));
+        this.authService.login(login).subscribe((session: Session) => {
+            this.cookieService.set(
+                AuthService.sessionCookieName,
+                session.session_id as string,
+                new Date(session.session_expiry * 1000)
+            );
 
             this.toast.showSuccess("Login");
-
             void this.router.navigateByUrl(this.returnUrl).then(() => true);
         }, error => {
             this.toast.showBackendError((error.error as ServerMessage).message_code);

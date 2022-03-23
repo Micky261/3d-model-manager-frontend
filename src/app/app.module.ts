@@ -8,6 +8,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nIntlModule, L10nLoader, L10nTranslationModule} from "angular-l10n";
+import {CookieService} from "ngx-cookie-service";
 import {NgxFlagsModule} from "ngx-flags";
 import {MarkdownModule} from "ngx-markdown";
 import {ToastNoAnimationModule} from "ngx-toastr";
@@ -62,7 +63,8 @@ registerLocaleData(localeEn);
             useFactory: initL10n,
             deps: [L10nLoader],
             multi: true
-        }
+        },
+        CookieService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
