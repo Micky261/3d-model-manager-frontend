@@ -32,7 +32,7 @@
         "ngx-flags": "^2.0.0",
         "ngx-markdown": "^13.0.0",
         "ngx-toastr": "^14.0.0",
-        "rxjs": "~6.6.0",
+        "rxjs": "~7.5.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.11.0"
     },
@@ -46,10 +46,10 @@
         "@typescript-eslint/parser": "^5.0.0",
         "eslint": "^8.0.0",
         "eslint-plugin-html": "^6.2.0",
-        "eslint-plugin-jsdoc": "^32.3.0",
+        "eslint-plugin-jsdoc": "^38.0.0",
         "eslint-plugin-prefer-arrow": "^1.2.0",
-        "ts-node": "~9.1.0",
+        "ts-node": "~10.7.0",
         "tslint": "^6.0.0",
-        "typescript": "~4.5.0"
+        "typescript": "~4.6.0"
     }
 }
