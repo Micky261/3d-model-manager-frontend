@@ -45,18 +45,7 @@
     </div>
     <div class="row mt-4" *ngIf="creationMethod === 'import'">
         <div class="col">
-            <form [formGroup]="importForm">
-                <label for="url" class="form-label">{{"ModelURL" | translate:locale.language}}</label>:
-                <div class="input-group mb-3">
-                    <input id="url" type="url" class="form-control"
-                           formControlName="url"
-                           [placeholder]="'EnterURL' | translate:locale.language">
-                    <button class="btn btn-primary" type="submit"
-                            (click)="startImport()">
-                        {{"StartImport" | translate:locale.language}}
-                    </button>
-                </div>
-            </form>
+            <app-import-element></app-import-element>
         </div>
     </div>
 </div>

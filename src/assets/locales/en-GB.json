@@ -60,6 +60,8 @@
     "StartImport": "Start import",
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
+    "ThingiverseId": "Thingiverse-ID",
+    "ThingiverseImportInfoText": "The Thingiverse ID can be found in the URL, e.g. the URL https://www.thingiverse.com/thing:1234567 contains the ID '1234567'.",
     "Title": "Title",
     "UpdatedAt": "Last updated on",
     "Upload": "Upload",
