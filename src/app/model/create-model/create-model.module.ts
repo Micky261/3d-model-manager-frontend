@@ -3,11 +3,13 @@ import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
+import {CreateFormElementComponent} from "./create-form-element/create-form-element.component";
 import {CreateModelComponent} from "./create-model.component";
 
 @NgModule({
     declarations: [
-        CreateModelComponent
+        CreateModelComponent,
+        CreateFormElementComponent,
     ],
     imports: [
         CommonModule,
