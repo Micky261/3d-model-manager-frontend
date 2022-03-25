@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
 import {Model} from "../types/model.type";
-import {ServerMessage} from "../types/serverMessage.type";
 
 @Injectable({
     providedIn: "root"
@@ -16,20 +15,8 @@ export class ModelService {
         return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models`);
     }
 
-    getRandomModels(num: number): Observable<Model[]> {
-        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
-    }
-
-    importModel(importUrl: string): Observable<ServerMessage> {
-        const body = JSON.stringify({"url": importUrl});
-
-        return this.httpClient.post<ServerMessage>(`${Environment.apiUrl}/model/import`, body);
-    }
-
     /**
      * This method creates a new model on the server.
-     *
-     * @param model Model to create
      */
     postModel(model: Model): Observable<Model> {
         return this.httpClient.post<Model>(`${Environment.apiUrl}/model/data`, model);
@@ -37,8 +24,6 @@ export class ModelService {
 
     /**
      * Update the given model (with its identifier)
-     *
-     * @param model Model to update
      */
     updateModel(model: Model): Observable<Model> {
         return this.httpClient.put<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(model.id))}`, model);
@@ -48,7 +33,15 @@ export class ModelService {
         return this.httpClient.get<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(id))}`);
     }
 
+    deleteModel(id: number): Observable<Model> {
+        return this.httpClient.delete<Model>(`${Environment.apiUrl}/model/${encodeURIComponent(String(id))}`);
+    }
+
     getNewestModels(num: number): Observable<Model[]> {
         return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/newest/${encodeURIComponent(String(num))}`);
+    }
+
+    getRandomModels(num: number): Observable<Model[]> {
+        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
     }
 }
