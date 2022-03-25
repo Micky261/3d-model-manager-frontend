@@ -13,9 +13,7 @@
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
-                <div class="form-text">
-                    {{"ThingiverseImportInfoText" | translate:locale.language}}
-                </div>
+                <div class="form-text" [innerHTML]="'ThingiverseImportInfoText' | translate:locale.language"></div>
             </form>
         </div>
     </div>
@@ -33,9 +31,26 @@
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
-                <div class="form-text">
-                    {{"MyMiniFactoryImportInfoText" | translate:locale.language}}
+                <div class="form-text" [innerHTML]="'MyMiniFactoryImportInfoText' | translate:locale.language"></div>
+            </form>
+        </div>
+    </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('sketchfab') > -1">
+        <div class="col">
+            <h2>Sketchfab</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="sketchfab">
+                        {{"SketchfabId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="sketchfab"
+                           placeholder="746aff4a91c246329e64dbd2f0f65313" #sketchfabId>
+                    <button class="btn btn-primary" type="submit"
+                            (click)="importWithId(sketchfabId, 'sketchfab')">
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
                 </div>
+                <div class="form-text" [innerHTML]="'SketchfabImportInfoText' | translate:locale.language"></div>
             </form>
         </div>
     </div>

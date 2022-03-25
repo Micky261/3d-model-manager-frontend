@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {urlValidator} from "../../../../shared/form-validators";
+import "../../../../shared/array.extension";
 import {ImportService} from "../../../core/services/import.service";
 
 @Component({
@@ -25,9 +24,9 @@ export class ImportElementComponent implements OnInit {
     }
 
     importWithId(input: HTMLInputElement, importer: string): void {
-        const id = parseInt(input.value, 10);
+        const id = (["thingiverse", "myminifactory"].includes(importer)) ? parseInt(input.value, 10) : input.value;
 
-        this.importService.import(importer, {"id": id}).subscribe(data => {
+        this.importService.import(importer, {id}).subscribe(data => {
             console.log(data);
         });
     }
