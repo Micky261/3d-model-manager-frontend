@@ -16,7 +16,7 @@ import {ModelFile} from "../../core/types/model-file.type";
 export class FileCarouselElementComponent implements OnInit {
     threeRenderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
     threeScene: THREE.Scene = new THREE.Scene();
-    threeMaterial: THREE.MeshMaterialType = new THREE.MeshPhongMaterial({color: 0xa40365, specular: 0x0d5a99});
+    threeMaterial: THREE.MeshMaterialType = new THREE.MeshPhongMaterial({color: 0xa40365, shininess: 10, specular: 0x0d5a99});
 
     @Input() modelId: number;
     sessionName = AuthService.sessionCookieName;
