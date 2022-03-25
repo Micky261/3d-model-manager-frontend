@@ -50,13 +50,14 @@ export class CreateFormElementComponent implements OnInit {
             this.uploadForm.get("favorite").value as boolean,
             this.uploadForm.get("author").value as string, "");
 
-        this.modelService.postModel(model).subscribe(
-            (serverModel: Model) => {
+        this.modelService.postModel(model).subscribe({
+            next: (serverModel: Model) => {
                 void this.router.navigate(["/model", serverModel.id]).then(() => true);
             },
-            error => {
+            error: error => {
                 console.log(error);
-            });
+            }
+        });
     }
 }
 

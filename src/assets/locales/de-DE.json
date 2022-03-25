@@ -54,6 +54,7 @@
     "Position": "Position",
     "ProblematicFile": "Problematische Datei",
     "RandomModels": "Zufällige Modelle",
+    "RedirectAfterImport": "Nach dem Import zum importierten Modell gehen?",
     "Register": "Registrieren",
     "Save": "Speichern",
     "Saved": "Gespeichert!",
@@ -65,7 +66,7 @@
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
     "ThingiverseId": "Thingiverse-ID",
-    "ThingiverseImportInfoText": "Die Thingiverse ID findet sich in der URL, z.B. enthält die URL https://www.thingiverse.com/thing:1234567 die ID '1234567'.",
+    "ThingiverseImportInfoText": "Die Thingiverse ID findet sich in der URL, z.B. enthält die URL https://www.thingiverse.com/thing:1234 die ID '1234'.",
     "Title": "Titel",
     "UpdatedAt": "Zuletzt geändert am",
     "Upload": "Hochladen",
@@ -103,5 +104,8 @@
         "Login": "Erfolgreich angemeldet.",
         "Logout": "Erfolgreich abgemeldet.",
         "Unknown": "Unbekannter Erfolg"
+    },
+    "toast": {
+        "ModelCreated": "Das Modell \"{{name}}\" wurde erfolgreich erstellt."
     }
 }

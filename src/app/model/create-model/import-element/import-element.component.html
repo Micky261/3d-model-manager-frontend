@@ -1,3 +1,13 @@
+<div class="row mb-5">
+    <div class="col">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="redirectAfterImport" id="redirectAfterImport">
+            <label class="form-check-label" for="redirectAfterImport">
+                {{"RedirectAfterImport" | translate:locale.language}}
+            </label>
+        </div>
+    </div>
+</div>
 <ng-container *ngIf="enabledImporters">
     <div class="row my-3" *ngIf="enabledImporters.indexOf('thingiverse') > -1">
         <div class="col">
@@ -7,9 +17,14 @@
                     <label class="input-group-text" for="thingiverse">
                         {{"ThingiverseId" | translate:locale.language}}:
                     </label>
-                    <input type="text" class="form-control" id="thingiverse" placeholder="1234567" #thingiverseId>
+                    <input type="text" class="form-control" id="thingiverse"
+                           [disabled]="importInProgress && currentImport == 'thingiverse'"
+                           placeholder="1234" #thingiverseId>
                     <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
                             (click)="importWithId(thingiverseId, 'thingiverse')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'thingiverse'"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -25,9 +40,14 @@
                     <label class="input-group-text" for="myminifactory">
                         {{"MyMiniFactoryId" | translate:locale.language}}:
                     </label>
-                    <input type="text" class="form-control" id="myminifactory" placeholder="12345" #myMiniFactoryId>
+                    <input type="text" class="form-control" id="myminifactory"
+                           [disabled]="importInProgress && currentImport == 'myminifactory'"
+                           placeholder="12345" #myMiniFactoryId>
                     <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
                             (click)="importWithId(myMiniFactoryId, 'myminifactory')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'myminifactory'"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -44,9 +64,13 @@
                         {{"SketchfabId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="sketchfab"
+                           [disabled]="importInProgress && currentImport == 'sketchfab'"
                            placeholder="746aff4a91c246329e64dbd2f0f65313" #sketchfabId>
                     <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
                             (click)="importWithId(sketchfabId, 'sketchfab')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'sketchfab'"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
