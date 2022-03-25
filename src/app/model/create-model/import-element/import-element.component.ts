@@ -24,10 +24,10 @@ export class ImportElementComponent implements OnInit {
         );
     }
 
-    importThingiverse(input: HTMLInputElement): void {
-        const thingId = parseInt(input.value, 10);
+    importWithId(input: HTMLInputElement, importer: string): void {
+        const id = parseInt(input.value, 10);
 
-        this.importService.import("thingiverse", {"id": thingId}).subscribe(data => {
+        this.importService.import(importer, {"id": id}).subscribe(data => {
             console.log(data);
         });
     }

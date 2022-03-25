@@ -39,6 +39,8 @@
     "ModelName": "Name of the model",
     "ModelURL": "URL des Modells",
     "Models": "Modelle",
+    "MyMiniFactoryId": "MyMiniFactory-ID",
+    "MyMiniFactoryImportInfoText": "Die MyMiniFactory ID findet sich in der URL, z.B. enthält die URL https://www.myminifactory.com/object/3d-print-ino-and-melicertes-at-the-palace-of-versailles-france-12345 die ID '12345'.",
     "Name": "Name",
     "NewestModels": "Neuste Modelle",
     "NoFiles": "Keine Dateien",

@@ -1,5 +1,5 @@
 <ng-container *ngIf="enabledImporters">
-    <div class="row" *ngIf="enabledImporters.indexOf('thingiverse') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('thingiverse') > -1">
         <div class="col">
             <h2>Thingiverse</h2>
             <form>
@@ -9,12 +9,32 @@
                     </label>
                     <input type="text" class="form-control" id="thingiverse" placeholder="1234567" #thingiverseId>
                     <button class="btn btn-primary" type="submit"
-                            (click)="importThingiverse(thingiverseId)">
+                            (click)="importWithId(thingiverseId, 'thingiverse')">
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
                 <div class="form-text">
                     {{"ThingiverseImportInfoText" | translate:locale.language}}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('myminifactory') > -1">
+        <div class="col">
+            <h2>MyMiniFactory</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="myminifactory">
+                        {{"MyMiniFactoryId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="myminifactory" placeholder="12345" #myMiniFactoryId>
+                    <button class="btn btn-primary" type="submit"
+                            (click)="importWithId(myMiniFactoryId, 'myminifactory')">
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
+                </div>
+                <div class="form-text">
+                    {{"MyMiniFactoryImportInfoText" | translate:locale.language}}
                 </div>
             </form>
         </div>
