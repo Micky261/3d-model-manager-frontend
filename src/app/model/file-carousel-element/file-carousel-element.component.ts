@@ -1,8 +1,7 @@
 import {Component, Inject, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
-import {PDFSource} from "ng2-pdf-viewer";
-import {Configuration} from "../../../configuration";
+import * as THREE from "three";
 import {Environment} from "../../../environment";
 import {AuthService} from "../../core/auth/auth.service";
 import {FileTypesService} from "../../core/services/file-types.service";
@@ -15,6 +14,9 @@ import {ModelFile} from "../../core/types/model-file.type";
     styleUrls: ["./file-carousel-element.component.css"]
 })
 export class FileCarouselElementComponent implements OnInit {
+    threeRenderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+    threeScene: THREE.Scene = new THREE.Scene();
+
     @Input() modelId: number;
     sessionName = AuthService.sessionCookieName;
     sessionId: string;
@@ -38,6 +40,10 @@ export class FileCarouselElementComponent implements OnInit {
     ngOnInit(): void {
         this.modelId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
         this.sessionId = this.authService.getSession();
+
+        this.threeRenderer.setClearColor("rgb(0,0,0)", 0);
+        this.threeScene.background = null;
+        this.setRendererSize();
 
         this.modelFilesService.getFilesWithType(this.modelId, "image").subscribe((imageFiles: ModelFile[]) => {
             this.filesMap.set("image", imageFiles);
@@ -71,5 +77,12 @@ export class FileCarouselElementComponent implements OnInit {
                 this.viewableFilesMap.set("model", models);
             }
         });
+    }
+
+    setRendererSize() {
+        this.threeRenderer.setSize(
+            window.innerWidth * ((window.innerWidth <= 768) ? 0.90 : 0.7), // Breakpoint md
+            window.innerHeight * 0.49
+        );
     }
 }

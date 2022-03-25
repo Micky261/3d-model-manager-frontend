@@ -25,6 +25,7 @@
         "@ng-select/ng-select": "^8.0.0",
         "@popperjs/core": "^2.10.0",
         "angular-l10n": "^13.0.0",
+        "angular-stl-model-viewer": "^5.0.1",
         "bootstrap": "^5.0.0",
         "ng2-pdf-viewer": "^6.3.2",
         "ngx-autosize": "^1.8.0",
@@ -33,6 +34,7 @@
         "ngx-markdown": "^13.0.0",
         "ngx-toastr": "^14.0.0",
         "rxjs": "~7.5.0",
+        "three": "^0.139.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.11.0"
     },

@@ -1,34 +1,37 @@
-<div class="row">
+<div class="row" (window:resize)="setRendererSize()">
     <div class="col-md">
         <ng-container *ngFor='let fileType of ["image" , "model" , "diagram"]'>
             <ng-container
                 *ngIf="viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType">
-                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;">
+                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;"
+                              [interval]="0">
                     <ng-template ngbSlide
                                  *ngFor="let file of viewableFilesMap.get(fileType) | objectArraySort:'position':false">
-                        <div class="container w-100 d-flex align-items-center justify-content-center my-1" *ngIf="sessionId">
+                        <div class="container w-100 d-flex align-items-center justify-content-center my-1"
+                             *ngIf="sessionId">
                             <ng-container
                                 [ngSwitch]="fileTypesService.getApplicationFromName(file.filename)">
-                                <img style="height: 50vh;" *ngSwitchCase="'image'"
+                                <img *ngSwitchCase="'image'"
+                                     style="height: calc(50vh - 7px);"
                                      [alt]="file.filename"
                                      [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
-                                <div *ngSwitchCase="'video'" style="height: 50vh;"
-                                     class="d-flex align-items-center justify-content-center">
-                                    {{"VideosNotSupported" | translate:locale.language}}
-                                </div>
-                                <div *ngSwitchCase="'pdf'" style="height: 50vh;"
-                                     class="d-flex align-items-center justify-content-center">
-                                    {{"PDFsNotSupported" | translate:locale.language}}
-                                </div>
-                                <video style="height: 50vh;"
-                                    [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId"
-                                    *ngSwitchCase="'video'">
+                                <video *ngSwitchCase="'video'"
+                                       style="height: calc(50vh - 7px);"
+                                       [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
                                 <div *ngSwitchCase="'pdf'">
-                                    <pdf-viewer style="height: 50vh;"
-                                                [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                    <pdf-viewer
+                                        style="height: calc(50vh - 7px);"
+                                        [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
+                                </div>
+                                <div *ngSwitchCase="'3d'">
+                                    <stl-model-viewer
+                                        [stlModels]="[apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId]"
+                                        [renderer]="threeRenderer"
+                                        [scene]="threeScene">
+                                    </stl-model-viewer>
                                 </div>
                                 <div *ngSwitchDefault style="height: 50vh;">
                                     {{"error.Unknown" | translate:locale.language}}
@@ -37,7 +40,6 @@
                         </div>
                     </ng-template>
                 </ngb-carousel>
-
             </ng-container>
         </ng-container>
         <div class="container w-100 d-flex align-items-center justify-content-center my-1"
