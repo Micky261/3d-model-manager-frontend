@@ -30,7 +30,8 @@
                                     <stl-model-viewer
                                         [stlModels]="[apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId]"
                                         [renderer]="threeRenderer"
-                                        [scene]="threeScene">
+                                        [scene]="threeScene"
+                                        [material]="threeMaterial">
                                     </stl-model-viewer>
                                 </div>
                                 <div *ngSwitchDefault style="height: 50vh;">
