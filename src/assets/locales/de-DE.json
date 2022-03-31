@@ -6,6 +6,7 @@
     "ChangeLocale": "Sprache ändern",
     "ChangesAutomaticallySaved": "Änderungen werden automatisch gespeichert.",
     "ConfirmDeletionOfFile": "Soll die Datei wirklich gelöscht werden?",
+    "ConfirmDeletionOfModel": "Soll das Modell \"{{name}}\" wirklich gelöscht werden?",
     "CreateModel": "3D Modell erstellen",
     "CreateModelImport": "Aus Quelle importieren (Link)",
     "CreateModelManually": "Manuell erstellen (Hochladen)",
@@ -13,6 +14,7 @@
     "CreatedAt": "Erstellt am",
     "Delete": "Löschen",
     "DeleteFile": "Datei löschen",
+    "DeleteModel": "Modell löschen",
     "Description": "Beschreibung",
     "Diagrams": "Diagramme",
     "Download3DModels": "3D Modelle",
@@ -106,6 +108,7 @@
         "Unknown": "Unbekannter Erfolg"
     },
     "toast": {
-        "ModelCreated": "Das Modell \"{{name}}\" wurde erfolgreich erstellt."
+        "ModelCreated": "Das Modell \"{{name}}\" wurde erfolgreich erstellt.",
+        "ModelDeleted": "Das Modell \"{{name}}\" wurde erfolgreich gelöscht."
     }
 }

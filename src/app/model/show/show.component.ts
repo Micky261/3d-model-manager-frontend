@@ -8,6 +8,8 @@ import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
+import {ToastrService} from "ngx-toastr";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: "app-show",
@@ -35,10 +37,12 @@ export class ShowComponent implements OnInit {
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly translator: L10nTranslationService,
         private readonly toast: ToastService,
+        private readonly toastr: ToastrService,
         private readonly modelService: ModelService,
-        readonly modelFilesService: ModelFilesService,
+        private readonly modelFilesService: ModelFilesService,
         private readonly route: ActivatedRoute,
-        private readonly router: Router
+        private readonly router: Router,
+        readonly modalService: NgbModal
     ) {
     }
 
@@ -144,10 +148,17 @@ export class ShowComponent implements OnInit {
         });
     }
 
+    deleteModel() {
+        this.modelService.deleteModel(this.model.id).subscribe((model: Model) => {
+            void this.toastr.success(this.translator.translate("toast.ModelDeleted", model) as string);
+            void this.router.navigate(["model", "list"]).then(() => true);
+        });
+    }
+
     private updateModelOnServer(): void {
-        void this.modelService.updateModel(this.model).subscribe(
-            () => true,
-            () => this.toast.showBackendError("ModelUpdateFailed")
-        );
+        void this.modelService.updateModel(this.model).subscribe({
+            next: () => true,
+            error: () => this.toast.showBackendError("ModelUpdateFailed")
+        });
     }
 }

@@ -13,32 +13,39 @@
 </nav>
 
 <div class="container-fluid">
-    <form class="row row-cols-auto align-items-center ms-1">
-        <div class="p-0">
-            <h2>
-                <span class="fas fa-cube mx-1"></span>
-                <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
-            </h2>
-        </div>
-        <div class="p-0" *ngIf="editName && model">
-            <label for="modelName" class="visually-hidden form-label">
-                {{"ModelName" | translate:locale.language}}
-            </label>
-            <input class="form-control" type="text" id="modelName"
-                   #inputName [value]="model.name"
-                   (change)="updateField(inputName, 'name')"/>
-        </div>
-        <div class="p-0">
-            <button class="btn btn-sm text-secondary" (click)="toggleField('name')">
-                <span class="fas fa-pencil-alt"></span>
+    <div class="d-flex justify-content-between">
+        <form class="row row-cols-auto align-items-center ms-1">
+            <div class="p-0">
+                <h2>
+                    <span class="fas fa-cube mx-1"></span>
+                    <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
+                </h2>
+            </div>
+            <div class="p-0" *ngIf="editName && model">
+                <label for="modelName" class="visually-hidden form-label">
+                    {{"ModelName" | translate:locale.language}}
+                </label>
+                <input class="form-control" type="text" id="modelName"
+                       #inputName [value]="model.name"
+                       (change)="updateField(inputName, 'name')"/>
+            </div>
+            <div class="p-0">
+                <button class="btn btn-sm text-secondary" (click)="toggleField('name')">
+                    <span class="fas fa-pencil-alt"></span>
+                </button>
+            </div>
+            <div class="p-0 ps-2" *ngIf="model && model.imported_name">
+                <small class="text-muted mx-1">
+                    {{"OriginalName" | translate:locale.language}}: {{model.imported_name}}
+                </small>
+            </div>
+        </form>
+        <div class="text-right align-self-center">
+            <button class="btn btn-danger" (click)="modalService.open(deleteModelModal, {centered: true})">
+                {{"DeleteModel" | translate:locale.language}}
             </button>
         </div>
-        <div class="p-0 ps-2" *ngIf="model && model.imported_name">
-            <small class="text-muted mx-1">
-                {{"OriginalName" | translate:locale.language}}: {{model.imported_name}}
-            </small>
-        </div>
-    </form>
+    </div>
     <form class="row row-cols-auto align-items-center ms-1">
         <div class="p-0">
             <span class="fas fa-user me-1 ms-4 text-secondary"></span>
@@ -232,3 +239,23 @@
         </div>
     </div>
 </div>
+
+<ng-template let-modal #deleteModelModal>
+    <ng-container>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{"DeleteModel" | translate:locale.language}}</h4>
+            <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
+        </div>
+        <div class="modal-body">
+            {{"ConfirmDeletionOfModel" | translate:locale.language:model}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Abort click')">
+                {{"Abort" | translate:locale.language}}
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteModel();modal.close('Deleted')">
+                {{"Delete" | translate:locale.language}}
+            </button>
+        </div>
+    </ng-container>
+</ng-template>
