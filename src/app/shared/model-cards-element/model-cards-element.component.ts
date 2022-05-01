@@ -3,6 +3,7 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
 import {AuthService} from "../../core/auth/auth.service";
+import {Sorting} from "../../core/types/sorting.type";
 import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
 
@@ -23,6 +24,16 @@ export class ModelCardsElementComponent implements OnInit {
     sessionName = AuthService.sessionCookieName;
     sessionId: string;
     apiUrl = Environment.apiUrl;
+
+    _sorting: string = Sorting.default;
+    sortDesc: boolean;
+    sortField: string;
+
+    @Input() set sorting(s: string) {
+        this._sorting = s;
+        this.sortDesc = Sorting.sortingDesc.get(s);
+        this.sortField = Sorting.sortingField.get(s);
+    }
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,

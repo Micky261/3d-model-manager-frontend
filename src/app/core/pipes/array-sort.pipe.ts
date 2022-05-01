@@ -4,7 +4,7 @@ import {Pipe, PipeTransform} from "@angular/core";
     name: "arraySort"
 })
 export class ArraySortPipe implements PipeTransform {
-    transform(array: any[], descending: boolean): any[] {
+    transform(array: any[], descending = false): any[] {
         if (!Array.isArray(array)) {
             return;
         }

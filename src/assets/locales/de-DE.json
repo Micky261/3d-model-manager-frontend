@@ -64,6 +64,7 @@
     "ShowAddEditLinkForm": "Link bearbeiten oder erstellen",
     "SketchfabId": "Sketchfab-ID",
     "SketchfabImportInfoText": "Die Sketchfab ID findet sich in der URL, z.B. enthält die URL https://sketchfab.com/3d-models/k9-doctors-who-dog-746aff4a91c246329e64dbd2f0f65313 die ID '746aff4a91c246329e64dbd2f0f65313'.<br />Wenn der Ersteller des Modells das Herunterladen nicht zulässt, kann dieser Import kein 3D-Modell herunterladen, sondern nur Metadaten und Bilder importieren.<br />Wenn der Zugriff durch den Administrator deaktiviert ist, ist das Herunterladen von 3D-Modellen ebenfalls nicht möglich.",
+    "Sorting": "Sortieren",
     "StartImport": "Import starten",
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
@@ -100,6 +101,16 @@
         "document": "Dokument",
         "image": "Bild",
         "model": "3D Modell"
+    },
+    "sorting": {
+        "AuthorAsc": "Autor (A→Z)",
+        "AuthorDesc": "Autor (Z→A)",
+        "DateAddedAsc": "Datum hinzugefügt (0→9)",
+        "DateAddedDesc": "Datum hinzugefügt (9→0)",
+        "DateUpdatedAsc": "Datum aktualisiert (0→9)",
+        "DateUpdatedDesc": "Datum aktualisiert (9→0)",
+        "NameAsc": "Name (A→Z)",
+        "NameDesc": "Name (Z→A)"
     },
     "success": {
         "FileDeleted": "Die Datei wurde erfolgreich gelöscht.",

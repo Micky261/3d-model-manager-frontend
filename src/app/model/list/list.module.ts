@@ -1,5 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
 import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
@@ -19,6 +20,7 @@ import {ListComponent} from "./list.component";
         L10nTranslationModule,
         CustomPipesModule,
         SharedModule,
+        FormsModule,
     ]
 })
 export class ListModule {

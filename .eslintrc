@@ -179,7 +179,6 @@
             }
         ],
         "no-undef-init": "warn",
-        "no-underscore-dangle": "warn",
         "no-unsafe-finally": "warn",
         "no-unused-labels": "warn",
         "no-var": "warn",
