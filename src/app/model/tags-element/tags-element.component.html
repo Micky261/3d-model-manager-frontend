@@ -26,7 +26,7 @@
     <div class="col">
         <div class="btn-group btn-group-xs m-1"
              *ngFor="let tag of modelTags | objectArraySort:'tag':false">
-            <button type="button" class="btn btn-primary" routerLink="/tags/{{tag.tag}}">
+            <button type="button" class="btn btn-primary" routerLink="/tags/list" [queryParams]="{tags: [tag.tag]}">
                 {{tag.tag}}
             </button>
             <button type="button" class="btn btn-outline-primary"
