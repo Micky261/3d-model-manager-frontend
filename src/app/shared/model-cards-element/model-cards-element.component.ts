@@ -18,6 +18,7 @@ export class ModelCardsElementComponent implements OnInit {
     @Input() pageSize: number;
     @Input() halfSize = false;
     models: Model[];
+    filteredModels: Model[];
     page = 1; // Pages are 1-based
     cssClasses = "row row-cols-1 justify-content-center ";
 
@@ -28,6 +29,13 @@ export class ModelCardsElementComponent implements OnInit {
     _sorting: string = Sorting.default;
     sortDesc: boolean;
     sortField: string;
+
+    _tagFilter: string[] = [];
+
+    @Input() set tagFilter(tags: string[]) {
+        this._tagFilter = tags;
+        this.filterModels();
+    }
 
     @Input() set sorting(s: string) {
         this._sorting = s;
@@ -64,5 +72,9 @@ export class ModelCardsElementComponent implements OnInit {
         }
 
         subscription.subscribe(models => this.models = models);
+    }
+
+    private filterModels(): void {
+        this.filteredModels = this.models; // FIXME: Implement actual filter
     }
 }

@@ -10,24 +10,5 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="d-flex justify-content-between h-100">
-                <span class="align-self-center">
-                    <h2>{{"Models" | translate:locale.language}}</h2>
-                </span>
-
-                <div class="text-right align-self-center form-floating">
-                    <select id="listSort" class="form-select" [(ngModel)]="sorting">
-                        <option *ngFor="let so of sortings | arraySort" [value]="so" >
-                            {{"sorting." + so | translate:locale.language}}
-                        </option>
-                    </select>
-                    <label for="listSort">{{"Sorting" | translate:locale.language}}: </label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <app-model-cards-element listType="all" pageSize="24" [sorting]="sorting"></app-model-cards-element>
+    <app-list-element></app-list-element>
 </div>
