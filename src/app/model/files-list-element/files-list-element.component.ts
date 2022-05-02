@@ -35,12 +35,12 @@ export class FilesListElementComponent implements OnInit {
     }
 
     saveFileList(): void {
-        this.modelFilesService.updateFiles(this.modelId, this.files).subscribe(
-            files => {
+        this.modelFilesService.updateFiles(this.modelId, this.files).subscribe({
+            next: files => {
                 this.files = files;
                 this.lastSaved = Date.now();
             },
-            error => {
+            error: error => {
                 const sMsg = error.error as ServerMessage;
                 this.toast.showBackendError(sMsg.message_code);
 
@@ -55,18 +55,18 @@ export class FilesListElementComponent implements OnInit {
                     this.toastr.info("" + oldTypeName + " -> " + newTypeName + "<br/>" + filename, change, {enableHtml: true});
                 }
             }
-        );
+        });
     }
 
     downloadFile(file: ModelFile): void {
-        this.modelFilesService.getFile(file.id).subscribe(
-            data => {
+        this.modelFilesService.getFile(file.id).subscribe({
+            next: data => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 const blob = new Blob([data]);
                 const url = window.URL.createObjectURL(blob);
                 window.open(url);
             },
-            error => {
+            error: error => {
                 const sMsg = error.error as ServerMessage;
                 this.toast.showBackendError(sMsg.message_code);
 
@@ -79,7 +79,7 @@ export class FilesListElementComponent implements OnInit {
                     this.toastr.info(`${filename} (${typeName})`, change, {enableHtml: true});
                 }
             }
-        );
+        });
     }
 
     deleteFile(): void {

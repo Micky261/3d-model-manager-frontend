@@ -29,11 +29,12 @@ export class TagsElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log("Aaa")
         this.modelTagsService.getAllTags().subscribe(t => this.tagsWithCount = t);
-        this.modelTagsService.getModelTags(this.modelId).subscribe(
-            tags => this.modelTags = tags,
-            () => this.toast.showBackendError("TagsNotReceived")
-        );
+        this.modelTagsService.getModelTags(this.modelId).subscribe({
+            next: tags => this.modelTags = tags,
+            error: () => this.toast.showBackendError("TagsNotReceived")
+        });
     }
 
     addTag(): void {
@@ -52,15 +53,15 @@ export class TagsElementComponent implements OnInit {
     }
 
     deleteTag(tag: ModelTag): void {
-        this.modelTagsService.deleteModelTag(this.modelId, tag.tag).subscribe(
-            () => this.modelTags.remove(tag),
-            () => this.toast.showBackendError("TagCouldNotBeDeleted")
-        );
+        this.modelTagsService.deleteModelTag(this.modelId, tag.tag).subscribe({
+            next: () => this.modelTags.remove(tag),
+            error: () => this.toast.showBackendError("TagCouldNotBeDeleted")
+        });
     }
 
     private setTagOnServer(tag: string): void {
-        this.modelTagsService.postModelTag(this.modelId, tag).subscribe(
-            serverTag => {
+        this.modelTagsService.postModelTag(this.modelId, tag).subscribe({
+            next: serverTag => {
                 if (serverTag != null) {
                     this.modelTags.push(serverTag);
                 }
@@ -69,7 +70,7 @@ export class TagsElementComponent implements OnInit {
                 this.lastTagSearchTerm = "";
                 this.selectTag.handleClearClick();
             },
-            () => this.toast.showBackendError("TagCouldNotBeSet")
-        );
+            error: () => this.toast.showBackendError("TagCouldNotBeSet")
+        });
     }
 }

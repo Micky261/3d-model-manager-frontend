@@ -75,9 +75,9 @@ export class LinksElementComponent implements OnInit {
     }
 
     private updateModelOnServer(): void {
-        void this.modelService.updateModel(this.model).subscribe(
-            () => true,
-            () => this.toast.showBackendError("ModelUpdateFailed")
-        );
+        void this.modelService.updateModel(this.model).subscribe({
+            next: () => true,
+            error: () => this.toast.showBackendError("ModelUpdateFailed")
+        });
     }
 }

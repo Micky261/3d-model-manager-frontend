@@ -49,10 +49,9 @@ export class ShowComponent implements OnInit {
     ngOnInit(): void {
         this.modelId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
 
-        this.modelService.getModel(this.modelId).subscribe((m: Model) => {
-            this.model = m;
-        }, () => {
-            void this.router.navigate(["static", "not-found"]).then(() => true);
+        this.modelService.getModel(this.modelId).subscribe({
+            next: (m: Model) => this.model = m,
+            error: () => void this.router.navigate(["static", "not-found"]).then(() => true)
         });
     }
 
@@ -119,8 +118,8 @@ export class ShowComponent implements OnInit {
     }
 
     saveText(e: Event | number): void {
-        void this.modelService.updateModel(this.model).subscribe(
-            () => {
+        void this.modelService.updateModel(this.model).subscribe({
+            next: () => {
                 if (typeof e != "number") {
                     this.saved.nativeElement.textContent = this.translator.translate("Saved");
                     setTimeout(() => {
@@ -128,8 +127,8 @@ export class ShowComponent implements OnInit {
                     }, 3000);
                 }
             },
-            () => this.toast.showBackendError("ModelUpdateFailed")
-        );
+            error: () => this.toast.showBackendError("ModelUpdateFailed")
+        });
     }
 
     downloadZip(type: string): void {
