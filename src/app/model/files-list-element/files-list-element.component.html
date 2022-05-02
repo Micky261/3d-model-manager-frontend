@@ -30,7 +30,7 @@
         </td>
         <td class="align-middle">
             <label for="fileType" class="visually-hidden form-label">{{"FileType" | translate:locale.language}}</label>
-            <select id="fileType" class="form-control"
+            <select id="fileType" class="form-select"
                     [(ngModel)]="file.type"
                     [value]="file.type">
                 <option *ngFor="let fileType of ['model' ,'image', 'diagram' , 'document']" [value]="fileType">

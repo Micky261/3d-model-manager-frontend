@@ -29,7 +29,6 @@ export class TagsElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("Aaa")
         this.modelTagsService.getAllTags().subscribe(t => this.tagsWithCount = t);
         this.modelTagsService.getModelTags(this.modelId).subscribe({
             next: tags => this.modelTags = tags,
