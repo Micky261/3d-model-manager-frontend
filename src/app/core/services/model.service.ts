@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
-import {Model} from "../types/model.type";
+import {Model, ModelWithTags} from "../types/model.type";
 
 @Injectable({
     providedIn: "root"
@@ -13,6 +13,10 @@ export class ModelService {
 
     getAllModels(): Observable<Model[]> {
         return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models`);
+    }
+
+    getAllModelsWithTags(): Observable<ModelWithTags[]> {
+        return this.httpClient.get<ModelWithTags[]>(`${Environment.apiUrl}/models/with-tags`);
     }
 
     /**

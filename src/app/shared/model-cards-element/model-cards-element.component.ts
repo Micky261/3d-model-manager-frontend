@@ -5,7 +5,7 @@ import {Environment} from "../../../environment";
 import {AuthService} from "../../core/auth/auth.service";
 import {Sorting} from "../../core/types/sorting.type";
 import {ModelService} from "../../core/services/model.service";
-import {Model} from "../../core/types/model.type";
+import {Model, ModelWithTags} from "../../core/types/model.type";
 
 @Component({
     selector: "app-model-cards-element",
@@ -17,8 +17,8 @@ export class ModelCardsElementComponent implements OnInit {
     @Input() numberOfModels: number;
     @Input() pageSize: number;
     @Input() halfSize = false;
-    models: Model[];
-    filteredModels: Model[];
+    models: ModelWithTags[];
+    filteredModels: ModelWithTags[] = [];
     page = 1; // Pages are 1-based
     cssClasses = "row row-cols-1 justify-content-center ";
 
@@ -58,20 +58,20 @@ export class ModelCardsElementComponent implements OnInit {
 
         this.sessionId = this.authService.getSession();
 
-        let subscription: Observable<Model[]>;
+        let subscription: Observable<(Model | ModelWithTags)[]>;
         switch (this.listType) {
             case "random":
                 subscription = this.modelService.getRandomModels(this.numberOfModels);
                 break;
             case "all":
-                subscription = this.modelService.getAllModels();
+                subscription = this.modelService.getAllModelsWithTags();
                 break;
             default:
                 subscription = this.modelService.getNewestModels(this.numberOfModels);
 
         }
 
-        subscription.subscribe(models => this.models = models);
+        subscription.subscribe(models => this.models = models as ModelWithTags[]);
     }
 
     private filterModels(): void {
