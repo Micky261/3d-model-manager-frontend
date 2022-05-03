@@ -24,7 +24,6 @@ export class TagListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.route.snapshot.queryParams);
         const quTags = this.route.snapshot.queryParams.tags;
         if (quTags) this.tagFilter = quTags.split(",");
 
@@ -38,7 +37,7 @@ export class TagListComponent implements OnInit {
         }
     }
 
-    removeTagFilter(tag: string) :void{
+    removeTagFilter(tag: string): void {
         if (this.tagFilter.includes(tag)) {
             this.tagFilter.remove(tag);
             this.navigateFilter();
@@ -48,7 +47,7 @@ export class TagListComponent implements OnInit {
     navigateFilter(): void {
         void this.router.navigate(
             ["/tags/list"],
-            {queryParams: {tags: this.tagFilter.join(",")}}
+            (this.tagFilter.length > 0) ? {queryParams: {tags: this.tagFilter.join(",")}} : {}
         ).then(() => true);
     }
 }
