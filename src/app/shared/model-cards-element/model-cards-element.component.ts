@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
+import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
@@ -12,7 +12,7 @@ import {Model, ModelWithTags} from "../../core/types/model.type";
     templateUrl: "./model-cards-element.component.html",
     styleUrls: ["./model-cards-element.component.css"]
 })
-export class ModelCardsElementComponent implements OnInit {
+export class ModelCardsElementComponent implements OnInit, OnChanges {
     @Input() listType: "newest" | "random" | "all" = "random";
     @Input() numberOfModels: number;
     @Input() pageSize: number;
@@ -33,6 +33,7 @@ export class ModelCardsElementComponent implements OnInit {
     _tagFilter: string[] = [];
 
     @Input() set tagFilter(tags: string[]) {
+        if (this.listType !== "all") throw new DOMException("tagFilter can only be used with listType==all.");
         this._tagFilter = tags;
         this.filterModels();
     }
@@ -74,7 +75,20 @@ export class ModelCardsElementComponent implements OnInit {
         subscription.subscribe(models => this.models = models as ModelWithTags[]);
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        this.filterModels();
+    }
+
     private filterModels(): void {
-        this.filteredModels = this.models; // FIXME: Implement actual filter
+        if (this.models) {
+            if (this._tagFilter.length === 0) {
+                this.filteredModels = this.models;
+            } else {
+                this.filteredModels = this.models.filter((model: ModelWithTags) => {
+                    return model.tags != null
+                        && this._tagFilter.filter(tag => !model.tags.includes(tag)).length === 0;
+                });
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@ export class TagListComponent implements OnInit {
     addTagFilter(tag: string): void {
         if (!this.tagFilter.includes(tag)) {
             this.tagFilter.push(tag);
+            this.tagFilter = [...this.tagFilter]; // Needed to fire change event in model-cards-element
             this.navigateFilter();
         }
     }
@@ -40,6 +41,7 @@ export class TagListComponent implements OnInit {
     removeTagFilter(tag: string): void {
         if (this.tagFilter.includes(tag)) {
             this.tagFilter.remove(tag);
+            this.tagFilter = [...this.tagFilter]; // Needed to fire change event in model-cards-element
             this.navigateFilter();
         }
     }
