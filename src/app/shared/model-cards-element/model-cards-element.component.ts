@@ -72,7 +72,10 @@ export class ModelCardsElementComponent implements OnInit, OnChanges {
 
         }
 
-        subscription.subscribe(models => this.models = models as ModelWithTags[]);
+        subscription.subscribe(models => {
+            this.models = models as ModelWithTags[];
+            this.filteredModels = this.models;
+        });
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -80,15 +83,11 @@ export class ModelCardsElementComponent implements OnInit, OnChanges {
     }
 
     private filterModels(): void {
-        if (this.models) {
-            if (this._tagFilter.length === 0) {
-                this.filteredModels = this.models;
-            } else {
-                this.filteredModels = this.models.filter((model: ModelWithTags) => {
-                    return model.tags != null
-                        && this._tagFilter.filter(tag => !model.tags.includes(tag)).length === 0;
-                });
-            }
+        if (this.models && this._tagFilter) {
+            this.filteredModels = this.models.filter((model: ModelWithTags) => {
+                return model.tags != null
+                    && this._tagFilter.filter(tag => !model.tags.includes(tag)).length === 0;
+            });
         }
     }
 }
