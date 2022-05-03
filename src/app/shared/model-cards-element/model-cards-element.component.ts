@@ -26,7 +26,7 @@ export class ModelCardsElementComponent implements OnInit, OnChanges {
     sessionId: string;
     apiUrl = Environment.apiUrl;
 
-    _sorting: string = Sorting.default;
+    _sorting: string = Sorting.defaultModel;
     sortDesc: boolean;
     sortField: string;
 

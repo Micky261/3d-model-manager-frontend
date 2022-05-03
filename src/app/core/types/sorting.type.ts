@@ -1,8 +1,8 @@
 export class Sorting {
-    // TODO: Use an enum
-    public static default = "DateAddedAsc";
+    public static defaultModel = "DateAddedAsc";
+    public static defaultTag = "CountDesc";
 
-    public static sortings = [
+    public static sortingsModel = [
         "DateAddedAsc",
         "DateAddedDesc",
         "DateUpdatedAsc",
@@ -13,6 +13,13 @@ export class Sorting {
         "AuthorDesc"
     ];
 
+    public static sortingsTags = [
+        "CountAsc",
+        "CountDesc",
+        "TagAsc",
+        "TagDesc"
+    ];
+
     public static sortingDesc: Map<string, boolean> = new Map([
         ["DateAddedAsc", false],
         ["DateAddedDesc", true],
@@ -21,7 +28,9 @@ export class Sorting {
         ["NameAsc", false],
         ["NameDesc", true],
         ["AuthorAsc", false],
-        ["AuthorDesc", true]
+        ["AuthorDesc", true],
+        ["TagAsc", false],
+        ["TagDesc", true]
     ]);
 
     public static sortingField: Map<string, string> = new Map([
@@ -32,6 +41,10 @@ export class Sorting {
         ["NameAsc", "name"],
         ["NameDesc", "name"],
         ["AuthorAsc", "author"],
-        ["AuthorDesc", "author"]
+        ["AuthorDesc", "author"],
+        ["CountAsc", "count"],
+        ["CountDesc", "count"],
+        ["TagAsc", "tag"],
+        ["TagDesc", "tag"]
     ]);
 }

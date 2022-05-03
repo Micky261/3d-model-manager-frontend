@@ -12,11 +12,26 @@
 <div class="container-fluid">
     <div class="row mb-4" *ngIf="tagsWithCount">
         <div class="col">
-            <h3>{{"Tags" | translate:locale.language}}</h3>
+            <div class="d-block">
+                <div class="d-flex justify-content-between h-100">
+                    <span class="align-self-center">
+                        <h2>{{"Tags" | translate:locale.language}}</h2>
+                    </span>
+
+                    <div class="text-right align-self-center form-floating">
+                        <select id="listSort" class="form-select" [(ngModel)]="sorting" (ngModelChange)="sortTags($event)">
+                            <option *ngFor="let so of sortings | arraySort" [value]="so">
+                                {{"sorting." + so | translate:locale.language}}
+                            </option>
+                        </select>
+                        <label for="listSort">{{"Sorting" | translate:locale.language}}: </label>
+                    </div>
+                </div>
+            </div>
 
             <div class="mt-3">
                 <div class="btn-group btn-group-sm m-1"
-                     *ngFor="let tag of tagsWithCount | objectArraySort:['count', 'tag']:[true, false]">
+                     *ngFor="let tag of tagsWithCount | objectArraySort:tagSort:tagDesc">
                     <button type="button" class="btn btn-primary"
                             [disabled]="tagFilter.includes(tag.tag)"
                             (click)="addTagFilter(tag.tag)">

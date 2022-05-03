@@ -1,5 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
@@ -21,6 +22,7 @@ import {TagListComponent} from "./tag-list.component";
         ListElementModule,
         CustomPipesModule,
         NgbTooltipModule,
+        FormsModule,
     ]
 })
 export class TagListModule {

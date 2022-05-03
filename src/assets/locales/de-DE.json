@@ -107,12 +107,16 @@
     "sorting": {
         "AuthorAsc": "Autor (A→Z)",
         "AuthorDesc": "Autor (Z→A)",
+        "CountAsc": "Anzahl (0→9)",
+        "CountDesc": "Anzahl (9→0)",
         "DateAddedAsc": "Datum hinzugefügt (0→9)",
         "DateAddedDesc": "Datum hinzugefügt (9→0)",
         "DateUpdatedAsc": "Datum aktualisiert (0→9)",
         "DateUpdatedDesc": "Datum aktualisiert (9→0)",
         "NameAsc": "Name (A→Z)",
-        "NameDesc": "Name (Z→A)"
+        "NameDesc": "Name (Z→A)",
+        "TagAsc": "Tag (A→Z)",
+        "TagDesc": "Tag (Z→A)"
     },
     "success": {
         "FileDeleted": "Die Datei wurde erfolgreich gelöscht.",

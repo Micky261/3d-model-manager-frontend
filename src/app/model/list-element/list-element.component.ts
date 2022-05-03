@@ -10,8 +10,8 @@ import {Sorting} from "../../core/types/sorting.type";
     styleUrls: ["./list-element.component.css"]
 })
 export class ListElementComponent implements OnInit {
-    sortings = Sorting.sortings;
-    sorting: string = Sorting.default;
+    sortings = Sorting.sortingsModel;
+    sorting: string = Sorting.defaultModel;
 
     @Input() title = "Models";
     @Input() tagFilter: string[] = [];

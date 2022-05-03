@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {ModelTagsService} from "../../core/services/model-tags.service";
-import {ModelTag} from "../../core/types/model-tag.type";
 import "../../../shared/array.extension";
+import {ModelTagsService} from "../../core/services/model-tags.service";
+import {Sorting} from "../../core/types/sorting.type";
 
 @Component({
     selector: "app-tag-list",
@@ -11,9 +11,14 @@ import "../../../shared/array.extension";
     styleUrls: ["./tag-list.component.css"]
 })
 export class TagListComponent implements OnInit {
-    modelTags: ModelTag[];
+    sortings = Sorting.sortingsTags;
+    sorting: string = Sorting.defaultTag;
+
     tagsWithCount: { tag: string; count: number }[] = [];
     tagFilter: string[] = [];
+
+    tagSort = ["count", "tag"];
+    tagDesc = [true, false];
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -51,5 +56,22 @@ export class TagListComponent implements OnInit {
             ["/tags/list"],
             (this.tagFilter.length > 0) ? {queryParams: {tags: this.tagFilter.join(",")}} : {}
         ).then(() => true);
+    }
+
+    sortTags(event: Event) {
+        switch (this.sorting) {
+            case "CountAsc":
+            case "CountDesc":
+                this.tagSort = [Sorting.sortingField.get(this.sorting), Sorting.sortingField.get("TagAsc")];
+                this.tagDesc = [Sorting.sortingDesc.get(this.sorting), false];
+                break;
+            case "TagAsc":
+            case "TagDesc":
+                this.tagSort = [Sorting.sortingField.get(this.sorting)];
+                this.tagDesc = [Sorting.sortingDesc.get(this.sorting)];
+                break;
+            default:
+                throw new DOMException("Impossible state.");
+        }
     }
 }
