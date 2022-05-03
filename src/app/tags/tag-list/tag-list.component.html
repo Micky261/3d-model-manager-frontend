@@ -10,7 +10,7 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row" *ngIf="tagsWithCount">
+    <div class="row mb-4" *ngIf="tagsWithCount">
         <div class="col">
             <h3>{{"Tags" | translate:locale.language}}</h3>
 
@@ -36,7 +36,6 @@
     </div>
 
     <app-list-element
-        class="mt-5"
         [tagFilter]="tagFilter"
         title="ModelsFilteredByTags"></app-list-element>
 </div>
