@@ -74,7 +74,7 @@ export class ModelCardsElementComponent implements OnInit, OnChanges {
 
         subscription.subscribe(models => {
             this.models = models as ModelWithTags[];
-            this.filteredModels = this.models;
+            this.filterModels();
         });
     }
 

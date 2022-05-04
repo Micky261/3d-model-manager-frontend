@@ -1,7 +1,5 @@
 import {Component, Inject, Input, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {Model} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
 @Component({
