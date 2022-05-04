@@ -32,6 +32,10 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
                     loadChildren: () => import("./model/model.module").then(m => m.ModelModule)
                 },
                 {
+                    path: "search",
+                    loadChildren: () => import("./search/search.module").then(m => m.SearchModule)
+                },
+                {
                     path: "tags",
                     loadChildren: () => import("./tags/tags.module").then(m => m.TagsModule)
                 }

@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+        </li>
+        <li class="breadcrumb-item active">
+            {{"Search" | translate:locale.language}}: "{{this.searchTerm}}"
+        </li>
+    </ol>
+</nav>
+
+<div class="container-fluid">
+<app-list-element [models]="models" [title]="title" [titleParams]="titleParams" sortable="true"></app-list-element>
+</div>

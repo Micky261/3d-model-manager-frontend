@@ -58,13 +58,15 @@
             <!-- Right -->
             <ul class="nav navbar-nav ms-auto">
                 <li class="nav-item me-2">
-                    <form class="input-group input-group-sm my-1">
-                        <input class="form-control" type="search"
-                               [placeholder]="'Search' | translate:locale.language" aria-label="Search">
-                        <button class="btn btn-success" type="submit">
+                    <div class="input-group input-group-sm my-1">
+                        <input class="form-control" type="search" #searchInput
+                               [placeholder]="'Search' | translate:locale.language" aria-label="Search"
+                               (keydown.enter)="searchButton.click()">
+                        <button type="button" class="btn btn-success" #searchButton
+                                (click)="search(searchInput.value)">
                             {{"Search" | translate:locale.language}}
                         </button>
-                    </form>
+                    </div>
                 </li>
                 <li class="nav-item dropdown" ngbDropdown placement="bottom-end">
                     <a class="nav-link dropdown-toggle"

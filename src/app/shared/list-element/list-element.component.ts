@@ -6,9 +6,9 @@ import {Model, ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
 /**
- * Must be used with following classes: card text-center
+ * Must be used with following CSS classes: card text-center
  * e.g.
- * ```<app-model-card-element  class="card text-center"></> ```
+ * ```<app-model-card-element class="card text-center"></> ```
  */
 @Component({
     selector: "app-list-element",
@@ -23,7 +23,8 @@ export class ListElementComponent implements OnInit, OnChanges {
     sortField: string;
 
     @Input() title;
-    @Input() models: Model | ModelWithTags[];
+    @Input() titleParams;
+    @Input() models: (Model | ModelWithTags)[];
 
     @Input() deactivatePagination = false;
     @Input() pageSize = 24;

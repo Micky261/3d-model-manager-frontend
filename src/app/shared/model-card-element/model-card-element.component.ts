@@ -10,7 +10,7 @@ import {Model, ModelWithTags} from "../../core/types/model.type";
     styleUrls: ["./model-card-element.component.css"]
 })
 export class ModelCardElementComponent implements OnInit {
-    @Input() model: Model | ModelWithTags;
+    @Input() model: (Model | ModelWithTags);
 
     sessionName = AuthService.sessionCookieName;
     sessionId: string;
