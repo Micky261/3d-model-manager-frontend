@@ -2,7 +2,7 @@ import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {L10nTranslationModule} from "angular-l10n";
-import {ListElementModule} from "../list-element/list-element.module";
+import {SharedModule} from "../../shared/shared.module";
 import {ListComponent} from "./list.component";
 
 @NgModule({
@@ -16,7 +16,7 @@ import {ListComponent} from "./list.component";
             component: ListComponent
         }]),
         L10nTranslationModule,
-        ListElementModule,
+        SharedModule
     ]
 })
 export class ListModule {

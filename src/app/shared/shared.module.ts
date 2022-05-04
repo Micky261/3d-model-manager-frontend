@@ -2,17 +2,20 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
 import {CustomPipesModule} from "../core/pipes/custom-pipes.module";
-import {ModelCardsElementComponent} from "./model-cards-element/model-cards-element.component";
+import {ListElementComponent} from "./list-element/list-element.component";
+import {ModelCardElementComponent} from "./model-card-element/model-card-element.component";
 
 @NgModule({
     declarations: [
-        ModelCardsElementComponent
+        ModelCardElementComponent,
+        ListElementComponent
     ],
     exports: [
-        ModelCardsElementComponent
+        ModelCardElementComponent,
+        ListElementComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +23,8 @@ import {ModelCardsElementComponent} from "./model-cards-element/model-cards-elem
         FormsModule,
         L10nTranslationModule,
         NgbModule,
-        CustomPipesModule
+        CustomPipesModule,
+        NgbPaginationModule
     ]
 })
 export class SharedModule {

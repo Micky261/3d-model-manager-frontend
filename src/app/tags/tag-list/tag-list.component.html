@@ -19,7 +19,8 @@
                     </span>
 
                     <div class="text-right align-self-center form-floating">
-                        <select id="listSort" class="form-select" [(ngModel)]="sorting" (ngModelChange)="sortTags($event)">
+                        <select id="listSort" class="form-select" [(ngModel)]="sorting"
+                                (ngModelChange)="sortTags($event)">
                             <option *ngFor="let so of sortings | arraySort" [value]="so">
                                 {{"sorting." + so | translate:locale.language}}
                             </option>
@@ -50,7 +51,5 @@
         </div>
     </div>
 
-    <app-list-element
-        [tagFilter]="tagFilter"
-        title="ModelsFilteredByTags"></app-list-element>
+    <app-list-element title="ModelsFilteredByTags" [models]="filteredModels" sortable="true"></app-list-element>
 </div>

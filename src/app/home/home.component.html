@@ -9,20 +9,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <div class="row">
-                <div class="col">
-                    <h2>{{"RandomModels" | translate:locale.language}}</h2>
-                </div>
-            </div>
-            <app-model-cards-element halfSize="true" listType="random" numberOfModels="4"></app-model-cards-element>
+            <app-list-element
+                halfSize="true"
+                deactivatePagination="true"
+                [models]="randomModels"
+                pageSize="4"
+                title="RandomModels"></app-list-element>
         </div>
         <div class="col-6">
-            <div class="row">
-                <div class="col">
-                    <h2>{{"NewestModels" | translate:locale.language}}</h2>
-                </div>
-            </div>
-            <app-model-cards-element halfSize="true" listType="newest" numberOfModels="4"></app-model-cards-element>
+            <app-list-element
+                halfSize="true"
+                deactivatePagination="true"
+                [models]="newestModels"
+                pageSize="4"
+                title="NewestModels"></app-list-element>
         </div>
     </div>
 </div>

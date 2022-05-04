@@ -1,5 +1,5 @@
 export class Sorting {
-    public static defaultModel = "DateAddedAsc";
+    public static defaultModel = "DateAddedDesc";
     public static defaultTag = "CountDesc";
 
     public static sortingsModel = [

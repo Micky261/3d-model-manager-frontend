@@ -5,7 +5,7 @@ import {RouterModule} from "@angular/router";
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
 import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
-import {ListElementModule} from "../../model/list-element/list-element.module";
+import {SharedModule} from "../../shared/shared.module";
 import {TagListComponent} from "./tag-list.component";
 
 @NgModule({
@@ -19,7 +19,7 @@ import {TagListComponent} from "./tag-list.component";
             component: TagListComponent
         }]),
         L10nTranslationModule,
-        ListElementModule,
+        SharedModule,
         CustomPipesModule,
         NgbTooltipModule,
         FormsModule,

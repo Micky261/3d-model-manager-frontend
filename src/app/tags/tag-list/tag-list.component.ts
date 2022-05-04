@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ModelTagsService} from "../../core/services/model-tags.service";
+import {ModelService} from "../../core/services/model.service";
+import {ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
 @Component({
@@ -20,8 +22,12 @@ export class TagListComponent implements OnInit {
     tagSort = ["count", "tag"];
     tagDesc = [true, false];
 
+    models: ModelWithTags[];
+    filteredModels: ModelWithTags[];
+
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly modelService: ModelService,
         private readonly modelTagsService: ModelTagsService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
@@ -32,13 +38,19 @@ export class TagListComponent implements OnInit {
         const quTags = this.route.snapshot.queryParams.tags;
         if (quTags) this.tagFilter = quTags.split(",");
 
+        this.modelService.getAllModelsWithTags().subscribe(models => {
+            this.models = models;
+            this.filteredModels = models;
+            this.filterModels();
+        });
+
         this.modelTagsService.getAllTags().subscribe(t => this.tagsWithCount = t);
     }
 
     addTagFilter(tag: string): void {
         if (!this.tagFilter.includes(tag)) {
             this.tagFilter.push(tag);
-            this.tagFilter = [...this.tagFilter]; // Needed to fire change event in model-cards-element
+            this.filterModels();
             this.navigateFilter();
         }
     }
@@ -46,7 +58,7 @@ export class TagListComponent implements OnInit {
     removeTagFilter(tag: string): void {
         if (this.tagFilter.includes(tag)) {
             this.tagFilter.remove(tag);
-            this.tagFilter = [...this.tagFilter]; // Needed to fire change event in model-cards-element
+            this.filterModels();
             this.navigateFilter();
         }
     }
@@ -72,6 +84,15 @@ export class TagListComponent implements OnInit {
                 break;
             default:
                 throw new DOMException("Impossible state.");
+        }
+    }
+
+    private filterModels(): void {
+        if (this.models && this.tagFilter) {
+            this.filteredModels = this.models.filter((model: ModelWithTags) => {
+                return model.tags != null
+                    && this.tagFilter.filter(tag => !model.tags.includes(tag)).length === 0;
+            });
         }
     }
 }
