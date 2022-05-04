@@ -29,6 +29,8 @@ export class Sorting {
         ["NameDesc", true],
         ["AuthorAsc", false],
         ["AuthorDesc", true],
+        ["CountAsc", false],
+        ["CountDesc", true],
         ["TagAsc", false],
         ["TagDesc", true]
     ]);

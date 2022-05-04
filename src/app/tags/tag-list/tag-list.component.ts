@@ -63,7 +63,7 @@ export class TagListComponent implements OnInit {
             case "CountAsc":
             case "CountDesc":
                 this.tagSort = [Sorting.sortingField.get(this.sorting), Sorting.sortingField.get("TagAsc")];
-                this.tagDesc = [Sorting.sortingDesc.get(this.sorting), false];
+                this.tagDesc = [Sorting.sortingDesc.get(this.sorting), Sorting.sortingDesc.get("TagAsc")];
                 break;
             case "TagAsc":
             case "TagDesc":
