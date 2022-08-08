@@ -20,7 +20,7 @@
                                        [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
-                                <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); calc(100% - 20%);">
+                                <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
                                     <pdf-viewer
                                         [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
