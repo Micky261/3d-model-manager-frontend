@@ -72,10 +72,21 @@ export class FileCarouselElementComponent implements OnInit {
             this.filesMap.set("model", modelFiles);
 
             const models = modelFiles.filter(file => {
-                return ["3d"].includes(this.fileTypesService.getApplicationFromName(file.filename));
+                return ["model"].includes(this.fileTypesService.getApplicationFromName(file.filename));
             });
             if (models.length > 0) {
                 this.viewableFilesMap.set("model", models);
+            }
+        });
+
+        this.modelFilesService.getFilesWithType(this.modelId, "document").subscribe((pdfFiles: ModelFile[]) => {
+            this.filesMap.set("pdf", pdfFiles);
+
+            const pdfs = pdfFiles.filter(file => {
+                return ["pdf"].includes(this.fileTypesService.getApplicationFromName(file.filename));
+            });
+            if (pdfs.length > 0) {
+                this.viewableFilesMap.set("pdf", pdfs);
             }
         });
     }

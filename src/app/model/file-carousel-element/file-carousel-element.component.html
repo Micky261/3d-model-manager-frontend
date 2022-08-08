@@ -1,6 +1,6 @@
 <div class="row" (window:resize)="setRendererSize()">
     <div class="col-md">
-        <ng-container *ngFor='let fileType of ["image" , "model" , "diagram"]'>
+        <ng-container *ngFor='let fileType of ["image" , "model" , "diagram", "pdf"]'>
             <ng-container
                 *ngIf="viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType">
                 <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;"
@@ -20,13 +20,12 @@
                                        [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
-                                <div *ngSwitchCase="'pdf'">
+                                <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); calc(100% - 20%);">
                                     <pdf-viewer
-                                        style="height: calc(50vh - 7px);"
                                         [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
                                 </div>
-                                <div *ngSwitchCase="'3d'">
+                                <div *ngSwitchCase="'model'">
                                     <stl-model-viewer
                                         [stlModels]="[apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId]"
                                         [renderer]="threeRenderer"
@@ -34,9 +33,9 @@
                                         [material]="threeMaterial">
                                     </stl-model-viewer>
                                 </div>
-                                <div *ngSwitchDefault style="height: 50vh;">
-                                    {{"error.Unknown" | translate:locale.language}}
-                                </div>
+<!--                                <div *ngSwitchDefault style="height: 50vh;">-->
+<!--                                    {{"error.Unknown" | translate:locale.language}}-->
+<!--                                </div>-->
                             </ng-container>
                         </div>
                     </ng-template>
@@ -70,6 +69,12 @@
                     [class.active]="fileNavigation == 'diagram'"
                     (click)="fileNavigation = 'diagram'">
                 {{"Diagrams" | translate:locale.language}}
+            </button>
+            <button class="btn btn-outline-primary"
+                    *ngIf="viewableFilesMap.get('pdf') && viewableFilesMap.get('pdf').length > 0"
+                    [class.active]="fileNavigation == 'pdf'"
+                    (click)="fileNavigation = 'pdf'">
+                {{"PdfDocuments" | translate:locale.language}}
             </button>
         </div>
     </div>
