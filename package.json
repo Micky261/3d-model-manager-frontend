@@ -5,6 +5,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build-prod": "ng build --configuration production",
         "lint": "eslint -c .eslintrc --ext .ts src",
         "fixlint": "eslint --fix -c .eslintrc --ext .ts src",
         "postinstall": "ngcc"
