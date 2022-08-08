@@ -56,6 +56,8 @@
     "Password": "Passwort",
     "PdfDocuments": "Dokumente (nur PDFs)",
     "Position": "Position",
+    "PrintablesId": "Printables-ID",
+    "PrintablesImportInfoText": "Die Printables ID findet sich in der URL, z.B. enthält die URL https://www.printables.com/model/123456-print-in-place-rotating-hearts-bracelet die ID '123456'.",
     "ProblematicFile": "Problematische Datei",
     "RandomModels": "Zufällige Modelle",
     "RedirectAfterImport": "Nach dem Import zum importierten Modell gehen?",

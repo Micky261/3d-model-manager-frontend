@@ -78,4 +78,27 @@
             </form>
         </div>
     </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('printables') > -1">
+        <div class="col">
+            <h2>Printables</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="printables">
+                        {{"PrintablesId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="printables"
+                           [disabled]="importInProgress && currentImport == 'printables'"
+                           placeholder="123456" #printablesId>
+                    <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
+                            (click)="importWithId(printablesId, 'printables')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'printables'"></span>
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
+                </div>
+                <div class="form-text" [innerHTML]="'PrintablesImportInfoText' | translate:locale.language"></div>
+            </form>
+        </div>
+    </div>
 </ng-container>
