@@ -101,4 +101,50 @@
             </form>
         </div>
     </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('instructables') > -1">
+        <div class="col">
+            <h2>Instructables</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="instructables">
+                        {{"InstructablesId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="instructables"
+                           [disabled]="importInProgress && currentImport == 'instructables'"
+                           placeholder="EVLRJPCKUL8MOTU" #instructablesId>
+                    <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
+                            (click)="importWithId(instructablesId, 'instructables')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'instructables'"></span>
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
+                </div>
+                <div class="form-text" [innerHTML]="'InstructablesImportInfoText' | translate:locale.language"></div>
+            </form>
+        </div>
+    </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf('cults3d') > -1">
+        <div class="col">
+            <h2>Cults3D</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="cults3d">
+                        {{"Cults3DId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="cults3d"
+                           [disabled]="importInProgress && currentImport == 'cults3d'"
+                           placeholder="doctor-who-onmioji" #cults3dId>
+                    <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
+                            (click)="importWithId(cults3dId, 'cults3d')">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == 'cults3d'"></span>
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
+                </div>
+                <div class="form-text" [innerHTML]="'Cults3DImportInfoText' | translate:locale.language"></div>
+            </form>
+        </div>
+    </div>
 </ng-container>

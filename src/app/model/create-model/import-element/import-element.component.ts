@@ -36,6 +36,9 @@ export class ImportElementComponent implements OnInit {
         this.importInProgress = true;
         this.currentImport = importer;
 
+        if (input.value === "")
+            return;
+
         const id = (["thingiverse", "myminifactory", "printables"].includes(importer)) ? parseInt(input.value, 10) : input.value;
 
         this.importService.import(importer, {id}).subscribe({
