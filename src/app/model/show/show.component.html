@@ -26,7 +26,9 @@
                     {{"ModelName" | translate:locale.language}}
                 </label>
                 <input class="form-control" type="text" id="modelName"
-                       #inputName [value]="model.name"
+                       #inputName
+                       [value]="model.name"
+                       [ngStyle]="getInputStyle(inputName)"
                        (change)="updateField(inputName, 'name')"/>
             </div>
             <div class="p-0">
@@ -57,7 +59,9 @@
                 {{"ModelAuthor" | translate:locale.language}}
             </label>
             <input class="form-control form-control-sm" type="text" id="modelAuthor"
-                   #inputAuthor [value]="model.author"
+                   #inputAuthor
+                   [value]="model.author"
+                   [ngStyle]="getInputStyle(inputAuthor)"
                    (change)="updateField(inputAuthor, 'author')"/>
         </div>
         <div class="p-0">

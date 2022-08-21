@@ -1,3 +1,4 @@
+import {NgStyle} from "@angular/common";
 import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
@@ -159,5 +160,16 @@ export class ShowComponent implements OnInit {
             next: () => true,
             error: () => this.toast.showBackendError("ModelUpdateFailed")
         });
+    }
+
+    getInputStyle(input: HTMLInputElement) {
+        const screenMultiplierMin = (screen.width < 768) ? 0.5 : 0.2;
+        const screenMultiplierMax = (screen.width < 768) ? 0.85 : 0.5;
+
+        return {
+            "min-width": (screenMultiplierMin * screen.width).toString() + "px",
+            "width": (input.value.length * 10).toString() + "px",
+            "max-width": (screenMultiplierMax * screen.width).toString() + "px",
+        };
     }
 }
