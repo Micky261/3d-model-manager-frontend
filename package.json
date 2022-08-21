@@ -31,7 +31,7 @@
         "ng2-pdf-viewer": "^6.4.1",
         "ngx-autosize": "^1.8.7",
         "ngx-cookie-service": "^13.2.1",
-        "ngx-flags": "^13.0.3",
+        "ngx-flags": "^13.0.6",
         "ngx-markdown": "^13.1.0",
         "ngx-toastr": "^14.3.0",
         "rxjs": "^7.5.6",

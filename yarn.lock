@@ -6509,15 +6509,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-flags@npm:^13.0.3":
-  version: 13.0.3
-  resolution: "ngx-flags@npm:13.0.3"
+"ngx-flags@npm:^13.0.6":
+  version: 13.0.6
+  resolution: "ngx-flags@npm:13.0.6"
   dependencies:
-    tslib: ^2.3.1
+    tslib: ^2.0.0
   peerDependencies:
-    "@angular/common": ^13.3.1
-    "@angular/core": ^13.3.1
-  checksum: d9aec94e3b8faa044f55d5af753f51516fc7f32d668f5518dd339391db13fd88c4f87d783959479c8bcebf5a9b68d9bf9a1beb6012cc30f340607e07716e1e08
+    "@angular/common": ^12.0.4
+    "@angular/core": ^12.0.4
+  checksum: f1e51925cc0260f3f54ceb40e1e0eaefed89d1051dcd65dc009970d3a0b3062c25c6a516475fcf0977e49b491f98436276892f4bfa48f53f8d670c4fc4f517ac
   languageName: node
   linkType: hard
 
@@ -8740,7 +8740,7 @@ __metadata:
     ng2-pdf-viewer: ^6.4.1
     ngx-autosize: ^1.8.7
     ngx-cookie-service: ^13.2.1
-    ngx-flags: ^13.0.3
+    ngx-flags: ^13.0.6
     ngx-markdown: ^13.1.0
     ngx-toastr: ^14.3.0
     rxjs: ^7.5.6
