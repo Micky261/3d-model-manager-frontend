@@ -12,7 +12,7 @@
                    (search)="saveSearch($event)"
                    #selectTag>
             <ng-template ng-option-tmp let-item="item">
-                {{item.tag}} <span class="text-sm-start">({{item.count}})</span>
+                {{item.tag |pascalCase}} <span class="text-sm-start">({{item.count}})</span>
             </ng-template>
             <ng-template ng-footer-tmp>
                 <button (click)="addTag()" class="btn btn-primary btn-sm w-100">
@@ -26,8 +26,8 @@
     <div class="col">
         <div class="btn-group btn-group-xs m-1"
              *ngFor="let tag of modelTags | objectArraySort:'tag':false">
-            <button type="button" class="btn btn-primary" routerLink="/tags/list" [queryParams]="{tags: tag.tag}">
-                {{tag.tag}}
+            <button type="button" class="btn btn-primary" routerLink="/tags/list" [queryParams]="{tags: tag.tag | pascalCase}">
+                {{tag.tag | pascalCase}}
             </button>
             <button type="button" class="btn btn-outline-primary"
                     (click)="deleteTag(tag)">

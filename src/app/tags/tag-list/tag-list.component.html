@@ -36,7 +36,7 @@
                     <button type="button" class="btn btn-primary"
                             [disabled]="tagFilter.includes(tag.tag)"
                             (click)="addTagFilter(tag.tag)">
-                        {{tag.tag}}
+                        {{tag.tag | pascalCase}}
                     </button>
                     <button type="button" *ngIf="!tagFilter.includes(tag.tag)" class="btn btn-outline-primary">
                         {{tag.count}}
