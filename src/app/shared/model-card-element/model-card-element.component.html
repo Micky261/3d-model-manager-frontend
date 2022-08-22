@@ -1,18 +1,17 @@
-<img class="card-img-top bg-light w-100" [alt]="model.name" *ngIf="sessionId"
-     [src]="apiUrl + '/model/file/main/' + model.id + '?' + sessionName + '=' + sessionId">
+<a routerLink="/model/{{model.id}}">
+    <img class="card-img-top bg-light w-100" [alt]="model.name" *ngIf="sessionId"
+         [src]="apiUrl + '/model/file/main/' + model.id + '?' + sessionName + '=' + sessionId">
+</a>
 <div class="card-body">
-    <h5 class="card-title">
-        {{model.name}}<br/>
-        <small *ngIf="model.imported_name" class="ms-2 text-muted">
-            {{model.imported_name}}
-        </small>
-    </h5>
-    <p class="card-text">
-        <span class="fas fa-user"></span> {{model.author}}
-        <small class="text-muted" *ngIf="model.imported_author"> ({{model.imported_author}})</small>
+    <span class="card-title fa-lg">
+        <span [title]="model.imported_name">{{model.name}}</span>
+    </span>
+    <p class="card-text mt-3">
+        <span class="fas fa-user" [title]="'Author' | translate:locale.language"></span>&nbsp;
+        <span [title]="model.imported_author">{{model.author}}</span>
     </p>
     <p class="card-text">
-        <span class="fas fa-clock"></span>
+        <span class="fas fa-clock" [title]="'CreatedAt' | translate:locale.language"></span>
         {{model.created_at | date:"mediumDate":undefined:locale.language}},
         {{model.created_at | date:"shortTime":undefined:locale.language}}
     </p>

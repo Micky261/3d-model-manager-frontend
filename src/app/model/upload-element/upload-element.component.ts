@@ -45,7 +45,9 @@ export class UploadElementComponent implements OnInit {
             const name = files.item(i).name;
 
             this.progress.set(name, {current: 0, total: 0});
-            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(() => this.files.push(name));
+            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(() => {
+                this.files.push(name);
+            });
         }
     }
 
