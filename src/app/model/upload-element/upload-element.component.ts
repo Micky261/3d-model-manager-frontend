@@ -1,6 +1,7 @@
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
+import {ModelType, modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 
@@ -10,10 +11,12 @@ import {ModelFilesService} from "../../core/services/model-files.service";
     styleUrls: ["./upload-element.component.css"]
 })
 export class UploadElementComponent implements OnInit {
+    modelTypesMap = modelTypesMap;
+
     @Input() modelId: number;
 
     files: any = [];
-    selectedFileType: "model" | "image" | "diagram" | "document" = "model";
+    selectedFileType: string = modelTypesMap.get(ModelType.Model);
 
     progress: Map<string, { current: number; total: number }> = new Map();
 

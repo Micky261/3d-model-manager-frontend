@@ -1,6 +1,6 @@
 <div class="m-2">
     <ng-select [(ngModel)]="selectedFileType" [searchable]="false" [clearable]="false" class="mb-2">
-        <ng-option *ngFor="let type of [ 'model', 'image', 'diagram', 'document']"
+        <ng-option *ngFor="let type of modelTypesMap.values()"
                    [value]="type">{{"filetype." + type | translate:locale.language}}</ng-option>
     </ng-select>
     <div (click)="fileInput.click()" #dragDrop

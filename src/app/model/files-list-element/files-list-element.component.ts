@@ -3,6 +3,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {ToastrService} from "ngx-toastr";
 import "../../../shared/array.extension";
+import {modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelFile} from "../../core/types/model-file.type";
@@ -14,6 +15,8 @@ import {ServerMessage} from "../../core/types/serverMessage.type";
     styleUrls: ["./files-list-element.component.css"]
 })
 export class FilesListElementComponent implements OnInit {
+    modelTypesMap = modelTypesMap;
+
     @Input() modelId: number;
 
     files: ModelFile[] = [];

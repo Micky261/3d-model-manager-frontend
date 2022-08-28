@@ -1,14 +1,18 @@
 // eslint-disable-next-line no-shadow
-export enum ModelTypes {
+export enum ModelType {
     Model,
     Image,
     Diagram,
-    Document
+    Document,
+    Sliced,
+    Various
 }
 
-export const modelTypesMap: Map<ModelTypes, string> = new Map([
-    [ModelTypes.Model , "model"],
-    [ModelTypes.Image , "image"],
-    [ModelTypes.Diagram , "diagram"],
-    [ModelTypes.Document , "document"]
+export const modelTypesMap: Map<ModelType, string> = new Map([
+    [ModelType.Model, "model"],
+    [ModelType.Image, "image"],
+    [ModelType.Diagram, "diagram"],
+    [ModelType.Document, "document"],
+    [ModelType.Sliced, "sliced"],
+    [ModelType.Various, "various"]
 ]);

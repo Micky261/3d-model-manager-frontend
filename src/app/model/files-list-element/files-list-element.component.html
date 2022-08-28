@@ -33,7 +33,7 @@
             <select id="fileType" class="form-select"
                     [(ngModel)]="file.type"
                     [value]="file.type">
-                <option *ngFor="let fileType of ['model' ,'image', 'diagram' , 'document']" [value]="fileType">
+                <option *ngFor="let fileType of modelTypesMap.values()" [value]="fileType">
                     {{"filetype." + fileType | translate:locale.language}}
                 </option>
             </select>
