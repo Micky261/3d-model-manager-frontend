@@ -44,10 +44,12 @@
         </form>
         <div class="text-right align-self-center">
             <button class="btn btn-danger" (click)="modalService.open(deleteModelModal, {centered: true})">
+                <span class="fas fa-trash"></span>
                 {{"DeleteModel" | translate:locale.language}}
             </button>
         </div>
     </div>
+
     <form class="row row-cols-auto align-items-center ms-1">
         <div class="p-0">
             <span class="fas fa-user me-1 ms-4 text-secondary"></span>
@@ -75,12 +77,45 @@
             </small>
         </div>
     </form>
+
     <div class="row my-3" *ngIf="model">
         <div class="col-md-9 my-1">
             <file-carousel-element [modelId]="modelId"></file-carousel-element>
         </div>
-        <div class="col-md-3 my-1">
+        <div class="col-md-3 my-1" #modelInfoAndActionSidebar>
             <div class="list-group">
+                <span class="list-group-item bg-primary text-white">
+                    <span class="fas fa-circle-info me-2"></span>
+                    <strong>{{"ModelInformation" | translate:locale.language}}</strong>
+                </span>
+                <span class="list-group-item">
+                    <span class="fas fa-clock me-2 text-primary"></span>
+                    {{"CreatedAt" | translate:locale.language}}:
+                    {{model.created_at | date:'short':undefined:locale.language}}
+                </span>
+                <span class="list-group-item">
+                    <span class="fas fa-clock-rotate-left me-2 text-primary"></span>
+                    {{"UpdatedAt" | translate:locale.language}}:
+                    {{model.updated_at | date:'short':undefined:locale.language}}
+                </span>
+                <span class="list-group-item">
+                    <span class="fas fa-external-link me-2 text-primary"></span>
+                    {{"ImportSource" | translate:locale.language}}:
+                    <a [href]="model.import_source" target="_blank">
+                        {{model.import_source.substring(0, 30)}}{{model.import_source.length > 30 ? "..." : ""}}
+                    </a>
+                </span>
+                <span class="list-group-item">
+                    <span class="fa-brands fa-creative-commons me-2 text-primary"></span>
+                    {{"ImportedLicence" | translate:locale.language}}:
+                    <em>{{model.imported_licence}}</em>
+                </span>
+            </div>
+            <div class="list-group mt-2">
+                <span class="list-group-item bg-primary text-white">
+                    <span class="fas fa-screwdriver-wrench me-2"></span>
+                    <strong>{{"ModelActions" | translate:locale.language}}</strong>
+                </span>
                 <button class="list-group-item list-group-item-action"
                         (click)="uploadMode = !uploadMode"
                         [class.active]="uploadMode">
@@ -98,6 +133,11 @@
                         (click)="downloadZip('model')">
                     <span class="far fa-file-archive text-primary me-2">
                     </span> {{'Download3DModels' | translate:locale.language}}
+                </button>
+                <button class="list-group-item list-group-item-action"
+                        (click)="downloadZip('sliced')">
+                    <span class="far fa-file-archive text-primary me-2">
+                    </span> {{'DownloadSliceds' | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         *ngIf="!uploadMode"
@@ -205,7 +245,7 @@
                             <div *ngIf="editMode != EditModes.OnlyEdit"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyView">
-                                <markdown [data]="model.description" emoji katex lineNumbers
+                                <markdown [data]="model.description" emoji katex lineNumbers mermaid
                                           class="h-100"></markdown>
                             </div>
                         </div>
@@ -225,7 +265,7 @@
                             <div *ngIf="editMode != EditModes.OnlyEdit"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyView">
-                                <markdown [data]="model.notes" emoji katex lineNumbers
+                                <markdown [data]="model.notes" emoji katex lineNumbers mermaid
                                           class="h-100"></markdown>
                             </div>
                         </div>

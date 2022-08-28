@@ -56,7 +56,9 @@
                             "node_modules/prismjs/prism.js",
                             "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
                             "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
-                            "node_modules/katex/dist/katex.min.js"
+                            "node_modules/mermaid/dist/mermaid.min.js",
+                            "node_modules/katex/dist/katex.min.js",
+                            "node_modules/katex/dist/contrib/auto-render.min.js"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
@@ -127,6 +129,6 @@
     },
     "version": 1,
     "cli": {
-      "analytics": false
+        "analytics": false
     }
 }
