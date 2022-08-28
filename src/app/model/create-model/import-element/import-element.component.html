@@ -18,6 +18,7 @@
                         {{"ThingiverseId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="thingiverse"
+                           (focus)="thingiverseId.select()"
                            [disabled]="importInProgress && currentImport == 'thingiverse'"
                            placeholder="1234" #thingiverseId>
                     <button class="btn btn-primary" type="submit"
@@ -41,6 +42,7 @@
                         {{"MyMiniFactoryId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="myminifactory"
+                           (focus)="myMiniFactoryId.select()"
                            [disabled]="importInProgress && currentImport == 'myminifactory'"
                            placeholder="12345" #myMiniFactoryId>
                     <button class="btn btn-primary" type="submit"
@@ -64,6 +66,7 @@
                         {{"SketchfabId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="sketchfab"
+                           (focus)="sketchfabId.select()"
                            [disabled]="importInProgress && currentImport == 'sketchfab'"
                            placeholder="746aff4a91c246329e64dbd2f0f65313" #sketchfabId>
                     <button class="btn btn-primary" type="submit"
@@ -87,6 +90,7 @@
                         {{"PrintablesId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="printables"
+                           (focus)="printablesId.select()"
                            [disabled]="importInProgress && currentImport == 'printables'"
                            placeholder="123456" #printablesId>
                     <button class="btn btn-primary" type="submit"
@@ -110,6 +114,7 @@
                         {{"InstructablesId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="instructables"
+                           (focus)="instructablesId.select()"
                            [disabled]="importInProgress && currentImport == 'instructables'"
                            placeholder="EVLRJPCKUL8MOTU" #instructablesId>
                     <button class="btn btn-primary" type="submit"
@@ -133,6 +138,7 @@
                         {{"Cults3DId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="cults3d"
+                           (focus)="cults3dId.select()"
                            [disabled]="importInProgress && currentImport == 'cults3d'"
                            placeholder="doctor-who-onmioji" #cults3dId>
                     <button class="btn btn-primary" type="submit"
