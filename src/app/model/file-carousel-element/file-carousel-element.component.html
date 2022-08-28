@@ -14,10 +14,12 @@
                                 <img *ngSwitchCase="'image'"
                                      style="height: calc(50vh - 7px);"
                                      [alt]="file.filename"
-                                     [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                     defaultImage="assets/images/no_image.png"
+                                     [lazyLoad]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                 <video *ngSwitchCase="'video'"
                                        style="height: calc(50vh - 7px);"
-                                       [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                       defaultImage="assets/images/no_image.png"
+                                       [lazyLoad]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
                                 <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
