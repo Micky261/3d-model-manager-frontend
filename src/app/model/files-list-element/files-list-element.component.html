@@ -11,12 +11,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th class="col-4">{{"Filename" | translate:locale.language}}</th>
+        <th class="col-5">{{"Filename" | translate:locale.language}}</th>
         <th class="col-2">{{"FileType" | translate:locale.language}}</th>
-        <th class="col-2">{{"Position" | translate:locale.language}}</th>
+        <th class="col-1">{{"Position" | translate:locale.language}}</th>
+        <th class="col-1">{{"FileSize" | translate:locale.language}}</th>
         <th class="col-1">{{"CreatedAt" | translate:locale.language}}</th>
         <th class="col-1">{{"UpdatedAt" | translate:locale.language}}</th>
-        <th class="col-2">{{"Actions" | translate:locale.language}}</th>
+        <th class="col-1">{{"Actions" | translate:locale.language}}</th>
     </tr>
     </thead>
     <tbody>
@@ -39,11 +40,15 @@
             </select>
         </td>
         <td class="align-middle">
-            <label for="filePosition" class="visually-hidden form-label">{{"FilePosition" | translate:locale.language}}</label>
+            <label for="filePosition"
+                   class="visually-hidden form-label">{{"FilePosition" | translate:locale.language}}</label>
             <input id="filePosition" type="number" min="1" max="999999" step="1"
                    class="form-control"
                    [(ngModel)]="file.position"
                    [value]="file.position">
+        </td>
+        <td class="align-middle small">
+            {{file.size | filesize}}
         </td>
         <td class="align-middle small">
             {{file.created_at | date:'medium':undefined:locale.language}}

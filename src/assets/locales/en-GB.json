@@ -26,6 +26,7 @@
     "Favorite": "Favorite",
     "FileListHint": "To display changes after saving, please reload the page.<br />For display on the website, the image at position 1 (or the one with the lowest number) is used.",
     "FilePosition": "File position",
+    "FileSize": "File Size",
     "FileType": "File type",
     "FileViewer": "File Viewer",
     "Filename": "Filename",
@@ -112,7 +113,9 @@
         "diagram": "Diagram",
         "document": "Document",
         "image": "Image",
-        "model": "3D Model"
+        "model": "3D Model",
+        "sliced": "Sliced",
+        "various": "Various"
     },
     "sorting": {
         "AuthorAsc": "Author (A→Z)",

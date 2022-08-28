@@ -3,19 +3,22 @@ import {ArraySortPipe} from "./array-sort.pipe";
 import {ObjectArraySortPipe} from "./object-array-sort.pipe";
 import {PascalCasePipe} from "./pascal-case.pipe";
 import {SecurePipe} from "./secure.pipe";
+import {FileSizePipe} from "./filesize.pipe";
 
 @NgModule({
     declarations: [
         ObjectArraySortPipe,
         ArraySortPipe,
         PascalCasePipe,
-        SecurePipe
+        SecurePipe,
+        FileSizePipe
     ],
     exports: [
         ObjectArraySortPipe,
         ArraySortPipe,
         PascalCasePipe,
-        SecurePipe
+        SecurePipe,
+        FileSizePipe
     ]
 })
 export class CustomPipesModule {

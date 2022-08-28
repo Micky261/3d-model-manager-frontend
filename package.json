@@ -28,6 +28,7 @@
         "angular-l10n": "^14.0.0",
         "angular-stl-model-viewer": "^6.0.0",
         "bootstrap": "^5.2.0",
+        "filesize": "^9.0.11",
         "ng-lazyload-image": "^9.1.3",
         "ng2-pdf-viewer": "^9.1.0",
         "ngx-autosize": "^2.0.2",

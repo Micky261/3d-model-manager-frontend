@@ -26,6 +26,7 @@
     "Favorite": "Favorit",
     "FileListHint": "Um Änderungen nach dem Speichern anzeigen zu lassen, bitte die Seite neuladen.<br />Zur Anzeige auf der Website wird das Bild an Position 1 (bzw. das mit der niedrigsten Zahl) verwendet.",
     "FilePosition": "Dateiposition",
+    "FileSize": "Dateigröße",
     "FileType": "Dateityp",
     "FileViewer": "Datei Betrachter",
     "Filename": "Dateiname",
@@ -112,7 +113,9 @@
         "diagram": "Diagramm",
         "document": "Dokument",
         "image": "Bild",
-        "model": "3D Modell"
+        "model": "3D Modell",
+        "sliced": "Gesliced",
+        "various": "Verschiedenes"
     },
     "sorting": {
         "AuthorAsc": "Autor (A→Z)",
