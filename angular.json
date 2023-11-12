@@ -85,19 +85,19 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "threed-model-manager-frontend:build"
+                        "buildTarget": "threed-model-manager-frontend:build"
                     }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "threed-model-manager-frontend:build:production"
+                            "buildTarget": "threed-model-manager-frontend:build:production"
                         }
                     },
                     "options": {
-                        "browserTarget": "threed-model-manager-frontend:build",
-                        "proxyConfig": "dev_proxy.conf.json"
+                        "proxyConfig": "dev_proxy.conf.json",
+                        "buildTarget": "threed-model-manager-frontend:build"
                     }
                 }
             },
