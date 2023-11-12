@@ -1,6 +1,5 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "defaultProject": "threed-model-manager-frontend",
     "newProjectRoot": "projects",
     "projects": {
         "threed-model-manager-frontend": {
@@ -43,7 +42,7 @@
                             "src/assets",
                             {
                                 "glob": "**/*",
-                                "input": "./node_modules/ngx-flags/img/flags",
+                                "input": "./node_modules/nxt-flags/assets/flags",
                                 "output": "./assets/flags"
                             }
                         ],

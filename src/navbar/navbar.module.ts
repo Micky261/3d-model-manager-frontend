@@ -3,7 +3,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {NgbCollapseModule, NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {L10nTranslationModule} from "angular-l10n";
-import {NgxFlagsModule} from "ngx-flags";
+import {FlagsModule} from "nxt-flags";
 import {NavbarComponent} from "./navbar.component";
 
 @NgModule({
@@ -16,7 +16,7 @@ import {NavbarComponent} from "./navbar.component";
         NgbCollapseModule,
         NgbDropdownModule,
         RouterModule,
-        NgxFlagsModule,
+        FlagsModule,
     ],
     exports: [NavbarComponent]
 })

@@ -10,7 +10,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nIntlModule, L10nLoader, L10nTranslationModule} from "angular-l10n";
 import {LazyLoadImageModule} from "ng-lazyload-image";
 import {CookieService} from "ngx-cookie-service";
-import {NgxFlagsModule} from "ngx-flags";
+import {FlagsModule} from "nxt-flags";
 import {MarkdownModule} from "ngx-markdown";
 import {ToastNoAnimationModule} from "ngx-toastr";
 import {initL10n, l10nConfig} from "../i18n/l10n-config";
@@ -50,7 +50,7 @@ registerLocaleData(localeEn);
             extendedTimeOut: 1000,
             easing: "ease-in"
         }),
-        NgxFlagsModule,
+        FlagsModule,
         MarkdownModule.forRoot(),
         LazyLoadImageModule,
     ],
