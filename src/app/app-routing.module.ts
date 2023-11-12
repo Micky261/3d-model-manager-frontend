@@ -39,10 +39,7 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
                     path: "tags",
                     loadChildren: () => import("./tags/tags.module").then(m => m.TagsModule)
                 }
-            ],
-            {
-                relativeLinkResolution: "legacy"
-            }
+            ]
         )
     ],
     exports: [
