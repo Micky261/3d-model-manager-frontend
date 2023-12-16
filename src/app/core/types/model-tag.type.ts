@@ -1,6 +1,6 @@
 export class ModelTag {
     constructor(
-        public model_id: number,
+        public modelId: number,
         public tag: string,
     ) {
     }

@@ -30,7 +30,7 @@ export class ShowComponent implements OnInit {
     editName = false;
     editAuthor = false;
 
-    navigation: "description" | "imported_description" | "notes" | "links" | "files" | "file_viewer" = "description";
+    navigation: "description" | "importedDescription" | "notes" | "links" | "files" | "fileViewer" = "description";
     editMode: EditModes = EditModes.OnlyView;
     uploadMode = false;
 

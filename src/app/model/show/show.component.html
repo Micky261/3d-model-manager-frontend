@@ -36,9 +36,9 @@
                     <span class="fas fa-pencil-alt"></span>
                 </button>
             </div>
-            <div class="p-0 ps-2" *ngIf="model && model.imported_name">
+            <div class="p-0 ps-2" *ngIf="model && model.importedName">
                 <small class="text-muted mx-1">
-                    {{"OriginalName" | translate:locale.language}}: {{model.imported_name}}
+                    {{"OriginalName" | translate:locale.language}}: {{model.importedName}}
                 </small>
             </div>
         </form>
@@ -71,9 +71,9 @@
                 <span class="fas fa-pencil-alt"></span>
             </button>
         </div>
-        <div class="p-0 ps-2" *ngIf="model && model.imported_author">
+        <div class="p-0 ps-2" *ngIf="model && model.importedAuthor">
             <small class="text-muted mx-1">
-                {{"OriginalBy" | translate:locale.language}}: {{model.imported_author}}
+                {{"OriginalBy" | translate:locale.language}}: {{model.importedAuthor}}
             </small>
         </div>
     </form>
@@ -91,24 +91,24 @@
                 <span class="list-group-item">
                     <span class="fas fa-clock me-2 text-primary"></span>
                     {{"CreatedAt" | translate:locale.language}}:
-                    {{model.created_at | date:'short':undefined:locale.language}}
+                    {{model.createdAt | date:'short':undefined:locale.language}}
                 </span>
                 <span class="list-group-item">
                     <span class="fas fa-clock-rotate-left me-2 text-primary"></span>
                     {{"UpdatedAt" | translate:locale.language}}:
-                    {{model.updated_at | date:'short':undefined:locale.language}}
+                    {{model.updatedAt | date:'short':undefined:locale.language}}
                 </span>
                 <span class="list-group-item">
                     <span class="fas fa-external-link me-2 text-primary"></span>
                     {{"ImportSource" | translate:locale.language}}:
-                    <a [href]="model.import_source" target="_blank">
-                        {{model.import_source.substring(0, 30)}}{{model.import_source.length > 30 ? "..." : ""}}
+                    <a [href]="model.importSource" target="_blank">
+                        {{model.importSource.substring(0, 30)}}{{model.importSource.length > 30 ? "..." : ""}}
                     </a>
                 </span>
                 <span class="list-group-item">
                     <span class="fa-brands fa-creative-commons me-2 text-primary"></span>
                     {{"ImportedLicence" | translate:locale.language}}:
-                    <em>{{model.imported_licence}}</em>
+                    <em>{{model.importedLicence}}</em>
                 </span>
             </div>
             <div class="list-group mt-2">
@@ -170,12 +170,12 @@
                     {{"Description" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
-                        [class.active]="navigation === 'import_description'"
-                        (click)="navigation = 'import_description'"
-                        *ngIf="model && model.imported_description">
+                        [class.active]="navigation === 'importDescription'"
+                        (click)="navigation = 'importDescription'"
+                        *ngIf="model && model.importedDescription">
                     <span class="far fa-edit text-primary me-2"
-                          [class.text-primary]="navigation !== 'import_description'"
-                          [class.text-white]="navigation === 'import_description'"></span>
+                          [class.text-primary]="navigation !== 'importDescription'"
+                          [class.text-white]="navigation === 'importDescription'"></span>
                     {{"ImportedDescription" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action"
@@ -203,11 +203,11 @@
                     {{"Files" | translate:locale.language}}
                 </button>
                 <button class="list-group-item list-group-item-action disabled"
-                        [class.active]="navigation === 'file_viewer'"
-                        (click)="navigation = 'file_viewer'">
+                        [class.active]="navigation === 'fileViewer'"
+                        (click)="navigation = 'fileViewer'">
                     <span class="fas fa-eye text-primary me-2"
-                          [class.text-primary]="navigation !== 'file_viewer'"
-                          [class.text-white]="navigation === 'file_viewer'"></span>
+                          [class.text-primary]="navigation !== 'fileViewer'"
+                          [class.text-white]="navigation === 'fileViewer'"></span>
                     {{"FileViewer" | translate:locale.language}}
                 </button>
             </div>
@@ -250,7 +250,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <div *ngSwitchCase="'import_description'" [innerHTML]="model.imported_description"></div>
+                    <div *ngSwitchCase="'importDescription'" [innerHTML]="model.importedDescription"></div>
                     <div *ngSwitchCase="'notes'">
                         <div class="row mx-0 mb-3 mt-2">
                             <div *ngIf="editMode != EditModes.OnlyView"
@@ -276,7 +276,7 @@
                     <div *ngSwitchCase="'files'" class="m-3">
                         <app-files-list-element [modelId]="model.id"></app-files-list-element>
                     </div>
-                    <div *ngSwitchCase="'file_viewer'" class="m-3">
+                    <div *ngSwitchCase="'fileViewer'" class="m-3">
                     </div>
                 </ng-container>
             </div>

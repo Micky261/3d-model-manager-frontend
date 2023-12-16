@@ -4,16 +4,16 @@
 </a>
 <div class="card-body">
     <span class="card-title fa-lg">
-        <span [title]="model.imported_name">{{model.name}}</span>
+        <span [title]="model.importedName">{{model.name}}</span>
     </span>
     <p class="card-text mt-3">
         <span class="fas fa-user" [title]="'Author' | translate:locale.language"></span>&nbsp;
-        <span [title]="model.imported_author">{{model.author}}</span>
+        <span [title]="model.importedAuthor">{{model.author}}</span>
     </p>
     <p class="card-text">
         <span class="fas fa-clock" [title]="'CreatedAt' | translate:locale.language"></span>
-        {{model.created_at | date:"mediumDate":undefined:locale.language}},
-        {{model.created_at | date:"shortTime":undefined:locale.language}}
+        {{model.createdAt | date:"mediumDate":undefined:locale.language}},
+        {{model.createdAt | date:"shortTime":undefined:locale.language}}
     </p>
 </div>
 <div class="card-footer text-muted d-grid">

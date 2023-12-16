@@ -45,14 +45,14 @@ export class FilesListElementComponent implements OnInit {
             },
             error: error => {
                 const sMsg = error.error as ServerMessage;
-                this.toast.showBackendError(sMsg.message_code);
+                this.toast.showBackendError(sMsg.messageCode);
 
-                if (sMsg.additional_information) {
-                    const oldType = sMsg.additional_information[0];
+                if (sMsg.additionalInformation) {
+                    const oldType = sMsg.additionalInformation[0];
                     const oldTypeName = this.translation.translate("filetype." + oldType) as string;
-                    const newType = sMsg.additional_information[1];
+                    const newType = sMsg.additionalInformation[1];
                     const newTypeName = this.translation.translate("filetype." + newType) as string;
-                    const filename = sMsg.additional_information[2];
+                    const filename = sMsg.additionalInformation[2];
 
                     const change = this.translation.translate("ProblematicFile") as string;
                     this.toastr.info("" + oldTypeName + " -> " + newTypeName + "<br/>" + filename, change, {enableHtml: true});
@@ -71,12 +71,12 @@ export class FilesListElementComponent implements OnInit {
             },
             error: error => {
                 const sMsg = error.error as ServerMessage;
-                this.toast.showBackendError(sMsg.message_code);
+                this.toast.showBackendError(sMsg.messageCode);
 
-                if (sMsg.additional_information) {
-                    const type = sMsg.additional_information[0];
+                if (sMsg.additionalInformation) {
+                    const type = sMsg.additionalInformation[0];
                     const typeName = this.translation.translate("filetype." + type) as string;
-                    const filename = sMsg.additional_information[1];
+                    const filename = sMsg.additionalInformation[1];
 
                     const change = this.translation.translate("ProblematicFile") as string;
                     this.toastr.info(`${filename} (${typeName})`, change, {enableHtml: true});

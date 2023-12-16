@@ -36,10 +36,10 @@ export class Sorting {
     ]);
 
     public static sortingField: Map<string, string> = new Map([
-        ["DateAddedAsc", "created_at"],
-        ["DateAddedDesc", "created_at"],
-        ["DateUpdatedAsc", "updated_at"],
-        ["DateUpdatedDesc", "updated_at"],
+        ["DateAddedAsc", "createdAt"],
+        ["DateAddedDesc", "createdAt"],
+        ["DateUpdatedAsc", "updatedAt"],
+        ["DateUpdatedDesc", "updatedAt"],
         ["NameAsc", "name"],
         ["NameDesc", "name"],
         ["AuthorAsc", "author"],

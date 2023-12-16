@@ -52,20 +52,20 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        const login: Login = new Login(this.loginForm.get("email").value as string, this.loginForm.get("password").value as string);
+        const login: Login = new Login(this.loginForm.get("email").value, this.loginForm.get("password").value);
         this.authService.login(login).subscribe({
             next: (session: Session) => {
                 this.cookieService.set(
                     AuthService.sessionCookieName,
-                    session.session_id,
-                    new Date(session.session_expiry * 1000)
+                    session.sessionId,
+                    new Date(session.sessionExpiry * 1000)
                 );
 
                 this.toast.showSuccess("Login");
                 void this.router.navigateByUrl(this.returnUrl).then(() => true);
             },
             error: error => {
-                this.toast.showBackendError((error.error as ServerMessage).message_code);
+                this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
     }
