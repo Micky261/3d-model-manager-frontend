@@ -3723,18 +3723,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-stl-model-viewer@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "angular-stl-model-viewer@npm:9.0.0"
+"angular-stl-model-viewer@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "angular-stl-model-viewer@npm:11.0.0"
   dependencies:
-    tslib: "npm:^2.0.1"
+    tslib: "npm:^2.6.2"
   peerDependencies:
-    "@angular/common": ^15.0.0 || ^16.0.0 || ^17.0.0
-    "@angular/core": ^15.0.0 || ^16.0.0 || ^17.0.0
-    rxjs: ^7.4.0 || ^7.8.0
-    three: ^0.125.0
-    zone.js: ~0.12.0 || ~0.13.0 || ~0.14.0
-  checksum: 6af55f18ac03499266fada4964cb542ec415c67419d411fbbe896306bd510d5243b9883301e8cc48c07e413a67bb9f56c032bf4a8516df6e9c356e4c10a64085
+    "@angular/common": ^17.0.0
+    "@angular/core": ^17.0.0
+    rxjs: ^7.8.0
+    three: ^0.155.0
+    zone.js: ~0.14.0
+  checksum: 2446b63b74220b491f5a81a1a593825d6f407a52d91176b8001ee2b99bb7af3b80993ef0b43a68c7a3233602a12091895fcda02917a0a0c791f8a5c235ddd676
   languageName: node
   linkType: hard
 
@@ -11045,7 +11045,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
     "@typescript-eslint/parser": "npm:^6.14.0"
     angular-l10n: "npm:^16.0.0"
-    angular-stl-model-viewer: "npm:^9.0.0"
+    angular-stl-model-viewer: "npm:^11.0.0"
     bootstrap: "npm:^5.3.2"
     clipboard: "npm:2.0.11"
     emoji-toolkit: "npm:8.0.0"
@@ -11197,7 +11197,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1":
+"tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: 5e7de59ed9f2b705b399bda28326b7c3e7526deb48bbe1716e2e17fbd4cecbb610253d09c7b8fd0a6e76cfed9304e2e608cdb81bb1ee812d69e5089d1a94c71a
