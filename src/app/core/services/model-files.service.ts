@@ -14,23 +14,23 @@ export class ModelFilesService {
 
     putFile(modelId: number, file: File, type: string, progress: { current: number; total: number }): Promise<any> {
         return ChunkedUploadService.chunkedUpload(
-            file, file.name, this.httpClient, `${Environment.apiUrl}/model/file/${encodeURIComponent(String(modelId))}`, type, progress
+            file, file.name, this.httpClient, `${Environment.apiUrl}/file/${encodeURIComponent(String(modelId))}`, type, progress
         );
     }
 
     getFiles(modelId: number): Observable<ModelFile[]> {
-        return this.httpClient.get<ModelFile[]>(`${Environment.apiUrl}/model/files/${encodeURIComponent(String(modelId))}`);
+        return this.httpClient.get<ModelFile[]>(`${Environment.apiUrl}/files/${encodeURIComponent(String(modelId))}`);
     }
 
     getFilesWithType(modelId: number, type: string): Observable<ModelFile[]> {
-        return this.httpClient.get<ModelFile[]>(`${Environment.apiUrl}/model/files/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(type))}`);
+        return this.httpClient.get<ModelFile[]>(`${Environment.apiUrl}/files/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(type))}`);
     }
 
     getZip(modelId: number, type: string): Observable<HttpResponse<Blob>> {
         let header = new HttpHeaders();
         header = header.set("Accept", "application/octet-stream");
 
-        return this.httpClient.get(`${Environment.apiUrl}/model/zip/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(type))}`,
+        return this.httpClient.get(`${Environment.apiUrl}/zip/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(type))}`,
             {
                 responseType: "blob",
                 observe: "response",
@@ -39,15 +39,19 @@ export class ModelFilesService {
         );
     }
 
-    getFile(fileId: number): Observable<any> {
-        return this.httpClient.get<any>(`${Environment.apiUrl}/model/file/${encodeURIComponent(String(fileId))}`);
+    getFile(fileId: number): Observable<HttpResponse<Blob>> {
+        return this.httpClient.get(`${Environment.apiUrl}/file/single/${encodeURIComponent(String(fileId))}`,
+            {
+                responseType: "blob",
+                observe: "response",
+            });
     }
 
     deleteFile(fileId: number): Observable<any> {
-        return this.httpClient.delete<any>(`${Environment.apiUrl}/model/file/${encodeURIComponent(String(fileId))}`);
+        return this.httpClient.delete<any>(`${Environment.apiUrl}/file/${encodeURIComponent(String(fileId))}`);
     }
 
     updateFiles(modelId: number, modelFiles: ModelFile[]): Observable<ModelFile[]> {
-        return this.httpClient.post<ModelFile[]>(`${Environment.apiUrl}/model/files/${encodeURIComponent(String(modelId))}`, modelFiles);
+        return this.httpClient.post<ModelFile[]>(`${Environment.apiUrl}/files/${encodeURIComponent(String(modelId))}`, modelFiles);
     }
 }

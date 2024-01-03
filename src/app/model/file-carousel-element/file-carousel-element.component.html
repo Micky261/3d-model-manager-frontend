@@ -15,21 +15,21 @@
                                      style="height: calc(50vh - 7px);"
                                      [alt]="file.filename"
                                      defaultImage="assets/images/no_image.png"
-                                     [lazyLoad]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                     [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
                                 <video *ngSwitchCase="'video'"
                                        style="height: calc(50vh - 7px);"
                                        defaultImage="assets/images/no_image.png"
-                                       [lazyLoad]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                       [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
                                     {{"error.VideoDoesntWork" | translate:locale.language}}
                                 </video>
                                 <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
                                     <pdf-viewer
-                                        [src]="apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId">
+                                        [src]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
                                 </div>
                                 <div *ngSwitchCase="'model'">
                                     <stl-model-viewer
-                                        [stlModels]="[apiUrl + '/model/file/' + file.id + '?' + sessionName + '=' + sessionId]"
+                                        [stlModels]="[apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId]"
                                         [renderer]="threeRenderer"
                                         [scene]="threeScene"
                                         [material]="threeMaterial">

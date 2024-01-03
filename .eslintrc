@@ -137,7 +137,6 @@
         ],
         "id-match": "warn",
         "jsdoc/check-alignment": "warn",
-        "jsdoc/newline-after-description": "warn",
         "max-classes-per-file": [
             "warn",
             1

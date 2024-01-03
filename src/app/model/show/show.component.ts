@@ -1,16 +1,16 @@
-import {NgStyle} from "@angular/common";
 import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
+import {ToastrService} from "ngx-toastr";
 import {EditModes} from "../../core/enums/edit-modes.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelService} from "../../core/services/model.service";
 import {Model} from "../../core/types/model.type";
-import {ToastrService} from "ngx-toastr";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {DownloadHelper} from "../../core/utils/DownloadHelper";
 
 @Component({
     selector: "app-show",
@@ -135,16 +135,7 @@ export class ShowComponent implements OnInit {
     downloadZip(type: string): void {
         this.modelFilesService.getZip(this.modelId, type).subscribe(response => {
             const blob = new Blob([response.body], {type: "application/octet-stream"});
-            const url = window.URL.createObjectURL(blob);
-
-            const a = document.createElement("a");
-            a.style.display = "none";
-            a.href = url;
-            a.download = `${this.model.name} - ${type}.zip`;
-            document.body.appendChild(a);
-            a.click();
-
-            window.URL.revokeObjectURL(url);
+            DownloadHelper.download(blob, `${this.model.name} - ${type}.zip`);
         });
     }
 

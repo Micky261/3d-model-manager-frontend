@@ -17,19 +17,19 @@ export class ModelTagsService {
     }
 
     getModelTags(modelId: number): Observable<ModelTag[]> {
-        return this.httpClient.get<ModelTag[]>(`${Environment.apiUrl}/model/tags/${encodeURIComponent(String(modelId))}`);
+        return this.httpClient.get<ModelTag[]>(`${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}`);
     }
 
     postModelTag(modelId: number, tag: string): Observable<ModelTag | null> {
         return this.httpClient.post<ModelTag | null>(
-            `${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`,
+            `${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`,
             null
         );
     }
 
     deleteModelTag(modelId: number, tag: string): Observable<any> {
         return this.httpClient.delete(
-            `${Environment.apiUrl}/model/tag/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`
+            `${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`
         );
     }
 }

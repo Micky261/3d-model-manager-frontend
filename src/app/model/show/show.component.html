@@ -1,13 +1,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">
-            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+            <a routerLink="/">{{ "Home" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item">
-            <a routerLink="/model/list">{{"Models" | translate:locale.language}}</a>
+            <a routerLink="/model/list">{{ "Models" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item active" *ngIf="model">
-            {{"Model" | translate:locale.language}}: {{model.name}}
+            {{ "Model" | translate:locale.language }}: {{ model.name }}
         </li>
     </ol>
 </nav>
@@ -18,12 +18,12 @@
             <div class="p-0">
                 <h2>
                     <span class="fas fa-cube mx-1"></span>
-                    <span class="mx-1" *ngIf="!editName && model">{{model.name}}</span>
+                    <span class="mx-1" *ngIf="!editName && model">{{ model.name }}</span>
                 </h2>
             </div>
             <div class="p-0" *ngIf="editName && model">
                 <label for="modelName" class="visually-hidden form-label">
-                    {{"ModelName" | translate:locale.language}}
+                    {{ "ModelName" | translate:locale.language }}
                 </label>
                 <input class="form-control" type="text" id="modelName"
                        #inputName
@@ -38,14 +38,14 @@
             </div>
             <div class="p-0 ps-2" *ngIf="model && model.importedName">
                 <small class="text-muted mx-1">
-                    {{"OriginalName" | translate:locale.language}}: {{model.importedName}}
+                    {{ "OriginalName" | translate:locale.language }}: {{ model.importedName }}
                 </small>
             </div>
         </form>
         <div class="text-right align-self-center">
             <button class="btn btn-danger" (click)="modalService.open(deleteModelModal, {centered: true})">
                 <span class="fas fa-trash"></span>
-                {{"DeleteModel" | translate:locale.language}}
+                {{ "DeleteModel" | translate:locale.language }}
             </button>
         </div>
     </div>
@@ -54,11 +54,11 @@
         <div class="p-0">
             <span class="fas fa-user me-1 ms-4 text-secondary"></span>
             <!--<span class="mx-1 text-secondary">{{"Author" | translate:locale.language}}: </span>-->
-            <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{model.author}}</span>
+            <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{ model.author }}</span>
         </div>
         <div class="p-0" *ngIf="editAuthor && model">
             <label for="modelAuthor" class="visually-hidden form-label">
-                {{"ModelAuthor" | translate:locale.language}}
+                {{ "ModelAuthor" | translate:locale.language }}
             </label>
             <input class="form-control form-control-sm" type="text" id="modelAuthor"
                    #inputAuthor
@@ -73,7 +73,7 @@
         </div>
         <div class="p-0 ps-2" *ngIf="model && model.importedAuthor">
             <small class="text-muted mx-1">
-                {{"OriginalBy" | translate:locale.language}}: {{model.importedAuthor}}
+                {{ "OriginalBy" | translate:locale.language }}: {{ model.importedAuthor }}
             </small>
         </div>
     </form>
@@ -84,37 +84,39 @@
         </div>
         <div class="col-md-3 my-1" #modelInfoAndActionSidebar>
             <div class="list-group">
-                <span class="list-group-item bg-primary text-white">
+                <span class="list-group-item active">
                     <span class="fas fa-circle-info me-2"></span>
-                    <strong>{{"ModelInformation" | translate:locale.language}}</strong>
+                    <strong>{{ "ModelInformation" | translate:locale.language }}</strong>
                 </span>
                 <span class="list-group-item">
                     <span class="fas fa-clock me-2 text-primary"></span>
-                    {{"CreatedAt" | translate:locale.language}}:
-                    {{model.createdAt | date:'short':undefined:locale.language}}
+                    {{ "CreatedAt" | translate:locale.language }}:
+                    {{ model.createdAt | date:'short':undefined:locale.language }}
                 </span>
                 <span class="list-group-item">
                     <span class="fas fa-clock-rotate-left me-2 text-primary"></span>
-                    {{"UpdatedAt" | translate:locale.language}}:
-                    {{model.updatedAt | date:'short':undefined:locale.language}}
+                    {{ "UpdatedAt" | translate:locale.language }}:
+                    {{ model.updatedAt | date:'short':undefined:locale.language }}
                 </span>
-                <span class="list-group-item">
+                <span class="list-group-item"
+                      *ngIf="model.importSource">
                     <span class="fas fa-external-link me-2 text-primary"></span>
-                    {{"ImportSource" | translate:locale.language}}:
+                    {{ "ImportSource" | translate:locale.language }}:
                     <a [href]="model.importSource" target="_blank">
-                        {{model.importSource.substring(0, 30)}}{{model.importSource.length > 30 ? "..." : ""}}
+                        {{ model.importSource.substring(0, 30) }}{{ model.importSource.length > 30 ? "..." : "" }}
                     </a>
                 </span>
-                <span class="list-group-item">
+                <span class="list-group-item"
+                      *ngIf="model.importedLicence">
                     <span class="fa-brands fa-creative-commons me-2 text-primary"></span>
-                    {{"ImportedLicence" | translate:locale.language}}:
-                    <em>{{model.importedLicence}}</em>
+                    {{ "ImportedLicence" | translate:locale.language }}:
+                    <em>{{ model.importedLicence }}</em>
                 </span>
             </div>
             <div class="list-group mt-2">
-                <span class="list-group-item bg-primary text-white">
+                <span class="list-group-item active">
                     <span class="fas fa-screwdriver-wrench me-2"></span>
-                    <strong>{{"ModelActions" | translate:locale.language}}</strong>
+                    <strong>{{ "ModelActions" | translate:locale.language }}</strong>
                 </span>
                 <button class="list-group-item list-group-item-action"
                         (click)="uploadMode = !uploadMode"
@@ -122,22 +124,22 @@
                     <span class="fas fa-upload me-2"
                           [class.text-primary]="!uploadMode"
                           [class.text-white]="uploadMode">
-                    </span> {{"Upload" | translate:locale.language}}
+                    </span> {{ "Upload" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         (click)="downloadZip('all')">
                     <span class="fas fa-file-archive text-primary me-2">
-                    </span> {{'DownloadAllFiles' | translate:locale.language}}
+                    </span> {{ 'DownloadAllFiles' | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         (click)="downloadZip('model')">
                     <span class="far fa-file-archive text-primary me-2">
-                    </span> {{'Download3DModels' | translate:locale.language}}
+                    </span> {{ 'Download3DModels' | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         (click)="downloadZip('sliced')">
                     <span class="far fa-file-archive text-primary me-2">
-                    </span> {{'DownloadSliceds' | translate:locale.language}}
+                    </span> {{ 'DownloadSliceds' | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         *ngIf="!uploadMode"
@@ -147,7 +149,7 @@
                           [class.far]="!model.favorite" [class.fas]="model.favorite"
                           [class.text-primary]="!model.favorite" [class.text-white]="model.favorite"
                           [class.bg-primary]="model.favorite"></span>
-                    {{"Favorite" | translate:locale.language}}
+                    {{ "Favorite" | translate:locale.language }}
                 </button>
                 <div class="list-group-item list-group-item-action" *ngIf="!uploadMode">
                     <app-tags-element [modelId]="modelId"></app-tags-element>
@@ -167,7 +169,7 @@
                     <span class="fas fa-edit text-primary me-2"
                           [class.text-primary]="navigation !== 'description'"
                           [class.text-white]="navigation === 'description'"></span>
-                    {{"Description" | translate:locale.language}}
+                    {{ "Description" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'importDescription'"
@@ -176,7 +178,7 @@
                     <span class="far fa-edit text-primary me-2"
                           [class.text-primary]="navigation !== 'importDescription'"
                           [class.text-white]="navigation === 'importDescription'"></span>
-                    {{"ImportedDescription" | translate:locale.language}}
+                    {{ "ImportedDescription" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'notes'"
@@ -184,7 +186,7 @@
                     <span class="fas fa-sticky-note text-primary me-2"
                           [class.text-primary]="navigation !== 'notes'"
                           [class.text-white]="navigation === 'notes'"></span>
-                    {{"Notes" | translate:locale.language}}
+                    {{ "Notes" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'links'"
@@ -192,7 +194,7 @@
                     <span class="fas fa-link text-primary me-2"
                           [class.text-primary]="navigation !== 'links'"
                           [class.text-white]="navigation === 'links'"></span>
-                    {{"Links" | translate:locale.language}}
+                    {{ "Links" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action"
                         [class.active]="navigation === 'files'"
@@ -200,7 +202,7 @@
                     <span class="fas fa-copy text-primary me-2"
                           [class.text-primary]="navigation !== 'files'"
                           [class.text-white]="navigation === 'files'"></span>
-                    {{"Files" | translate:locale.language}}
+                    {{ "Files" | translate:locale.language }}
                 </button>
                 <button class="list-group-item list-group-item-action disabled"
                         [class.active]="navigation === 'fileViewer'"
@@ -208,7 +210,7 @@
                     <span class="fas fa-eye text-primary me-2"
                           [class.text-primary]="navigation !== 'fileViewer'"
                           [class.text-white]="navigation === 'fileViewer'"></span>
-                    {{"FileViewer" | translate:locale.language}}
+                    {{ "FileViewer" | translate:locale.language }}
                 </button>
             </div>
         </div>
@@ -235,6 +237,7 @@
                             <div *ngIf="editMode != EditModes.OnlyView"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyEdit">
+                                <!-- TODO: Add translation, there are more translations missing than this one -->
                                 <label for="modelDescription" class="visually-hidden form-label">Edit
                                     description</label>
                                 <textarea id="modelDescription" [(ngModel)]="model.description"
@@ -245,7 +248,8 @@
                             <div *ngIf="editMode != EditModes.OnlyEdit"
                                  [class.col-md-6]="editMode == EditModes.SplitView"
                                  [class.col-md]="editMode == EditModes.OnlyView">
-                                <markdown [data]="model.description" emoji katex lineNumbers mermaid
+                                <markdown [data]="model.description"
+                                          emoji katex lineNumbers mermaid
                                           class="h-100"></markdown>
                             </div>
                         </div>
@@ -287,18 +291,18 @@
 <ng-template let-modal #deleteModelModal>
     <ng-container>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">{{"DeleteModel" | translate:locale.language}}</h4>
+            <h4 class="modal-title" id="modal-basic-title">{{ "DeleteModel" | translate:locale.language }}</h4>
             <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
         </div>
         <div class="modal-body">
-            {{"ConfirmDeletionOfModel" | translate:locale.language:model}}
+            {{ "ConfirmDeletionOfModel" | translate:locale.language:model }}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.close('Abort click')">
-                {{"Abort" | translate:locale.language}}
+                {{ "Abort" | translate:locale.language }}
             </button>
             <button type="button" class="btn btn-danger" (click)="deleteModel();modal.close('Deleted')">
-                {{"Delete" | translate:locale.language}}
+                {{ "Delete" | translate:locale.language }}
             </button>
         </div>
     </ng-container>

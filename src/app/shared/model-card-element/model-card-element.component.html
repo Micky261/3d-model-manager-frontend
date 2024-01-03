@@ -1,6 +1,6 @@
 <a routerLink="/model/{{model.id}}">
     <img class="card-img-top bg-light w-100" [alt]="model.name" *ngIf="sessionId"
-         [src]="apiUrl + '/model/file/main/' + model.id + '?' + sessionName + '=' + sessionId">
+         [src]="apiUrl + '/file/main/' + model.id + '?' + sessionName + '=' + sessionId">
 </a>
 <div class="card-body">
     <span class="card-title fa-lg">

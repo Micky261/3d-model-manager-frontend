@@ -8,6 +8,7 @@ import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelFile} from "../../core/types/model-file.type";
 import {ServerMessage} from "../../core/types/serverMessage.type";
+import {DownloadHelper} from "../../core/utils/DownloadHelper";
 
 @Component({
     selector: "app-files-list-element",
@@ -63,11 +64,12 @@ export class FilesListElementComponent implements OnInit {
 
     downloadFile(file: ModelFile): void {
         this.modelFilesService.getFile(file.id).subscribe({
-            next: data => {
+            next: response => {
+                console.log(response.headers.get("Content-Type"));
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                const blob = new Blob([data]);
-                const url = window.URL.createObjectURL(blob);
-                window.open(url);
+                const blob = new Blob([response.body], {type: response.headers.get("Content-Type")});
+
+                DownloadHelper.download(blob, file.filename);
             },
             error: error => {
                 const sMsg = error.error as ServerMessage;
