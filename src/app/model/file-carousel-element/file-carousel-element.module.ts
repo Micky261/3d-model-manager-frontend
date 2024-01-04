@@ -7,10 +7,11 @@ import {LazyLoadImageModule} from "ng-lazyload-image";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
 import {FileCarouselElementComponent} from "./file-carousel-element.component";
+import {FileCarouselStlViewerElementModule} from "./file-carousel-stl-viewer-element/file-carousel-stl-viewer-element.module";
 
 @NgModule({
     declarations: [
-        FileCarouselElementComponent
+        FileCarouselElementComponent,
     ],
     imports: [
         CommonModule,
@@ -19,9 +20,11 @@ import {FileCarouselElementComponent} from "./file-carousel-element.component";
         CustomPipesModule,
         PdfViewerModule,
         StlModelViewerModule,
-        LazyLoadImageModule
-    ], exports: [
-        FileCarouselElementComponent
+        LazyLoadImageModule,
+        FileCarouselStlViewerElementModule
+    ],
+    exports: [
+        FileCarouselElementComponent,
     ]
 })
 export class FileCarouselElementModule {

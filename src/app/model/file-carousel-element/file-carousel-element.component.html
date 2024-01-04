@@ -1,9 +1,9 @@
-<div class="row" (window:resize)="setRendererSize()">
+<div class="row">
     <div class="col-md">
         <ng-container *ngFor='let fileType of ["image" , "model" , "diagram", "pdf"]'>
             <ng-container
                 *ngIf="viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType">
-                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;"
+                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;" (slid)="carouselActivationSubject.next()"
                               [interval]="0">
                     <ng-template ngbSlide
                                  *ngFor="let file of viewableFilesMap.get(fileType) | objectArraySort:'position':false">
@@ -20,7 +20,7 @@
                                        style="height: calc(50vh - 7px);"
                                        defaultImage="assets/images/no_image.png"
                                        [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
-                                    {{"error.VideoDoesntWork" | translate:locale.language}}
+                                    {{ "error.VideoDoesntWork" | translate:locale.language }}
                                 </video>
                                 <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
                                     <pdf-viewer
@@ -28,16 +28,13 @@
                                     </pdf-viewer>
                                 </div>
                                 <div *ngSwitchCase="'model'">
-                                    <stl-model-viewer
-                                        [stlModels]="[apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId]"
-                                        [renderer]="threeRenderer"
-                                        [scene]="threeScene"
-                                        [material]="threeMaterial">
-                                    </stl-model-viewer>
+                                    <file-carousel-stl-viewer-element
+                                        [activationEvent]="carouselActivationSubject"
+                                        [fileId]="file.id"></file-carousel-stl-viewer-element>
                                 </div>
-<!--                                <div *ngSwitchDefault style="height: 50vh;">-->
-<!--                                    {{"error.Unknown" | translate:locale.language}}-->
-<!--                                </div>-->
+                                <!-- <div *ngSwitchDefault style="height: 50vh;">-->
+                                <!--     {{"error.Unknown" | translate:locale.language}}-->
+                                <!-- </div>-->
                             </ng-container>
                         </div>
                     </ng-template>
@@ -46,7 +43,7 @@
         </ng-container>
         <div class="container w-100 d-flex align-items-center justify-content-center my-1"
              *ngIf="!viewableFilesMap.get(fileNavigation) || viewableFilesMap.get(fileNavigation).length == 0">
-            {{"NoFiles" | translate:locale.language}}
+            {{ "NoFiles" | translate:locale.language }}
         </div>
     </div>
 </div>
@@ -58,25 +55,25 @@
                     *ngIf="viewableFilesMap.get('image') && viewableFilesMap.get('image').length > 0"
                     [class.active]="fileNavigation == 'image'"
                     (click)="fileNavigation = 'image'">
-                {{"Images" | translate:locale.language}}
+                {{ "Images" | translate:locale.language }}
             </button>
             <button class="btn btn-outline-primary"
                     *ngIf="viewableFilesMap.get('model') && viewableFilesMap.get('model').length > 0"
                     [class.active]="fileNavigation == 'model'"
                     (click)="fileNavigation = 'model'">
-                {{"Models" | translate:locale.language}}
+                {{ "Models" | translate:locale.language }}
             </button>
             <button class="btn btn-outline-primary"
                     *ngIf="viewableFilesMap.get('diagram') && viewableFilesMap.get('diagram').length > 0"
                     [class.active]="fileNavigation == 'diagram'"
                     (click)="fileNavigation = 'diagram'">
-                {{"Diagrams" | translate:locale.language}}
+                {{ "Diagrams" | translate:locale.language }}
             </button>
             <button class="btn btn-outline-primary"
                     *ngIf="viewableFilesMap.get('pdf') && viewableFilesMap.get('pdf').length > 0"
                     [class.active]="fileNavigation == 'pdf'"
                     (click)="fileNavigation = 'pdf'">
-                {{"PdfDocuments" | translate:locale.language}}
+                {{ "PdfDocuments" | translate:locale.language }}
             </button>
         </div>
     </div>

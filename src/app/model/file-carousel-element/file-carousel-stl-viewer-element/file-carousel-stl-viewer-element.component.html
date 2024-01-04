@@ -1,0 +1,5 @@
+<stl-model-viewer (window:resize)="setRendererSize()"
+                  [stlModels]="[apiUrl + '/file/single/' + fileId + '?' + sessionName + '=' + sessionId]"
+                  [renderer]="threeRenderer"
+                  [scene]="threeScene"
+                  [material]="threeMaterial"></stl-model-viewer>
