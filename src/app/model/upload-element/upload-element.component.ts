@@ -1,9 +1,11 @@
+import {HttpErrorResponse} from "@angular/common/http";
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ModelType, modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
+import {ServerMessage} from "../../core/types/serverMessage.type";
 
 @Component({
     selector: "app-upload-element",
@@ -48,9 +50,11 @@ export class UploadElementComponent implements OnInit {
             const name = files.item(i).name;
 
             this.progress.set(name, {current: 0, total: 0});
-            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(() => {
-                this.files.push(name);
-            });
+            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(
+                () => this.files.push(name),
+                (error: HttpErrorResponse) =>
+                    this.toast.showBackendError((JSON.parse(error.error as string) as ServerMessage).messageCode)
+            );
         }
     }
 
