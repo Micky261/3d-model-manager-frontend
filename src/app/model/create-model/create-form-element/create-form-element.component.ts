@@ -44,7 +44,7 @@ export class CreateFormElementComponent implements OnInit {
             return;
         }
 
-        const model = new Model(undefined,
+        const model = new Model(undefined, undefined,
             this.uploadForm.get("name").value as string, [],
             this.uploadForm.get("description").value as string, "",
             this.uploadForm.get("favorite").value as boolean,

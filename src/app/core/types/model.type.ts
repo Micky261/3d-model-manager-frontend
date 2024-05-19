@@ -1,10 +1,11 @@
-import {Link} from "./link.type";
+import {ModelLink} from "./model-link.type";
 
 export class Model {
     constructor(
         public id: number,
+        public userId: number,
         public name: string,
-        public links: Link[],
+        public links: ModelLink[],
         public description: string,
         public notes: string,
         public favorite: boolean,
@@ -25,7 +26,7 @@ export class ModelWithTags {
     constructor(
         public id: number,
         public name: string,
-        public links: Link[],
+        public links: ModelLink[],
         public description: string,
         public notes: string,
         public favorite: boolean,

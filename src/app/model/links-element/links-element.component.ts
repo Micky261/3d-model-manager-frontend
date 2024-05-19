@@ -1,8 +1,9 @@
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
+import {ModelLinksService} from "../../core/services/model-links.service";
 import {ModelService} from "../../core/services/model.service";
-import {Link} from "../../core/types/link.type";
+import {ModelLink} from "../../core/types/model-link.type";
 import {Model} from "../../core/types/model.type";
 
 @Component({
@@ -17,20 +18,21 @@ export class LinksElementComponent implements OnInit {
     @ViewChild("inputLinkTitle") inputLinkTitle: ElementRef<HTMLInputElement>;
     @ViewChild("inputLinkDescription") inputLinkDescription: ElementRef<HTMLTextAreaElement>;
 
-    editLink: Link = null;
+    editLink: ModelLink = null;
     openLinkForm = false;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly toast: ToastService,
         private readonly modelService: ModelService,
+        private readonly modelLinksService: ModelLinksService,
     ) {
     }
 
     ngOnInit(): void {
     }
 
-    preFillEditLinkForm(link: Link): void {
+    preFillEditLinkForm(link: ModelLink): void {
         this.openLinkForm = true;
         setTimeout(() => {
             this.inputLinkTitle.nativeElement.value = link.title;
@@ -54,12 +56,20 @@ export class LinksElementComponent implements OnInit {
             this.editLink.title = lT;
             this.editLink.link = lL;
             this.editLink.description = lD;
-        } else {
-            this.model.links.push(new Link(lT, lT, lD));
-        }
 
-        this.updateModelOnServer();
-        this.clearLinkForm();
+            this.modelLinksService.updateModelLink(this.editLink.id, this.editLink).subscribe(
+                () => this.clearLinkForm()
+            );
+        } else {
+            const newModelLink = new ModelLink(undefined, undefined, this.model.id, lT, lL, lD, 1, undefined, undefined);
+
+            this.modelLinksService.addModelLink(this.model.id, newModelLink).subscribe(
+                (ml: ModelLink) => {
+                    this.model.links.push(ml);
+                    this.clearLinkForm();
+                }
+            );
+        }
     }
 
     clearLinkForm(): void {
@@ -69,15 +79,9 @@ export class LinksElementComponent implements OnInit {
         this.editLink = null;
     }
 
-    deleteLink(link: Link): void {
-        this.model.links.remove(link);
-        this.updateModelOnServer();
-    }
-
-    private updateModelOnServer(): void {
-        void this.modelService.updateModel(this.model).subscribe({
-            next: () => true,
-            error: () => this.toast.showBackendError("ModelUpdateFailed")
-        });
+    deleteLink(link: ModelLink): void {
+        this.modelLinksService.deleteModelTag(link.id).subscribe(
+            () => this.model.links.remove(link)
+        );
     }
 }
