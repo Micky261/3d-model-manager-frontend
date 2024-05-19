@@ -1,6 +1,5 @@
-import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, Inject, Input, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {StlModelViewerComponent} from "angular-stl-model-viewer";
 import {Observable} from "rxjs";
 import {MeshPhongMaterial, Scene, WebGLRenderer} from "three";
 import {Environment} from "../../../../environment";

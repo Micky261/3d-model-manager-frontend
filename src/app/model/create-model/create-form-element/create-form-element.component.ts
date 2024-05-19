@@ -45,10 +45,10 @@ export class CreateFormElementComponent implements OnInit {
         }
 
         const model = new Model(undefined, undefined,
-            this.uploadForm.get("name").value as string, [],
-            this.uploadForm.get("description").value as string, "",
-            this.uploadForm.get("favorite").value as boolean,
-            this.uploadForm.get("author").value as string, "");
+            this.uploadForm.get("name").value, [],
+            this.uploadForm.get("description").value, "",
+            this.uploadForm.get("favorite").value,
+            this.uploadForm.get("author").value, "");
 
         this.modelService.postModel(model).subscribe({
             next: (serverModel: Model) => {

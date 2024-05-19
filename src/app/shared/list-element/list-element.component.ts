@@ -1,6 +1,5 @@
 import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {Environment} from "../../../environment";
 import {AuthService} from "../../core/auth/auth.service";
 import {Model, ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
