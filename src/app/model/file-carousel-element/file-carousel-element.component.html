@@ -23,7 +23,7 @@
                                     {{ "error.VideoDoesntWork" | translate:locale.language }}
                                 </video>
                                 <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
-                                    <pdf-viewer
+                                    <pdf-viewer style="height: 100%;"
                                         [src]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
                                     </pdf-viewer>
                                 </div>
