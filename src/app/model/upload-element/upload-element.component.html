@@ -14,7 +14,9 @@
     <div class="mt-2" style="max-height: 200px; overflow-y: auto;">
         <div class="input-group mt-1" *ngFor="let file of this.files">
             <div class="form-control" style="font-size: 0.8rem; overflow-x: hidden;"
-                 [title]="(progressReadable.get(file.name)).toFixed(2) + '%'">
+                 [ngbTooltip]="(progressReadable.get(file.name)).toFixed(2) + '%'"
+                 placement="left"
+                 container="body">
                 <div>
                     {{ file.name }}
                 </div>
