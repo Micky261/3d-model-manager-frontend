@@ -94,4 +94,8 @@ export class FilesListElementComponent implements OnInit {
             this.fileForDeletion = undefined;
         });
     }
+
+    refreshList(): void {
+        this.modelFilesService.getFiles(this.modelId).subscribe(files => this.files = files);
+    }
 }

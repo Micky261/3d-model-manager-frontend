@@ -2,59 +2,68 @@
      [innerHTML]="'FileListHint' | translate:locale.language"></div>
 <div class="my-3 text-end">
     <span class="me-1" *ngIf="lastSaved">
-        {{"LastSavedAt" | translate:locale.language}}: {{lastSaved | date:'mediumTime':undefined:locale.language}}
+        {{ "LastSavedAt" | translate:locale.language }}: {{ lastSaved | date:'mediumTime':undefined:locale.language }}
     </span>
-    <button class="btn btn-success" (click)="saveFileList()">
-        {{"Save" | translate:locale.language}}
-    </button>
+    <div class="btn-group">
+        <button class="btn btn-success" (click)="refreshList()"
+                [ngbTooltip]="'RefreshList' | translate:locale.language">
+            <span class="fas fa-rotate-right"></span>
+        </button>
+        <button class="btn btn-success" (click)="saveFileList()"
+                [ngbTooltip]="'Save' | translate:locale.language">
+            <span class="fas fa-save"></span>
+        </button>
+    </div>
 </div>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th class="col-5">{{"Filename" | translate:locale.language}}</th>
-        <th class="col-2">{{"FileType" | translate:locale.language}}</th>
-        <th class="col-1">{{"Position" | translate:locale.language}}</th>
-        <th class="col-1">{{"FileSize" | translate:locale.language}}</th>
-        <th class="col-1">{{"CreatedAt" | translate:locale.language}}</th>
-        <th class="col-1">{{"UpdatedAt" | translate:locale.language}}</th>
-        <th class="col-1">{{"Actions" | translate:locale.language}}</th>
+        <th class="col-5">{{ "Filename" | translate:locale.language }}</th>
+        <th class="col-2">{{ "FileType" | translate:locale.language }}</th>
+        <th class="col-1">{{ "Position" | translate:locale.language }}</th>
+        <th class="col-1">{{ "FileSize" | translate:locale.language }}</th>
+        <th class="col-1">{{ "CreatedAt" | translate:locale.language }}</th>
+        <th class="col-1">{{ "UpdatedAt" | translate:locale.language }}</th>
+        <th class="col-1">{{ "Actions" | translate:locale.language }}</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let file of files | objectArraySort:['type','position','filename']">
         <td class="align-middle" style="word-break:break-all;">
-            <label for="fileName" class="visually-hidden form-label">{{"Filename" | translate:locale.language}}</label>
+            <label for="fileName"
+                   class="visually-hidden form-label">{{ "Filename" | translate:locale.language }}</label>
             <input id="fileName" type="text"
                    class="form-control"
                    [(ngModel)]="file.filename"
                    [value]="file.filename">
         </td>
         <td class="align-middle">
-            <label for="fileType" class="visually-hidden form-label">{{"FileType" | translate:locale.language}}</label>
+            <label for="fileType"
+                   class="visually-hidden form-label">{{ "FileType" | translate:locale.language }}</label>
             <select id="fileType" class="form-select"
                     [(ngModel)]="file.type"
                     [value]="file.type">
                 <option *ngFor="let fileType of modelTypesMap.values()" [value]="fileType">
-                    {{"filetype." + fileType | translate:locale.language}}
+                    {{ "filetype." + fileType | translate:locale.language }}
                 </option>
             </select>
         </td>
         <td class="align-middle">
             <label for="filePosition"
-                   class="visually-hidden form-label">{{"FilePosition" | translate:locale.language}}</label>
+                   class="visually-hidden form-label">{{ "FilePosition" | translate:locale.language }}</label>
             <input id="filePosition" type="number" min="1" max="999999" step="1"
                    class="form-control"
                    [(ngModel)]="file.position"
                    [value]="file.position">
         </td>
         <td class="align-middle small">
-            {{file.size | filesize}}
+            {{ file.size | filesize }}
         </td>
         <td class="align-middle small">
-            {{file.createdAt | date:'medium':undefined:locale.language}}
+            {{ file.createdAt | date:'medium':undefined:locale.language }}
         </td>
         <td class="align-middle small">
-            {{file.updatedAt | date:'medium':undefined:locale.language}}
+            {{ file.updatedAt | date:'medium':undefined:locale.language }}
         </td>
         <td class="align-middle">
             <div class="btn-group btn-group-sm">
@@ -74,29 +83,36 @@
 
 <div class="mt-3 text-end">
     <span class="me-1" *ngIf="lastSaved">
-        {{"LastSavedAt" | translate:locale.language}}: {{lastSaved | date:'mediumTime':undefined:locale.language}}
+        {{ "LastSavedAt" | translate:locale.language }}: {{ lastSaved | date:'mediumTime':undefined:locale.language }}
     </span>
-    <button class="btn btn-success" (click)="saveFileList()">
-        {{"Save" | translate:locale.language}}
-    </button>
+    <div class="btn-group">
+        <button class="btn btn-success" (click)="refreshList()"
+                [ngbTooltip]="'RefreshList' | translate:locale.language">
+            <span class="fas fa-rotate-right"></span>
+        </button>
+        <button class="btn btn-success" (click)="saveFileList()"
+                [ngbTooltip]="'Save' | translate:locale.language">
+            <span class="fas fa-save"></span>
+        </button>
+    </div>
 </div>
 
 <ng-template let-modal #deleteFileModal>
     <ng-container *ngIf="fileForDeletion">
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">{{"DeleteFile" | translate:locale.language}}</h4>
+            <h4 class="modal-title" id="modal-basic-title">{{ "DeleteFile" | translate:locale.language }}</h4>
             <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
         </div>
         <div class="modal-body">
-            {{"ConfirmDeletionOfFile" | translate:locale.language}}<br/>
-            {{fileForDeletion.filename}} ({{"filetype." + fileForDeletion.type | translate:locale.language}})
+            {{ "ConfirmDeletionOfFile" | translate:locale.language }}<br/>
+            {{ fileForDeletion.filename }} ({{ "filetype." + fileForDeletion.type | translate:locale.language }})
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.close('Abort click')">
-                {{"Abort" | translate:locale.language}}
+                {{ "Abort" | translate:locale.language }}
             </button>
             <button type="button" class="btn btn-danger" (click)="deleteFile();modal.close('Deleted')">
-                {{"Delete" | translate:locale.language}}
+                {{ "Delete" | translate:locale.language }}
             </button>
         </div>
     </ng-container>
