@@ -70,7 +70,7 @@ export class TagListComponent implements OnInit {
         ).then(() => true);
     }
 
-    sortTags(event: Event) {
+    sortTags(/*event: Event*/) {
         switch (this.sorting) {
             case "CountAsc":
             case "CountDesc":

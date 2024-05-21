@@ -1,8 +1,6 @@
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {ToastService} from "../../core/error/toast.service";
 import {ModelLinksService} from "../../core/services/model-links.service";
-import {ModelService} from "../../core/services/model.service";
 import {ModelLink} from "../../core/types/model-link.type";
 import {Model} from "../../core/types/model.type";
 
@@ -23,8 +21,6 @@ export class LinksElementComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
-        private readonly toast: ToastService,
-        private readonly modelService: ModelService,
         private readonly modelLinksService: ModelLinksService,
     ) {
     }

@@ -1,6 +1,5 @@
-import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
+import {Component, Inject, Input, OnChanges, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {AuthService} from "../../core/auth/auth.service";
 import {Model, ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
@@ -21,8 +20,8 @@ export class ListElementComponent implements OnInit, OnChanges {
     sortDesc: boolean;
     sortField: string;
 
-    @Input() title;
-    @Input() titleParams;
+    @Input() title: string;
+    @Input() titleParams: { searchTerm: string; count: number };
     @Input() models: (Model | ModelWithTags)[];
 
     @Input() deactivatePagination = false;
@@ -33,8 +32,7 @@ export class ListElementComponent implements OnInit, OnChanges {
     cssClasses = "row row-cols-1 justify-content-center ";
 
     constructor(
-        @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
-        private readonly authService: AuthService
+        @Inject(L10N_LOCALE) public readonly locale: L10nLocale
     ) {
     }
 
@@ -50,7 +48,7 @@ export class ListElementComponent implements OnInit, OnChanges {
         this.sortField = Sorting.sortingField.get(this.sorting);
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(/*changes: SimpleChanges*/): void {
         this.changeSorting();
     }
 }
