@@ -17,12 +17,17 @@ export class UploadElementComponent implements OnInit {
 
     @Input() modelId: number;
 
-    files: any = [];
+    files: { name: string; type: string }[] = [];
     selectedFileType: string = modelTypesMap.get(ModelType.Model);
 
     progress: Map<string, { current: number; total: number }> = new Map();
+    progressReadable: Map<string, number> = new Map();
 
     @ViewChild("dragDrop") dragDrop: ElementRef<HTMLDivElement>;
+
+    // current upload
+    filesToUploadList: { file: File; type: string }[] = [];
+    fileUploadInProgress: { file: File; name: string; type: string };
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -32,10 +37,12 @@ export class UploadElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setInterval(() => {
+            this.permanentUploadCoroutine();
+        }, 500);
     }
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    uploadFile(event: any, source: "drop" | "input"): void {
+    queueFiles(event: any, source: "drop" | "input"): void {
         event.preventDefault();
         event.stopPropagation();
 
@@ -47,15 +54,40 @@ export class UploadElementComponent implements OnInit {
         }
 
         for (let i = 0; i < files.length; i++) {
-            const name = files.item(i).name;
-
-            this.progress.set(name, {current: 0, total: 0});
-            void this.modelFilesService.putFile(this.modelId, files.item(i), this.selectedFileType, this.progress.get(name)).then(
-                () => this.files.push(name),
-                (error: HttpErrorResponse) =>
-                    this.toast.showBackendError((JSON.parse(error.error as string) as ServerMessage).messageCode)
-            );
+            this.files.push({name: files.item(i).name, type: this.selectedFileType});
+            this.filesToUploadList.push({file: files.item(i), type: this.selectedFileType});
+            this.progressReadable.set(files.item(i).name, 0);
         }
+    }
+
+    permanentUploadCoroutine(): void {
+        if (this.fileUploadInProgress == null) {
+            if (this.filesToUploadList.length > 0) {
+                const newFile = this.filesToUploadList.shift();
+                this.fileUploadInProgress = {file: newFile.file, name: newFile.file.name, type: newFile.type};
+
+                const progress = {current: 0, total: 0};
+                this.conductUpload(this.fileUploadInProgress, progress);
+                this.progress.set(this.fileUploadInProgress.name, progress);
+            } // else do nothing
+        } else {
+            const n = this.fileUploadInProgress.name;
+            const p = this.progress.get(n);
+            this.progressReadable.set(n, ((p.current + 1) / p.total) * 100);
+        }
+    }
+
+    conductUpload(file: { file: File; name: string; type: string }, progress: { current: number; total: number }): void {
+
+        void this.modelFilesService.putFile(this.modelId, file.file, file.type, progress).then(
+            () => {
+                this.progress.delete(file.name);
+                this.progressReadable.set(file.name, 100);
+                this.fileUploadInProgress = null;
+            },
+            (error: HttpErrorResponse) =>
+                this.toast.showBackendError((JSON.parse(error.error as string) as ServerMessage).messageCode)
+        );
     }
 
     onDragOver(event: Event): void {

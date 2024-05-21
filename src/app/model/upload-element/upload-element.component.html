@@ -1,21 +1,35 @@
 <div class="m-2">
     <ng-select [(ngModel)]="selectedFileType" [searchable]="false" [clearable]="false" class="mb-2">
         <ng-option *ngFor="let type of modelTypesMap.values()"
-                   [value]="type">{{"filetype." + type | translate:locale.language}}</ng-option>
+                   [value]="type">{{ "filetype." + type | translate:locale.language }}
+        </ng-option>
     </ng-select>
     <div (click)="fileInput.click()" #dragDrop
-         (dragover)="onDragOver($event)" (drop)="uploadFile($event, 'drop')" (dragleave)="onDragLeave($event)"
+         (dragover)="onDragOver($event)" (drop)="queueFiles($event, 'drop')" (dragleave)="onDragLeave($event)"
          class="rounded border border-primary d-flex justify-content-center align-items-center my-2"
          style="height: 100px; cursor: pointer; background: repeating-linear-gradient( 135deg, #fff, #fff 10px, rgba(0, 123, 255, 0.2) 10px, rgba(0, 123, 255, 0.2) 20px );">
         <span class="fas fa-cloud-upload-alt" style="font-size: 3rem;"></span>
-        <input hidden type="file" #fileInput (change)="uploadFile($event, 'input')" multiple>
+        <input hidden type="file" #fileInput (change)="queueFiles($event, 'input')" multiple>
     </div>
     <div class="mt-2" style="max-height: 200px; overflow-y: auto;">
         <div class="input-group mt-1" *ngFor="let file of this.files">
-            <span class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
-                {{file}}
-            </span>
-            <button class="btn btn-sm btn-outline-success"
+            <div class="form-control" style="font-size: 0.8rem; overflow-x: hidden;"
+                 [title]="(progressReadable.get(file.name)).toFixed(2) + '%'">
+                <div>
+                    {{ file.name }}
+                </div>
+                <div class="progress" style="height: 3px">
+                    <div class="progress-bar bg-success"
+                         [ngStyle]="{width: (progressReadable.get(file.name)) + '%'}">
+                    </div>
+                </div>
+            </div>
+            <button *ngIf="progressReadable.get(file.name) < 100"
+                    class="btn btn-sm btn-outline-secondary">
+                <span class="fas fa-hourglass-half"></span>
+            </button>
+            <button *ngIf="progressReadable.get(file.name) === 100"
+                    class="btn btn-sm btn-outline-success"
                     (click)="this.files.remove(file)">
                 <span class="fas fa-check"></span>
             </button>

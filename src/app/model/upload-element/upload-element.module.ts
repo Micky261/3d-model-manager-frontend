@@ -3,6 +3,7 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {L10nTranslationModule} from "angular-l10n";
+import {CustomPipesModule} from "../../core/pipes/custom-pipes.module";
 import {UploadElementComponent} from "./upload-element.component";
 
 @NgModule({
@@ -13,7 +14,8 @@ import {UploadElementComponent} from "./upload-element.component";
         CommonModule,
         L10nTranslationModule,
         NgSelectModule,
-        FormsModule
+        FormsModule,
+        CustomPipesModule
     ],
     exports: [
         UploadElementComponent
