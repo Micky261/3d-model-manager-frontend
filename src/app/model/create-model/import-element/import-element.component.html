@@ -9,23 +9,23 @@
     </div>
 </div>
 <ng-container *ngIf="enabledImporters">
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('thingiverse') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Thingiverse) > -1">
         <div class="col">
             <h2>Thingiverse</h2>
             <form>
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="thingiverse">
+                    <label class="input-group-text" [for]="ImportSource.Thingiverse">
                         {{"ThingiverseId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="thingiverse"
                            (focus)="thingiverseId.select()"
-                           [disabled]="importInProgress && currentImport == 'thingiverse'"
+                           [disabled]="importInProgress && currentImport == ImportSource.Thingiverse"
                            placeholder="1234" #thingiverseId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(thingiverseId, 'thingiverse')">
+                            (click)="importWithId(thingiverseId, ImportSource.Thingiverse)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'thingiverse'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.Thingiverse"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -33,23 +33,23 @@
             </form>
         </div>
     </div>
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('myminifactory') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.MyMiniFactory) > -1">
         <div class="col">
             <h2>MyMiniFactory</h2>
             <form>
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="myminifactory">
+                    <label class="input-group-text" [for]="ImportSource.MyMiniFactory">
                         {{"MyMiniFactoryId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="myminifactory"
                            (focus)="myMiniFactoryId.select()"
-                           [disabled]="importInProgress && currentImport == 'myminifactory'"
+                           [disabled]="importInProgress && currentImport == ImportSource.MyMiniFactory"
                            placeholder="12345" #myMiniFactoryId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(myMiniFactoryId, 'myminifactory')">
+                            (click)="importWithId(myMiniFactoryId, ImportSource.MyMiniFactory)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'myminifactory'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.MyMiniFactory"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -57,23 +57,23 @@
             </form>
         </div>
     </div>
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('sketchfab') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Sketchfab) > -1">
         <div class="col">
             <h2>Sketchfab</h2>
             <form>
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="sketchfab">
+                    <label class="input-group-text" [for]="ImportSource.Sketchfab">
                         {{"SketchfabId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="sketchfab"
                            (focus)="sketchfabId.select()"
-                           [disabled]="importInProgress && currentImport == 'sketchfab'"
+                           [disabled]="importInProgress && currentImport == ImportSource.Sketchfab"
                            placeholder="746aff4a91c246329e64dbd2f0f65313" #sketchfabId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(sketchfabId, 'sketchfab')">
+                            (click)="importWithId(sketchfabId, ImportSource.Sketchfab)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'sketchfab'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.Sketchfab"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -81,23 +81,23 @@
             </form>
         </div>
     </div>
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('printables') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Printables) > -1">
         <div class="col">
             <h2>Printables</h2>
             <form>
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="printables">
+                    <label class="input-group-text" [for]="ImportSource.Printables">
                         {{"PrintablesId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="printables"
                            (focus)="printablesId.select()"
-                           [disabled]="importInProgress && currentImport == 'printables'"
+                           [disabled]="importInProgress && currentImport == ImportSource.Printables"
                            placeholder="123456" #printablesId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(printablesId, 'printables')">
+                            (click)="importWithId(printablesId, ImportSource.Printables)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'printables'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.Printables"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -105,23 +105,23 @@
             </form>
         </div>
     </div>
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('instructables') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Instructables) > -1">
         <div class="col">
             <h2>Instructables</h2>
             <form>
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="instructables">
+                    <label class="input-group-text" [for]="ImportSource.Instructables">
                         {{"InstructablesId" | translate:locale.language}}:
                     </label>
                     <input type="text" class="form-control" id="instructables"
                            (focus)="instructablesId.select()"
-                           [disabled]="importInProgress && currentImport == 'instructables'"
+                           [disabled]="importInProgress && currentImport == ImportSource.Instructables"
                            placeholder="EVLRJPCKUL8MOTU" #instructablesId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(instructablesId, 'instructables')">
+                            (click)="importWithId(instructablesId, ImportSource.Instructables)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'instructables'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.Instructables"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>
@@ -129,7 +129,7 @@
             </form>
         </div>
     </div>
-    <div class="row my-3" *ngIf="enabledImporters.indexOf('cults3d') > -1">
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Cults3D) > -1">
         <div class="col">
             <h2>Cults3D</h2>
             <form>
@@ -139,13 +139,13 @@
                     </label>
                     <input type="text" class="form-control" id="cults3d"
                            (focus)="cults3dId.select()"
-                           [disabled]="importInProgress && currentImport == 'cults3d'"
+                           [disabled]="importInProgress && currentImport == ImportSource.Cults3D"
                            placeholder="doctor-who-onmioji" #cults3dId>
                     <button class="btn btn-primary" type="submit"
                             [disabled]="importInProgress"
-                            (click)="importWithId(cults3dId, 'cults3d')">
+                            (click)="importWithId(cults3dId, ImportSource.Cults3D)">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                              *ngIf="importInProgress && currentImport == 'cults3d'"></span>
+                              *ngIf="importInProgress && currentImport == ImportSource.Cults3D"></span>
                         {{"StartImport" | translate:locale.language}}
                     </button>
                 </div>

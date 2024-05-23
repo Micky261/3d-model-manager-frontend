@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../../shared/array.extension";
 import {ToastrService} from "ngx-toastr";
+import {ImportSource} from "../../../core/enums/import-source.enum";
 import {ImportService} from "../../../core/services/import.service";
 import {Model} from "../../../core/types/model.type";
 
@@ -12,10 +13,12 @@ import {Model} from "../../../core/types/model.type";
     styleUrls: ["./import-element.component.css"]
 })
 export class ImportElementComponent implements OnInit {
-    enabledImporters: string[];
+    ImportSource = ImportSource;
+
+    enabledImporters: ImportSource[];
     redirectAfterImport = true;
     importInProgress = false;
-    currentImport: string;
+    currentImport: ImportSource;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -27,19 +30,21 @@ export class ImportElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.importService.getEnabledImporters().subscribe((ei: string[]) =>
+        this.importService.getEnabledImporters().subscribe((ei: ImportSource[]) =>
             this.enabledImporters = ei
         );
     }
 
-    importWithId(input: HTMLInputElement, importer: string): void {
+    importWithId(input: HTMLInputElement, importer: ImportSource): void {
         this.importInProgress = true;
         this.currentImport = importer;
 
         if (input.value === "")
             return;
 
-        const id = (["thingiverse", "myminifactory", "printables"].includes(importer)) ? parseInt(input.value, 10) : input.value;
+        const id = ([ImportSource.Thingiverse, ImportSource.MyMiniFactory, ImportSource.Printables].includes(importer))
+            ? parseInt(input.value, 10)
+            : input.value;
 
         this.importService.import(importer, {id}).subscribe({
             next: (serverModel: Model) => {
