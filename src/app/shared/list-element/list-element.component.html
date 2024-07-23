@@ -20,7 +20,7 @@
 <div [class]="cssClasses">
     <div class="col my-1 d-flex align-items-stretch"
          *ngFor="let model of models | objectArraySort:sortField:sortDesc | slice:((page-1)*pageSize):(page*pageSize)">
-        <app-model-card-element class="card text-center" [model]="model"></app-model-card-element>
+        <app-model-card-element class="card text-center w-100" [model]="model"></app-model-card-element>
     </div>
 </div>
 
