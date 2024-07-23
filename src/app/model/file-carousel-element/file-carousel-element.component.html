@@ -15,7 +15,7 @@
                                      style="height: calc(50vh - 7px);"
                                      [alt]="file.filename"
                                      defaultImage="assets/images/no_image.png"
-                                     [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
+                                     [lazyLoad]="apiUrl + '/thumbnails/file/' + file.id + '?format=Rectangular&size=700&' + sessionName + '=' + sessionId">
                                 <video *ngSwitchCase="'video'"
                                        style="height: calc(50vh - 7px);"
                                        defaultImage="assets/images/no_image.png"
