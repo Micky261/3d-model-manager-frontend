@@ -66,7 +66,6 @@ export class FilesListElementComponent implements OnInit {
         this.modelFilesService.getFile(file.id).subscribe({
             next: response => {
                 console.log(response.headers.get("Content-Type"));
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 const blob = new Blob([response.body], {type: response.headers.get("Content-Type")});
 
                 DownloadHelper.download(blob, file.filename);

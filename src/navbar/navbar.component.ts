@@ -4,7 +4,6 @@ import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../app/core/auth/auth.service";
 import {ToastService} from "../app/core/error/toast.service";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Is used
 import {locales} from "../i18n/l10n-config";
 
 @Component({

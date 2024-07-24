@@ -5,7 +5,7 @@
         "threed-model-manager-frontend": {
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular/build:application",
                     "configurations": {
                         "production": {
                             "budgets": [
@@ -20,7 +20,6 @@
                                     "type": "anyComponentStyle"
                                 }
                             ],
-                            "buildOptimizer": true,
                             "extractLicenses": true,
                             "fileReplacements": [
                                 {
@@ -38,12 +37,15 @@
                                 "fonts": true
                             },
                             "outputHashing": "all",
-                            "sourceMap": false,
-                            "vendorChunk": false
+                            "sourceMap": false
                         }
                     },
                     "options": {
                         "aot": true,
+                        "allowedCommonJsDependencies": [
+                            "pdfjs-dist",
+                            "pdfjs-dist/web/pdf_viewer"
+                        ],
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
@@ -54,9 +56,13 @@
                             }
                         ],
                         "index": "src/index.html",
-                        "main": "src/main.ts",
-                        "outputPath": "dist/threed-model-manager-frontend",
-                        "polyfills": "src/polyfills.ts",
+                        "outputPath": {
+                            "base": "dist/threed-model-manager-frontend"
+                        },
+                        "polyfills": [
+                            "@angular/localize/init",
+                            "src/polyfills.ts"
+                        ],
                         "scripts": [
                             "node_modules/marked/marked.min.js",
                             "node_modules/prismjs/prism.js",
@@ -86,17 +92,18 @@
                             "src/styles.css",
                             "src/sass/styles.sass"
                         ],
-                        "tsConfig": "tsconfig.app.json"
+                        "tsConfig": "tsconfig.app.json",
+                        "browser": "src/main.ts"
                     }
                 },
                 "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "builder": "@angular/build:extract-i18n",
                     "options": {
                         "buildTarget": "threed-model-manager-frontend:build"
                     }
                 },
                 "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "builder": "@angular/build:dev-server",
                     "configurations": {
                         "production": {
                             "buildTarget": "threed-model-manager-frontend:build:production"

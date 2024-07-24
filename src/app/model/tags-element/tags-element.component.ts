@@ -40,7 +40,6 @@ export class TagsElementComponent implements OnInit {
         this.setTagOnServer(this.lastTagSearchTerm);
     }
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setTag(event: any): void {
         if (event) {
             this.setTagOnServer(event.tag as string);

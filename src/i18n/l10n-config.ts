@@ -32,7 +32,6 @@ export const l10nConfig: L10nConfig = {
     ]
 };
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function initL10n(l10nLoader: L10nLoader): () => Promise<void> {
     return () => l10nLoader.init();
 }

@@ -5,7 +5,6 @@ import {locales} from "./l10n-config";
 @Injectable()
 export class Storage implements L10nStorage {
     public async read(): Promise<L10nLocale | null> {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return Promise.resolve(locales[localStorage.getItem("locale")]);
     }
 

@@ -5,9 +5,9 @@ import {AuthService} from "./auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    private static getCookie(name) {
+    private static getCookie(name: string) {
         const value = `; ${document.cookie}`;
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(";").shift();
     }
