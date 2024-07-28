@@ -50,7 +50,8 @@ registerLocaleData(localeEn);
         }),
         FlagsModule,
         MarkdownModule.forRoot(),
-        LazyLoadImageModule],
+        LazyLoadImageModule
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

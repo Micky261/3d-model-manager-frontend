@@ -20,8 +20,8 @@ export class ListElementComponent implements OnInit, OnChanges {
     sortDesc: boolean;
     sortField: string;
 
-    @Input() title: string;
-    @Input() titleParams: { searchTerm: string; count: number };
+    @Input() header: string;
+    @Input() headerParams: { searchTerm: string; count: number };
     @Input() models: (Model | ModelWithTags)[];
 
     @Input() deactivatePagination = false;

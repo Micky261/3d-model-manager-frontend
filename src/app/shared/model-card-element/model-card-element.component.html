@@ -4,11 +4,11 @@
 </a>
 <div class="card-body">
     <span class="card-title fa-lg">
-        <span [title]="model.importedName">{{ model.name }}</span>
+        <span [title]="model.importedName ? '' : model.importedName">{{ model.name }}</span>
     </span>
     <p class="card-text mt-3">
         <span class="fas fa-user" [title]="'Author' | translate:locale.language"></span>&nbsp;
-        <span [title]="model.importedAuthor">{{ model.author }}</span>
+        <span [title]="model.importedAuthor ? '' : model.importedAuthor">{{ model.author }}</span>
     </p>
     <p class="card-text">
         <span class="fas fa-clock" [title]="'CreatedAt' | translate:locale.language"></span>

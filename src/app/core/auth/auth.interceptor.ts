@@ -5,7 +5,7 @@ import {AuthService} from "./auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    private static getCookie(name: string) {
+    private static getCookie(name: string): string {
         const value = `; ${document.cookie}`;
 
         const parts = value.split(`; ${name}=`);
