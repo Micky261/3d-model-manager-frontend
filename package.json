@@ -40,6 +40,7 @@
         "ngx-cookie-service": "^18.0.0",
         "ngx-markdown": "^18.0.0",
         "ngx-toastr": "^19.0.0",
+        "ngx-value": "^1.0.5",
         "nxt-flags": "^18.0.0",
         "prismjs": "1.29.0",
         "rxjs": "^7.8.1",

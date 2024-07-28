@@ -8,44 +8,47 @@ import {Model, ModelWithTags} from "../types/model.type";
     providedIn: "root"
 })
 export class ModelService {
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly environment: Environment
+    ) {
     }
 
     getAllModels(): Observable<Model[]> {
-        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models`);
+        return this.httpClient.get<Model[]>(`${this.environment.apiUrl()}/models`);
     }
 
     getAllModelsWithTags(): Observable<ModelWithTags[]> {
-        return this.httpClient.get<ModelWithTags[]>(`${Environment.apiUrl}/models/with-tags`);
+        return this.httpClient.get<ModelWithTags[]>(`${this.environment.apiUrl()}/models/with-tags`);
     }
 
     /**
      * This method creates a new model on the server.
      */
     postModel(model: Model): Observable<Model> {
-        return this.httpClient.post<Model>(`${Environment.apiUrl}/model/data`, model);
+        return this.httpClient.post<Model>(`${this.environment.apiUrl()}/model/data`, model);
     }
 
     /**
      * Update the given model (with its identifier)
      */
     updateModel(model: Model): Observable<Model> {
-        return this.httpClient.put<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(model.id))}`, model);
+        return this.httpClient.put<Model>(`${this.environment.apiUrl()}/model/data/${encodeURIComponent(String(model.id))}`, model);
     }
 
     getModel(id: number): Observable<Model> {
-        return this.httpClient.get<Model>(`${Environment.apiUrl}/model/data/${encodeURIComponent(String(id))}`);
+        return this.httpClient.get<Model>(`${this.environment.apiUrl()}/model/data/${encodeURIComponent(String(id))}`);
     }
 
     deleteModel(id: number): Observable<Model> {
-        return this.httpClient.delete<Model>(`${Environment.apiUrl}/model/${encodeURIComponent(String(id))}`);
+        return this.httpClient.delete<Model>(`${this.environment.apiUrl()}/model/${encodeURIComponent(String(id))}`);
     }
 
     getNewestModels(num: number): Observable<Model[]> {
-        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/newest/${encodeURIComponent(String(num))}`);
+        return this.httpClient.get<Model[]>(`${this.environment.apiUrl()}/models/newest/${encodeURIComponent(String(num))}`);
     }
 
     getRandomModels(num: number): Observable<Model[]> {
-        return this.httpClient.get<Model[]>(`${Environment.apiUrl}/models/random/${encodeURIComponent(String(num))}`);
+        return this.httpClient.get<Model[]>(`${this.environment.apiUrl()}/models/random/${encodeURIComponent(String(num))}`);
     }
 }

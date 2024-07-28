@@ -17,7 +17,7 @@ export class FileCarouselElementComponent implements OnInit {
     @Input() modelId: number;
     sessionName = AuthService.sessionCookieName;
     sessionId: string;
-    apiUrl = Environment.apiUrl;
+    apiUrl = this.environment.apiUrl();
 
     fileNavigation: "image" | "model" | "diagram" = "image";
 
@@ -32,7 +32,8 @@ export class FileCarouselElementComponent implements OnInit {
         readonly modelFilesService: ModelFilesService,
         readonly fileTypesService: FileTypesService,
         private readonly route: ActivatedRoute,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
+        private readonly environment: Environment
     ) {
     }
 

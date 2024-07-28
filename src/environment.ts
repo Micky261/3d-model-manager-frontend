@@ -1,5 +1,13 @@
-import {Configuration} from "./configuration";
+import {Injectable} from "@angular/core";
+import {Path, Value} from "ngx-value";
 
+@Injectable({providedIn: "root"})
+@Path("config/configuration.json")
 export class Environment {
-    public static readonly apiUrl: string = Configuration.server + Configuration.folder;
+    @Value("server") server: string;
+    @Value("path") path: string;
+
+    public apiUrl(): string {
+        return this.server + this.path;
+    }
 }

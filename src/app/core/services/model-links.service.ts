@@ -8,31 +8,33 @@ import {ModelLink} from "../types/model-link.type";
     providedIn: "root"
 })
 export class ModelLinksService {
-
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly environment: Environment
+    ) {
     }
 
     getModelLinks(modelId: number): Observable<ModelLink[]> {
-        return this.httpClient.get<ModelLink[]>(`${Environment.apiUrl}/links/model/${encodeURIComponent(String(modelId))}`);
+        return this.httpClient.get<ModelLink[]>(`${this.environment.apiUrl()}/links/model/${encodeURIComponent(String(modelId))}`);
     }
 
     addModelLink(modelId: number, modelLink: ModelLink): Observable<ModelLink | null> {
         return this.httpClient.post<ModelLink | null>(
-            `${Environment.apiUrl}/links/model/${encodeURIComponent(String(modelId))}`,
+            `${this.environment.apiUrl()}/links/model/${encodeURIComponent(String(modelId))}`,
             modelLink
         );
     }
 
     updateModelLink(id: number, modelLink: ModelLink): Observable<ModelLink | null> {
         return this.httpClient.put<ModelLink | null>(
-            `${Environment.apiUrl}/links/${encodeURIComponent(String(id))}`,
+            `${this.environment.apiUrl()}/links/${encodeURIComponent(String(id))}`,
             modelLink
         );
     }
 
     deleteModelTag(id: number): Observable<any> {
         return this.httpClient.delete(
-            `${Environment.apiUrl}/links/${encodeURIComponent(String(id))}`
+            `${this.environment.apiUrl()}/links/${encodeURIComponent(String(id))}`
         );
     }
 }

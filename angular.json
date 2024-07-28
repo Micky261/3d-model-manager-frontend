@@ -49,6 +49,7 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
+                            "src/config",
                             {
                                 "glob": "**/*",
                                 "input": "./node_modules/nxt-flags/assets/flags",

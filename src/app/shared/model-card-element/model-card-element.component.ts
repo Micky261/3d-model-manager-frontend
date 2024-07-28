@@ -14,11 +14,12 @@ export class ModelCardElementComponent implements OnInit {
 
     sessionName = AuthService.sessionCookieName;
     sessionId: string;
-    apiUrl = Environment.apiUrl;
+    apiUrl = this.environment.apiUrl();
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
+        private readonly environment: Environment
     ) {
     }
 

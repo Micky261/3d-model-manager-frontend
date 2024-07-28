@@ -8,28 +8,30 @@ import {ModelTag} from "../types/model-tag.type";
     providedIn: "root"
 })
 export class ModelTagsService {
-
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly environment: Environment
+    ) {
     }
 
     getAllTags(): Observable<{ tag: string; count: number }[]> {
-        return this.httpClient.get<{ tag: string; count: number }[]>(`${Environment.apiUrl}/tags/all`);
+        return this.httpClient.get<{ tag: string; count: number }[]>(`${this.environment.apiUrl()}/tags/all`);
     }
 
     getModelTags(modelId: number): Observable<ModelTag[]> {
-        return this.httpClient.get<ModelTag[]>(`${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}`);
+        return this.httpClient.get<ModelTag[]>(`${this.environment.apiUrl()}/tags/model/${encodeURIComponent(String(modelId))}`);
     }
 
     postModelTag(modelId: number, tag: string): Observable<ModelTag | null> {
         return this.httpClient.post<ModelTag | null>(
-            `${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`,
+            `${this.environment.apiUrl()}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`,
             null
         );
     }
 
     deleteModelTag(modelId: number, tag: string): Observable<any> {
         return this.httpClient.delete(
-            `${Environment.apiUrl}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`
+            `${this.environment.apiUrl()}/tags/model/${encodeURIComponent(String(modelId))}/${encodeURIComponent(String(tag))}`
         );
     }
 }

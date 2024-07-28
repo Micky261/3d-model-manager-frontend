@@ -8,14 +8,17 @@ import {ImportSource} from "../enums/import-source.enum";
     providedIn: "root"
 })
 export class ImportService {
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly environment: Environment
+    ) {
     }
 
     getEnabledImporters(): Observable<ImportSource[]> {
-        return this.httpClient.get<ImportSource[]>(`${Environment.apiUrl}/import/enabled`);
+        return this.httpClient.get<ImportSource[]>(`${this.environment.apiUrl()}/import/enabled`);
     }
 
     import(importer: ImportSource, data: object): Observable<any> {
-        return this.httpClient.post<any>(`${Environment.apiUrl}/import/${encodeURIComponent(importer)}`, data);
+        return this.httpClient.post<any>(`${this.environment.apiUrl()}/import/${encodeURIComponent(importer)}`, data);
     }
 }

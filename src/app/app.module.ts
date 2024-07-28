@@ -12,6 +12,7 @@ import {LazyLoadImageModule} from "ng-lazyload-image";
 import {CookieService} from "ngx-cookie-service";
 import {MarkdownModule} from "ngx-markdown";
 import {ToastNoAnimationModule} from "ngx-toastr";
+import {Values} from "ngx-value";
 import {FlagsModule} from "nxt-flags";
 import {initL10n, l10nConfig} from "../i18n/l10n-config";
 import {Storage} from "../i18n/l10n-storage";
@@ -61,6 +62,11 @@ registerLocaleData(localeEn);
             useFactory: initL10n,
             deps: [L10nLoader],
             multi: true
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: () => () => Values("config/configuration.json"),
+            multi:true
         },
         CookieService,
         provideHttpClient(withInterceptorsFromDi())

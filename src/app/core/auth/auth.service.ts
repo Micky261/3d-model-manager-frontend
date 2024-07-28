@@ -16,16 +16,17 @@ export class AuthService {
 
     constructor(
         private readonly httpClient: HttpClient,
-        private readonly cookieService: CookieService
+        private readonly cookieService: CookieService,
+        private readonly environment: Environment
     ) {
     }
 
     login(login: Login): Observable<Session> {
-        return this.httpClient.post<any>(`${Environment.apiUrl}/login`, login);
+        return this.httpClient.post<any>(`${this.environment.apiUrl()}/login`, login);
     }
 
     register(register: Register): Observable<ServerMessage> {
-        return this.httpClient.post<ServerMessage>(`${Environment.apiUrl}/register`, register);
+        return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/register`, register);
     }
 
     isLoggedIn(): boolean {

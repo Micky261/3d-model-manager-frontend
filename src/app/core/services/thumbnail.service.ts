@@ -8,11 +8,14 @@ import {ThumbnailFormat} from "../enums/thumbnail-format.enum";
     providedIn: "root"
 })
 export class ThumbnailService {
-    constructor(private readonly httpClient: HttpClient) {
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly environment: Environment
+    ) {
     }
 
     getThumbnail(fileId: number, size: number, format: ThumbnailFormat = ThumbnailFormat.Rectangular): Observable<HttpResponse<Blob>> {
-        return this.httpClient.get(`${Environment.apiUrl}/search/thumbnails/file/${encodeURIComponent(fileId)}/`, {
+        return this.httpClient.get(`${this.environment.apiUrl()}/search/thumbnails/file/${encodeURIComponent(fileId)}/`, {
             params: {
                 format,
                 size,

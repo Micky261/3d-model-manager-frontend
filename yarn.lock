@@ -5875,6 +5875,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ngx-value@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "ngx-value@npm:1.0.5"
+  dependencies:
+    tslib: "npm:^1.9.0"
+  peerDependencies:
+    "@angular/common": <9.0.0
+    "@angular/core": <9.0.0
+    "@angular/platform-browser": <9.0.0
+    rxjs: ^6.0.0
+  checksum: 10/29f8de3e0188ce6b2e667e83e98e82028b716e1ba33a91ac2163b0d3678e7d0c431d2e2cd152cce7763cc78bebcc407c245b967ce2acb86260a1f1f3ce198439
+  languageName: node
+  linkType: hard
+
 "nice-napi@npm:^1.0.2":
   version: 1.0.2
   resolution: "nice-napi@npm:1.0.2"
@@ -7348,6 +7362,7 @@ __metadata:
     ngx-cookie-service: "npm:^18.0.0"
     ngx-markdown: "npm:^18.0.0"
     ngx-toastr: "npm:^19.0.0"
+    ngx-value: "npm:^1.0.5"
     nxt-flags: "npm:^18.0.0"
     prismjs: "npm:1.29.0"
     rxjs: "npm:^7.8.1"
@@ -7466,6 +7481,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:^1.9.0":
+  version: 1.14.1
+  resolution: "tslib@npm:1.14.1"
+  checksum: 10/7dbf34e6f55c6492637adb81b555af5e3b4f9cc6b998fb440dac82d3b42bdc91560a35a5fb75e20e24a076c651438234da6743d139e4feabf0783f3cdfe1dddb
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
@@ -7519,11 +7541,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>":
   version: 5.5.4
-  resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=b45daf"
+  resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/2c065f0ef81855eac25c9b658a3c9da65ffc005260c12854c2286f40f3667e1b1ecf8bdbdd37b59aa0397920378ce7900bff8cb32e0f1c7af6fd86efc676718c
+  checksum: 10/746fdd0865c5ce4f15e494c57ede03a9e12ede59cfdb40da3a281807853fe63b00ef1c912d7222143499aa82f18b8b472baa1830df8804746d09b55f6cf5b1cc
   languageName: node
   linkType: hard
 
