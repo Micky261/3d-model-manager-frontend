@@ -52,6 +52,14 @@ export class ModelFilesService {
             });
     }
 
+    getDefaultImage(): Observable<HttpResponse<Blob>> {
+        return this.httpClient.get(`${this.environment.apiUrl()}/file/image/default`,
+            {
+                responseType: "blob",
+                observe: "response",
+            });
+    }
+
     deleteFile(fileId: number): Observable<any> {
         return this.httpClient.delete<any>(`${this.environment.apiUrl()}/file/${encodeURIComponent(String(fileId))}`);
     }

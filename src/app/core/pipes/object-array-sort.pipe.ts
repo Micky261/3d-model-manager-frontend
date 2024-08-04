@@ -34,15 +34,28 @@ export class ObjectArraySortPipe implements PipeTransform {
                     descSwitch = (descendings[i]) ? 2 : 0;
                 }
 
-                if (a[fields[i]] < b[fields[i]]) {
-                    return descSwitch - 1;
-                } else if (a[fields[i]] > b[fields[i]]) {
-                    return 1 - descSwitch;
-                } else {
-                    if (fields.length === (i + 1)) { // Last iteration
-                        return 0;
+                if (typeof a[fields[i]] === "string" && typeof b[fields[i]] === "string") {
+                    if (a[fields[i]].toLowerCase() < b[fields[i]].toLowerCase()) {
+                        return descSwitch - 1;
+                    } else if (a[fields[i]].toLowerCase() > b[fields[i]].toLowerCase()) {
+                        return 1 - descSwitch;
+                    } else {
+                        if (fields.length === (i + 1)) { // Last iteration
+                            return 0;
+                        }
+                        // else -> go to loop start
                     }
-                    // else -> go to loop start
+                } else {
+                    if (a[fields[i]] < b[fields[i]]) {
+                        return descSwitch - 1;
+                    } else if (a[fields[i]] > b[fields[i]]) {
+                        return 1 - descSwitch;
+                    } else {
+                        if (fields.length === (i + 1)) { // Last iteration
+                            return 0;
+                        }
+                        // else -> go to loop start
+                    }
                 }
             }
         });

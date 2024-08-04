@@ -1,5 +1,6 @@
-import {Component, Inject, Input, OnChanges, OnInit} from "@angular/core";
+import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
+import {Collection} from "../../core/types/collection.type";
 import {Model, ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
@@ -17,6 +18,13 @@ export class ListElementComponent implements OnInit, OnChanges {
     @Input() sortable = false;
     sortings = Sorting.sortingsModel;
     sorting: string = Sorting.defaultModel;
+
+    @Input() set overwriteSorting(s: { sortings: string[]; sorting: string }) {
+        this.sortings = s.sortings;
+        this.sorting = s.sorting;
+        this.changeSorting();
+    }
+
     sortDesc: boolean;
     sortField: string;
 
@@ -31,6 +39,9 @@ export class ListElementComponent implements OnInit, OnChanges {
     page = 1; // Pages are 1-based
     cssClasses = "row row-cols-1 justify-content-center ";
 
+    @Input() editCollection: Collection = null;
+    @Output() collectionEditEvent = new EventEmitter<{ event: "delete" | "setMain"; modelId: number }>();
+
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale
     ) {
@@ -40,6 +51,7 @@ export class ListElementComponent implements OnInit, OnChanges {
         this.cssClasses += (this.halfSize)
             ? "row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4"
             : "row-cols-sm-3 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 row-cols-xxl-8";
+
         this.changeSorting();
     }
 

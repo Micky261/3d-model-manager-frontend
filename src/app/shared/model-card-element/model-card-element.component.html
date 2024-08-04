@@ -17,8 +17,27 @@
     </p>
 </div>
 <div class="card-footer text-muted d-grid">
-    <a routerLink="/model/{{model.id}}" class="btn btn-primary">
-        <small class="fas fa-arrow-right me-2"></small>
-        {{ "GoToModel" | translate:locale.language }}
-    </a>
+    <ng-container *ngIf="!editCollection">
+        <a routerLink="/model/{{model.id}}" class="btn btn-primary">
+            <small class="fas fa-arrow-right me-2"></small>
+            {{ "GoToModel" | translate:locale.language }}
+        </a>
+    </ng-container>
+    <ng-container *ngIf="editCollection">
+        <div class="btn-group">
+            <button (click)="collectionEditEvent.emit({event: 'setMain', modelId: model.id})"
+                    class="btn btn-primary"
+                    [class.active]="isMainModelOfCollection()"
+                    [ngbTooltip]="(isMainModelOfCollection() ? 'MainModelOfCollection' : 'SetMainModelCollection') | translate:locale.language">
+                <span class="fa-square-check"
+                      [class.fas]="isMainModelOfCollection()"
+                      [class.far]="!isMainModelOfCollection()"></span>
+            </button>
+            <button (click)="collectionEditEvent.emit({event: 'delete', modelId: model.id})"
+                    class="btn btn-danger"
+                    [ngbTooltip]="'RemoveFromCollection' | translate:locale.language">
+                <span class="fas fa-trash"></span>
+            </button>
+        </div>
+    </ng-container>
 </div>

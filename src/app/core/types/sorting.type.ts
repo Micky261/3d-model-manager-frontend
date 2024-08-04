@@ -1,6 +1,8 @@
 export class Sorting {
     public static defaultModel = "DateAddedDesc";
+    public static defaultModelsInCollection  = "NameAsc"
     public static defaultTag = "CountDesc";
+    public static defaultCollection  = "NameAsc"
 
     public static sortingsModel = [
         "DateAddedAsc",
@@ -13,11 +15,27 @@ export class Sorting {
         "AuthorDesc"
     ];
 
+    public static sortingsModelsInCollection = [
+        "NameAsc",
+        "NameDesc",
+        "AuthorAsc",
+        "AuthorDesc"
+    ];
+
     public static sortingsTags = [
         "CountAsc",
         "CountDesc",
         "TagAsc",
         "TagDesc"
+    ];
+
+    public static sortingsCollection = [
+        "DateAddedAsc",
+        "DateAddedDesc",
+        "DateUpdatedAsc",
+        "DateUpdatedDesc",
+        "NameAsc",
+        "NameDesc"
     ];
 
     public static sortingDesc: Map<string, boolean> = new Map([

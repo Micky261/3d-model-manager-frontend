@@ -1,0 +1,26 @@
+<a routerLink="/collection/{{collection.id}}">
+    <ng-container *ngIf="collection.mainModel">
+        <img class="card-img-top bg-light w-100 thumbnail-200" [alt]="collection.name" *ngIf="sessionId"
+             [src]="apiUrl + '/thumbnails/model/' + collection.mainModel + '/main?format=Quadratic&size=200&' + sessionName + '=' + sessionId">
+    </ng-container>
+    <ng-container *ngIf="!collection.mainModel">
+        <img class="card-img-top bg-light w-100 thumbnail-200" [alt]="collection.name" *ngIf="sessionId"
+             [src]="apiUrl + '/thumbnails/default?format=Quadratic&size=200&' + sessionName + '=' + sessionId">
+    </ng-container>
+</a>
+<div class="card-body">
+    <span class="card-title fa-lg">
+        <span>{{ collection.name }}</span>
+    </span>
+    <p class="card-text mt-3">
+        <span class="fas fa-clock" [title]="'CreatedAt' | translate:locale.language"></span>
+        {{ collection.createdAt | date:"mediumDate":undefined:locale.language }},
+        {{ collection.createdAt | date:"shortTime":undefined:locale.language }}
+    </p>
+</div>
+<div class="card-footer text-muted d-grid">
+    <a routerLink="/collection/{{collection.id}}" class="btn btn-primary">
+        <small class="fas fa-arrow-right me-2"></small>
+        {{ "GoToCollection" | translate:locale.language }}
+    </a>
+</div>

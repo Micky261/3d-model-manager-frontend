@@ -151,9 +151,6 @@
                           [class.bg-primary]="model.favorite"></span>
                     {{ "Favorite" | translate:locale.language }}
                 </button>
-                <div class="list-group-item list-group-item-action" *ngIf="!uploadMode">
-                    <app-tags-element [modelId]="modelId"></app-tags-element>
-                </div>
                 <div class="list-group-item list-group-item-action p-1" *ngIf="uploadMode">
                     <app-upload-element [modelId]="modelId"></app-upload-element>
                 </div>
@@ -214,7 +211,8 @@
                 </button>
             </div>
         </div>
-        <div class="col-md-9 my-1" *ngIf="model">
+
+        <div class="col-md-6 my-1" *ngIf="model">
             <div class="border border-secondary rounded p-2">
                 <div class="row"
                      *ngIf="navigation == 'description' || navigation == 'notes'">
@@ -254,7 +252,15 @@
                             </div>
                         </div>
                     </ng-container>
-                    <div *ngSwitchCase="'importDescription'" [innerHTML]="model.importedDescription"></div>
+                    <div *ngSwitchCase="'importDescription'">
+                        <div class="row mx-0 mb-3 mt-2">
+                            <div class="col-md">
+                                <markdown [data]="model.importedDescription"
+                                          emoji katex lineNumbers mermaid
+                                          class="h-100"></markdown>
+                            </div>
+                        </div>
+                    </div>
                     <div *ngSwitchCase="'notes'">
                         <div class="row mx-0 mb-3 mt-2">
                             <div *ngIf="editMode != EditModes.OnlyView"
@@ -283,6 +289,21 @@
                     <div *ngSwitchCase="'fileViewer'" class="m-3">
                     </div>
                 </ng-container>
+            </div>
+        </div>
+
+        <div class="col-md-3 my-1">
+            <div class="list-group">
+                <span class="list-group-item active">
+                    <span class="fas fa-pen-ruler me-2"></span>
+                    <strong>{{ "ModelManagement" | translate:locale.language }}</strong>
+                </span>
+                <div class="list-group-item list-group-item-action">
+                    <app-tags-element [modelId]="modelId"></app-tags-element>
+                </div>
+                <div class="list-group-item list-group-item-action">
+                    <app-collections-element [modelId]="modelId"></app-collections-element>
+                </div>
             </div>
         </div>
     </div>

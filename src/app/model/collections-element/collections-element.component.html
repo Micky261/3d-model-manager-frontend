@@ -1,0 +1,33 @@
+<div class="row mb-2">
+    <div class="col">
+        <span class="fas fa-object-group text-primary me-2"></span>
+        {{ "Collections" | translate:locale.language }}
+    </div>
+</div>
+<div class="row my-2" *ngIf="collections">
+    <div class="col">
+        <ng-select bindLabel="name" bindValue="id"
+                   [items]="collections | objectArraySort:'name':false"
+                   (change)="createRelation($event)"
+                   (search)="saveSearch($event)"
+                   #selectCollection>
+            <ng-template ng-option-tmp let-item="item">
+                {{ item.name }} <!--<span class="text-sm-start">({{item.count}})</span>-->
+            </ng-template>
+        </ng-select>
+    </div>
+</div>
+<div class="row mt-2" *ngIf="collectionsOfModel">
+    <div class="col">
+        <div class="btn-group btn-group-xs m-1"
+             *ngFor="let collection of collectionsOfModel | objectArraySort:'name':false">
+            <button type="button" class="btn btn-primary" routerLink="/collection/{{collection.id}}">
+                {{ collection.name }}
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    (click)="deleteRelation(collection)">
+                <span class="fas fa-trash-alt small"></span>
+            </button>
+        </div>
+    </div>
+</div>

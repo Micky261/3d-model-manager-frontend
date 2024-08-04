@@ -13,11 +13,11 @@ export class ToastService {
     ) {
     }
 
-    showSuccess(messageCode: string): void {
+    showSuccess(messageCode: string, parameters: any = null): void {
         if (this.messageCodeAvailable(messageCode)) {
-            this.toastr.success(this.translator.translate(`success.${messageCode}`) as string);
+            this.toastr.success(this.translator.translate(`success.${messageCode}`, parameters) as string);
         } else {
-            this.toastr.success(this.translator.translate("success.Unknown") as string);
+            this.toastr.success(this.translator.translate("success.Unknown", parameters) as string);
         }
     }
 
