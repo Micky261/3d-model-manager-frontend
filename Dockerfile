@@ -1,3 +1,3 @@
-FROM nginx:1.25.5-alpine
+FROM nginx:1.27.0-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY ./dist/threed-model-manager-frontend /usr/share/nginx/html
