@@ -30,6 +30,13 @@
                 </button>
                 <button type="button"
                         class="btn"
+                        [class.btn-primary]="creationMethod === 'multi-import'"
+                        [class.btn-outline-primary]="creationMethod != 'multi-import'"
+                        (click)="creationMethod = 'multi-import'">
+                    {{"CreateModelMultiImport" | translate:locale.language}}
+                </button>
+                <button type="button"
+                        class="btn"
                         [class.btn-primary]="creationMethod === 'import'"
                         [class.btn-outline-primary]="creationMethod != 'import'"
                         (click)="creationMethod = 'import'">
@@ -41,6 +48,11 @@
     <div class="row mt-4" *ngIf="creationMethod === 'upload'">
         <div class="col">
             <app-create-form-element></app-create-form-element>
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="creationMethod === 'multi-import'">
+        <div class="col">
+            <app-multi-import-element></app-multi-import-element>
         </div>
     </div>
     <div class="row mt-4" *ngIf="creationMethod === 'import'">

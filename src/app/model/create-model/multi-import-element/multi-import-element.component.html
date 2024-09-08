@@ -1,0 +1,48 @@
+<ng-container *ngIf="allowedImports">
+    <div class="row my-3">
+        <div class="col">
+            <form>
+                <div class="input-group mb-3">
+                    <label class="visually-hidden" [for]="importArea">
+                        {{ "CreateModelMultiImport" | translate:locale.language }}:
+                    </label>
+                    <textarea class="form-control" id="importArea"
+                              [disabled]="toBeImportedList.length > 0"
+                              rows="10"
+                              #importArea></textarea>
+                    <button class="btn btn-primary" type="submit"
+                            [disabled]="toBeImportedList.length > 0"
+                            (click)="processImport(importArea)">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="toBeImportedList.length > 0"></span>
+                        {{ "StartImport" | translate:locale.language }}
+                    </button>
+                </div>
+                <div class="form-text"
+                     [innerHTML]="'ImportableSources' | translate:locale.language:{sources: allowedImportsString}"></div>
+            </form>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col" style="max-height: 200px; overflow-y: auto;">
+            <div class="input-group mt-1" *ngFor="let link of links">
+                <div class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
+                    {{ link.url }}
+                </div>
+                <div *ngIf="progress.get(link.url) && progress.get(link.url).finished"
+                    class="form-control" style="font-size: 0.8rem; overflow-x: hidden;">
+                    {{ progress.get(link.url).name }}
+                </div>
+                <button *ngIf="progress.get(link.url) && !progress.get(link.url).finished"
+                        class="btn btn-sm btn-outline-secondary">
+                    <span class="fas fa-hourglass-half"></span>
+                </button>
+                <button *ngIf="progress.get(link.url) &&  progress.get(link.url).finished"
+                        class="btn btn-sm btn-outline-success"
+                        (click)="this.links.remove(link)">
+                    <span class="fas fa-check"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>
