@@ -8,6 +8,7 @@ export class ChunkedUploadService {
     public static async chunkedUpload(
         file: File | string | ArrayBuffer,
         filename: string,
+        forceOverwrite: boolean,
         http: HttpClient,
         url: string,
         type: string,
@@ -58,6 +59,7 @@ export class ChunkedUploadService {
             fd.append("totalChunks", totalChunks.toString());
             fd.append("timestamp", timestamp);
             fd.append("filename", upload.name);
+            fd.append("force-overwrite", forceOverwrite.toString());
             fd.append("type", type);
             fd.append("file", upload.slice(start, start + chunkSize));
 

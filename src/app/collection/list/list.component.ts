@@ -61,9 +61,9 @@ export class ListComponent implements OnInit, OnChanges {
         );
 
         this.collectionService.createCollection(collection).subscribe({
-            next: (collection: Collection) => {
-                this.toast.showSuccess("CollectionCreated", collection);
-                this.collections.push(collection);
+            next: (resultCollection: Collection) => {
+                this.toast.showSuccess("CollectionCreated", resultCollection);
+                this.collections.push(resultCollection);
                 this.createCollectionForm.reset({name: "", description: ""});
             },
             error: error => {

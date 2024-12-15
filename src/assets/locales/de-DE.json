@@ -43,6 +43,7 @@
     "FileViewer": "Datei Betrachter",
     "Filename": "Dateiname",
     "Files": "Dateien",
+    "ForceOverwriteWithUploadedFile": "Überschreibe Dateien, falls sie auf dem Server existieren",
     "GoToCollection": "Zur Sammlung",
     "GoToModel": "Zum Modell",
     "Home": "Startseite",

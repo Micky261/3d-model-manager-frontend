@@ -19,6 +19,7 @@ export class UploadElementComponent implements OnInit {
 
     files: { name: string; type: string }[] = [];
     selectedFileType: string = modelTypesMap.get(ModelType.Model);
+    forceOverwrite: boolean = false;
 
     progress: Map<string, { current: number; total: number }> = new Map();
     progressReadable: Map<string, number> = new Map();
@@ -79,7 +80,7 @@ export class UploadElementComponent implements OnInit {
 
     conductUpload(file: { file: File; name: string; type: string }, progress: { current: number; total: number }): void {
 
-        void this.modelFilesService.putFile(this.modelId, file.file, file.type, progress).then(
+        void this.modelFilesService.putFile(this.modelId, file.file, file.type, this.forceOverwrite, progress).then(
             () => {
                 this.progress.delete(file.name);
                 this.progressReadable.set(file.name, 100);

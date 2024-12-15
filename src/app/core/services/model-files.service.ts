@@ -15,9 +15,9 @@ export class ModelFilesService {
     ) {
     }
 
-    putFile(modelId: number, file: File, type: string, progress: { current: number; total: number }): Promise<any> {
+    putFile(modelId: number, file: File, type: string, forceOverwrite: boolean, progress: { current: number; total: number }): Promise<any> {
         return ChunkedUploadService.chunkedUpload(
-            file, file.name, this.httpClient, `${this.environment.apiUrl()}/file/${encodeURIComponent(String(modelId))}`, type, progress
+            file, file.name, forceOverwrite, this.httpClient, `${this.environment.apiUrl()}/file/${encodeURIComponent(String(modelId))}`, type, progress
         );
     }
 

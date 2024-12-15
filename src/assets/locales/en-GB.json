@@ -43,6 +43,7 @@
     "FileViewer": "File Viewer",
     "Filename": "Filename",
     "Files": "Files",
+    "ForceOverwriteWithUploadedFile": "Force overwrite file if it exists on server",
     "GoToCollection": "Go to collection",
     "GoToModel": "Go to model",
     "Home": "Home",
