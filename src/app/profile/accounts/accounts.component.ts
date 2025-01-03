@@ -27,6 +27,7 @@ export class AccountsComponent implements OnInit {
     accountsSettings: UserSetting[];
 
     @ViewChild("cults3dSessionId", {static: false}) cults3dSessionId: ElementRef<HTMLInputElement>;
+    @ViewChild("makerworldSessionToken", {static: false}) makerworldSessionToken: ElementRef<HTMLInputElement>;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -56,7 +57,12 @@ export class AccountsComponent implements OnInit {
         const cults3dSessionId = this.cults3dSessionId.nativeElement.value;
         const cultsSetting = new UserSetting(UserSettingsKey.Cults3dSessionId, UserSettingsType.Account, cults3dSessionId);
 
-        this.profileSettingsService.saveAccountsSettings([cultsSetting]).subscribe(() => true);
+        const makerWorldSessionToken = this.makerworldSessionToken.nativeElement.value;
+        const makerWorldSetting = new UserSetting(UserSettingsKey.MakerWorldSessionToken, UserSettingsType.Account, makerWorldSessionToken);
+
+        this.profileSettingsService.saveAccountsSettings([cultsSetting, makerWorldSetting]).subscribe(() =>
+            this.toastr.success(this.translator.translate("Saved") as string)
+        );
     }
 
     getSetting(key: UserSettingsKey): string {

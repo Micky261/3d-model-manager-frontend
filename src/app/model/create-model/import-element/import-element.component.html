@@ -153,4 +153,28 @@
             </form>
         </div>
     </div>
+    <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.MakerWorld) > -1">
+        <div class="col">
+            <h2>MakerWorld</h2>
+            <form>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="makerworld">
+                        {{"MakerWorldId" | translate:locale.language}}:
+                    </label>
+                    <input type="text" class="form-control" id="makerworld"
+                           (focus)="makerworldId.select()"
+                           [disabled]="importInProgress && currentImport == ImportSource.MakerWorld"
+                           placeholder="54321" #makerworldId>
+                    <button class="btn btn-primary" type="submit"
+                            [disabled]="importInProgress"
+                            (click)="importWithId(makerworldId, ImportSource.MakerWorld)">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              *ngIf="importInProgress && currentImport == ImportSource.MakerWorld"></span>
+                        {{"StartImport" | translate:locale.language}}
+                    </button>
+                </div>
+                <div class="form-text" [innerHTML]="'MakerWorldImportInfoText' | translate:locale.language"></div>
+            </form>
+        </div>
+    </div>
 </ng-container>

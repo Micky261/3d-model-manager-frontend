@@ -42,7 +42,7 @@ export class ImportElementComponent implements OnInit {
         if (input.value === "")
             return;
 
-        const id = ([ImportSource.Thingiverse, ImportSource.MyMiniFactory, ImportSource.Printables].includes(importer))
+        const id = ([ImportSource.Thingiverse, ImportSource.MyMiniFactory, ImportSource.Printables, ImportSource.MakerWorld].includes(importer))
             ? parseInt(input.value, 10)
             : input.value;
 
