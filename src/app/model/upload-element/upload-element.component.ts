@@ -74,7 +74,7 @@ export class UploadElementComponent implements OnInit {
         } else {
             const n = this.fileUploadInProgress.name;
             const p = this.progress.get(n);
-            this.progressReadable.set(n, ((p.current + 1) / p.total) * 100);
+            this.progressReadable.set(n, ((p.current) / p.total) * 100);
         }
     }
 
