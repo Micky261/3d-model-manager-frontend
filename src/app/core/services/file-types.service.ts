@@ -87,7 +87,7 @@ export class FileTypesService {
 
     getFileExtension(filename: string): string {
         const re = /(?:\.([^.]+))?$/;
-        return re.exec(filename)[1];
+        return re.exec(filename)[1].toLowerCase();
     }
 
     getApplication(extension: string): string {
