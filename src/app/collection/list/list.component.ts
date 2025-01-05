@@ -35,6 +35,8 @@ export class ListComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.collectionService.getCollections().subscribe(collections => this.collections = collections);
+
+        this.changeSorting();
     }
 
     ngOnChanges(/*changes: SimpleChanges*/): void {
