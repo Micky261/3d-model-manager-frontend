@@ -5,6 +5,7 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../core/auth/auth.service";
 import {ToastService} from "../core/error/toast.service";
+import {TitleService} from "../core/services/title.service";
 import {Session} from "../core/types/session.type";
 import {Login} from "../core/types/login.type";
 import {ServerMessage} from "../core/types/serverMessage.type";
@@ -23,12 +24,14 @@ export class LoginComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly authService: AuthService,
         private readonly toast: ToastService,
         private readonly route: ActivatedRoute,
         private readonly router: Router,
         private readonly cookieService: CookieService
     ) {
+        this.titleService.setTitle("Login", true);
     }
 
     ngOnInit(): void {

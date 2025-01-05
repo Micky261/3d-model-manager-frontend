@@ -4,6 +4,7 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
 import {ModelTagsService} from "../../core/services/model-tags.service";
 import {ModelService} from "../../core/services/model.service";
+import {TitleService} from "../../core/services/title.service";
 import {ModelWithTags} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
 
@@ -27,16 +28,21 @@ export class TagListComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly modelService: ModelService,
         private readonly modelTagsService: ModelTagsService,
         private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
+        this.titleService.setTitle("Tags", true);
     }
 
     ngOnInit(): void {
         const quTags = this.route.snapshot.queryParams.tags;
-        if (quTags) this.tagFilter = quTags.split(",");
+        if (quTags) {
+            this.tagFilter = quTags.split(",");
+            this.titleService.setTitle("TagsTitleWithName", true, {tags: this.tagFilter.join(", ")});
+        }
 
         this.modelService.getAllModelsWithTags().subscribe(models => {
             this.models = models;
@@ -67,7 +73,8 @@ export class TagListComponent implements OnInit {
         void this.router.navigate(
             ["/tags/list"],
             (this.tagFilter.length > 0) ? {queryParams: {tags: this.tagFilter.join(",")}} : {}
-        ).then(() => true);
+        ).then(() =>
+            this.titleService.setTitle("TagsTitleWithName", true, {tags: this.tagFilter.join(", ")}));
     }
 
     sortTags(/*event: Event*/) {

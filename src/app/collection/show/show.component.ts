@@ -7,6 +7,7 @@ import "../../../shared/string.extension";
 import {ToastrService} from "ngx-toastr";
 import {ToastService} from "../../core/error/toast.service";
 import {CollectionService} from "../../core/services/collection.service";
+import {TitleService} from "../../core/services/title.service";
 import {Collection} from "../../core/types/collection.type";
 import {Model} from "../../core/types/model.type";
 import {Sorting} from "../../core/types/sorting.type";
@@ -34,6 +35,7 @@ export class ShowComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly translator: L10nTranslationService,
         private readonly route: ActivatedRoute,
         private readonly router: Router,
@@ -42,13 +44,18 @@ export class ShowComponent implements OnInit {
         private readonly collectionService: CollectionService,
         readonly modalService: NgbModal
     ) {
+        this.titleService.setTitle("Collection", true);
     }
 
     ngOnInit(): void {
         this.collectionId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
 
         this.collectionService.getCollection(this.collectionId).subscribe({
-            next: (collection: Collection) => this.collection = collection,
+            next: (collection: Collection) => {
+                this.collection = collection;
+
+                this.titleService.setTitle("CollectionTitleWithName", true, {name: this.collection.name});
+            },
             error: () => void this.router.navigate(["static", "not-found"]).then(() => true)
         });
 

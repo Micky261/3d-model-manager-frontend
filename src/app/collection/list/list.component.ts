@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
 import {CollectionService} from "../../core/services/collection.service";
+import {TitleService} from "../../core/services/title.service";
 import {Collection} from "../../core/types/collection.type";
 import {Sorting} from "../../core/types/sorting.type";
 
@@ -28,9 +29,11 @@ export class ListComponent implements OnInit, OnChanges {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly collectionService: CollectionService,
         private readonly toast: ToastService,
     ) {
+        this.titleService.setTitle("Collections", true);
     }
 
     ngOnInit(): void {
