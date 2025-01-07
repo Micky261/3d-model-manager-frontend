@@ -10,7 +10,8 @@ import {Sorting} from "../../core/types/sorting.type";
 @Component({
     selector: "app-collection-list",
     templateUrl: "./list.component.html",
-    styleUrls: ["./list.component.css"]
+    styleUrls: ["./list.component.css"],
+    standalone: false
 })
 export class ListComponent implements OnInit, OnChanges {
     collections: Collection[];

@@ -7,7 +7,8 @@ import {Model} from "../../core/types/model.type";
 @Component({
     selector: "app-links-element",
     templateUrl: "./links-element.component.html",
-    styleUrls: ["./links-element.component.css"]
+    styleUrls: ["./links-element.component.css"],
+    standalone: false
 })
 export class LinksElementComponent implements OnInit {
     @Input() model: Model;

@@ -10,7 +10,8 @@ import {ServerMessage} from "../../core/types/serverMessage.type";
 @Component({
     selector: "app-upload-element",
     templateUrl: "./upload-element.component.html",
-    styleUrls: ["./upload-element.component.css"]
+    styleUrls: ["./upload-element.component.css"],
+    standalone: false
 })
 export class UploadElementComponent implements OnInit {
     modelTypesMap = modelTypesMap;

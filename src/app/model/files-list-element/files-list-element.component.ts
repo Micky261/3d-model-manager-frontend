@@ -13,7 +13,8 @@ import {DownloadHelper} from "../../core/utils/DownloadHelper";
 @Component({
     selector: "app-files-list-element",
     templateUrl: "./files-list-element.component.html",
-    styleUrls: ["./files-list-element.component.css"]
+    styleUrls: ["./files-list-element.component.css"],
+    standalone: false
 })
 export class FilesListElementComponent implements OnInit {
     modelTypesMap = modelTypesMap;

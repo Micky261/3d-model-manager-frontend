@@ -8,6 +8,7 @@ import path from "node:path";
 import {fileURLToPath} from "node:url";
 import js from "@eslint/js";
 import {FlatCompat} from "@eslint/eslintrc";
+import stylisticTs from '@stylistic/eslint-plugin-ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,7 @@ export default [{
         "prefer-arrow": preferArrow,
         "@typescript-eslint": typescriptEslint,
         html,
+        '@stylistic': stylisticTs
     },
 
     languageOptions: {
@@ -53,44 +55,18 @@ export default [{
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/adjacent-overload-signatures": "warn",
+        "@typescript-eslint/no-unsafe-function-type": "warn",
+        "@typescript-eslint/no-wrapper-object-types": "warn",
 
         "@typescript-eslint/array-type": ["warn", {
             default: "array",
         }],
 
-        "@typescript-eslint/ban-types": ["warn", {
-            types: {
-                Object: {
-                    message: "Avoid using the `Object` type. Did you mean `object`?",
-                },
-
-                Function: {
-                    message: "Avoid using the `Function` type. Prefer a specific function type, like `() => void`.",
-                },
-
-                Boolean: {
-                    message: "Avoid using the `Boolean` type. Did you mean `boolean`?",
-                },
-
-                Number: {
-                    message: "Avoid using the `Number` type. Did you mean `number`?",
-                },
-
-                String: {
-                    message: "Avoid using the `String` type. Did you mean `string`?",
-                },
-
-                Symbol: {
-                    message: "Avoid using the `Symbol` type. Did you mean `symbol`?",
-                },
-            },
-        }],
-
         "@typescript-eslint/consistent-type-assertions": "warn",
         "@typescript-eslint/dot-notation": "warn",
-        "@typescript-eslint/indent": "warn",
+        "@stylistic/indent": "warn",
 
-        "@typescript-eslint/member-delimiter-style": ["warn", {
+        "@stylistic/member-delimiter-style": ["warn", {
             multiline: {
                 delimiter: "semi",
                 requireLast: true,
@@ -115,12 +91,12 @@ export default [{
         "@typescript-eslint/no-parameter-properties": "off",
         "@typescript-eslint/no-unused-expressions": "warn",
         "@typescript-eslint/no-use-before-define": "off",
-        "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/no-require-imports": "error",
         "@typescript-eslint/prefer-for-of": "warn",
         "@typescript-eslint/prefer-function-type": "warn",
         "@typescript-eslint/prefer-namespace-keyword": "warn",
-        "@typescript-eslint/quotes": ["warn", "double"],
-        "@typescript-eslint/semi": ["warn", "always"],
+        "@stylistic/quotes": ["warn", "double"],
+        "@stylistic/semi": ["warn", "always"],
 
         "@typescript-eslint/triple-slash-reference": ["warn", {
             path: "always",

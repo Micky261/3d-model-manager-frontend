@@ -4,7 +4,8 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 @Component({
     selector: "app-not-found",
     templateUrl: "./not-found.component.html",
-    styleUrls: ["./not-found.component.css"]
+    styleUrls: ["./not-found.component.css"],
+    standalone: false
 })
 export class NotFoundComponent implements OnInit {
     constructor(

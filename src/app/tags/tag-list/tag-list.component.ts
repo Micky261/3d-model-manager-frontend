@@ -11,7 +11,8 @@ import {Sorting} from "../../core/types/sorting.type";
 @Component({
     selector: "app-tag-list",
     templateUrl: "./tag-list.component.html",
-    styleUrls: ["./tag-list.component.css"]
+    styleUrls: ["./tag-list.component.css"],
+    standalone: false
 })
 export class TagListComponent implements OnInit {
     sortings = Sorting.sortingsTags;

@@ -2,7 +2,7 @@ import {registerLocaleData} from "@angular/common";
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
-import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, inject, provideAppInitializer } from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -58,17 +58,14 @@ registerLocaleData(localeEn);
             useClass: AuthInterceptor,
             multi: true,
         },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initL10n,
-            deps: [L10nLoader],
-            multi: true
-        },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: () => () => Values("config/configuration.json"),
-            multi:true
-        },
+        provideAppInitializer(() => {
+            const initializerFn = (initL10n)(inject(L10nLoader));
+            return initializerFn();
+        }),
+        provideAppInitializer(() => {
+            const initializerFn = (() => () => Values("config/configuration.json"))();
+            return initializerFn();
+        }),
         CookieService,
         provideHttpClient(withInterceptorsFromDi())
     ]

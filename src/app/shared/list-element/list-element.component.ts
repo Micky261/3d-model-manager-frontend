@@ -12,7 +12,8 @@ import {Sorting} from "../../core/types/sorting.type";
 @Component({
     selector: "app-list-element",
     templateUrl: "./list-element.component.html",
-    styleUrls: ["./list-element.component.css"]
+    styleUrls: ["./list-element.component.css"],
+    standalone: false
 })
 export class ListElementComponent implements OnInit, OnChanges {
     @Input() sortable = false;

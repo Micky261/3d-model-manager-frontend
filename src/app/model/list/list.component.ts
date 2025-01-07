@@ -7,7 +7,8 @@ import {Model} from "../../core/types/model.type";
 @Component({
     selector: "app-list",
     templateUrl: "./list.component.html",
-    styleUrls: ["./list.component.css"]
+    styleUrls: ["./list.component.css"],
+    standalone: false
 })
 export class ListComponent implements OnInit {
     models: Model[];

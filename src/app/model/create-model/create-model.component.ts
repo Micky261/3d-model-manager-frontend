@@ -5,7 +5,8 @@ import {TitleService} from "../../core/services/title.service";
 @Component({
     selector: "app-create-model",
     templateUrl: "./create-model.component.html",
-    styleUrls: ["./create-model.component.css"]
+    styleUrls: ["./create-model.component.css"],
+    standalone: false
 })
 export class CreateModelComponent implements OnInit {
     creationMethod: string;

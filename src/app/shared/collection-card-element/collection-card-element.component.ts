@@ -7,7 +7,8 @@ import {Collection} from "../../core/types/collection.type";
 @Component({
     selector: "app-collection-card-element",
     templateUrl: "./collection-card-element.component.html",
-    styleUrls: ["./collection-card-element.component.css"]
+    styleUrls: ["./collection-card-element.component.css"],
+    standalone: false
 })
 export class CollectionCardElementComponent implements OnInit {
     @Input() collection: Collection;

@@ -8,7 +8,8 @@ import {ModelTag} from "../../core/types/model-tag.type";
 @Component({
     selector: "app-tags-element",
     templateUrl: "./tags-element.component.html",
-    styleUrls: ["./tags-element.component.css"]
+    styleUrls: ["./tags-element.component.css"],
+    standalone: false
 })
 export class TagsElementComponent implements OnInit {
     modelTags: ModelTag[];

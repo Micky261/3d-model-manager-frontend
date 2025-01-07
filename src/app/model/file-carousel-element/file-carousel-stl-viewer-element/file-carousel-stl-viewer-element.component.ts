@@ -8,7 +8,8 @@ import {AuthService} from "../../../core/auth/auth.service";
 @Component({
     selector: "file-carousel-stl-viewer-element",
     templateUrl: "./file-carousel-stl-viewer-element.component.html",
-    styleUrls: ["./file-carousel-stl-viewer-element.component.css"]
+    styleUrls: ["./file-carousel-stl-viewer-element.component.css"],
+    standalone: false
 })
 export class FileCarouselStlViewerElementComponent implements OnInit {
     threeRenderer: WebGLRenderer = new WebGLRenderer({alpha: true, antialias: true});

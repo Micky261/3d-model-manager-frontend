@@ -8,7 +8,8 @@ import {Model} from "../../core/types/model.type";
 @Component({
     selector: "app-search-models",
     templateUrl: "./search-models.component.html",
-    styleUrls: ["./search-models.component.css"]
+    styleUrls: ["./search-models.component.css"],
+    standalone: false
 })
 export class SearchModelsComponent implements OnInit {
     searchTerm: string;

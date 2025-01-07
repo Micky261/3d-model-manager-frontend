@@ -40,7 +40,10 @@ export class CollectionService {
     }
 
     createRelation(id: number, modelId: number): Observable<Collection> {
-        return this.httpClient.post<Collection>(`${this.environment.apiUrl()}/collection/relation/${encodeURIComponent(id)}/${encodeURIComponent(modelId)}`, null);
+        return this.httpClient.post<Collection>(
+            `${this.environment.apiUrl()}/collection/relation/${encodeURIComponent(id)}/${encodeURIComponent(modelId)}`,
+            null
+        );
     }
 
     deleteRelation(id: number, modelId: number): Observable<any> {

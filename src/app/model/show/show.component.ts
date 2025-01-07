@@ -16,7 +16,8 @@ import {DownloadHelper} from "../../core/utils/DownloadHelper";
 @Component({
     selector: "app-show",
     templateUrl: "./show.component.html",
-    styleUrls: ["./show.component.css"]
+    styleUrls: ["./show.component.css"],
+    standalone: false
 })
 export class ShowComponent implements OnInit {
     EditModes = EditModes;

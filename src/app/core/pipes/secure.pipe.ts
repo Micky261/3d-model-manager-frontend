@@ -5,7 +5,8 @@ import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Pipe({
-    name: "secure"
+    name: "secure",
+    standalone: false
 })
 export class SecurePipe implements PipeTransform {
     constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
