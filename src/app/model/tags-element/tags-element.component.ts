@@ -1,5 +1,5 @@
 import {Component, Inject, Input, OnInit, ViewChild} from "@angular/core";
-import {NgSelectComponent} from "@ng-select/ng-select";
+import {NgOption, NgSelectComponent} from "@ng-select/ng-select";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelTagsService} from "../../core/services/model-tags.service";
@@ -71,5 +71,12 @@ export class TagsElementComponent implements OnInit {
             },
             error: () => this.toast.showBackendError("TagCouldNotBeSet")
         });
+    }
+
+    keyDown(key: KeyboardEvent, searchTerm: string, items: NgOption[]) {
+        if (key.key === "Enter" && items.length === 0) {
+            this.setTagOnServer(searchTerm);
+            this.selectTag.close();
+        }
     }
 }
