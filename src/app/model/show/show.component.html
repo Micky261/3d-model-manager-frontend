@@ -146,8 +146,10 @@
                         [class.active]="model.favorite"
                         (click)="changeFavorite()">
                     <span class="fa-heart me-2"
-                          [class.far]="!model.favorite" [class.fas]="model.favorite"
-                          [class.text-primary]="!model.favorite" [class.text-white]="model.favorite"
+                          [class.far]="!model.favorite"
+                          [class.fas]="model.favorite"
+                          [class.text-primary]="!model.favorite"
+                          [class.text-white]="model.favorite"
                           [class.bg-primary]="model.favorite"></span>
                     {{ "Favorite" | translate:locale.language }}
                 </button>

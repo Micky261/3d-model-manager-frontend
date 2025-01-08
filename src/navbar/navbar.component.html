@@ -103,10 +103,29 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item" *ngIf="authService.isLoggedIn()">
-                    <a class="nav-link" href="javascript:" (click)="logout()">
-                        <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                <li class="nav-item dropdown" ngbDropdown placement="bottom-end" *ngIf="authService.isLoggedIn()">
+                    <a class="nav-link dropdown-toggle"
+                       href="javascript:"
+                       id="navbarProfileDropDown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       ngbDropdownToggle>
+                        <span class="fas fa-circle-user"></span> {{"Profile" | translate:locale.language}}
                     </a>
+                    <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarProfileDropDown">
+                        <li>
+                            <button class="dropdown-item" ngbDropdownItem routerLink="profile">
+                                <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" ngbDropdownItem (click)="logout()">
+                                <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                            </button>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
