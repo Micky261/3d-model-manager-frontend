@@ -11,7 +11,22 @@ import {Model} from "../../core/types/model.type";
     standalone: false
 })
 export class ProfileShowComponent implements OnInit {
-    favorites: Model[] ;
+    favorites: Model[];
+    statistics = {
+        models: 10,Authors:16,Tags:78,Collections:79,
+        favorites: 16,
+        modelsImported: 1,Images:9,DModels:15,
+        ModelsInCollections: 12,
+        TotalFiles: 12,Links:15,
+        MostCommonImportSource: 12,
+        LargestFile: 12,
+        MostFrequentAuthor: 12,StorageSpace:"488 MB",
+        ModelWithMostFiles: 12,
+        ModelWithMost3DModels: 12,
+        FirstModel: 12,
+        LatestModel: 12,
+        LastEditedModel: 12,
+    };
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,

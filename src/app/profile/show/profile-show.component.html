@@ -6,7 +6,117 @@
     </ol>
 </nav>
 
-<div class="container-fluid">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ "Profile" | translate:locale.language }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2>{{ "Statistics" | translate:locale.language }}</h2>
+
+            <div class="row">
+                <div class="col-6 table-responsive">
+                    <table class="table table-striped align-middle">
+                        <tbody>
+                        <tr>
+                            <td class="col-6">{{ "Models" | translate:locale.language }}</td>
+                            <td class="col-6">{{
+                                    "statistics.OfWhichImported" | translate:locale.language:{
+                                        count: statistics.models,
+                                        importedCount: statistics.modelsImported
+                                    }
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Favorites" | translate:locale.language }}</td>
+                            <td>{{ statistics.favorites }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Authors" | translate:locale.language }}</td>
+                            <td>{{ statistics.Authors }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Tags" | translate:locale.language }}</td>
+                            <td>{{ statistics.Tags }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Collections" | translate:locale.language }}</td>
+                            <td>{{ statistics.Collections }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "ModelsInCollections" | translate:locale.language }}</td>
+                            <td>{{ statistics.ModelsInCollections }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Images" | translate:locale.language }}</td>
+                            <td>{{ statistics.Images }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "3DModels" | translate:locale.language }}</td>
+                            <td>{{ statistics.DModels }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "TotalFiles" | translate:locale.language }}</td>
+                            <td>{{ statistics.TotalFiles }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "Links" | translate:locale.language }}</td>
+                            <td>{{ statistics.Links }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "StorageSpace" | translate:locale.language }}</td>
+                            <td>{{ statistics.StorageSpace }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <table class="table table-striped align-middle">
+                        <tbody>
+                        <tr>
+                            <td class="col-6">{{ "statistics.MostCommonImportSource" | translate:locale.language }}</td>
+                            <td class="col-6">{{ statistics.MostCommonImportSource }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.LargestFile" | translate:locale.language }}</td>
+                            <td>{{ statistics.LargestFile }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.MostFrequentAuthor" | translate:locale.language }}</td>
+                            <td>{{ statistics.MostFrequentAuthor }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.ModelWithMostFiles" | translate:locale.language }}</td>
+                            <td>{{ statistics.ModelWithMostFiles }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.ModelWithMost3DModels" | translate:locale.language }}</td>
+                            <td>{{ statistics.ModelWithMost3DModels }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.FirstModel" | translate:locale.language }}</td>
+                            <td>{{ statistics.FirstModel }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.LatestModel" | translate:locale.language }}</td>
+                            <td>{{ statistics.LatestModel }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ "statistics.LastEditedModel" | translate:locale.language }}</td>
+                            <td>{{ statistics.LastEditedModel }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12">
             <app-list-element

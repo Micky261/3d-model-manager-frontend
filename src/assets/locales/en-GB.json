@@ -1,9 +1,11 @@
 {
     "3DModelManager": "3D Model Manager",
+    "3DModels": "3D models",
     "Abort": "Abort",
     "Actions": "Actions",
     "Add": "Add",
     "Author": "Author",
+    "Authors": "Authors",
     "ChangeLocale": "Change locale",
     "ChangesAutomaticallySaved": "Changes automatically saved.",
     "CollapseDescription": "Collapse description",
@@ -111,6 +113,7 @@
     "SketchfabImportInfoText": "The Sketchfab ID can be found in the URL, e.g. the URL https://sketchfab.com/3d-models/k9-doctors-who-dog-746aff4a91c246329e64dbd2f0f65313 contains the ID '746aff4a91c246329e64dbd2f0f65313'.<br />If the model creator does not allow downloading, this import cannot download any 3D model, it will import metadata and images.<br />If access is disabled by the administrator downloads of 3D models are also not possible.",
     "Sorting": "Sort",
     "StartImport": "Start import",
+    "StorageSpace": "Storage space",
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
     "TagsTitleWithName": "Tags: {{tags}}",
@@ -168,6 +171,19 @@
         "NameDesc": "Name (Z→A)",
         "TagAsc": "Tag (A→Z)",
         "TagDesc": "Tag (Z→A)"
+    },
+    "statistics": {
+        "FirstModel": "First model",
+        "LargestFile": "Largest file",
+        "LastEditedModel": "Last edited model",
+        "LatestModel": "Newest model",
+        "ModelWithMost3DModels": "Model with most 3D models",
+        "ModelWithMostFiles": "Model with most files",
+        "ModelsInCollections": "Models in collections",
+        "MostCommonImportSource": "Most common import sources",
+        "MostFrequentAuthor": "Most frequent author",
+        "OfWhichImported": "{{count}} (of which {{importedCount}} is imported)",
+        "TotalFiles": "Total files"
     },
     "success": {
         "CollectionCreated": "Collection \"{{name}}\" created successfully.",
