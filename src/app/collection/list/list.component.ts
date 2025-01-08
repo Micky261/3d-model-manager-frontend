@@ -1,4 +1,4 @@
-import {Component, Inject, OnChanges, OnInit} from "@angular/core";
+import {Component, Inject, Input, OnChanges, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
@@ -20,6 +20,9 @@ export class ListComponent implements OnInit, OnChanges {
     sorting: string = Sorting.defaultCollection;
     sortDesc: boolean;
     sortField: string;
+
+    page = 1; // Pages are 1-based
+    pageSize = 24;
 
     collapseForm = true;
 
