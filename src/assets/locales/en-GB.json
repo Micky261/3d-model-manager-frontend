@@ -148,6 +148,7 @@
         }
     },
     "filetype": {
+        "automatic": "(detect automatically)",
         "diagram": "Diagram",
         "document": "Document",
         "image": "Image",

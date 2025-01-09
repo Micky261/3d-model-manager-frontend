@@ -2,10 +2,11 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
-import {ModelType, modelTypesMap} from "../../core/enums/model-types.enum";
+import {modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ServerMessage} from "../../core/types/serverMessage.type";
+import {Utils} from "../../core/utils/Utils";
 
 @Component({
     selector: "app-upload-element",
@@ -18,8 +19,8 @@ export class UploadElementComponent implements OnInit {
 
     @Input() modelId: number;
 
-    files: { name: string; type: string }[] = [];
-    selectedFileType: string = modelTypesMap.get(ModelType.Model);
+    files: { name: string; type: string; size: string }[] = [];
+    selectedFileType: string = "automatic";
     forceOverwrite: boolean = false;
 
     progress: Map<string, { current: number; total: number }> = new Map();
@@ -56,7 +57,13 @@ export class UploadElementComponent implements OnInit {
         }
 
         for (let i = 0; i < files.length; i++) {
-            this.files.push({name: files.item(i).name, type: this.selectedFileType});
+            this.files.push(
+                {
+                    name: files.item(i).name,
+                    type: this.selectedFileType,
+                    size: Utils.humanReadableSize(files.item(i).size)
+                }
+            );
             this.filesToUploadList.push({file: files.item(i), type: this.selectedFileType});
             this.progressReadable.set(files.item(i).name, 0);
         }

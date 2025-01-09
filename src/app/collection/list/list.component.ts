@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnChanges, OnInit} from "@angular/core";
+import {Component, Inject, OnChanges, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
