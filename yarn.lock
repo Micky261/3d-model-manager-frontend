@@ -6903,15 +6903,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nxt-flags@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "nxt-flags@npm:19.0.0"
+"nxt-flags@npm:^19.0.4":
+  version: 19.0.4
+  resolution: "nxt-flags@npm:19.0.4"
   dependencies:
     tslib: "npm:^2.8.1"
   peerDependencies:
     "@angular/common": ^19.0.0
     "@angular/core": ^19.0.0
-  checksum: 10/b34fa7fbe28f1fac57e962502047365ef197fe704637a5f471f244c56464835412641febd546725b56033eeaa1be0566f91e29c8331bd26b0c75caa181e494df
+  checksum: 10/c8238957d914dd0238b097a172bae673f9b0376b19c97f92e6047403f33f8800f7583610228f753b951ca7c98054056dd2c8a7e785dbe9009625b905ab012169
   languageName: node
   linkType: hard
 
@@ -8265,7 +8265,7 @@ __metadata:
     ngx-markdown: "npm:^19.0.0"
     ngx-toastr: "npm:^19.0.0"
     ngx-value: "npm:^1.0.5"
-    nxt-flags: "npm:^19.0.0"
+    nxt-flags: "npm:^19.0.4"
     prismjs: "npm:1.29.0"
     rxjs: "npm:^7.8.1"
     three: "npm:~0.166.1"
