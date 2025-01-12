@@ -32,7 +32,7 @@
                 <div>
                     {{ file.name }}
                     <span class="text-secondary">
-                        {{ "filetype." + file.type | translate:locale.language }}, {{ file.size }}
+                        {{ "filetype." + file.type | translate:locale.language }}, {{ file.size| filesize }}
                     </span>
                 </div>
                 <div class="progress" style="height: 3px">

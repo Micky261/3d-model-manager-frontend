@@ -6,7 +6,6 @@ import {modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ServerMessage} from "../../core/types/serverMessage.type";
-import {Utils} from "../../core/utils/Utils";
 
 @Component({
     selector: "app-upload-element",
@@ -19,7 +18,7 @@ export class UploadElementComponent implements OnInit {
 
     @Input() modelId: number;
 
-    files: { name: string; type: string; size: string }[] = [];
+    files: { name: string; type: string; size: number }[] = [];
     selectedFileType: string = "automatic";
     forceOverwrite: boolean = false;
 
@@ -61,7 +60,7 @@ export class UploadElementComponent implements OnInit {
                 {
                     name: files.item(i).name,
                     type: this.selectedFileType,
-                    size: Utils.humanReadableSize(files.item(i).size)
+                    size: files.item(i).size
                 }
             );
             this.filesToUploadList.push({file: files.item(i), type: this.selectedFileType});
