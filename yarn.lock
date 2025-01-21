@@ -293,17 +293,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser-dynamic@npm:^19.0.5":
-  version: 19.0.5
-  resolution: "@angular/platform-browser-dynamic@npm:19.0.5"
+"@angular/platform-browser-dynamic@npm:^19.1.2":
+  version: 19.1.2
+  resolution: "@angular/platform-browser-dynamic@npm:19.1.2"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": 19.0.5
-    "@angular/compiler": 19.0.5
-    "@angular/core": 19.0.5
-    "@angular/platform-browser": 19.0.5
-  checksum: 10/a7356d359a4c0f9cd32efff209206a13d15484748823f3141c3486df999f6f7b82d019d7d66c9a4735ba0882c49ce9373bfd359ebadfa9b1431521a7e317651b
+    "@angular/common": 19.1.2
+    "@angular/compiler": 19.1.2
+    "@angular/core": 19.1.2
+    "@angular/platform-browser": 19.1.2
+  checksum: 10/feefdb4e82fccdbb7ed18333deb25ff8bc75e2dab5cd14e5e48d2eeb3ba9e1abb707d98ee69787f4ddb45d516a075cca53f95734be137fadb749a8ee247268cc
   languageName: node
   linkType: hard
 
@@ -8233,7 +8233,7 @@ __metadata:
     "@angular/forms": "npm:^19.0.5"
     "@angular/localize": "npm:^19.0.5"
     "@angular/platform-browser": "npm:^19.0.5"
-    "@angular/platform-browser-dynamic": "npm:^19.0.5"
+    "@angular/platform-browser-dynamic": "npm:^19.1.2"
     "@angular/router": "npm:^19.0.5"
     "@fortawesome/fontawesome-free": "npm:^6.7.2"
     "@ng-bootstrap/ng-bootstrap": "npm:^18.0.0"
