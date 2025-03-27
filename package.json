@@ -19,7 +19,7 @@
         "@angular/forms": "^19.0.5",
         "@angular/localize": "^19.0.5",
         "@angular/platform-browser": "^19.0.5",
-        "@angular/platform-browser-dynamic": "^19.0.5",
+        "@angular/platform-browser-dynamic": "^19.2.4",
         "@angular/router": "^19.0.5",
         "@fortawesome/fontawesome-free": "^6.7.2",
         "@ng-bootstrap/ng-bootstrap": "^18.0.0",
