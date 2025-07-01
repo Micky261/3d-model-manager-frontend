@@ -15,21 +15,99 @@
         </button>
     </div>
 </div>
-<table class="table table-striped">
+<table class="table table-striped align-middle">
     <thead>
     <tr>
-        <th class="col-5">{{ "Filename" | translate:locale.language }}</th>
-        <th class="col-2">{{ "FileType" | translate:locale.language }}</th>
-        <th class="col-1">{{ "Position" | translate:locale.language }}</th>
-        <th class="col-1">{{ "FileSize" | translate:locale.language }}</th>
-        <th class="col-1">{{ "CreatedAt" | translate:locale.language }}</th>
-        <th class="col-1">{{ "UpdatedAt" | translate:locale.language }}</th>
+        <th class="col-1 text-center"><input (click)="checkAll(checkAllCheckbox)" type="checkbox" #checkAllCheckbox /></th>
+        <th class="col-4">
+            <span (click)="changeSortFields('filename')" class="cursor-pointer">
+                {{"Filename" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('filename')"
+                  *ngIf="sortFields.indexOf('filename') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('filename')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('filename')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('filename') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('filename') + 1}}
+            </span>
+        </th>
+        <th class="col-2">
+            <span (click)="changeSortFields('type')" class="cursor-pointer">
+                {{"FileType" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('type')"
+                  *ngIf="sortFields.indexOf('type') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('type')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('type')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('type') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('type') + 1}}
+            </span>
+        </th>
+        <th class="col-1">
+            <span (click)="changeSortFields('position')" class="cursor-pointer">
+                {{"Position" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('position')"
+                  *ngIf="sortFields.indexOf('position') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('position')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('position')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('position') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('position') + 1}}
+            </span>
+        </th>
+        <th class="col-1">
+            <span (click)="changeSortFields('size')" class="cursor-pointer">
+                {{"FileSize" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('size')"
+                  *ngIf="sortFields.indexOf('size') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('size')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('size')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('size') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('size') + 1}}
+            </span>
+        </th>
+        <th class="col-1">
+            <span (click)="changeSortFields('createdAt')" class="cursor-pointer">
+                {{"CreatedAt" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('createdAt')"
+                  *ngIf="sortFields.indexOf('createdAt') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('createdAt')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('createdAt')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('createdAt') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('createdAt') + 1}}
+            </span>
+        </th>
+        <th class="col-1">
+            <span (click)="changeSortFields('updatedAt')" class="cursor-pointer">
+                {{"UpdatedAt" | translate:locale.language}}
+            </span>
+            <span (click)="changeSortDir('updatedAt')"
+                  *ngIf="sortFields.indexOf('updatedAt') >= 0"
+                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('updatedAt')]"
+                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('updatedAt')]"
+                  class="cursor-pointer fa-solid"></span>
+            <span *ngIf="sortFields.indexOf('updatedAt') >= 0" class="badge text-bg-secondary ms-2">
+                {{sortFields.indexOf('updatedAt') + 1}}
+            </span>
+        </th>
         <th class="col-1">{{ "Actions" | translate:locale.language }}</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let file of files | objectArraySort:['type','position','filename']">
-        <td class="align-middle" style="word-break:break-all;">
+    <tr *ngFor="let file of files | objectArraySort:sortFields:sortDirections">
+        <td class="cursor-pointer text-center">
+            <input (change)="onChangeSelect(file, fileCheckbox)"
+                   [checked]="selectedFiles.includes(file)"
+                   type="checkbox" #fileCheckbox />
+        </td>
+        <td style="word-break:break-all;">
             <label for="fileName"
                    class="visually-hidden form-label">{{ "Filename" | translate:locale.language }}</label>
             <input id="fileName" type="text"
@@ -37,7 +115,7 @@
                    [(ngModel)]="file.filename"
                    [value]="file.filename">
         </td>
-        <td class="align-middle">
+        <td>
             <label for="fileType"
                    class="visually-hidden form-label">{{ "FileType" | translate:locale.language }}</label>
             <select id="fileType" class="form-select"
@@ -48,7 +126,7 @@
                 </option>
             </select>
         </td>
-        <td class="align-middle">
+        <td>
             <label for="filePosition"
                    class="visually-hidden form-label">{{ "FilePosition" | translate:locale.language }}</label>
             <input id="filePosition" type="number" min="1" max="999999" step="1"
@@ -56,16 +134,16 @@
                    [(ngModel)]="file.position"
                    [value]="file.position">
         </td>
-        <td class="align-middle small">
+        <td class="small">
             {{ file.size | filesize }}
         </td>
-        <td class="align-middle small">
+        <td class="small">
             {{ file.createdAt | date:'medium':undefined:locale.language }}
         </td>
-        <td class="align-middle small">
+        <td class="small">
             {{ file.updatedAt | date:'medium':undefined:locale.language }}
         </td>
-        <td class="align-middle">
+        <td>
             <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-primary"
                         (click)="downloadFile(file)">
