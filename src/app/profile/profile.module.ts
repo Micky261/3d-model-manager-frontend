@@ -8,6 +8,10 @@ import {RouterModule} from "@angular/router";
         CommonModule,
         RouterModule.forChild([
             {
+                path: "",
+                loadChildren: () => import("./show/profile-show.module").then(m => m.ProfileShowModule)
+            },
+            {
                 path: "accounts",
                 loadChildren: () => import("./accounts/accounts.module").then(m => m.AccountsModule)
             },

@@ -8,7 +8,8 @@ import {Model, ModelWithTags} from "../../core/types/model.type";
 @Component({
     selector: "app-model-card-element",
     templateUrl: "./model-card-element.component.html",
-    styleUrls: ["./model-card-element.component.css"]
+    styleUrls: ["./model-card-element.component.css"],
+    standalone: false
 })
 export class ModelCardElementComponent implements OnInit {
     @Input() model: (Model | ModelWithTags);

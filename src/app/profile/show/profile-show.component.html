@@ -1,0 +1,17 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">
+            {{ "Home" | translate:locale.language }}
+        </li>
+    </ol>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <app-list-element
+                [models]="favorites"
+                header="Favorites"></app-list-element>
+        </div>
+    </div>
+</div>

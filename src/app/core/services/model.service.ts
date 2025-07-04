@@ -51,4 +51,8 @@ export class ModelService {
     getRandomModels(num: number): Observable<Model[]> {
         return this.httpClient.get<Model[]>(`${this.environment.apiUrl()}/models/random/${encodeURIComponent(String(num))}`);
     }
+
+    getFavorites(): Observable<Model[]> {
+        return this.httpClient.get<Model[]>(`${this.environment.apiUrl()}/models/favorites`);
+    }
 }

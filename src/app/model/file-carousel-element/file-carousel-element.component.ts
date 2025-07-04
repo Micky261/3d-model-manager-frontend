@@ -11,7 +11,8 @@ import {ModelFile} from "../../core/types/model-file.type";
 @Component({
     selector: "file-carousel-element",
     templateUrl: "./file-carousel-element.component.html",
-    styleUrls: ["./file-carousel-element.component.css"]
+    styleUrls: ["./file-carousel-element.component.css"],
+    standalone: false
 })
 export class FileCarouselElementComponent implements OnInit {
     @Input() modelId: number;

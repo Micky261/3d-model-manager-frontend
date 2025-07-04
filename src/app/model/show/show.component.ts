@@ -9,13 +9,15 @@ import {EditModes} from "../../core/enums/edit-modes.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ModelService} from "../../core/services/model.service";
+import {TitleService} from "../../core/services/title.service";
 import {Model} from "../../core/types/model.type";
 import {DownloadHelper} from "../../core/utils/DownloadHelper";
 
 @Component({
     selector: "app-show",
     templateUrl: "./show.component.html",
-    styleUrls: ["./show.component.css"]
+    styleUrls: ["./show.component.css"],
+    standalone: false
 })
 export class ShowComponent implements OnInit {
     EditModes = EditModes;
@@ -36,6 +38,7 @@ export class ShowComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly translator: L10nTranslationService,
         private readonly toast: ToastService,
         private readonly toastr: ToastrService,
@@ -45,13 +48,17 @@ export class ShowComponent implements OnInit {
         private readonly router: Router,
         readonly modalService: NgbModal
     ) {
+        this.titleService.setTitle("Model", true);
     }
 
     ngOnInit(): void {
         this.modelId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
 
         this.modelService.getModel(this.modelId).subscribe({
-            next: (m: Model) => this.model = m,
+            next: (m: Model) => {
+                this.model = m;
+                this.titleService.setTitle("ModelTitleWithName", true, {name: this.model.name});
+            },
             error: () => void this.router.navigate(["static", "not-found"]).then(() => true)
         });
     }

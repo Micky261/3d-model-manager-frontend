@@ -2,12 +2,14 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {SearchService} from "../../core/services/search.service";
+import {TitleService} from "../../core/services/title.service";
 import {Model} from "../../core/types/model.type";
 
 @Component({
     selector: "app-search-models",
     templateUrl: "./search-models.component.html",
-    styleUrls: ["./search-models.component.css"]
+    styleUrls: ["./search-models.component.css"],
+    standalone: false
 })
 export class SearchModelsComponent implements OnInit {
     searchTerm: string;
@@ -17,11 +19,16 @@ export class SearchModelsComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
+        private readonly titleService: TitleService,
         private readonly searchService: SearchService,
         private readonly route: ActivatedRoute,
         private readonly translate: L10nTranslationService
     ) {
-        this.route.queryParams.subscribe((params: Params) => this.search(params.term as string));
+        this.route.queryParams.subscribe((params: Params) => {
+            this.search(params.term as string);
+
+            this.titleService.setTitle("SearchTitle", true, {term: params.term});
+        });
     }
 
     ngOnInit(): void {

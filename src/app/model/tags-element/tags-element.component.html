@@ -10,6 +10,7 @@
                    [items]="tagsWithCount | objectArraySort:'tag':false"
                    (change)="setTag($event)"
                    (search)="saveSearch($event)"
+                   (keydown)="keyDown($event, selectTag.searchTerm, selectTag.viewPortItems)"
                    #selectTag>
             <ng-template ng-option-tmp let-item="item">
                 {{ item.tag | pascalCase }} <span class="text-sm-start">({{ item.count }})</span>

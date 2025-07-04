@@ -1,7 +1,8 @@
 import {Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({
-    name: "pascalCase"
+    name: "pascalCase",
+    standalone: false
 })
 export class PascalCasePipe implements PipeTransform {
     transform(s: string): string {

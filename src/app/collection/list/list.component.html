@@ -86,9 +86,20 @@
     <div
         class="row row-cols-1 justify-content-center row-cols-sm-3 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 row-cols-xxl-8">
         <div class="col my-1 d-flex align-items-stretch"
-             *ngFor="let collection of collections | objectArraySort:sortField:sortDesc">
+             *ngFor="let collection of collections | objectArraySort:sortField:sortDesc | slice:((page-1)*pageSize):(page*pageSize)">
             <app-collection-card-element class="card text-center w-100"
                                          [collection]="collection"></app-collection-card-element>
+        </div>
+    </div>
+
+    <div class="row mt-2" *ngIf="collections && collections.length > 0">
+        <div class="col d-flex justify-content-center">
+            <ngb-pagination [collectionSize]="collections.length"
+                            [(page)]="page"
+                            [maxSize]="10"
+                            [pageSize]="pageSize"
+                            [ellipses]="false"
+                            [boundaryLinks]="true"></ngb-pagination>
         </div>
     </div>
 </div>

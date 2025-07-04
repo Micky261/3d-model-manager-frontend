@@ -116,6 +116,11 @@
                     </a>
                     <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarProfileDropDown">
                         <li>
+                            <button class="dropdown-item" ngbDropdownItem routerLink="profile">
+                                <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
+                            </button>
+                        </li>
+                        <li>
                             <button class="dropdown-item" ngbDropdownItem routerLink="profile/accounts">
                                 <span class="fas fa-users-gear"></span> {{"ManageAccounts" | translate:locale.language}}
                             </button>

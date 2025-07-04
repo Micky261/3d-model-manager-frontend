@@ -9,7 +9,8 @@ import {Model} from "../../../core/types/model.type";
 @Component({
     selector: "app-create-form-element",
     templateUrl: "./create-form-element.component.html",
-    styleUrls: ["./create-form-element.component.css"]
+    styleUrls: ["./create-form-element.component.css"],
+    standalone: false
 })
 export class CreateFormElementComponent implements OnInit {
     uploadForm = new FormBuilder().group({

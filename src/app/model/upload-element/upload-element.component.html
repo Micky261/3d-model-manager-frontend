@@ -1,13 +1,16 @@
 <div class="m-2">
     <div class="mb-2">
         <div class="form-check">
-        <input class="form-check-input" type="checkbox" [(ngModel)]="forceOverwrite" id="forceOverwrite">
-        <label class="form-check-label" for="forceOverwrite">
-            {{"ForceOverwriteWithUploadedFile" | translate:locale.language}}
-        </label>
-    </div>
+            <input class="form-check-input" type="checkbox" [(ngModel)]="forceOverwrite" id="forceOverwrite">
+            <label class="form-check-label" for="forceOverwrite">
+                {{ "ForceOverwriteWithUploadedFile" | translate:locale.language }}
+            </label>
+        </div>
     </div>
     <ng-select [(ngModel)]="selectedFileType" [searchable]="false" [clearable]="false" class="mb-2">
+        <ng-option value="automatic">
+            {{ "filetype.automatic" | translate:locale.language }}
+        </ng-option>
         <ng-option *ngFor="let type of modelTypesMap.values()"
                    [value]="type">{{ "filetype." + type | translate:locale.language }}
         </ng-option>
@@ -19,7 +22,7 @@
         <span class="fas fa-cloud-upload-alt" style="font-size: 3rem;"></span>
         <input hidden type="file" #fileInput (change)="queueFiles($event, 'input')" multiple>
     </div>
-    <div class="mt-2" style="max-height: 200px; overflow-y: auto;"
+    <div class="mt-2" style="max-height: 300px; overflow-y: auto;"
          *ngIf="this.files.length > 0">
         <div class="input-group mt-1" *ngFor="let file of this.files">
             <div class="form-control" style="font-size: 0.8rem; overflow-x: hidden;"
@@ -28,6 +31,9 @@
                  container="body">
                 <div>
                     {{ file.name }}
+                    <span class="text-secondary">
+                        {{ "filetype." + file.type | translate:locale.language }}, {{ file.size| filesize }}
+                    </span>
                 </div>
                 <div class="progress" style="height: 3px">
                     <div class="progress-bar bg-success"

@@ -5,23 +5,23 @@ import {TitleService} from "../../core/services/title.service";
 import {Model} from "../../core/types/model.type";
 
 @Component({
-    selector: "app-list",
-    templateUrl: "./list.component.html",
-    styleUrls: ["./list.component.css"],
+    selector: "app-profile-show",
+    templateUrl: "./profile-show.component.html",
+    styleUrls: ["./profile-show.component.css"],
     standalone: false
 })
-export class ListComponent implements OnInit {
-    models: Model[];
+export class ProfileShowComponent implements OnInit {
+    favorites: Model[] ;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly titleService: TitleService,
         private readonly modelService: ModelService
     ) {
-        this.titleService.setTitle("Models", true);
+        this.titleService.setTitle("Profile", true);
     }
 
     ngOnInit(): void {
-        this.modelService.getAllModels().subscribe(m => this.models = m);
+        this.modelService.getFavorites().subscribe(models => this.favorites = models);
     }
 }

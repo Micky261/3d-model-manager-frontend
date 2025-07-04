@@ -8,7 +8,8 @@ import {Collection} from "../../core/types/collection.type";
 @Component({
     selector: "app-collections-element",
     templateUrl: "./collections-element.component.html",
-    styleUrls: ["./collections-element.component.css"]
+    styleUrls: ["./collections-element.component.css"],
+    standalone: false
 })
 export class CollectionsElementComponent implements OnInit {
     collections: Collection[];

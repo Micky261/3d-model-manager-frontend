@@ -2,7 +2,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../shared/array.extension";
-import {ModelType, modelTypesMap} from "../../core/enums/model-types.enum";
+import {modelTypesMap} from "../../core/enums/model-types.enum";
 import {ToastService} from "../../core/error/toast.service";
 import {ModelFilesService} from "../../core/services/model-files.service";
 import {ServerMessage} from "../../core/types/serverMessage.type";
@@ -10,15 +10,16 @@ import {ServerMessage} from "../../core/types/serverMessage.type";
 @Component({
     selector: "app-upload-element",
     templateUrl: "./upload-element.component.html",
-    styleUrls: ["./upload-element.component.css"]
+    styleUrls: ["./upload-element.component.css"],
+    standalone: false
 })
 export class UploadElementComponent implements OnInit {
     modelTypesMap = modelTypesMap;
 
     @Input() modelId: number;
 
-    files: { name: string; type: string }[] = [];
-    selectedFileType: string = modelTypesMap.get(ModelType.Model);
+    files: { name: string; type: string; size: number }[] = [];
+    selectedFileType: string = "automatic";
     forceOverwrite: boolean = false;
 
     progress: Map<string, { current: number; total: number }> = new Map();
@@ -55,7 +56,13 @@ export class UploadElementComponent implements OnInit {
         }
 
         for (let i = 0; i < files.length; i++) {
-            this.files.push({name: files.item(i).name, type: this.selectedFileType});
+            this.files.push(
+                {
+                    name: files.item(i).name,
+                    type: this.selectedFileType,
+                    size: files.item(i).size
+                }
+            );
             this.filesToUploadList.push({file: files.item(i), type: this.selectedFileType});
             this.progressReadable.set(files.item(i).name, 0);
         }
@@ -74,7 +81,7 @@ export class UploadElementComponent implements OnInit {
         } else {
             const n = this.fileUploadInProgress.name;
             const p = this.progress.get(n);
-            this.progressReadable.set(n, ((p.current + 1) / p.total) * 100);
+            this.progressReadable.set(n, ((p.current) / p.total) * 100);
         }
     }
 

@@ -31,7 +31,9 @@
     <div class="col d-flex justify-content-center">
         <ngb-pagination [collectionSize]="models.length"
                         [(page)]="page"
+                        [maxSize]="10"
                         [pageSize]="pageSize"
+                        [ellipses]="false"
                         [boundaryLinks]="true"></ngb-pagination>
     </div>
 </div>

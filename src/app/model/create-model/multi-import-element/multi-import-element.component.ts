@@ -9,7 +9,8 @@ import {UrlMatcher} from "../../../core/utils/UrlMatcher";
 @Component({
     selector: "app-multi-import-element",
     templateUrl: "./multi-import-element.component.html",
-    styleUrls: ["./multi-import-element.component.css"]
+    styleUrls: ["./multi-import-element.component.css"],
+    standalone: false
 })
 export class MultiImportElementComponent implements OnInit {
     enabledImporters: ImportSource[];

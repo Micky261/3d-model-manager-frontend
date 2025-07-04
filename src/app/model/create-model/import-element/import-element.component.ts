@@ -12,7 +12,8 @@ import {ServerMessage} from "../../../core/types/serverMessage.type";
 @Component({
     selector: "app-import-element",
     templateUrl: "./import-element.component.html",
-    styleUrls: ["./import-element.component.css"]
+    styleUrls: ["./import-element.component.css"],
+    standalone: false
 })
 export class ImportElementComponent implements OnInit {
     ImportSource = ImportSource;
