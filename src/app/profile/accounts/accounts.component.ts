@@ -17,7 +17,8 @@ import {UserSetting} from "../../core/types/user-setting.type";
 @Component({
     selector: "app-profile-accounts",
     templateUrl: "./accounts.component.html",
-    styleUrls: ["./accounts.component.css"]
+    styleUrls: ["./accounts.component.css"],
+    standalone: false
 })
 export class AccountsComponent implements OnInit {
     ImportSource = ImportSource;
