@@ -6903,20 +6903,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-value@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "ngx-value@npm:1.0.5"
-  dependencies:
-    tslib: "npm:^1.9.0"
-  peerDependencies:
-    "@angular/common": <9.0.0
-    "@angular/core": <9.0.0
-    "@angular/platform-browser": <9.0.0
-    rxjs: ^6.0.0
-  checksum: 10/29f8de3e0188ce6b2e667e83e98e82028b716e1ba33a91ac2163b0d3678e7d0c431d2e2cd152cce7763cc78bebcc407c245b967ce2acb86260a1f1f3ce198439
-  languageName: node
-  linkType: hard
-
 "node-abi@npm:^3.3.0":
   version: 3.71.0
   resolution: "node-abi@npm:3.71.0"
@@ -8560,7 +8546,6 @@ __metadata:
     ngx-cookie-service: "npm:^20.0.1"
     ngx-markdown: "npm:^20.0.0"
     ngx-toastr: "npm:^19.0.0"
-    ngx-value: "npm:^1.0.5"
     nxt-flags: "npm:^20.0.0"
     prismjs: "npm:1.30.0"
     rxjs: "npm:^7.8.2"
@@ -8703,13 +8688,6 @@ __metadata:
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 10/d8379e68b36caf082c1905ec25d17df8261e1d68ddc1abfd6c91158a064f6e4402039ae7c02cf4c81d12e3a2a2c7cd8ea2f57b233eb80136a2e3e7279daf2911
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^1.9.0":
-  version: 1.14.1
-  resolution: "tslib@npm:1.14.1"
-  checksum: 10/7dbf34e6f55c6492637adb81b555af5e3b4f9cc6b998fb440dac82d3b42bdc91560a35a5fb75e20e24a076c651438234da6743d139e4feabf0783f3cdfe1dddb
   languageName: node
   linkType: hard
 
