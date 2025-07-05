@@ -12,6 +12,7 @@ import {ToastService} from "../../core/error/toast.service";
 import {CollectionService} from "../../core/services/collection.service";
 import {ImportService} from "../../core/services/import.service";
 import {ProfileSettingsService} from "../../core/services/profile-settings.service";
+import {TitleService} from "../../core/services/title.service";
 import {UserSetting} from "../../core/types/user-setting.type";
 
 @Component({
@@ -33,15 +34,12 @@ export class AccountsComponent implements OnInit {
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly importService: ImportService,
+        private readonly titleService: TitleService,
         private readonly profileSettingsService: ProfileSettingsService,
         private readonly translator: L10nTranslationService,
-        private readonly route: ActivatedRoute,
-        private readonly router: Router,
-        private readonly toast: ToastService,
         private readonly toastr: ToastrService,
-        private readonly collectionService: CollectionService,
-        readonly modalService: NgbModal
     ) {
+        this.titleService.setTitle("ManageAccounts", true);
     }
 
     ngOnInit(): void {

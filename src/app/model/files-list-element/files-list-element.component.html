@@ -124,7 +124,7 @@
     <tbody>
         @for (file of files | objectArraySort:sortFields:sortDirections; track file) {
             <tr>
-                <td class="cursor-pointer text-center">
+                <td class="text-center">
                     <input (change)="onChangeSelect(file, fileCheckbox)"
                            [checked]="selectedFiles.includes(file)"
                            type="checkbox" #fileCheckbox/>
