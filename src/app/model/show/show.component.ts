@@ -153,13 +153,6 @@ export class ShowComponent implements OnInit {
         });
     }
 
-    private updateModelOnServer(): void {
-        void this.modelService.updateModel(this.model).subscribe({
-            next: () => true,
-            error: () => this.toast.showBackendError("ModelUpdateFailed")
-        });
-    }
-
     getInputStyle(input: HTMLInputElement) {
         const screenMultiplierMin = (screen.width < 768) ? 0.5 : 0.2;
         const screenMultiplierMax = (screen.width < 768) ? 0.85 : 0.5;
@@ -169,5 +162,12 @@ export class ShowComponent implements OnInit {
             "width": (input.value.length * 10).toString() + "px",
             "max-width": (screenMultiplierMax * screen.width).toString() + "px",
         };
+    }
+
+    private updateModelOnServer(): void {
+        void this.modelService.updateModel(this.model).subscribe({
+            next: () => true,
+            error: () => this.toast.showBackendError("ModelUpdateFailed")
+        });
     }
 }

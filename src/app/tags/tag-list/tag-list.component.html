@@ -1,55 +1,63 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+            <a routerLink="/">{{ "Home" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item active">
-            {{"Tags" | translate:locale.language}}
+            {{ "Tags" | translate:locale.language }}
         </li>
     </ol>
 </nav>
 
 <div class="container-fluid">
-    <div class="row mb-4" *ngIf="tagsWithCount">
-        <div class="col">
-            <div class="d-block">
-                <div class="d-flex justify-content-between h-100">
-                    <span class="align-self-center">
-                        <h2>{{"Tags" | translate:locale.language}}</h2>
-                    </span>
-
-                    <div class="text-right align-self-center form-floating">
-                        <select id="listSort" class="form-select" [(ngModel)]="sorting"
-                                (ngModelChange)="sortTags($event)">
-                            <option *ngFor="let so of sortings | arraySort" [value]="so">
-                                {{"sorting." + so | translate:locale.language}}
-                            </option>
-                        </select>
-                        <label for="listSort">{{"Sorting" | translate:locale.language}}: </label>
+    @if (tagsWithCount) {
+        <div class="row mb-4">
+            <div class="col">
+                <div class="d-block">
+                    <div class="d-flex justify-content-between h-100">
+            <span class="align-self-center">
+              <h2>{{ "Tags" | translate:locale.language }}</h2>
+            </span>
+                        <div class="text-right align-self-center form-floating">
+                            <select id="listSort" class="form-select" [(ngModel)]="sorting"
+                                    (ngModelChange)="sortTags($event)">
+                                @for (so of sortings | arraySort; track so) {
+                                    <option [value]="so">
+                                        {{ "sorting." + so | translate:locale.language }}
+                                    </option>
+                                }
+                            </select>
+                            <label for="listSort">{{ "Sorting" | translate:locale.language }}: </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-3">
-                <div class="btn-group btn-group-sm m-1"
-                     *ngFor="let tag of tagsWithCount | objectArraySort:tagSort:tagDesc">
-                    <button type="button" class="btn btn-primary"
-                            [disabled]="tagFilter.includes(tag.tag)"
-                            (click)="addTagFilter(tag.tag)">
-                        {{tag.tag | pascalCase}}
-                    </button>
-                    <button type="button" *ngIf="!tagFilter.includes(tag.tag)" class="btn btn-outline-primary">
-                        {{tag.count}}
-                    </button>
-                    <button type="button" *ngIf="tagFilter.includes(tag.tag)" class="btn btn-outline-danger"
-                            [ngbTooltip]="'RemoveFromFilter' | translate:locale.language"
-                            (click)="removeTagFilter(tag.tag)">
-                        <span class="fa fa-times"></span>
-                    </button>
+                <div class="mt-3">
+                    @for (tag of tagsWithCount | objectArraySort:tagSort:tagDesc; track tag) {
+                        <div class="btn-group btn-group-sm m-1"
+                        >
+                            <button type="button" class="btn btn-primary"
+                                    [disabled]="tagFilter.includes(tag.tag)"
+                                    (click)="addTagFilter(tag.tag)">
+                                {{ tag.tag | pascalCase }}
+                            </button>
+                            @if (!tagFilter.includes(tag.tag)) {
+                                <button type="button" class="btn btn-outline-primary">
+                                    {{ tag.count }}
+                                </button>
+                            }
+                            @if (tagFilter.includes(tag.tag)) {
+                                <button type="button" class="btn btn-outline-danger"
+                                        [ngbTooltip]="'RemoveFromFilter' | translate:locale.language"
+                                        (click)="removeTagFilter(tag.tag)">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    </div>
+    }
 
-    <app-list-element header="ModelsFilteredByTags" [models]="filteredModels" sortable="true"></app-list-element>
+    <app-list-element [models]="filteredModels" header="ModelsFilteredByTags" sortable="true"></app-list-element>
 </div>

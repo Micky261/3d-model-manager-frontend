@@ -1,14 +1,14 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+            <a routerLink="/">{{ "Home" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item active">
-            {{"Models" | translate:locale.language}}
+            {{ "Models" | translate:locale.language }}
         </li>
     </ol>
 </nav>
 
 <div class="container-fluid">
-    <app-list-element [models]="models" sortable="true" header="Models"></app-list-element>
+    <app-list-element [models]="models" header="Models" sortable="true"></app-list-element>
 </div>

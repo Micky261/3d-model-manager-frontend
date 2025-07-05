@@ -1,16 +1,18 @@
-<div class="mb-3 text-muted small"
-     [innerHTML]="'FileListHint' | translate:locale.language"></div>
+<div [innerHTML]="'FileListHint' | translate:locale.language"
+     class="mb-3 text-muted small"></div>
 <div class="my-3 text-end">
-    <span class="me-1" *ngIf="lastSaved">
-        {{ "LastSavedAt" | translate:locale.language }}: {{ lastSaved | date:'mediumTime':undefined:locale.language }}
+    @if (lastSaved) {
+        <span class="me-1">
+      {{ "LastSavedAt" | translate:locale.language }}: {{ lastSaved | date:'mediumTime':undefined:locale.language }}
     </span>
+    }
     <div class="btn-group">
-        <button class="btn btn-success" (click)="refreshList()"
-                [ngbTooltip]="'RefreshList' | translate:locale.language">
+        <button (click)="refreshList()" [ngbTooltip]="'RefreshList' | translate:locale.language"
+                class="btn btn-success">
             <span class="fas fa-rotate-right"></span>
         </button>
-        <button class="btn btn-success" (click)="saveFileList()"
-                [ngbTooltip]="'Save' | translate:locale.language">
+        <button (click)="saveFileList()" [ngbTooltip]="'Save' | translate:locale.language"
+                class="btn btn-success">
             <span class="fas fa-save"></span>
         </button>
     </div>
@@ -18,165 +20,191 @@
 <table class="table table-striped align-middle">
     <thead>
     <tr>
-        <th class="col-1 text-center"><input (click)="checkAll(checkAllCheckbox)" type="checkbox" #checkAllCheckbox /></th>
+        <th class="col-1 text-center"><input #checkAllCheckbox (click)="checkAll(checkAllCheckbox)" type="checkbox"/>
+        </th>
         <th class="col-4">
-            <span (click)="changeSortFields('filename')" class="cursor-pointer">
-                {{"Filename" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('filename')"
-                  *ngIf="sortFields.indexOf('filename') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('filename')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('filename')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('filename') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('filename') + 1}}
-            </span>
+        <span (click)="changeSortFields('filename')" class="cursor-pointer">
+          {{ "Filename" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('filename') >= 0) {
+                <span (click)="changeSortDir('filename')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('filename')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('filename')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('filename') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('filename') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-2">
-            <span (click)="changeSortFields('type')" class="cursor-pointer">
-                {{"FileType" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('type')"
-                  *ngIf="sortFields.indexOf('type') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('type')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('type')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('type') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('type') + 1}}
-            </span>
+        <span (click)="changeSortFields('type')" class="cursor-pointer">
+          {{ "FileType" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('type') >= 0) {
+                <span (click)="changeSortDir('type')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('type')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('type')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('type') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('type') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-1">
-            <span (click)="changeSortFields('position')" class="cursor-pointer">
-                {{"Position" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('position')"
-                  *ngIf="sortFields.indexOf('position') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('position')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('position')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('position') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('position') + 1}}
-            </span>
+        <span (click)="changeSortFields('position')" class="cursor-pointer">
+          {{ "Position" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('position') >= 0) {
+                <span (click)="changeSortDir('position')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('position')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('position')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('position') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('position') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-1">
-            <span (click)="changeSortFields('size')" class="cursor-pointer">
-                {{"FileSize" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('size')"
-                  *ngIf="sortFields.indexOf('size') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('size')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('size')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('size') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('size') + 1}}
-            </span>
+        <span (click)="changeSortFields('size')" class="cursor-pointer">
+          {{ "FileSize" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('size') >= 0) {
+                <span (click)="changeSortDir('size')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('size')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('size')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('size') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('size') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-1">
-            <span (click)="changeSortFields('createdAt')" class="cursor-pointer">
-                {{"CreatedAt" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('createdAt')"
-                  *ngIf="sortFields.indexOf('createdAt') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('createdAt')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('createdAt')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('createdAt') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('createdAt') + 1}}
-            </span>
+        <span (click)="changeSortFields('createdAt')" class="cursor-pointer">
+          {{ "CreatedAt" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('createdAt') >= 0) {
+                <span (click)="changeSortDir('createdAt')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('createdAt')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('createdAt')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('createdAt') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('createdAt') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-1">
-            <span (click)="changeSortFields('updatedAt')" class="cursor-pointer">
-                {{"UpdatedAt" | translate:locale.language}}
-            </span>
-            <span (click)="changeSortDir('updatedAt')"
-                  *ngIf="sortFields.indexOf('updatedAt') >= 0"
-                  [class.fa-caret-down]="!sortDirections[sortFields.indexOf('updatedAt')]"
-                  [class.fa-caret-up]="sortDirections[sortFields.indexOf('updatedAt')]"
-                  class="cursor-pointer fa-solid"></span>
-            <span *ngIf="sortFields.indexOf('updatedAt') >= 0" class="badge text-bg-secondary ms-2">
-                {{sortFields.indexOf('updatedAt') + 1}}
-            </span>
+        <span (click)="changeSortFields('updatedAt')" class="cursor-pointer">
+          {{ "UpdatedAt" | translate:locale.language }}
+        </span>
+            @if (sortFields.indexOf('updatedAt') >= 0) {
+                <span (click)="changeSortDir('updatedAt')"
+                      [class.fa-caret-down]="!sortDirections[sortFields.indexOf('updatedAt')]"
+                      [class.fa-caret-up]="sortDirections[sortFields.indexOf('updatedAt')]"
+                      class="cursor-pointer fa-solid"></span>
+            }
+            @if (sortFields.indexOf('updatedAt') >= 0) {
+                <span class="badge text-bg-secondary ms-2">
+            {{ sortFields.indexOf('updatedAt') + 1 }}
+          </span>
+            }
         </th>
         <th class="col-1">{{ "Actions" | translate:locale.language }}</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let file of files | objectArraySort:sortFields:sortDirections">
-        <td class="cursor-pointer text-center">
-            <input (change)="onChangeSelect(file, fileCheckbox)"
-                   [checked]="selectedFiles.includes(file)"
-                   type="checkbox" #fileCheckbox />
-        </td>
-        <td style="word-break:break-all;">
-            <label for="fileName"
-                   class="visually-hidden form-label">{{ "Filename" | translate:locale.language }}</label>
-            <input id="fileName" type="text"
-                   class="form-control"
-                   [(ngModel)]="file.filename"
-                   [value]="file.filename">
-        </td>
-        <td>
-            <label for="fileType"
-                   class="visually-hidden form-label">{{ "FileType" | translate:locale.language }}</label>
-            <select id="fileType" class="form-select"
-                    [(ngModel)]="file.type"
-                    [value]="file.type">
-                <option *ngFor="let fileType of modelTypesMap.values()" [value]="fileType">
-                    {{ "filetype." + fileType | translate:locale.language }}
-                </option>
-            </select>
-        </td>
-        <td>
-            <label for="filePosition"
-                   class="visually-hidden form-label">{{ "FilePosition" | translate:locale.language }}</label>
-            <input id="filePosition" type="number" min="1" max="999999" step="1"
-                   class="form-control"
-                   [(ngModel)]="file.position"
-                   [value]="file.position">
-        </td>
-        <td class="small">
-            {{ file.size | filesize }}
-        </td>
-        <td class="small">
-            {{ file.createdAt | date:'medium':undefined:locale.language }}
-        </td>
-        <td class="small">
-            {{ file.updatedAt | date:'medium':undefined:locale.language }}
-        </td>
-        <td>
-            <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-primary"
-                        (click)="downloadFile(file)">
-                    <span class="fas fa-download"></span>
-                </button>
-                <button type="button" class="btn btn-danger"
-                        (click)="fileForDeletion = file; modalService.open(deleteFileModal, {centered: true})">
-                    <span class="fas fa-trash-alt"></span>
-                </button>
-            </div>
-        </td>
-    </tr>
+        @for (file of files | objectArraySort:sortFields:sortDirections; track file) {
+            <tr>
+                <td class="cursor-pointer text-center">
+                    <input (change)="onChangeSelect(file, fileCheckbox)"
+                           [checked]="selectedFiles.includes(file)"
+                           type="checkbox" #fileCheckbox/>
+                </td>
+                <td style="word-break:break-all;">
+                    <label for="fileName"
+                           class="visually-hidden form-label">{{ "Filename" | translate:locale.language }}</label>
+                    <input id="fileName" type="text"
+                           class="form-control"
+                           [(ngModel)]="file.filename"
+                           [value]="file.filename">
+                </td>
+                <td>
+                    <label for="fileType"
+                           class="visually-hidden form-label">{{ "FileType" | translate:locale.language }}</label>
+                    <select id="fileType" class="form-select"
+                            [(ngModel)]="file.type"
+                            [value]="file.type">
+                        @for (fileType of modelTypesMap.values(); track fileType) {
+                            <option [value]="fileType">
+                                {{ "filetype." + fileType | translate:locale.language }}
+                            </option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <label for="filePosition"
+                           class="visually-hidden form-label">{{ "FilePosition" | translate:locale.language }}</label>
+                    <input id="filePosition" type="number" min="1" max="999999" step="1"
+                           class="form-control"
+                           [(ngModel)]="file.position"
+                           [value]="file.position">
+                </td>
+                <td class="small">
+                    {{ file.size | filesize }}
+                </td>
+                <td class="small">
+                    {{ file.createdAt | date:'medium':undefined:locale.language }}
+                </td>
+                <td class="small">
+                    {{ file.updatedAt | date:'medium':undefined:locale.language }}
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-primary"
+                                (click)="downloadFile(file)">
+                            <span class="fas fa-download"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger"
+                                (click)="fileForDeletion = file; modalService.open(deleteFileModal, {centered: true})">
+                            <span class="fas fa-trash-alt"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 <div class="mt-3 text-end">
-    <span class="me-1" *ngIf="lastSaved">
-        {{ "LastSavedAt" | translate:locale.language }}: {{ lastSaved | date:'mediumTime':undefined:locale.language }}
-    </span>
+    @if (lastSaved) {
+        <span class="me-1">
+            {{ "LastSavedAt" | translate:locale.language }}
+            : {{ lastSaved | date:'mediumTime':undefined:locale.language }}
+          </span>
+    }
     <div class="btn-group">
-        <button class="btn btn-success" (click)="refreshList()"
-                [ngbTooltip]="'RefreshList' | translate:locale.language">
+        <button (click)="refreshList()" [ngbTooltip]="'RefreshList' | translate:locale.language"
+                class="btn btn-success">
             <span class="fas fa-rotate-right"></span>
         </button>
-        <button class="btn btn-success" (click)="saveFileList()"
-                [ngbTooltip]="'Save' | translate:locale.language">
+        <button (click)="saveFileList()" [ngbTooltip]="'Save' | translate:locale.language"
+                class="btn btn-success">
             <span class="fas fa-save"></span>
         </button>
     </div>
 </div>
 
-<ng-template let-modal #deleteFileModal>
-    <ng-container *ngIf="fileForDeletion">
+<ng-template #deleteFileModal let-modal>
+    @if (fileForDeletion) {
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">{{ "DeleteFile" | translate:locale.language }}</h4>
             <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
@@ -193,5 +221,5 @@
                 {{ "Delete" | translate:locale.language }}
             </button>
         </div>
-    </ng-container>
+    }
 </ng-template>

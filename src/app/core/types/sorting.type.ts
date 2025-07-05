@@ -1,8 +1,8 @@
 export class Sorting {
     public static defaultModel = "DateAddedDesc";
-    public static defaultModelsInCollection  = "NameAsc"
+    public static defaultModelsInCollection = "NameAsc";
     public static defaultTag = "CountDesc";
-    public static defaultCollection  = "NameAsc"
+    public static defaultCollection = "NameAsc";
 
     public static sortingsModel = [
         "DateAddedAsc",

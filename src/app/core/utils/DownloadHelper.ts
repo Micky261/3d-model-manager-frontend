@@ -1,4 +1,3 @@
-
 export class DownloadHelper {
     public static download(blob: Blob, filename: string) {
         const url = window.URL.createObjectURL(blob);

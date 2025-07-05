@@ -1,80 +1,99 @@
 <div class="row">
     <div class="col-md">
-        <ng-container *ngFor='let fileType of ["image" , "model" , "diagram", "pdf"]'>
-            <ng-container
-                *ngIf="viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType">
-                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;" (slid)="carouselActivationSubject.next()"
+        @for (fileType of ["image", "model", "diagram", "pdf"]; track fileType) {
+            @if (viewableFilesMap.get(fileType) && viewableFilesMap.get(fileType).length > 0 && fileNavigation == fileType) {
+                <ngb-carousel class="rounded" style="background-color: #e0e0e0; min-height: 50px;height: 50vh;"
+                              (slid)="carouselActivationSubject.next()"
                               [interval]="0">
-                    <ng-template ngbSlide
-                                 *ngFor="let file of viewableFilesMap.get(fileType) | objectArraySort:'position':false">
-                        <div class="container w-100 d-flex align-items-center justify-content-center my-1"
-                             *ngIf="sessionId">
-                            <ng-container
-                                [ngSwitch]="fileTypesService.getApplicationFromName(file.filename)">
-                                <img *ngSwitchCase="'image'"
-                                     style="height: calc(50vh - 7px);"
-                                     [alt]="file.filename"
-                                     defaultImage="assets/images/no_image.png"
-                                     [lazyLoad]="apiUrl + '/thumbnails/file/' + file.id + '?format=Rectangular&size=700&' + sessionName + '=' + sessionId">
-                                <video *ngSwitchCase="'video'"
-                                       style="height: calc(50vh - 7px);"
-                                       defaultImage="assets/images/no_image.png"
-                                       [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
-                                    {{ "error.VideoDoesntWork" | translate:locale.language }}
-                                </video>
-                                <div *ngSwitchCase="'pdf'" style="height: calc(50vh - 7px); width: 80%; ">
-                                    <pdf-viewer style="height: 100%;"
-                                        [src]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
-                                    </pdf-viewer>
+                    @for (file of viewableFilesMap.get(fileType) | objectArraySort:'position':false; track file) {
+                        <ng-template ngbSlide
+                        >
+                            @if (sessionId) {
+                                <div class="container w-100 d-flex align-items-center justify-content-center my-1"
+                                >
+                                    @switch (fileTypesService.getApplicationFromName(file.filename)) {
+                                        @case ('image') {
+                                            <img
+                                                style="height: calc(50vh - 7px);"
+                                                [alt]="file.filename"
+                                                defaultImage="assets/images/no_image.png"
+                                                [lazyLoad]="apiUrl + '/thumbnails/file/' + file.id + '?format=Rectangular&size=700&' + sessionName + '=' + sessionId">
+                                        }
+                                        @case ('video') {
+                                            <video
+                                                style="height: calc(50vh - 7px);"
+                                                defaultImage="assets/images/no_image.png"
+                                                [lazyLoad]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
+                                                {{ "error.VideoDoesntWork" | translate:locale.language }}
+                                            </video>
+                                        }
+                                        @case ('pdf') {
+                                            <div style="height: calc(50vh - 7px); width: 80%; ">
+                                                <pdf-viewer style="height: 100%;"
+                                                            [src]="apiUrl + '/file/single/' + file.id + '?' + sessionName + '=' + sessionId">
+                                                </pdf-viewer>
+                                            </div>
+                                        }
+                                        @case ('model') {
+                                            <div>
+                                                <file-carousel-stl-viewer-element
+                                                    [activationEvent]="carouselActivationSubject"
+                                                    [fileId]="file.id"></file-carousel-stl-viewer-element>
+                                            </div>
+                                        }
+                                        <!-- <div *ngSwitchDefault style="height: 50vh;">-->
+                                            <!--     {{"error.Unknown" | translate:locale.language}}-->
+                                            <!-- </div>-->
+                                    }
                                 </div>
-                                <div *ngSwitchCase="'model'">
-                                    <file-carousel-stl-viewer-element
-                                        [activationEvent]="carouselActivationSubject"
-                                        [fileId]="file.id"></file-carousel-stl-viewer-element>
-                                </div>
-                                <!-- <div *ngSwitchDefault style="height: 50vh;">-->
-                                <!--     {{"error.Unknown" | translate:locale.language}}-->
-                                <!-- </div>-->
-                            </ng-container>
-                        </div>
-                    </ng-template>
+                            }
+                        </ng-template>
+                    }
                 </ngb-carousel>
-            </ng-container>
-        </ng-container>
-        <div class="container w-100 d-flex align-items-center justify-content-center my-1"
-             *ngIf="!viewableFilesMap.get(fileNavigation) || viewableFilesMap.get(fileNavigation).length == 0">
-            {{ "NoFiles" | translate:locale.language }}
-        </div>
+            }
+        }
+        @if (!viewableFilesMap.get(fileNavigation) || viewableFilesMap.get(fileNavigation).length == 0) {
+            <div class="container w-100 d-flex align-items-center justify-content-center my-1"
+            >
+                {{ "NoFiles" | translate:locale.language }}
+            </div>
+        }
     </div>
 </div>
 
-<div class="row mt-2" *ngIf="viewableFilesMap.size >= 2">
-    <div class="col-md">
-        <div class="btn-group btn-group-sm w-100">
-            <button class="btn btn-outline-primary"
-                    *ngIf="viewableFilesMap.get('image') && viewableFilesMap.get('image').length > 0"
-                    [class.active]="fileNavigation == 'image'"
-                    (click)="fileNavigation = 'image'">
-                {{ "Images" | translate:locale.language }}
-            </button>
-            <button class="btn btn-outline-primary"
-                    *ngIf="viewableFilesMap.get('model') && viewableFilesMap.get('model').length > 0"
-                    [class.active]="fileNavigation == 'model'"
-                    (click)="fileNavigation = 'model'">
-                {{ "Models" | translate:locale.language }}
-            </button>
-            <button class="btn btn-outline-primary"
-                    *ngIf="viewableFilesMap.get('diagram') && viewableFilesMap.get('diagram').length > 0"
-                    [class.active]="fileNavigation == 'diagram'"
-                    (click)="fileNavigation = 'diagram'">
-                {{ "Diagrams" | translate:locale.language }}
-            </button>
-            <button class="btn btn-outline-primary"
-                    *ngIf="viewableFilesMap.get('pdf') && viewableFilesMap.get('pdf').length > 0"
-                    [class.active]="fileNavigation == 'pdf'"
-                    (click)="fileNavigation = 'pdf'">
-                {{ "PdfDocuments" | translate:locale.language }}
-            </button>
+@if (viewableFilesMap.size >= 2) {
+    <div class="row mt-2">
+        <div class="col-md">
+            <div class="btn-group btn-group-sm w-100">
+                @if (viewableFilesMap.get('image') && viewableFilesMap.get('image').length > 0) {
+                    <button class="btn btn-outline-primary"
+                            [class.active]="fileNavigation == 'image'"
+                            (click)="fileNavigation = 'image'">
+                        {{ "Images" | translate:locale.language }}
+                    </button>
+                }
+                @if (viewableFilesMap.get('model') && viewableFilesMap.get('model').length > 0) {
+                    <button class="btn btn-outline-primary"
+                            [class.active]="fileNavigation == 'model'"
+                            (click)="fileNavigation = 'model'">
+                        {{ "Models" | translate:locale.language }}
+                    </button>
+                }
+                @if (viewableFilesMap.get('diagram') && viewableFilesMap.get('diagram').length > 0) {
+                    <button class="btn btn-outline-primary"
+                            [class.active]="fileNavigation == 'diagram'"
+                            (click)="fileNavigation = 'diagram'">
+                        {{ "Diagrams" | translate:locale.language }}
+                    </button>
+                }
+                @if (viewableFilesMap.get('pdf') && viewableFilesMap.get('pdf').length > 0) {
+                    <button class="btn btn-outline-primary"
+                            [class.active]="fileNavigation == 'pdf'"
+                            (click)="fileNavigation = 'pdf'">
+                        {{ "PdfDocuments" | translate:locale.language }}
+                    </button>
+                }
+            </div>
         </div>
     </div>
-</div>
+}

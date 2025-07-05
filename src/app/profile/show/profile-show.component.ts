@@ -11,7 +11,7 @@ import {Model} from "../../core/types/model.type";
     standalone: false
 })
 export class ProfileShowComponent implements OnInit {
-    favorites: Model[] ;
+    favorites: Model[];
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,

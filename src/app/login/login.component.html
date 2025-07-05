@@ -1,13 +1,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">{{"Login" | translate:locale.language}}</li>
+        <li class="breadcrumb-item active">{{ "Login" | translate:locale.language }}</li>
     </ol>
 </nav>
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>{{"Login" | translate:locale.language}}</h2>
+            <h2>{{ "Login" | translate:locale.language }}</h2>
         </div>
     </div>
     <div class="row">
@@ -15,18 +15,18 @@
             <form [formGroup]="loginForm">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="email" class="form-label">{{"Email" | translate:locale.language}}:</label>
-                            <input id="email" type="email" formControlName="email" class="form-control" required/>
+                        <label class="form-label" for="email">{{ "Email" | translate:locale.language }}:</label>
+                        <input class="form-control" formControlName="email" id="email" required type="email"/>
                     </div>
                     <div class="col-md-6">
-                        <label for="password" class="form-label">{{"Password" | translate:locale.language}}:</label>
-                        <input id="password" type="password" formControlName="password" class="form-control" required/>
+                        <label class="form-label" for="password">{{ "Password" | translate:locale.language }}:</label>
+                        <input class="form-control" formControlName="password" id="password" required type="password"/>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12 d-grid">
-                        <button class="btn btn-success" type="submit" (click)="login()">
-                            {{"Login" | translate:locale.language}}
+                        <button (click)="login()" class="btn btn-success" type="submit">
+                            {{ "Login" | translate:locale.language }}
                         </button>
                     </div>
                 </div>

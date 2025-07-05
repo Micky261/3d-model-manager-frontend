@@ -19,44 +19,52 @@
         </div>
     </div>
 
-    <form *ngIf="enabledImporters && accountsSettings">
-        <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.Cults3D) > -1">
-            <div class="col">
-                <h3>Cults3D</h3>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="cults3d">
-                        {{ "Cults3DSessionId" | translate:locale.language }}:
-                    </label>
-                    <input type="text" class="form-control" id="cults3d" #cults3dSessionId
-                           [value]="getSetting(UserSettingsKey.Cults3dSessionId)"
-                           (focus)="cults3dSessionId.select()"
-                           placeholder="03de6c570bfe24bfc328ccd7ca46b76eadaf4334">
+    @if (enabledImporters && accountsSettings) {
+        <form>
+            @if (enabledImporters.indexOf(ImportSource.Cults3D) > -1) {
+                <div class="row my-3">
+                    <div class="col">
+                        <h3>Cults3D</h3>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="cults3d">
+                                {{ "Cults3DSessionId" | translate:locale.language }}:
+                            </label>
+                            <input type="text" class="form-control" id="cults3d" #cults3dSessionId
+                                   [value]="getSetting(UserSettingsKey.Cults3dSessionId)"
+                                   (focus)="cults3dSessionId.select()"
+                                   placeholder="03de6c570bfe24bfc328ccd7ca46b76eadaf4334">
+                        </div>
+                        <div class="form-text"
+                             [innerHTML]="'Cults3DSessionIdInfoText' | translate:locale.language"></div>
+                    </div>
                 </div>
-                <div class="form-text" [innerHTML]="'Cults3DSessionIdInfoText' | translate:locale.language"></div>
-            </div>
-        </div>
-        <div class="row my-3" *ngIf="enabledImporters.indexOf(ImportSource.MakerWorld) > -1">
-            <div class="col">
-                <h3>MakerWorld</h3>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="makerworld">
-                        {{ "MakerWorldSessionToken" | translate:locale.language }}:
-                    </label>
-                    <input type="text" class="form-control" id="makerworld" #makerworldSessionToken
-                           [value]="getSetting(UserSettingsKey.MakerWorldSessionToken)"
-                           (focus)="makerworldSessionToken.select()"
-                           placeholder="ABBWyIfxf1wpgjulr7xY6tIJ5iNqsuOGPXqWycZwtXOTRfu6O8N9-_TSMCpnSa8P5i-XZ2JbxntAIro8rlKhpSzm_m20J8DL_woBOeay212dfcuFAI_USpVZLBg0t56vB9MO5gflaMNIIA">
+            }
+            @if (enabledImporters.indexOf(ImportSource.MakerWorld) > -1) {
+                <div class="row my-3">
+                    <div class="col">
+                        <h3>MakerWorld</h3>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="makerworld">
+                                {{ "MakerWorldSessionToken" | translate:locale.language }}:
+                            </label>
+                            <input type="text" class="form-control" id="makerworld" #makerworldSessionToken
+                                   [value]="getSetting(UserSettingsKey.MakerWorldSessionToken)"
+                                   (focus)="makerworldSessionToken.select()"
+                                   placeholder="ABBWyIfxf1wpgjulr7xY6tIJ5iNqsuOGPXqWycZwtXOTRfu6O8N9-_TSMCpnSa8P5i-XZ2JbxntAIro8rlKhpSzm_m20J8DL_woBOeay212dfcuFAI_USpVZLBg0t56vB9MO5gflaMNIIA">
+                        </div>
+                        <div class="form-text"
+                             [innerHTML]="'MakerWorldSessionIdInfoText' | translate:locale.language"></div>
+                    </div>
                 </div>
-                <div class="form-text" [innerHTML]="'MakerWorldSessionIdInfoText' | translate:locale.language"></div>
+            }
+            <div class="row my-3">
+                <div class="col clearfix">
+                    <button class="btn btn-success float-end" type="submit"
+                            (click)="saveAccountSettings()">
+                        {{ "SaveSettings" | translate:locale.language }}
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="row my-3">
-            <div class="col clearfix">
-                <button class="btn btn-success float-end" type="submit"
-                        (click)="saveAccountSettings()">
-                    {{ "SaveSettings" | translate:locale.language }}
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    }
 </div>

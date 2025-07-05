@@ -1,17 +1,18 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+            <a routerLink="/">{{ "Home" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item">
-            <a routerLink="/model/list">{{"Models" | translate:locale.language}}</a>
+            <a routerLink="/model/list">{{ "Models" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item active">
-            {{"Search" | translate:locale.language}}: "{{this.searchTerm}}"
+            {{ "Search" | translate:locale.language }}: "{{ this.searchTerm }}"
         </li>
     </ol>
 </nav>
 
 <div class="container-fluid">
-    <app-list-element [models]="models" [header]="title" [headerParams]="titleParams" sortable="true"></app-list-element>
+    <app-list-element [headerParams]="titleParams" [header]="title" [models]="models"
+                      sortable="true"></app-list-element>
 </div>

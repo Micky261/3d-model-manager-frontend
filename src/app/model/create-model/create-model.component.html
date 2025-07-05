@@ -1,13 +1,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a routerLink="/">{{"Home" | translate:locale.language}}</a>
+            <a routerLink="/">{{ "Home" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item">
-            <a routerLink="/model/list">{{"Models" | translate:locale.language}}</a>
+            <a routerLink="/model/list">{{ "Models" | translate:locale.language }}</a>
         </li>
         <li class="breadcrumb-item active">
-            {{"CreateModel" | translate:locale.language}}
+            {{ "CreateModel" | translate:locale.language }}
         </li>
     </ol>
 </nav>
@@ -15,49 +15,55 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>{{"CreateModel" | translate:locale.language}}</h2>
+            <h2>{{ "CreateModel" | translate:locale.language }}</h2>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col">
             <div class="btn-group w-100" role="group">
-                <button type="button"
-                        class="btn"
-                        [class.btn-primary]="creationMethod === 'upload'"
+                <button (click)="creationMethod = 'upload'"
                         [class.btn-outline-primary]="creationMethod != 'upload'"
-                        (click)="creationMethod = 'upload'">
-                    {{"CreateModelManually" | translate:locale.language}}
-                </button>
-                <button type="button"
+                        [class.btn-primary]="creationMethod === 'upload'"
                         class="btn"
-                        [class.btn-primary]="creationMethod === 'multi-import'"
+                        type="button">
+                    {{ "CreateModelManually" | translate:locale.language }}
+                </button>
+                <button (click)="creationMethod = 'multi-import'"
                         [class.btn-outline-primary]="creationMethod != 'multi-import'"
-                        (click)="creationMethod = 'multi-import'">
-                    {{"CreateModelMultiImport" | translate:locale.language}}
-                </button>
-                <button type="button"
+                        [class.btn-primary]="creationMethod === 'multi-import'"
                         class="btn"
-                        [class.btn-primary]="creationMethod === 'import'"
+                        type="button">
+                    {{ "CreateModelMultiImport" | translate:locale.language }}
+                </button>
+                <button (click)="creationMethod = 'import'"
                         [class.btn-outline-primary]="creationMethod != 'import'"
-                        (click)="creationMethod = 'import'">
-                    {{"CreateModelImport" | translate:locale.language}}
+                        [class.btn-primary]="creationMethod === 'import'"
+                        class="btn"
+                        type="button">
+                    {{ "CreateModelImport" | translate:locale.language }}
                 </button>
             </div>
         </div>
     </div>
-    <div class="row mt-4" *ngIf="creationMethod === 'upload'">
-        <div class="col">
-            <app-create-form-element></app-create-form-element>
+    @if (creationMethod === 'upload') {
+        <div class="row mt-4">
+            <div class="col">
+                <app-create-form-element></app-create-form-element>
+            </div>
         </div>
-    </div>
-    <div class="row mt-4" *ngIf="creationMethod === 'multi-import'">
-        <div class="col">
-            <app-multi-import-element></app-multi-import-element>
+    }
+    @if (creationMethod === 'multi-import') {
+        <div class="row mt-4">
+            <div class="col">
+                <app-multi-import-element></app-multi-import-element>
+            </div>
         </div>
-    </div>
-    <div class="row mt-4" *ngIf="creationMethod === 'import'">
-        <div class="col">
-            <app-import-element></app-import-element>
+    }
+    @if (creationMethod === 'import') {
+        <div class="row mt-4">
+            <div class="col">
+                <app-import-element></app-import-element>
+            </div>
         </div>
-    </div>
+    }
 </div>

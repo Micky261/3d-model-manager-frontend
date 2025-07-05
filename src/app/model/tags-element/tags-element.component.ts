@@ -58,6 +58,13 @@ export class TagsElementComponent implements OnInit {
         });
     }
 
+    keyDown(key: KeyboardEvent, searchTerm: string, items: NgOption[]) {
+        if (key.key === "Enter" && items.length === 0) {
+            this.setTagOnServer(searchTerm);
+            this.selectTag.close();
+        }
+    }
+
     private setTagOnServer(tag: string): void {
         this.modelTagsService.postModelTag(this.modelId, tag).subscribe({
             next: serverTag => {
@@ -71,12 +78,5 @@ export class TagsElementComponent implements OnInit {
             },
             error: () => this.toast.showBackendError("TagCouldNotBeSet")
         });
-    }
-
-    keyDown(key: KeyboardEvent, searchTerm: string, items: NgOption[]) {
-        if (key.key === "Enter" && items.length === 0) {
-            this.setTagOnServer(searchTerm);
-            this.selectTag.close();
-        }
     }
 }
