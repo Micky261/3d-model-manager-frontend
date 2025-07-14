@@ -1,6 +1,4 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../shared/array.extension";
 import "../../../shared/string.extension";
@@ -8,8 +6,6 @@ import {ToastrService} from "ngx-toastr";
 import {ImportSource} from "src/app/core/enums/import-source.enum";
 import {UserSettingsKey} from "../../core/enums/user-settings-key.enum";
 import {UserSettingsType} from "../../core/enums/user-settings-type.enum";
-import {ToastService} from "../../core/error/toast.service";
-import {CollectionService} from "../../core/services/collection.service";
 import {ImportService} from "../../core/services/import.service";
 import {ProfileSettingsService} from "../../core/services/profile-settings.service";
 import {TitleService} from "../../core/services/title.service";
