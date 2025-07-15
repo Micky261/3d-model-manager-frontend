@@ -2,7 +2,7 @@ import {registerLocaleData} from "@angular/common";
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, inject, provideAppInitializer } from "@angular/core";
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, inject, NgModule, provideAppInitializer} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -12,7 +12,6 @@ import {LazyLoadImageModule} from "ng-lazyload-image";
 import {CookieService} from "ngx-cookie-service";
 import {MarkdownModule} from "ngx-markdown";
 import {ToastNoAnimationModule} from "ngx-toastr";
-import {Values} from "ngx-value";
 import {FlagsModule} from "nxt-flags";
 import {initL10n, l10nConfig} from "../i18n/l10n-config";
 import {Storage} from "../i18n/l10n-storage";
@@ -21,9 +20,14 @@ import {NavbarModule} from "../navbar/navbar.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
+import {AppConfigurationService} from "./core/services/app-configuration.service";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
+
+export function initApp(appSettings: AppConfigurationService): () => Promise<void> {
+    return () => appSettings.load();
+}
 
 @NgModule({
     declarations: [
@@ -58,12 +62,14 @@ registerLocaleData(localeEn);
             useClass: AuthInterceptor,
             multi: true,
         },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initApp,
+            deps: [AppConfigurationService],
+            multi: true
+        },
         provideAppInitializer(() => {
             const initializerFn = (initL10n)(inject(L10nLoader));
-            return initializerFn();
-        }),
-        provideAppInitializer(() => {
-            const initializerFn = (() => () => Values("config/configuration.json"))();
             return initializerFn();
         }),
         CookieService,

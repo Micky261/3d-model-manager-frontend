@@ -4,8 +4,10 @@ import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import "../../../../shared/array.extension";
 import {ToastrService} from "ngx-toastr";
 import {ImportSource} from "../../../core/enums/import-source.enum";
+import {ToastService} from "../../../core/error/toast.service";
 import {ImportService} from "../../../core/services/import.service";
 import {Model} from "../../../core/types/model.type";
+import {ServerMessage} from "../../../core/types/serverMessage.type";
 
 @Component({
     selector: "app-import-element",
@@ -25,6 +27,7 @@ export class ImportElementComponent implements OnInit {
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly importService: ImportService,
         private readonly router: Router,
+        private readonly toast: ToastService,
         private readonly translationService: L10nTranslationService,
         private readonly toastr: ToastrService
     ) {
@@ -43,7 +46,7 @@ export class ImportElementComponent implements OnInit {
         if (input.value === "")
             return;
 
-        const id = ([ImportSource.Thingiverse, ImportSource.MyMiniFactory, ImportSource.Printables].includes(importer))
+        const id = ([ImportSource.Thingiverse, ImportSource.MyMiniFactory, ImportSource.Printables, ImportSource.MakerWorld].includes(importer))
             ? parseInt(input.value, 10)
             : input.value;
 
@@ -58,6 +61,7 @@ export class ImportElementComponent implements OnInit {
                 }
             },
             error: error => {
+                this.toast.showBackendError((error.error as ServerMessage).messageCode);
                 this.importInProgress = false;
                 console.log(error);
             }

@@ -21,6 +21,9 @@ export class ListComponent implements OnInit, OnChanges {
     sortDesc: boolean;
     sortField: string;
 
+    page = 1; // Pages are 1-based
+    pageSize = 24;
+
     collapseForm = true;
 
     createCollectionForm = new FormBuilder().group({

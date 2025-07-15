@@ -1,133 +1,145 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/" (click)="isCollapsed = true">
-            <!--<img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top" alt="">-->
-            <span class="fas fa-cubes"></span> {{"3DModelManager" | translate:locale.language}}
-        </a>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" (click)="isCollapsed = true">
+      <!--<img src="../favicon.ico" width="28" height="30" class="d-inline-block align-top" alt="">-->
+      <span class="fas fa-cubes"></span> {{"3DModelManager" | translate:locale.language}}
+    </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                (click)="isCollapsed = !isCollapsed">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-            <!-- Left -->
-            <ul class="navbar-nav me-auto" *ngIf="!authService.isLoggedIn()">
-                <!-- for non-logged-in users -->
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/register">
-                        <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/login">
-                        <span class="fas fa-sign-in-alt"></span> {{"Login" | translate:locale.language}}
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav me-auto" *ngIf="authService.isLoggedIn()">
-                <!-- for logged-in users -->
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/">
-                        <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/model/list">
-                        <span class="fas fa-table-list"></span> {{"Models" | translate:locale.language}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/tags/list">
-                        <span class="fas fa-table-cells"></span> {{"Tags" | translate:locale.language}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/model/create">
-                        <span class="fas fa-plus-square"></span> {{"CreateModel" | translate:locale.language}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/collection/list">
-                        <span class="fas fa-object-group"></span> {{"Collections" | translate:locale.language}}
-                    </a>
-                </li>
-            </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+      <!-- Left -->
+      @if (!authService.isLoggedIn()) {
+        <ul class="navbar-nav me-auto">
+          <!-- for non-logged-in users -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">
+              <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">
+              <span class="fas fa-sign-in-alt"></span> {{"Login" | translate:locale.language}}
+            </a>
+          </li>
+        </ul>
+      }
+      @if (authService.isLoggedIn()) {
+        <ul class="navbar-nav me-auto">
+          <!-- for logged-in users -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">
+              <span class="fas fa-home"></span> {{"Home" | translate:locale.language}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/model/list">
+              <span class="fas fa-table-list"></span> {{"Models" | translate:locale.language}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/tags/list">
+              <span class="fas fa-table-cells"></span> {{"Tags" | translate:locale.language}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/model/create">
+              <span class="fas fa-plus-square"></span> {{"CreateModel" | translate:locale.language}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/collection/list">
+              <span class="fas fa-object-group"></span> {{"Collections" | translate:locale.language}}
+            </a>
+          </li>
+        </ul>
+      }
 
-            <!-- Right -->
-            <ul class="nav navbar-nav ms-auto">
-                <li class="nav-item me-2">
-                    <div class="input-group input-group-sm my-1">
-                        <input class="form-control" type="search" #searchInput
-                               [placeholder]="'Search' | translate:locale.language" aria-label="Search"
-                               (keydown.enter)="searchButton.click()">
-                        <button type="button" class="btn btn-success" #searchButton
-                                (click)="search(searchInput.value)">
-                            {{"Search" | translate:locale.language}}
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item dropdown" ngbDropdown placement="bottom-end">
-                    <a class="nav-link dropdown-toggle"
-                       href="javascript:"
-                       id="navbarDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-haspopup="true"
-                       aria-expanded="false"
-                       ngbDropdownToggle>
-                        <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
-                    </a>
-                    <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
-                        <li>
-                            <button class="dropdown-item" ngbDropdownItem
-                                    [class.active]="locale.language === 'de-DE'"
-                                    (click)="isCollapsed = true; setLocale(locales['de-DE'])">
-                                <nxt-flag country="de" size="s" style="vertical-align: middle;"></nxt-flag>
-                                Deutsch
-                            </button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item" ngbDropdownItem
-                                    [class.active]="locale.language === 'en-GB'"
-                                    (click)="isCollapsed = true; setLocale(locales['en-GB'])">
-                                <nxt-flag country="uk" size="s" style="vertical-align: middle;"></nxt-flag>
-                                English
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown" ngbDropdown placement="bottom-end" *ngIf="authService.isLoggedIn()">
-                    <a class="nav-link dropdown-toggle"
-                       href="javascript:"
-                       id="navbarProfileDropDown"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-haspopup="true"
-                       aria-expanded="false"
-                       ngbDropdownToggle>
-                        <span class="fas fa-circle-user"></span> {{"Profile" | translate:locale.language}}
-                    </a>
-                    <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarProfileDropDown">
-                        <li>
-                            <button class="dropdown-item" ngbDropdownItem routerLink="profile">
-                                <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
-                            </button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item" ngbDropdownItem (click)="logout()">
-                                <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
-                            </button>
-                        </li>
-                    </ul>
-                </li>
+      <!-- Right -->
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item me-2">
+          <div class="input-group input-group-sm my-1">
+            <input class="form-control" type="search" #searchInput
+              [placeholder]="'Search' | translate:locale.language" aria-label="Search"
+              (keydown.enter)="searchButton.click()">
+            <button type="button" class="btn btn-success" #searchButton
+              (click)="search(searchInput.value)">
+              {{"Search" | translate:locale.language}}
+            </button>
+          </div>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown placement="bottom-end">
+          <a class="nav-link dropdown-toggle"
+            href="javascript:"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ngbDropdownToggle>
+            <span class="fas fa-globe-europe"></span> {{"ChangeLocale" | translate:locale.language}}
+          </a>
+          <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
+            <li>
+              <button class="dropdown-item" ngbDropdownItem
+                [class.active]="locale.language === 'de-DE'"
+                (click)="isCollapsed = true; setLocale(locales['de-DE'])">
+                <nxt-flag country="de" size="s" style="vertical-align: middle;"></nxt-flag>
+                Deutsch
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" ngbDropdownItem
+                [class.active]="locale.language === 'en-GB'"
+                (click)="isCollapsed = true; setLocale(locales['en-GB'])">
+                <nxt-flag country="uk" size="s" style="vertical-align: middle;"></nxt-flag>
+                English
+              </button>
+            </li>
+          </ul>
+        </li>
+        @if (authService.isLoggedIn()) {
+          <li class="nav-item dropdown" ngbDropdown placement="bottom-end">
+            <a class="nav-link dropdown-toggle"
+              href="javascript:"
+              id="navbarProfileDropDown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ngbDropdownToggle>
+              <span class="fas fa-circle-user"></span> {{"Profile" | translate:locale.language}}
+            </a>
+            <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarProfileDropDown">
+              <li>
+                <button class="dropdown-item" ngbDropdownItem routerLink="profile">
+                  <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" ngbDropdownItem routerLink="profile/accounts">
+                  <span class="fas fa-users-gear"></span> {{"ManageAccounts" | translate:locale.language}}
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" ngbDropdownItem (click)="logout()">
+                  <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                </button>
+              </li>
             </ul>
-        </div>
+          </li>
+        }
+
+      </ul>
     </div>
+  </div>
 </nav>

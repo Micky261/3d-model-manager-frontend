@@ -6,9 +6,11 @@
         <li class="breadcrumb-item">
             <a routerLink="/model/list">{{ "Models" | translate:locale.language }}</a>
         </li>
-        <li class="breadcrumb-item active" *ngIf="model">
-            {{ "Model" | translate:locale.language }}: {{ model.name }}
-        </li>
+        @if (model) {
+            <li class="breadcrumb-item active">
+                {{ "Model" | translate:locale.language }}: {{ model.name }}
+            </li>
+        }
     </ol>
 </nav>
 
@@ -18,32 +20,38 @@
             <div class="p-0">
                 <h2>
                     <span class="fas fa-cube mx-1"></span>
-                    <span class="mx-1" *ngIf="!editName && model">{{ model.name }}</span>
+                    @if (!editName && model) {
+                        <span class="mx-1">{{ model.name }}</span>
+                    }
                 </h2>
             </div>
-            <div class="p-0" *ngIf="editName && model">
-                <label for="modelName" class="visually-hidden form-label">
-                    {{ "ModelName" | translate:locale.language }}
-                </label>
-                <input class="form-control" type="text" id="modelName"
-                       #inputName
-                       [value]="model.name"
-                       [ngStyle]="getInputStyle(inputName)"
-                       (change)="updateField(inputName, 'name')"/>
-            </div>
+            @if (editName && model) {
+                <div class="p-0">
+                    <label for="modelName" class="visually-hidden form-label">
+                        {{ "ModelName" | translate:locale.language }}
+                    </label>
+                    <input class="form-control" type="text" id="modelName"
+                           #inputName
+                           [value]="model.name"
+                           [ngStyle]="getInputStyle(inputName)"
+                           (change)="updateField(inputName, 'name')"/>
+                </div>
+            }
             <div class="p-0">
-                <button class="btn btn-sm text-secondary" (click)="toggleField('name')">
+                <button (click)="toggleField('name')" class="btn btn-sm text-secondary">
                     <span class="fas fa-pencil-alt"></span>
                 </button>
             </div>
-            <div class="p-0 ps-2" *ngIf="model && model.importedName">
-                <small class="text-muted mx-1">
-                    {{ "OriginalName" | translate:locale.language }}: {{ model.importedName }}
-                </small>
-            </div>
+            @if (model && model.importedName) {
+                <div class="p-0 ps-2">
+                    <small class="text-muted mx-1">
+                        {{ "OriginalName" | translate:locale.language }}: {{ model.importedName }}
+                    </small>
+                </div>
+            }
         </form>
         <div class="text-right align-self-center">
-            <button class="btn btn-danger" (click)="modalService.open(deleteModelModal, {centered: true})">
+            <button (click)="modalService.open(deleteModelModal, {centered: true})" class="btn btn-danger">
                 <span class="fas fa-trash"></span>
                 {{ "DeleteModel" | translate:locale.language }}
             </button>
@@ -54,252 +62,294 @@
         <div class="p-0">
             <span class="fas fa-user me-1 ms-4 text-secondary"></span>
             <!--<span class="mx-1 text-secondary">{{"Author" | translate:locale.language}}: </span>-->
-            <span class="mx-1 text-secondary" *ngIf="!editAuthor && model">{{ model.author }}</span>
+            @if (!editAuthor && model) {
+                <span class="mx-1 text-secondary">{{ model.author }}</span>
+            }
         </div>
-        <div class="p-0" *ngIf="editAuthor && model">
-            <label for="modelAuthor" class="visually-hidden form-label">
-                {{ "ModelAuthor" | translate:locale.language }}
-            </label>
-            <input class="form-control form-control-sm" type="text" id="modelAuthor"
-                   #inputAuthor
-                   [value]="model.author"
-                   [ngStyle]="getInputStyle(inputAuthor)"
-                   (change)="updateField(inputAuthor, 'author')"/>
-        </div>
+        @if (editAuthor && model) {
+            <div class="p-0">
+                <label for="modelAuthor" class="visually-hidden form-label">
+                    {{ "ModelAuthor" | translate:locale.language }}
+                </label>
+                <input class="form-control form-control-sm" type="text" id="modelAuthor"
+                       #inputAuthor
+                       [value]="model.author"
+                       [ngStyle]="getInputStyle(inputAuthor)"
+                       (change)="updateField(inputAuthor, 'author')"/>
+            </div>
+        }
         <div class="p-0">
-            <button class="btn btn-xs text-secondary" (click)="toggleField('author')">
+            <button (click)="toggleField('author')" class="btn btn-xs text-secondary">
                 <span class="fas fa-pencil-alt"></span>
             </button>
         </div>
-        <div class="p-0 ps-2" *ngIf="model && model.importedAuthor">
-            <small class="text-muted mx-1">
-                {{ "OriginalBy" | translate:locale.language }}: {{ model.importedAuthor }}
-            </small>
-        </div>
+        @if (model && model.importedAuthor) {
+            <div class="p-0 ps-2">
+                <small class="text-muted mx-1">
+                    {{ "OriginalBy" | translate:locale.language }}: {{ model.importedAuthor }}
+                </small>
+            </div>
+        }
     </form>
 
-    <div class="row my-3" *ngIf="model">
-        <div class="col-md-9 my-1">
-            <file-carousel-element [modelId]="modelId"></file-carousel-element>
-        </div>
-        <div class="col-md-3 my-1">
-            <div class="list-group">
-                <span class="list-group-item active">
-                    <span class="fas fa-circle-info me-2"></span>
-                    <strong>{{ "ModelInformation" | translate:locale.language }}</strong>
-                </span>
-                <span class="list-group-item">
-                    <span class="fas fa-clock me-2 text-primary"></span>
-                    {{ "CreatedAt" | translate:locale.language }}:
-                    {{ model.createdAt | date:'short':undefined:locale.language }}
-                </span>
-                <span class="list-group-item">
-                    <span class="fas fa-clock-rotate-left me-2 text-primary"></span>
-                    {{ "UpdatedAt" | translate:locale.language }}:
-                    {{ model.updatedAt | date:'short':undefined:locale.language }}
-                </span>
-                <span class="list-group-item"
-                      *ngIf="model.importSource">
-                    <span class="fas fa-external-link me-2 text-primary"></span>
-                    {{ "ImportSource" | translate:locale.language }}:
-                    <a [href]="model.importSource" target="_blank">
-                        {{ model.importSource.substring(0, 30) }}{{ model.importSource.length > 30 ? "..." : "" }}
-                    </a>
-                </span>
-                <span class="list-group-item"
-                      *ngIf="model.importedLicence">
-                    <span class="fa-brands fa-creative-commons me-2 text-primary"></span>
-                    {{ "ImportedLicence" | translate:locale.language }}:
-                    <em>{{ model.importedLicence }}</em>
-                </span>
+    @if (model) {
+        <div class="row my-3">
+            <div class="col-md-9 my-1">
+                <file-carousel-element [modelId]="modelId"></file-carousel-element>
             </div>
-            <div class="list-group mt-2">
-                <span class="list-group-item active">
-                    <span class="fas fa-screwdriver-wrench me-2"></span>
-                    <strong>{{ "ModelActions" | translate:locale.language }}</strong>
+            <div class="col-md-3 my-1">
+                <div class="list-group">
+              <span class="list-group-item active">
+                <span class="fas fa-circle-info me-2"></span>
+                <strong>{{ "ModelInformation" | translate:locale.language }}</strong>
+              </span>
+                    <span class="list-group-item">
+                <span class="fas fa-clock me-2 text-primary"></span>
+                        {{ "CreatedAt" | translate:locale.language }}:
+                        {{ model.createdAt | date:'short':undefined:locale.language }}
+              </span>
+                    <span class="list-group-item">
+                <span class="fas fa-clock-rotate-left me-2 text-primary"></span>
+                        {{ "UpdatedAt" | translate:locale.language }}:
+                        {{ model.updatedAt | date:'short':undefined:locale.language }}
+              </span>
+                    @if (model.importSource) {
+                        <span class="list-group-item"
+                        >
+                  <span class="fas fa-external-link me-2 text-primary"></span>
+                            {{ "ImportSource" | translate:locale.language }}:
+                  <a [href]="model.importSource" target="_blank">
+                    {{ model.importSource.substring(0, 30) }}{{ model.importSource.length > 30 ? "..." : "" }}
+                  </a>
                 </span>
-                <button class="list-group-item list-group-item-action"
-                        (click)="uploadMode = !uploadMode"
-                        [class.active]="uploadMode">
-                    <span class="fas fa-upload me-2"
-                          [class.text-primary]="!uploadMode"
-                          [class.text-white]="uploadMode">
-                    </span> {{ "Upload" | translate:locale.language }}
-                </button>
-                <button class="list-group-item list-group-item-action"
-                        (click)="downloadZip('all')">
-                    <span class="fas fa-file-archive text-primary me-2">
-                    </span> {{ 'DownloadAllFiles' | translate:locale.language }}
-                </button>
-                <button class="list-group-item list-group-item-action"
-                        (click)="downloadZip('model')">
-                    <span class="far fa-file-archive text-primary me-2">
-                    </span> {{ 'Download3DModels' | translate:locale.language }}
-                </button>
-                <button class="list-group-item list-group-item-action"
-                        (click)="downloadZip('sliced')">
-                    <span class="far fa-file-archive text-primary me-2">
-                    </span> {{ 'DownloadSliceds' | translate:locale.language }}
-                </button>
-                <button class="list-group-item list-group-item-action"
-                        *ngIf="!uploadMode"
-                        [class.active]="model.favorite"
-                        (click)="changeFavorite()">
-                    <span class="fa-heart me-2"
-                          [class.far]="!model.favorite"
-                          [class.fas]="model.favorite"
-                          [class.text-primary]="!model.favorite"
-                          [class.text-white]="model.favorite"
-                          [class.bg-primary]="model.favorite"></span>
-                    {{ "Favorite" | translate:locale.language }}
-                </button>
-                <div class="list-group-item list-group-item-action p-1" *ngIf="uploadMode">
-                    <app-upload-element [modelId]="modelId"></app-upload-element>
+                    }
+                    @if (model.importedLicence) {
+                        <span class="list-group-item"
+                        >
+                  <span class="fa-brands fa-creative-commons me-2 text-primary"></span>
+                            {{ "ImportedLicence" | translate:locale.language }}:
+                  <em>{{ model.importedLicence }}</em>
+                </span>
+                    }
+                </div>
+                <div class="list-group mt-2">
+              <span class="list-group-item active">
+                <span class="fas fa-screwdriver-wrench me-2"></span>
+                <strong>{{ "ModelActions" | translate:locale.language }}</strong>
+              </span>
+                    <button class="list-group-item list-group-item-action"
+                            (click)="uploadMode = !uploadMode"
+                            [class.active]="uploadMode">
+                <span class="fas fa-upload me-2"
+                      [class.text-primary]="!uploadMode"
+                      [class.text-white]="uploadMode">
+                </span> {{ "Upload" | translate:locale.language }}
+                    </button>
+                    <button class="list-group-item list-group-item-action"
+                            (click)="downloadZip('all')">
+                <span class="fas fa-file-archive text-primary me-2">
+                </span> {{ 'DownloadAllFiles' | translate:locale.language }}
+                    </button>
+                    <button class="list-group-item list-group-item-action"
+                            (click)="downloadZip('model')">
+                <span class="far fa-file-archive text-primary me-2">
+                </span> {{ 'Download3DModels' | translate:locale.language }}
+                    </button>
+                    <button class="list-group-item list-group-item-action"
+                            (click)="downloadZip('sliced')">
+                <span class="far fa-file-archive text-primary me-2">
+                </span> {{ 'DownloadSliceds' | translate:locale.language }}
+                    </button>
+                    @if (!uploadMode) {
+                        <button class="list-group-item list-group-item-action"
+                                [class.active]="model.favorite"
+                                (click)="changeFavorite()">
+                  <span class="fa-heart me-2"
+                        [class.far]="!model.favorite"
+                        [class.fas]="model.favorite"
+                        [class.text-primary]="!model.favorite"
+                        [class.text-white]="model.favorite"
+                        [class.bg-primary]="model.favorite"></span>
+                            {{ "Favorite" | translate:locale.language }}
+                        </button>
+                    }
+                    @if (uploadMode) {
+                        <div class="list-group-item list-group-item-action p-1">
+                            <app-upload-element [modelId]="modelId"></app-upload-element>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    </div>
+    }
     <div class="row my-3">
-        <div class="col-md-3 my-1">
+        <div class="col-md-2 my-1">
             <div class="list-group">
-                <button class="list-group-item list-group-item-action"
+                <button (click)="navigation = 'description'"
                         [class.active]="navigation === 'description'"
-                        (click)="navigation = 'description'">
-                    <span class="fas fa-edit text-primary me-2"
-                          [class.text-primary]="navigation !== 'description'"
-                          [class.text-white]="navigation === 'description'"></span>
+                        class="list-group-item list-group-item-action">
+              <span [class.text-primary]="navigation !== 'description'"
+                    [class.text-white]="navigation === 'description'"
+                    class="fas fa-edit text-primary me-2"></span>
                     {{ "Description" | translate:locale.language }}
                 </button>
-                <button class="list-group-item list-group-item-action"
-                        [class.active]="navigation === 'importDescription'"
-                        (click)="navigation = 'importDescription'"
-                        *ngIf="model && model.importedDescription">
-                    <span class="far fa-edit text-primary me-2"
-                          [class.text-primary]="navigation !== 'importDescription'"
-                          [class.text-white]="navigation === 'importDescription'"></span>
-                    {{ "ImportedDescription" | translate:locale.language }}
-                </button>
-                <button class="list-group-item list-group-item-action"
+                @if (model && model.importedDescription) {
+                    <button class="list-group-item list-group-item-action"
+                            [class.active]="navigation === 'importDescription'"
+                            (click)="navigation = 'importDescription'"
+                    >
+                <span class="far fa-edit text-primary me-2"
+                      [class.text-primary]="navigation !== 'importDescription'"
+                      [class.text-white]="navigation === 'importDescription'"></span>
+                        {{ "ImportedDescription" | translate:locale.language }}
+                    </button>
+                }
+                <button (click)="navigation = 'notes'"
                         [class.active]="navigation === 'notes'"
-                        (click)="navigation = 'notes'">
-                    <span class="fas fa-sticky-note text-primary me-2"
-                          [class.text-primary]="navigation !== 'notes'"
-                          [class.text-white]="navigation === 'notes'"></span>
+                        class="list-group-item list-group-item-action">
+              <span [class.text-primary]="navigation !== 'notes'"
+                    [class.text-white]="navigation === 'notes'"
+                    class="fas fa-sticky-note text-primary me-2"></span>
                     {{ "Notes" | translate:locale.language }}
                 </button>
-                <button class="list-group-item list-group-item-action"
+                <button (click)="navigation = 'links'"
                         [class.active]="navigation === 'links'"
-                        (click)="navigation = 'links'">
-                    <span class="fas fa-link text-primary me-2"
-                          [class.text-primary]="navigation !== 'links'"
-                          [class.text-white]="navigation === 'links'"></span>
+                        class="list-group-item list-group-item-action">
+              <span [class.text-primary]="navigation !== 'links'"
+                    [class.text-white]="navigation === 'links'"
+                    class="fas fa-link text-primary me-2"></span>
                     {{ "Links" | translate:locale.language }}
                 </button>
-                <button class="list-group-item list-group-item-action"
+                <button (click)="navigation = 'files'"
                         [class.active]="navigation === 'files'"
-                        (click)="navigation = 'files'">
-                    <span class="fas fa-copy text-primary me-2"
-                          [class.text-primary]="navigation !== 'files'"
-                          [class.text-white]="navigation === 'files'"></span>
+                        class="list-group-item list-group-item-action">
+              <span [class.text-primary]="navigation !== 'files'"
+                    [class.text-white]="navigation === 'files'"
+                    class="fas fa-copy text-primary me-2"></span>
                     {{ "Files" | translate:locale.language }}
                 </button>
-                <button class="list-group-item list-group-item-action disabled"
+                <button (click)="navigation = 'fileViewer'"
                         [class.active]="navigation === 'fileViewer'"
-                        (click)="navigation = 'fileViewer'">
-                    <span class="fas fa-eye text-primary me-2"
-                          [class.text-primary]="navigation !== 'fileViewer'"
-                          [class.text-white]="navigation === 'fileViewer'"></span>
+                        class="list-group-item list-group-item-action disabled">
+              <span [class.text-primary]="navigation !== 'fileViewer'"
+                    [class.text-white]="navigation === 'fileViewer'"
+                    class="fas fa-eye text-primary me-2"></span>
                     {{ "FileViewer" | translate:locale.language }}
                 </button>
             </div>
         </div>
 
-        <div class="col-md-6 my-1" *ngIf="model">
-            <div class="border border-secondary rounded p-2">
-                <div class="row"
-                     *ngIf="navigation == 'description' || navigation == 'notes'">
-                    <div class="col-md text-end">
-                        <small class="text-muted me-2" #saved></small>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-outline-success" (click)="saveText($event)"
-                                    *ngIf="editMode != EditModes.OnlyView">
-                                <span class="fas fa-save"></span>
-                            </button>
-                            <button class="btn btn-outline-secondary" (click)="switchEditMode()">
-                                <span class="fas fa-pencil-alt"></span>
-                            </button>
+        @if (model) {
+            <div class="col-md-7 my-1">
+                <div class="border border-secondary rounded p-2">
+                    @if (navigation == 'description' || navigation == 'notes') {
+                        <div class="row"
+                        >
+                            <div class="col-md text-end">
+                                <small class="text-muted me-2" #saved></small>
+                                <div class="btn-group btn-group-sm">
+                                    @if (editMode != EditModes.OnlyView) {
+                                        <button class="btn btn-outline-success" (click)="saveText($event)"
+                                        >
+                                            <span class="fas fa-save"></span>
+                                        </button>
+                                    }
+                                    <button class="btn btn-outline-secondary" (click)="switchEditMode()">
+                                        <span class="fas fa-pencil-alt"></span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    @switch (navigation) {
+                        @default {
+                            <div class="row mx-0 mb-3 mt-2">
+                                @if (editMode != EditModes.OnlyView) {
+                                    <div
+                                        [class.col-md-6]="editMode == EditModes.SplitView"
+                                        [class.col-md]="editMode == EditModes.OnlyEdit">
+                                        <!-- TODO: Add translation, there are more translations missing than this one -->
+                                        <label for="modelDescription" class="visually-hidden form-label">Edit
+                                            description</label>
+                                        <textarea id="modelDescription" [(ngModel)]="model.description"
+                                                  autosize [minRows]="10"
+                                                  (change)="saveText($event)"
+                                                  class="form-control text-monospace small"></textarea>
+                                    </div>
+                                }
+                                @if (editMode != EditModes.OnlyEdit) {
+                                    <div
+                                        [class.col-md-6]="editMode == EditModes.SplitView"
+                                        [class.col-md]="editMode == EditModes.OnlyView">
+                                        <markdown [data]="model.description"
+                                                  emoji katex lineNumbers mermaid
+                                                  class="h-100"></markdown>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        @case ('importDescription') {
+                            <div>
+                                <div class="row mx-0 mb-3 mt-2">
+                                    <div class="col-md">
+                                        <markdown [data]="model.importedDescription"
+                                                  emoji katex lineNumbers mermaid
+                                                  class="h-100"></markdown>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @case ('notes') {
+                            <div>
+                                <div class="row mx-0 mb-3 mt-2">
+                                    @if (editMode != EditModes.OnlyView) {
+                                        <div
+                                            [class.col-md-6]="editMode == EditModes.SplitView"
+                                            [class.col-md]="editMode == EditModes.OnlyEdit">
+                                            <label for="modelNotes" class="visually-hidden form-label">Edit
+                                                notes</label>
+                                            <textarea id="modelNotes" [(ngModel)]="model.notes"
+                                                      autosize [minRows]="10"
+                                                      (change)="saveText($event)"
+                                                      class="form-control text-monospace small"></textarea>
+                                        </div>
+                                    }
+                                    @if (editMode != EditModes.OnlyEdit) {
+                                        <div
+                                            [class.col-md-6]="editMode == EditModes.SplitView"
+                                            [class.col-md]="editMode == EditModes.OnlyView">
+                                            <markdown [data]="model.notes" emoji katex lineNumbers mermaid
+                                                      class="h-100"></markdown>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @case ('links') {
+                            <div class="m-3">
+                                <app-links-element [model]="model"></app-links-element>
+                            </div>
+                        }
+                        @case ('files') {
+                            <div class="m-3">
+                                <app-files-list-element [modelId]="model.id"></app-files-list-element>
+                            </div>
+                        }
+                        @case ('fileViewer') {
+                            <div class="m-3">
+                            </div>
+                        }
+                    }
                 </div>
-                <ng-container [ngSwitch]="navigation">
-                    <ng-container *ngSwitchDefault>
-                        <div class="row mx-0 mb-3 mt-2">
-                            <div *ngIf="editMode != EditModes.OnlyView"
-                                 [class.col-md-6]="editMode == EditModes.SplitView"
-                                 [class.col-md]="editMode == EditModes.OnlyEdit">
-                                <!-- TODO: Add translation, there are more translations missing than this one -->
-                                <label for="modelDescription" class="visually-hidden form-label">Edit
-                                    description</label>
-                                <textarea id="modelDescription" [(ngModel)]="model.description"
-                                          autosize [minRows]="10"
-                                          (change)="saveText($event)"
-                                          class="form-control text-monospace small"></textarea>
-                            </div>
-                            <div *ngIf="editMode != EditModes.OnlyEdit"
-                                 [class.col-md-6]="editMode == EditModes.SplitView"
-                                 [class.col-md]="editMode == EditModes.OnlyView">
-                                <markdown [data]="model.description"
-                                          emoji katex lineNumbers mermaid
-                                          class="h-100"></markdown>
-                            </div>
-                        </div>
-                    </ng-container>
-                    <div *ngSwitchCase="'importDescription'">
-                        <div class="row mx-0 mb-3 mt-2">
-                            <div class="col-md">
-                                <markdown [data]="model.importedDescription"
-                                          emoji katex lineNumbers mermaid
-                                          class="h-100"></markdown>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngSwitchCase="'notes'">
-                        <div class="row mx-0 mb-3 mt-2">
-                            <div *ngIf="editMode != EditModes.OnlyView"
-                                 [class.col-md-6]="editMode == EditModes.SplitView"
-                                 [class.col-md]="editMode == EditModes.OnlyEdit">
-                                <label for="modelNotes" class="visually-hidden form-label">Edit notes</label>
-                                <textarea id="modelNotes" [(ngModel)]="model.notes"
-                                          autosize [minRows]="10"
-                                          (change)="saveText($event)"
-                                          class="form-control text-monospace small"></textarea>
-                            </div>
-                            <div *ngIf="editMode != EditModes.OnlyEdit"
-                                 [class.col-md-6]="editMode == EditModes.SplitView"
-                                 [class.col-md]="editMode == EditModes.OnlyView">
-                                <markdown [data]="model.notes" emoji katex lineNumbers mermaid
-                                          class="h-100"></markdown>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngSwitchCase="'links'" class="m-3">
-                        <app-links-element [model]="model"></app-links-element>
-                    </div>
-                    <div *ngSwitchCase="'files'" class="m-3">
-                        <app-files-list-element [modelId]="model.id"></app-files-list-element>
-                    </div>
-                    <div *ngSwitchCase="'fileViewer'" class="m-3">
-                    </div>
-                </ng-container>
             </div>
-        </div>
+        }
 
         <div class="col-md-3 my-1">
             <div class="list-group">
-                <span class="list-group-item active">
-                    <span class="fas fa-pen-ruler me-2"></span>
-                    <strong>{{ "ModelManagement" | translate:locale.language }}</strong>
-                </span>
+            <span class="list-group-item active">
+              <span class="fas fa-pen-ruler me-2"></span>
+              <strong>{{ "ModelManagement" | translate:locale.language }}</strong>
+            </span>
                 <div class="list-group-item list-group-item-action">
                     <app-tags-element [modelId]="modelId"></app-tags-element>
                 </div>
@@ -311,20 +361,20 @@
     </div>
 </div>
 
-<ng-template let-modal #deleteModelModal>
+<ng-template #deleteModelModal let-modal>
     <ng-container>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">{{ "DeleteModel" | translate:locale.language }}</h4>
-            <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
+            <button (click)="modal.dismiss('Cross click')" class="btn" type="button">&times;</button>
         </div>
         <div class="modal-body">
             {{ "ConfirmDeletionOfModel" | translate:locale.language:model }}
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="modal.close('Abort click')">
+            <button (click)="modal.close('Abort click')" class="btn btn-secondary" type="button">
                 {{ "Abort" | translate:locale.language }}
             </button>
-            <button type="button" class="btn btn-danger" (click)="deleteModel();modal.close('Deleted')">
+            <button (click)="deleteModel();modal.close('Deleted')" class="btn btn-danger" type="button">
                 {{ "Delete" | translate:locale.language }}
             </button>
         </div>

@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from "@angular/core";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {ToastrService} from "ngx-toastr";
@@ -22,8 +22,14 @@ export class FilesListElementComponent implements OnInit {
     @Input() modelId: number;
 
     files: ModelFile[] = [];
+    selectedFiles: ModelFile[] = [];
     lastSaved: number;
     fileForDeletion: ModelFile;
+
+    sortFields: string[] = [];
+    sortDirections: boolean[] = [];
+
+    @ViewChild("checkAllCheckbox", {static: false}) checkAllCheckbox: ElementRef<HTMLInputElement>;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -36,7 +42,11 @@ export class FilesListElementComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.modelFilesService.getFiles(this.modelId).subscribe(files => this.files = files);
+        this.refreshList();
+
+        this.changeSortFields("type");
+        this.changeSortFields("position");
+        this.changeSortFields("filename");
     }
 
     saveFileList(): void {
@@ -96,6 +106,41 @@ export class FilesListElementComponent implements OnInit {
     }
 
     refreshList(): void {
-        this.modelFilesService.getFiles(this.modelId).subscribe(files => this.files = files);
+        this.modelFilesService.getFiles(this.modelId).subscribe(files => {
+            this.files = files;
+            this.selectedFiles = [];
+        });
+    }
+
+    changeSortFields(field: string): void {
+        if (this.sortFields.includes(field)) {
+            const idx = this.sortFields.indexOf(field);
+            this.sortFields.remove(field);
+            this.sortDirections.removeAt(idx);
+        } else {
+            this.sortFields.push(field);
+            this.sortDirections.push(false);
+        }
+    }
+
+    changeSortDir(field: string): void {
+        const idx = this.sortFields.indexOf(field);
+        this.sortDirections[idx] = !this.sortDirections[idx];
+    }
+
+    checkAll(checkAllCheckbox: HTMLInputElement): void {
+        this.selectedFiles = (checkAllCheckbox.checked) ? Array.from(this.files) : [];
+    }
+
+    public onChangeSelect(submissionId: ModelFile, selected: HTMLInputElement): void {
+        if (selected.checked) {
+            if (!this.selectedFiles.includes(submissionId)) {
+                this.selectedFiles.push(submissionId);
+            }
+            this.checkAllCheckbox.nativeElement.checked = this.selectedFiles.length === this.files.length;
+        } else {
+            this.selectedFiles.remove(submissionId);
+            this.checkAllCheckbox.nativeElement.checked = false;
+        }
     }
 }

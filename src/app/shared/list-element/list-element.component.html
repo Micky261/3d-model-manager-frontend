@@ -1,39 +1,48 @@
 <div class="row">
     <div class="col">
         <div class="d-flex justify-content-between h-100">
-            <span class="align-self-center">
-                <h2>{{header | translate:locale.language:headerParams}}</h2>
-            </span>
+      <span class="align-self-center">
+        <h2>{{ header | translate:locale.language:headerParams }}</h2>
+      </span>
 
-            <div class="text-right align-self-center form-floating" *ngIf="sortable">
-                <select id="listSort" class="form-select" [(ngModel)]="sorting" (ngModelChange)="changeSorting()">
-                    <option *ngFor="let so of sortings | arraySort" [value]="so">
-                        {{"sorting." + so | translate:locale.language}}
-                    </option>
-                </select>
-                <label for="listSort">{{"Sorting" | translate:locale.language}}: </label>
-            </div>
+            @if (sortable) {
+                <div class="text-right align-self-center form-floating">
+                    <select id="listSort" class="form-select" [(ngModel)]="sorting" (ngModelChange)="changeSorting()">
+                        @for (so of sortings | arraySort; track so) {
+                            <option [value]="so">
+                                {{ "sorting." + so | translate:locale.language }}
+                            </option>
+                        }
+                    </select>
+                    <label for="listSort">{{ "Sorting" | translate:locale.language }}: </label>
+                </div>
+            }
         </div>
     </div>
 </div>
 
 <div [class]="cssClasses">
-    <div class="col my-1 d-flex align-items-stretch"
-         *ngFor="let model of models | objectArraySort:sortField:sortDesc | slice:((page-1)*pageSize):(page*pageSize)">
-        <app-model-card-element class="card text-center w-100"
-                                [model]="model"
-                                [editCollection]="editCollection"
-                                (collectionEditEvent)="collectionEditEvent.emit($event)"></app-model-card-element>
-    </div>
+    @for (
+        model of models | objectArraySort:sortField:sortDesc | slice:((page - 1) * pageSize):(page * pageSize); track model) {
+        <div class="col my-1 d-flex align-items-stretch"
+        >
+            <app-model-card-element class="card text-center w-100"
+                                    [model]="model"
+                                    [editCollection]="editCollection"
+                                    (collectionEditEvent)="collectionEditEvent.emit($event)"></app-model-card-element>
+        </div>
+    }
 </div>
 
-<div class="row mt-2" *ngIf="!deactivatePagination && models && models.length > 0">
-    <div class="col d-flex justify-content-center">
-        <ngb-pagination [collectionSize]="models.length"
-                        [(page)]="page"
-                        [maxSize]="10"
-                        [pageSize]="pageSize"
-                        [ellipses]="false"
-                        [boundaryLinks]="true"></ngb-pagination>
+@if (!deactivatePagination && models && models.length > 0) {
+    <div class="row mt-2">
+        <div class="col d-flex justify-content-center">
+            <ngb-pagination [collectionSize]="models.length"
+                            [(page)]="page"
+                            [maxSize]="10"
+                            [pageSize]="pageSize"
+                            [ellipses]="false"
+                            [boundaryLinks]="true"></ngb-pagination>
+        </div>
     </div>
-</div>
+}

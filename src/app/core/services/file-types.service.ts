@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 export class FileTypesService {
     types = {
         "3gp": "video/3gpp",
+        "3mf": "model/3mf",
         "7z": "application/x-7z-compressed",
         "avi": "video/x-msvideo",
         "bmp": "image/x-ms-bmp",
@@ -67,11 +68,11 @@ export class FileTypesService {
     };
 
     applications = {
+        "pdf": ["pdf"],
         "image": ["png", "tif", "tiff", "jpg", "bmp", "jpeg", "jpe"],
         "video": ["mp4", "mpg", "mpeg", "avi", "webm", "mkv", "mpg4", "mov", "3gp"],
-        "pdf": ["pdf"],
-        "model": ["stl", "obj"],
-        "sliced": ["gcode", "pwmo"]
+        "model": ["stl", "obj", "3mf"],
+        "sliced": ["gcode", "gco", "pwmo", "pwmx"],
     };
 
     constructor() {

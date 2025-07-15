@@ -1,37 +1,42 @@
 <a routerLink="/model/{{model.id}}">
-    <img class="card-img-top bg-light w-100 thumbnail-200" [alt]="model.name" *ngIf="sessionId"
-         [src]="apiUrl + '/thumbnails/model/' + model.id + '/main' + '?format=Quadratic&size=200' + '&' + sessionName + '=' + sessionId">
+    @if (sessionId) {
+        <img class="card-img-top bg-light w-100 thumbnail-200" [alt]="model.name"
+             [src]="apiUrl + '/thumbnails/model/' + model.id + '/main' + '?format=Quadratic&size=200' + '&' + sessionName + '=' + sessionId">
+    }
 </a>
 <div class="card-body">
     <span class="card-title fa-lg">
         <span [title]="model.importedName ? '' : model.importedName">{{ model.name }}</span>
     </span>
     <p class="card-text mt-3">
-        <span class="fas fa-user" [title]="'Author' | translate:locale.language"></span>&nbsp;
+        <span [title]="'Author' | translate:locale.language" class="fas fa-user"></span>&nbsp;
         <span [title]="model.importedAuthor ? '' : model.importedAuthor">{{ model.author }}</span>
     </p>
     <p class="card-text">
-        <span class="fas fa-clock" [title]="'CreatedAt' | translate:locale.language"></span>
+        <span [title]="'CreatedAt' | translate:locale.language" class="fas fa-clock"></span>
         {{ model.createdAt | date:"mediumDate":undefined:locale.language }},
         {{ model.createdAt | date:"shortTime":undefined:locale.language }}
     </p>
 </div>
 <div class="card-footer text-muted d-grid">
-    <ng-container *ngIf="!editCollection">
+    @if (!editCollection) {
+
         <a routerLink="/model/{{model.id}}" class="btn btn-primary">
             <small class="fas fa-arrow-right me-2"></small>
             {{ "GoToModel" | translate:locale.language }}
         </a>
-    </ng-container>
-    <ng-container *ngIf="editCollection">
+
+    }
+    @if (editCollection) {
+
         <div class="btn-group">
             <button (click)="collectionEditEvent.emit({event: 'setMain', modelId: model.id})"
                     class="btn btn-primary"
                     [class.active]="isMainModelOfCollection()"
                     [ngbTooltip]="(isMainModelOfCollection() ? 'MainModelOfCollection' : 'SetMainModelCollection') | translate:locale.language">
-                <span class="fa-square-check"
-                      [class.fas]="isMainModelOfCollection()"
-                      [class.far]="!isMainModelOfCollection()"></span>
+          <span class="fa-square-check"
+                [class.fas]="isMainModelOfCollection()"
+                [class.far]="!isMainModelOfCollection()"></span>
             </button>
             <button (click)="collectionEditEvent.emit({event: 'delete', modelId: model.id})"
                     class="btn btn-danger"
@@ -39,5 +44,5 @@
                 <span class="fas fa-trash"></span>
             </button>
         </div>
-    </ng-container>
+    }
 </div>

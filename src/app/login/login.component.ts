@@ -6,9 +6,9 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../core/auth/auth.service";
 import {ToastService} from "../core/error/toast.service";
 import {TitleService} from "../core/services/title.service";
-import {Session} from "../core/types/session.type";
 import {Login} from "../core/types/login.type";
 import {ServerMessage} from "../core/types/serverMessage.type";
+import {Session} from "../core/types/session.type";
 
 @Component({
     selector: "app-login",

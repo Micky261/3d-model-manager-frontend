@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
@@ -10,6 +10,10 @@ import {RouterModule} from "@angular/router";
             {
                 path: "",
                 loadChildren: () => import("./show/profile-show.module").then(m => m.ProfileShowModule)
+            },
+            {
+                path: "accounts",
+                loadChildren: () => import("./accounts/accounts.module").then(m => m.AccountsModule)
             },
         ])
     ]

@@ -6,108 +6,127 @@
         <li class="breadcrumb-item">
             <a routerLink="/collection/list">{{ "Collections" | translate:locale.language }}</a>
         </li>
-        <li class="breadcrumb-item active" *ngIf="collection">
-            {{ "Collection" | translate:locale.language }}: {{ collection.name }}
-        </li>
+        @if (collection) {
+            <li class="breadcrumb-item active">
+                {{ "Collection" | translate:locale.language }}: {{ collection.name }}
+            </li>
+        }
     </ol>
 </nav>
 
-<div class="container-fluid mb-4" *ngIf="collection">
-    <div class="row">
-        <div class="col">
-            <div class="d-flex justify-content-between h-100">
-                <div class="align-self-center">
-                    <h2 *ngIf="!editCollection">{{ collection.name }}</h2>
-                    <div class="p-0" *ngIf="editCollection && collection">
-                        <label for="collectionName" class="visually-hidden form-label">
-                            {{ "CollectionName" | translate:locale.language }}
+@if (collection) {
+    <div class="container-fluid mb-4">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between h-100">
+                    <div class="align-self-center">
+                        @if (!editCollection) {
+                            <h2>{{ collection.name }}</h2>
+                        }
+                        @if (editCollection && collection) {
+                            <div class="p-0">
+                                <label for="collectionName" class="visually-hidden form-label">
+                                    {{ "CollectionName" | translate:locale.language }}
+                                </label>
+                                <input class="form-control" type="text" id="collectionName" #inputName
+                                       [(ngModel)]="collection.name"
+                                       [ngStyle]="getInputStyle(inputName)"/>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-right align-self-center form-floating">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary"
+                                    [ngbTooltip]="(collapseDescription ? 'UncollapseDescription' : 'CollapseDescription') | translate:locale.language"
+                                    (click)="collapseDescription = !collapseDescription">
+                  <span class="fas"
+                        [class.fa-chevron-up]="!collapseDescription"
+                        [class.fa-chevron-down]="collapseDescription">
+                  </span>
+                            </button>
+                            @if (!editCollection) {
+                                <button
+                                    class="btn btn-secondary"
+                                    [ngbTooltip]="'EditCollection' | translate:locale.language"
+                                    (click)="editCollection = true">
+                                    <span class="fas fa-pencil-alt"></span>
+                                </button>
+                            }
+                            @if (editCollection) {
+                                <button
+                                    class="btn btn-danger"
+                                    [ngbTooltip]="'DeleteCollection' | translate:locale.language"
+                                    (click)="modalService.open(deleteCollectionModal, {centered: true})">
+                                    <span class="fas fa-trash"></span>
+                                </button>
+                            }
+                            @if (editCollection) {
+                                <button
+                                    class="btn btn-success"
+                                    [ngbTooltip]="'SaveChanges' | translate:locale.language"
+                                    (click)="saveCollection()">
+                                    <span class="fas fa-save"></span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (collection) {
+    <div [ngbCollapse]="collapseDescription"
+         class="container-fluid w-auto m-4">
+        <div class="border rounded p-2">
+            <div class="row mx-0 mb-3 mt-2">
+                @if (editCollection) {
+                    <div class="col-md-6">
+                        <label for="modelDescription" class="visually-hidden form-label">
+                            {{ "EditDescription" | translate:locale.language }}
                         </label>
-                        <input class="form-control" type="text" id="collectionName" #inputName
-                               [(ngModel)]="collection.name"
-                               [ngStyle]="getInputStyle(inputName)"/>
+                        <textarea id="modelDescription" [(ngModel)]="collection.description"
+                                  autosize [minRows]="10"
+                                  class="form-control text-monospace small"></textarea>
                     </div>
-                </div>
-
-                <div class="text-right align-self-center form-floating">
-                    <div class="btn-group">
-                        <button class="btn btn-secondary"
-                                [ngbTooltip]="(collapseDescription ? 'UncollapseDescription' : 'CollapseDescription') | translate:locale.language"
-                                (click)="collapseDescription = !collapseDescription">
-                            <span class="fas"
-                                  [class.fa-chevron-up]="!collapseDescription"
-                                  [class.fa-chevron-down]="collapseDescription">
-                            </span>
-                        </button>
-                        <button *ngIf="!editCollection"
-                                class="btn btn-secondary"
-                                [ngbTooltip]="'EditCollection' | translate:locale.language"
-                                (click)="editCollection = true">
-                            <span class="fas fa-pencil-alt"></span>
-                        </button>
-                        <button *ngIf="editCollection"
-                                class="btn btn-danger"
-                                [ngbTooltip]="'DeleteCollection' | translate:locale.language"
-                                (click)="modalService.open(deleteCollectionModal, {centered: true})">
-                            <span class="fas fa-trash"></span>
-                        </button>
-                        <button *ngIf="editCollection"
-                                class="btn btn-success"
-                                [ngbTooltip]="'SaveChanges' | translate:locale.language"
-                                (click)="saveCollection()">
-                            <span class="fas fa-save"></span>
-                        </button>
-                    </div>
+                }
+                <div [class.col-md-6]="editCollection"
+                     [class.col-md-12]="!editCollection">
+                    <markdown [data]="collection.description"
+                              emoji katex lineNumbers mermaid
+                              class="h-100"></markdown>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
 
-<div [ngbCollapse]="collapseDescription" *ngIf="collection"
-     class="container-fluid w-auto m-4">
-    <div class="border rounded p-2">
-        <div class="row mx-0 mb-3 mt-2">
-            <div class="col-md-6" *ngIf="editCollection">
-                <label for="modelDescription" class="visually-hidden form-label">
-                    {{ "EditDescription" | translate:locale.language }}
-                </label>
-                <textarea id="modelDescription" [(ngModel)]="collection.description"
-                          autosize [minRows]="10"
-                          class="form-control text-monospace small"></textarea>
-            </div>
-            <div [class.col-md-6]="editCollection"
-                 [class.col-md-12]="!editCollection">
-                <markdown [data]="collection.description"
-                          emoji katex lineNumbers mermaid
-                          class="h-100"></markdown>
-            </div>
-        </div>
+@if (collection && modelsInCollection) {
+    <div class="container-fluid">
+        <app-list-element [models]="modelsInCollection" sortable="true"
+                          [overwriteSorting]="{sortings: Sorting.sortingsModelsInCollection, sorting: Sorting.defaultModelsInCollection}"
+                          [editCollection]="editCollection ? collection : null"
+                          (collectionEditEvent)="handleCollectionEditEvent($event)"
+                          header="Models"></app-list-element>
     </div>
-</div>
-
-<div class="container-fluid" *ngIf="collection && modelsInCollection">
-    <app-list-element [models]="modelsInCollection" sortable="true"
-                      [overwriteSorting]="{sortings: Sorting.sortingsModelsInCollection, sorting: Sorting.defaultModelsInCollection}"
-                      [editCollection]="editCollection ? collection : null"
-                      (collectionEditEvent)="handleCollectionEditEvent($event)"
-                      header="Models"></app-list-element>
-</div>
+}
 
 
-<ng-template let-modal #deleteCollectionModal>
+<ng-template #deleteCollectionModal let-modal>
     <ng-container>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">{{ "DeleteCollection" | translate:locale.language }}</h4>
-            <button type="button" class="btn" (click)="modal.dismiss('Cross click')">&times;</button>
+            <button (click)="modal.dismiss('Cross click')" class="btn" type="button">&times;</button>
         </div>
         <div class="modal-body">
             {{ "ConfirmDeletionOfCollection" | translate:locale.language:collection }}
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="modal.close('Abort click')">
+            <button (click)="modal.close('Abort click')" class="btn btn-secondary" type="button">
                 {{ "Abort" | translate:locale.language }}
             </button>
-            <button type="button" class="btn btn-danger" (click)="deleteCollection();modal.close('Deleted')">
+            <button (click)="deleteCollection();modal.close('Deleted')" class="btn btn-danger" type="button">
                 {{ "Delete" | translate:locale.language }}
             </button>
         </div>

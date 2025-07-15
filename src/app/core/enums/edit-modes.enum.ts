@@ -3,4 +3,3 @@ export enum EditModes {
     OnlyView,
     SplitView
 }
-

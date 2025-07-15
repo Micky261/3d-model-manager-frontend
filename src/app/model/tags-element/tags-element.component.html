@@ -4,37 +4,43 @@
         {{ "Tags" | translate:locale.language }}
     </div>
 </div>
-<div class="row my-2" *ngIf="tagsWithCount">
-    <div class="col">
-        <ng-select bindLabel="tag" bindValue="tag"
-                   [items]="tagsWithCount | objectArraySort:'tag':false"
-                   (change)="setTag($event)"
-                   (search)="saveSearch($event)"
-                   (keydown)="keyDown($event, selectTag.searchTerm, selectTag.viewPortItems)"
-                   #selectTag>
-            <ng-template ng-option-tmp let-item="item">
-                {{ item.tag | pascalCase }} <span class="text-sm-start">({{ item.count }})</span>
-            </ng-template>
-            <ng-template ng-footer-tmp>
-                <button (click)="addTag()" class="btn btn-primary btn-sm w-100">
-                    {{ "CreateTag" | translate:locale.language }}
-                </button>
-            </ng-template>
-        </ng-select>
-    </div>
-</div>
-<div class="row mt-2" *ngIf="modelTags">
-    <div class="col">
-        <div class="btn-group btn-group-xs m-1"
-             *ngFor="let tag of modelTags | objectArraySort:'tag':false">
-            <button type="button" class="btn btn-primary" routerLink="/tags/list"
-                    [queryParams]="{tags: tag.tag | pascalCase}">
-                {{ tag.tag | pascalCase }}
-            </button>
-            <button type="button" class="btn btn-outline-primary"
-                    (click)="deleteTag(tag)">
-                <span class="fas fa-trash-alt small"></span>
-            </button>
+@if (tagsWithCount) {
+    <div class="row my-2">
+        <div class="col">
+            <ng-select bindLabel="tag" bindValue="tag"
+                       [items]="tagsWithCount | objectArraySort:'tag':false"
+                       (change)="setTag($event)"
+                       (search)="saveSearch($event)"
+                       (keydown)="keyDown($event, selectTag.searchTerm, selectTag.viewPortItems)"
+                       #selectTag>
+                <ng-template ng-option-tmp let-item="item">
+                    {{ item.tag | pascalCase }} <span class="text-sm-start">({{ item.count }})</span>
+                </ng-template>
+                <ng-template ng-footer-tmp>
+                    <button (click)="addTag()" class="btn btn-primary btn-sm w-100">
+                        {{ "CreateTag" | translate:locale.language }}
+                    </button>
+                </ng-template>
+            </ng-select>
         </div>
     </div>
-</div>
+}
+@if (modelTags) {
+    <div class="row mt-2">
+        <div class="col">
+            @for (tag of modelTags | objectArraySort:'tag':false; track tag) {
+                <div class="btn-group btn-group-xs m-1"
+                >
+                    <button type="button" class="btn btn-primary" routerLink="/tags/list"
+                            [queryParams]="{tags: tag.tag | pascalCase}">
+                        {{ tag.tag | pascalCase }}
+                    </button>
+                    <button type="button" class="btn btn-outline-primary"
+                            (click)="deleteTag(tag)">
+                        <span class="fas fa-trash-alt small"></span>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+}

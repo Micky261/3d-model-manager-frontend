@@ -16,17 +16,19 @@
                 <div class="align-self-center">
                     <h2>
                         {{ "Collections" | translate:locale.language }}
-                        <button class="btn btn-success mw-2 d-inline"
-                                (click)="collapseForm = !collapseForm">
+                        <button (click)="collapseForm = !collapseForm"
+                                class="btn btn-success mw-2 d-inline">
                             <span class="fa fa-plus-square"></span>
                         </button>
                     </h2>
                 </div>
                 <div class="text-right align-self-center form-floating">
-                    <select id="listSort" class="form-select" [(ngModel)]="sorting" (ngModelChange)="changeSorting()">
-                        <option *ngFor="let so of sortings | arraySort" [value]="so">
-                            {{ "sorting." + so | translate:locale.language }}
-                        </option>
+                    <select (ngModelChange)="changeSorting()" [(ngModel)]="sorting" class="form-select" id="listSort">
+                        @for (so of sortings | arraySort; track so) {
+                            <option [value]="so">
+                                {{ "sorting." + so | translate:locale.language }}
+                            </option>
+                        }
                     </select>
                     <label for="listSort">{{ "Sorting" | translate:locale.language }}: </label>
                 </div>
@@ -85,10 +87,25 @@
 <div class="container-fluid my-3">
     <div
         class="row row-cols-1 justify-content-center row-cols-sm-3 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 row-cols-xxl-8">
-        <div class="col my-1 d-flex align-items-stretch"
-             *ngFor="let collection of collections | objectArraySort:sortField:sortDesc">
-            <app-collection-card-element class="card text-center w-100"
-                                         [collection]="collection"></app-collection-card-element>
-        </div>
+        @for (
+            collection of collections | objectArraySort:sortField:sortDesc | slice:((page - 1) * pageSize):(page * pageSize); track collection) {
+            <div class="col my-1 d-flex align-items-stretch">
+                <app-collection-card-element class="card text-center w-100"
+                                             [collection]="collection"></app-collection-card-element>
+            </div>
+        }
     </div>
+
+    @if (collections && collections.length > 0) {
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+                <ngb-pagination [collectionSize]="collections.length"
+                                [(page)]="page"
+                                [maxSize]="10"
+                                [pageSize]="pageSize"
+                                [ellipses]="false"
+                                [boundaryLinks]="true"></ngb-pagination>
+            </div>
+        </div>
+    }
 </div>

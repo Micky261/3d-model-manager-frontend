@@ -3,10 +3,10 @@ import {Injectable} from "@angular/core";
 import {CookieService} from "ngx-cookie-service";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
-import {Session} from "../types/session.type";
 import {Login} from "../types/login.type";
 import {Register} from "../types/register.type";
 import {ServerMessage} from "../types/serverMessage.type";
+import {Session} from "../types/session.type";
 
 @Injectable({
     providedIn: "root"

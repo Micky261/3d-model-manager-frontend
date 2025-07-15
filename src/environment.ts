@@ -1,13 +1,16 @@
 import {Injectable} from "@angular/core";
-import {Path, Value} from "ngx-value";
+import {AppConfigurationService} from "./app/core/services/app-configuration.service";
+import {AppConfiguration} from "./app/core/types/app-configuration.type";
 
 @Injectable({providedIn: "root"})
-@Path("config/configuration.json")
 export class Environment {
-    @Value("server") server: string;
-    @Value("path") path: string;
+    configuration: AppConfiguration;
+
+    constructor(private appConfigurationService: AppConfigurationService) {
+        this.configuration = this.appConfigurationService.getConfiguration();
+    }
 
     public apiUrl(): string {
-        return this.server + this.path;
+        return this.configuration.server + this.configuration.path;
     }
 }
