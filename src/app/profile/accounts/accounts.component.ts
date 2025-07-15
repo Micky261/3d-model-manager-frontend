@@ -7,7 +7,7 @@ import {ImportSource} from "src/app/core/enums/import-source.enum";
 import {UserSettingsKey} from "../../core/enums/user-settings-key.enum";
 import {UserSettingsType} from "../../core/enums/user-settings-type.enum";
 import {ImportService} from "../../core/services/import.service";
-import {ProfileSettingsService} from "../../core/services/profile-settings.service";
+import {ProfileService} from "../../core/services/profile.service";
 import {TitleService} from "../../core/services/title.service";
 import {UserSetting} from "../../core/types/user-setting.type";
 
@@ -31,7 +31,7 @@ export class AccountsComponent implements OnInit {
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly importService: ImportService,
         private readonly titleService: TitleService,
-        private readonly profileSettingsService: ProfileSettingsService,
+        private readonly profileService: ProfileService,
         private readonly translator: L10nTranslationService,
         private readonly toastr: ToastrService,
     ) {
@@ -43,7 +43,7 @@ export class AccountsComponent implements OnInit {
             this.enabledImporters = ei
         );
 
-        this.profileSettingsService.getAccountsSettings().subscribe((s: UserSetting[]) =>
+        this.profileService.getAccountsSettings().subscribe((s: UserSetting[]) =>
             this.accountsSettings = s
         );
     }
@@ -55,7 +55,7 @@ export class AccountsComponent implements OnInit {
         const makerWorldSessionToken = this.makerworldSessionToken.nativeElement.value;
         const makerWorldSetting = new UserSetting(UserSettingsKey.MakerWorldSessionToken, UserSettingsType.Account, makerWorldSessionToken);
 
-        this.profileSettingsService.saveAccountsSettings([cultsSetting, makerWorldSetting]).subscribe(() =>
+        this.profileService.saveAccountsSettings([cultsSetting, makerWorldSetting]).subscribe(() =>
             this.toastr.success(this.translator.translate("Saved") as string)
         );
     }
