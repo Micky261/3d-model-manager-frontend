@@ -8985,10 +8985,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:~0.166.1":
-  version: 0.166.1
-  resolution: "three@npm:0.166.1"
-  checksum: 10/10f36702ab0f6b7f03a45f46437157a00ece42a1760d70b1c24db5e8d3f02b7b522a117377e7c8ad7ec504e2008a8776ccb4fa16512d455d431b66390f23a2ed
+"three@npm:~0.179.0":
+  version: 0.179.0
+  resolution: "three@npm:0.179.0"
+  checksum: 10/10b8a30b231ad226bbb26838543237ac5a0335dad3677702ea9dfd373ae76ca9c307326712ec76d29d8cc7352fc1e67b6f4924bf57ac96dc55961ca64d8bedc7
   languageName: node
   linkType: hard
 
@@ -9039,7 +9039,7 @@ __metadata:
     nxt-flags: "npm:^20.0.0"
     prismjs: "npm:1.30.0"
     rxjs: "npm:^7.8.2"
-    three: "npm:~0.166.1"
+    three: "npm:~0.179.0"
     ts-node: "npm:^10.9.2"
     tslib: "npm:2.8.1"
     typescript: "npm:5.8.3"
