@@ -345,7 +345,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@antfu/install-pkg@npm:^1.0.0":
+"@antfu/install-pkg@npm:^1.1.0":
   version: 1.1.0
   resolution: "@antfu/install-pkg@npm:1.1.0"
   dependencies:
@@ -362,10 +362,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@antfu/utils@npm:^8.1.0":
-  version: 8.1.1
-  resolution: "@antfu/utils@npm:8.1.1"
-  checksum: 10/2a9cc7877c1e39a1ce8b76a566b8e731a1b55ce895708365536e1939821ddcadbb7e2f4f130855747b474b1de1c078ffc20aaf9810ffe762db017f4731ace9fb
+"@antfu/utils@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "@antfu/utils@npm:9.2.0"
+  checksum: 10/cebc2666e61fc6364c3b2af8e384cf470b9243f38310ca22e86853ac7f2b33a265d0ca5935a697c2cc71db8c17e7419b2fd4a89215ba5c86c71fdd7f51f02b56
   languageName: node
   linkType: hard
 
@@ -1264,19 +1264,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/utils@npm:^2.1.33":
-  version: 2.3.0
-  resolution: "@iconify/utils@npm:2.3.0"
+"@iconify/utils@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@iconify/utils@npm:3.0.1"
   dependencies:
-    "@antfu/install-pkg": "npm:^1.0.0"
-    "@antfu/utils": "npm:^8.1.0"
+    "@antfu/install-pkg": "npm:^1.1.0"
+    "@antfu/utils": "npm:^9.2.0"
     "@iconify/types": "npm:^2.0.0"
-    debug: "npm:^4.4.0"
-    globals: "npm:^15.14.0"
+    debug: "npm:^4.4.1"
+    globals: "npm:^15.15.0"
     kolorist: "npm:^1.8.0"
-    local-pkg: "npm:^1.0.0"
+    local-pkg: "npm:^1.1.1"
     mlly: "npm:^1.7.4"
-  checksum: 10/27583d82542738c91719637793b1e2235dc847af2dd567743ec0edf0e38c614c565f12fb5a6ebdbd5346b582ad7a06eba5566c8ffe788f778d86c8e7646d7ea1
+  checksum: 10/9d89fbb664b4503de3acec6aef12271b5d3b026c14fd93125df253d1140f7a94e281e1ef32b44a269660f359a78c28bd398e8c0fafca24894caaa3f5c56a7f3e
   languageName: node
   linkType: hard
 
@@ -1734,12 +1734,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mermaid-js/parser@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "@mermaid-js/parser@npm:0.6.1"
+"@mermaid-js/parser@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "@mermaid-js/parser@npm:0.6.2"
   dependencies:
     langium: "npm:3.3.1"
-  checksum: 10/b7e71c16e8c6baab17bbe39f0e4353221a4bc86642b45fadfbd442f859ba0d4606db245dcc82c6b24c5baec193cf9bec59661558699c49df485a28b5eb20d15b
+  checksum: 10/b8174ef3e205e499cd315ab0bddb8ad752d767a6fa371d8d3c2e2317bb80d4375607162a15082101024088f94a52c1339a26f0cbb97314c71cabbd3fa0e6cc91
   languageName: node
   linkType: hard
 
@@ -6469,14 +6469,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"local-pkg@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "local-pkg@npm:1.1.1"
+"local-pkg@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "local-pkg@npm:1.1.2"
   dependencies:
     mlly: "npm:^1.7.4"
-    pkg-types: "npm:^2.0.1"
-    quansync: "npm:^0.2.8"
-  checksum: 10/e04aedda8fe30b69d763100aa0485a32815d37478e76a97d2d792138607ebfdde20db3da9f301c260117e24340d4ab4731191bcae825dc94d3f6a4960ad11706
+    pkg-types: "npm:^2.3.0"
+    quansync: "npm:^0.2.11"
+  checksum: 10/761d82f40849e4721fa50d86782cf75bc2befb0696f32ac99869fb6f3033b904e4018f4bb8cdfde994d710816480dc1aba8e462c67ec20fe89d4700a245d17f8
   languageName: node
   linkType: hard
 
@@ -6672,13 +6672,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mermaid@npm:11.8.1":
-  version: 11.8.1
-  resolution: "mermaid@npm:11.8.1"
+"mermaid@npm:11.11.0":
+  version: 11.11.0
+  resolution: "mermaid@npm:11.11.0"
   dependencies:
     "@braintree/sanitize-url": "npm:^7.0.4"
-    "@iconify/utils": "npm:^2.1.33"
-    "@mermaid-js/parser": "npm:^0.6.1"
+    "@iconify/utils": "npm:^3.0.1"
+    "@mermaid-js/parser": "npm:^0.6.2"
     "@types/d3": "npm:^7.4.3"
     cytoscape: "npm:^3.29.3"
     cytoscape-cose-bilkent: "npm:^4.1.0"
@@ -6688,7 +6688,7 @@ __metadata:
     dagre-d3-es: "npm:7.0.11"
     dayjs: "npm:^1.11.13"
     dompurify: "npm:^3.2.5"
-    katex: "npm:^0.16.9"
+    katex: "npm:^0.16.22"
     khroma: "npm:^2.1.0"
     lodash-es: "npm:^4.17.21"
     marked: "npm:^15.0.7"
@@ -6696,7 +6696,7 @@ __metadata:
     stylis: "npm:^4.3.6"
     ts-dedent: "npm:^2.2.0"
     uuid: "npm:^11.1.0"
-  checksum: 10/925ea7bc0f5d72f856a73502182ebc8e94caf219a91f03d4d7acc836c62696cb649a13b4cd67ae1a325ab04e35f2f007913615b3c01d05973a0ddad1361b074e
+  checksum: 10/7ef3f12c64e517204ee30e80ffdfe48c661c1830f32848780e28978757196efb61eea233694b57a1962ad89470e117403edb663365363be416acb8eb4a6fdfab
   languageName: node
   linkType: hard
 
@@ -7848,14 +7848,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pkg-types@npm:^2.0.1":
-  version: 2.2.0
-  resolution: "pkg-types@npm:2.2.0"
+"pkg-types@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "pkg-types@npm:2.3.0"
   dependencies:
     confbox: "npm:^0.2.2"
     exsolve: "npm:^1.0.7"
     pathe: "npm:^2.0.3"
-  checksum: 10/54ffa530f443f0c55b7fad1475f619f4f70738b97dc8c65c783b54891b36663165cde02160c273c08ddb17efd29fb0fbcd929bed49bd06a96cec27a6ca4ed2f8
+  checksum: 10/4b36e4eb12693a1beb145573c564ec6fb74b1008d3b457eaa1f0072331edf05cb7c479c47fe0c4bfdec76c2caff5b68215ff270e5fe49634c07984a7a0197118
   languageName: node
   linkType: hard
 
@@ -7990,10 +7990,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"quansync@npm:^0.2.8":
-  version: 0.2.10
-  resolution: "quansync@npm:0.2.10"
-  checksum: 10/b54d955de867e104025f2666d52b2b67befe4e0f184a96acc9adcbdc572e46dce49c69d1e79f99413beae8a974a576383806a05f85f9a826865dc589ee1bcaf2
+"quansync@npm:^0.2.11":
+  version: 0.2.11
+  resolution: "quansync@npm:0.2.11"
+  checksum: 10/d4f0cc21a25052a8a6183f17752a6221829c4795b40641de67c06945b356841ff00296d3700d0332dfe8e86100fdcc02f4be7559f3f1774a753b05adb7800d01
   languageName: node
   linkType: hard
 
@@ -9029,7 +9029,7 @@ __metadata:
     filesize: "npm:^11.0.1"
     katex: "npm:^0.16.22"
     marked: "npm:^15.0.12"
-    mermaid: "npm:11.8.1"
+    mermaid: "npm:11.11.0"
     ng-lazyload-image: "npm:^9.1.3"
     ng2-pdf-viewer: "npm:^10.4.0"
     ngx-autosize: "npm:^2.0.4"
