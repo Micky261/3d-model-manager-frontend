@@ -55,7 +55,7 @@ export class AccountsComponent implements OnInit {
         const makerWorldSessionToken = this.makerworldSessionToken.nativeElement.value;
         const makerWorldSetting = new UserSetting(UserSettingsKey.MakerWorldSessionToken, UserSettingsType.Account, makerWorldSessionToken);
 
-        this.profileSettingsService.saveAccountsSettings([/*cultsSetting,*/ makerWorldSetting]).subscribe(() =>
+        this.profileService.saveAccountsSettings([/*cultsSetting,*/ makerWorldSetting]).subscribe(() =>
             this.toastr.success(this.translator.translate("Saved") as string)
         );
     }
