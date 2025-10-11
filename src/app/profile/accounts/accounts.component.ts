@@ -24,7 +24,7 @@ export class AccountsComponent implements OnInit {
     enabledImporters: ImportSource[];
     accountsSettings: UserSetting[];
 
-    @ViewChild("cults3dSessionId", {static: false}) cults3dSessionId: ElementRef<HTMLInputElement>;
+//    @ViewChild("cults3dSessionId", {static: false}) cults3dSessionId: ElementRef<HTMLInputElement>;
     @ViewChild("makerworldSessionToken", {static: false}) makerworldSessionToken: ElementRef<HTMLInputElement>;
 
     constructor(
@@ -49,13 +49,13 @@ export class AccountsComponent implements OnInit {
     }
 
     saveAccountSettings() {
-        const cults3dSessionId = this.cults3dSessionId.nativeElement.value;
-        const cultsSetting = new UserSetting(UserSettingsKey.Cults3dSessionId, UserSettingsType.Account, cults3dSessionId);
+//        const cults3dSessionId = this.cults3dSessionId.nativeElement.value;
+//        const cultsSetting = new UserSetting(UserSettingsKey.Cults3dSessionId, UserSettingsType.Account, cults3dSessionId);
 
         const makerWorldSessionToken = this.makerworldSessionToken.nativeElement.value;
         const makerWorldSetting = new UserSetting(UserSettingsKey.MakerWorldSessionToken, UserSettingsType.Account, makerWorldSessionToken);
 
-        this.profileService.saveAccountsSettings([cultsSetting, makerWorldSetting]).subscribe(() =>
+        this.profileSettingsService.saveAccountsSettings([/*cultsSetting,*/ makerWorldSetting]).subscribe(() =>
             this.toastr.success(this.translator.translate("Saved") as string)
         );
     }
