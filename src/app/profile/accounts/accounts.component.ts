@@ -62,7 +62,6 @@ export class AccountsComponent implements OnInit {
 
     getSetting(key: UserSettingsKey): string {
         const result = this.accountsSettings.find((setting) => setting.key === key.valueOf());
-        console.log(result);
 
         if (!result) return "";
         else return result.value;
