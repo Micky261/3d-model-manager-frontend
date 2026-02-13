@@ -11,47 +11,52 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="!registrationSuccess">
-        <div class="col">
-            <form [formGroup]="registerForm">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label" for="name">{{ "Name" | translate:locale.language }}:</label>
-                        <input class="form-control" formControlName="name" id="name" required type="text"/>
+    @if (!registrationSuccess) {
+        <div class="row">
+            <div class="col">
+                <form [formGroup]="registerForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="name">{{ "Name" | translate:locale.language }}:</label>
+                            <input class="form-control" formControlName="name" id="name" required type="text"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="email">{{ "Email" | translate:locale.language }}:</label>
+                            <input class="form-control" formControlName="email" id="email" required type="email"/>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label" for="email">{{ "Email" | translate:locale.language }}:</label>
-                        <input class="form-control" formControlName="email" id="email" required type="email"/>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="password">{{ "Password" | translate:locale.language }}
+                                :</label>
+                            <input class="form-control" formControlName="password" id="password" required
+                                   type="password"/>
+                            <div class="form-text">{{ "PasswordMinLength" | translate:locale.language }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"
+                                   for="passwordConfirm">{{ "PasswordConfirm" | translate:locale.language }}:</label>
+                            <input class="form-control" formControlName="passwordConfirm" id="passwordConfirm" required
+                                   type="password"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label" for="password">{{ "Password" | translate:locale.language }}:</label>
-                        <input class="form-control" formControlName="password" id="password" required type="password"/>
-                        <div class="form-text">{{ "PasswordMinLength" | translate:locale.language }}</div>
+                    <div class="row mt-2">
+                        <div class="col-md-12 d-grid">
+                            <button (click)="register()" class="btn btn-success" type="submit">
+                                {{ "Register" | translate:locale.language }}
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label" for="passwordConfirm">{{ "PasswordConfirm" | translate:locale.language }}:</label>
-                        <input class="form-control" formControlName="passwordConfirm" id="passwordConfirm" required type="password"/>
+                    <div class="row mt-3">
+                        <div class="col-md-12 text-center">
+                            <a routerLink="/login">{{ "AlreadyHaveAccount" | translate:locale.language }}</a>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-12 d-grid">
-                        <button (click)="register()" class="btn btn-success" type="submit">
-                            {{ "Register" | translate:locale.language }}
-                        </button>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12 text-center">
-                        <a routerLink="/login">{{ "AlreadyHaveAccount" | translate:locale.language }}</a>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-
-    <div class="row" *ngIf="registrationSuccess">
+    } @if (registrationSuccess) {
+    <div class="row">
         <div class="col">
             <div class="alert alert-success" role="alert">
                 <h4 class="alert-heading">{{ "RegistrationSuccessTitle" | translate:locale.language }}</h4>
@@ -63,4 +68,5 @@
             </div>
         </div>
     </div>
+}
 </div>
