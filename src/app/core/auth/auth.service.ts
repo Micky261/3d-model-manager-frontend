@@ -29,6 +29,14 @@ export class AuthService {
         return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/register`, register);
     }
 
+    verifyEmail(token: string): Observable<ServerMessage> {
+        return this.httpClient.get<ServerMessage>(`${this.environment.apiUrl()}/auth/email/verify/${token}`);
+    }
+
+    resendVerification(): Observable<ServerMessage> {
+        return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/auth/email/resend`, {});
+    }
+
     isLoggedIn(): boolean {
         return this.cookieService.check(AuthService.sessionCookieName);
     }

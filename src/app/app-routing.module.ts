@@ -28,6 +28,10 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
                     loadChildren: () => import("./email-resend/email-resend.module").then(m => m.EmailResendModule)
                 },
                 {
+                    path: "email-verify",
+                    loadChildren: () => import("./email-verify/email-verify.module").then(m => m.EmailVerifyModule)
+                },
+                {
                     path: "model",
                     loadChildren: () => import("./model/model.module").then(m => m.ModelModule)
                 },
