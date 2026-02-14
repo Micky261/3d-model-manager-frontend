@@ -21,11 +21,13 @@
       @if (!authService.isLoggedIn()) {
         <ul class="navbar-nav me-auto">
           <!-- for non-logged-in users -->
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register">
-              <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
-            </a>
-          </li>
+          @if (registrationMode !== "disabled") {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/register">
+                <span class="fas fa-user-plus"></span> {{"Register" | translate:locale.language}}
+              </a>
+            </li>
+          }
           <li class="nav-item">
             <a class="nav-link" routerLink="/login">
               <span class="fas fa-sign-in-alt"></span> {{"Login" | translate:locale.language}}
@@ -120,19 +122,30 @@
               <span class="fas fa-circle-user"></span> {{"Profile" | translate:locale.language}}
             </a>
             <ul class="dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarProfileDropDown">
+              <li><h6 class="dropdown-header">{{"Profile" | translate:locale.language}}</h6></li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem routerLink="profile">
-                  <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
+                  <span class="far fa-circle-user fa-fw"></span> {{"ShowProfile" | translate:locale.language}}
                 </button>
               </li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem routerLink="profile/accounts">
-                  <span class="fas fa-users-gear"></span> {{"ManageAccounts" | translate:locale.language}}
+                  <span class="fas fa-users-gear fa-fw"></span> {{"ManageAccounts" | translate:locale.language}}
                 </button>
               </li>
+              @if (isAdmin) {
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">{{"Admin" | translate:locale.language}}</h6></li>
+                <li>
+                  <button class="dropdown-item" ngbDropdownItem routerLink="admin/invitation-tokens">
+                    <span class="fas fa-key fa-fw"></span> {{"InvitationTokens" | translate:locale.language}}
+                  </button>
+                </li>
+              }
+              <li><hr class="dropdown-divider"></li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem (click)="logout()">
-                  <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
+                  <span class="fas fa-sign-out-alt fa-fw"></span> {{"Logout" | translate:locale.language}}
                 </button>
               </li>
             </ul>

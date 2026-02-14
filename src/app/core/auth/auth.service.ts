@@ -37,6 +37,14 @@ export class AuthService {
         return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/auth/email/resend`, {});
     }
 
+    getRegistrationInfo(): Observable<{registrationMode: string}> {
+        return this.httpClient.get<{registrationMode: string}>(`${this.environment.apiUrl()}/registration-info`);
+    }
+
+    checkAdminStatus(): Observable<{isAdmin: boolean}> {
+        return this.httpClient.get<{isAdmin: boolean}>(`${this.environment.apiUrl()}/admin/status`);
+    }
+
     isLoggedIn(): boolean {
         return this.cookieService.check(AuthService.sessionCookieName);
     }

@@ -15,6 +15,8 @@ import {locales} from "../i18n/l10n-config";
 export class NavbarComponent implements OnInit {
     locales = locales;
     isCollapsed = true;
+    isAdmin = false;
+    registrationMode = "open";
 
     @ViewChild("searchInput", {static: false}) searchInput: HTMLInputElement;
 
@@ -29,6 +31,19 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.authService.getRegistrationInfo().subscribe({
+            next: info => {
+                this.registrationMode = info.registrationMode;
+            }
+        });
+
+        if (this.authService.isLoggedIn()) {
+            this.authService.checkAdminStatus().subscribe({
+                next: response => {
+                    this.isAdmin = response.isAdmin;
+                }
+            });
+        }
     }
 
     setLocale(locale: L10nLocale): void {

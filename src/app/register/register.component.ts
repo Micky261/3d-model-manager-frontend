@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {AuthService} from "../core/auth/auth.service";
 import {ToastService} from "../core/error/toast.service";
@@ -20,9 +20,11 @@ export class RegisterComponent implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         password: ["", [Validators.required, Validators.minLength(8)]],
         passwordConfirm: ["", [Validators.required]],
+        invitationToken: [""],
     });
 
     registrationSuccess = false;
+    registrationMode = "open";
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
         private readonly authService: AuthService,
         private readonly toast: ToastService,
         private readonly router: Router,
+        private readonly route: ActivatedRoute,
     ) {
         this.titleService.setTitle("Register", true);
     }
@@ -37,7 +40,20 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
         if (this.authService.isLoggedIn()) {
             void this.router.navigateByUrl("/").then(() => true);
+            return;
         }
+
+        this.authService.getRegistrationInfo().subscribe({
+            next: info => {
+                this.registrationMode = info.registrationMode;
+            }
+        });
+
+        this.route.queryParams.subscribe(params => {
+            if (params.token) {
+                this.registerForm.get("invitationToken").setValue(params.token as string);
+            }
+        });
     }
 
     register(): void {
@@ -61,10 +77,17 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
+        if (this.registrationMode === "token" && !this.registerForm.get("invitationToken").value) {
+            this.toast.showValidationError("InvitationTokenRequired");
+            return;
+        }
+
+        const tokenValue = this.registerForm.get("invitationToken").value;
         const register: Register = new Register(
             this.registerForm.get("name").value,
             this.registerForm.get("email").value,
-            this.registerForm.get("password").value
+            this.registerForm.get("password").value,
+            tokenValue ? tokenValue : undefined
         );
 
         this.authService.register(register).subscribe({

@@ -1,0 +1,109 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">{{ "InvitationTokens" | translate:locale.language }}</li>
+    </ol>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>{{ "InvitationTokens" | translate:locale.language }}</h2>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="alert alert-info" role="alert">
+                <strong>{{ "RegistrationMode" | translate:locale.language }}:</strong>
+                @if (registrationMode === "open") {
+                    {{ "RegistrationModeOpen" | translate:locale.language }}
+                } @else if (registrationMode === "token") {
+                    {{ "RegistrationModeToken" | translate:locale.language }}
+                } @else if (registrationMode === "disabled") {
+                    {{ "RegistrationModeDisabled" | translate:locale.language }}
+                }
+                <br/>
+                <small>{{ "RegistrationModeHint" | translate:locale.language }}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ "CreateInvitationToken" | translate:locale.language }}</h5>
+                    <div class="row align-items-end">
+                        <div class="col-md-4">
+                            <label class="form-label" for="expiresInHours">{{ "ExpiresInHours" | translate:locale.language }}:</label>
+                            <input class="form-control" id="expiresInHours" type="number" min="1"
+                                   [(ngModel)]="expiresInHours"
+                                   [placeholder]="'NoExpiry' | translate:locale.language"/>
+                        </div>
+                        <div class="col-md-4 mt-2 mt-md-0">
+                            <button class="btn btn-success" (click)="createToken()">
+                                <span class="fas fa-plus"></span> {{ "CreateInvitationToken" | translate:locale.language }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ "InvitationToken" | translate:locale.language }}</th>
+                            <th>{{ "CreatedAt" | translate:locale.language }}</th>
+                            <th>{{ "ExpiresAt" | translate:locale.language }}</th>
+                            <th>Status</th>
+                            <th>{{ "Actions" | translate:locale.language }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (token of tokens; track token.id) {
+                            <tr>
+                                <td class="token-text">{{ token.token.substring(0, 8) }}...{{ token.token.substring(token.token.length - 8) }}</td>
+                                <td>{{ token.createdAt | date:"medium" }}</td>
+                                <td>
+                                    @if (token.expiresAt) {
+                                        {{ token.expiresAt | date:"medium" }}
+                                    } @else {
+                                        {{ "NoExpiry" | translate:locale.language }}
+                                    }
+                                </td>
+                                <td>
+                                    @if (token.isUsed) {
+                                        <span class="badge bg-secondary">{{ "TokenUsed" | translate:locale.language }}</span>
+                                    } @else if (token.isExpired) {
+                                        <span class="badge bg-danger">{{ "TokenExpired" | translate:locale.language }}</span>
+                                    } @else {
+                                        <span class="badge bg-success">{{ "TokenValid" | translate:locale.language }}</span>
+                                    }
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-1" (click)="copyToken(token.token)"
+                                            [title]="'CopyToken' | translate:locale.language">
+                                        <span class="fas fa-copy"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary me-1" (click)="copyRegistrationLink(token.token)"
+                                            [title]="'CopyRegistrationLink' | translate:locale.language">
+                                        <span class="fas fa-link"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="deleteToken(token.id)"
+                                            [title]="'DeleteToken' | translate:locale.language">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

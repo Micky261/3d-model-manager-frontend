@@ -11,7 +11,20 @@
         </div>
     </div>
 
-    @if (!registrationSuccess) {
+    @if (registrationMode === "disabled") {
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">{{ "RegistrationDisabledTitle" | translate:locale.language }}</h4>
+                    <p>{{ "RegistrationDisabledMessage" | translate:locale.language }}</p>
+                    <hr>
+                    <p class="mb-0">
+                        <a routerLink="/login" class="btn btn-primary">{{ "GoToLogin" | translate:locale.language }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    } @else if (!registrationSuccess) {
         <div class="row">
             <div class="col">
                 <form [formGroup]="registerForm">
@@ -25,6 +38,16 @@
                             <input class="form-control" formControlName="email" id="email" required type="email"/>
                         </div>
                     </div>
+                    @if (registrationMode === "token") {
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label" for="invitationToken">{{ "InvitationToken" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="invitationToken" id="invitationToken" type="text"
+                                       [placeholder]="'InvitationTokenPlaceholder' | translate:locale.language"/>
+                                <div class="form-text">{{ "InvitationTokenHint" | translate:locale.language }}</div>
+                            </div>
+                        </div>
+                    }
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label" for="password">{{ "Password" | translate:locale.language }}
@@ -55,7 +78,7 @@
                 </form>
             </div>
         </div>
-    } @if (registrationSuccess) {
+    } @else if (registrationSuccess) {
     <div class="row">
         <div class="col">
             <div class="alert alert-success" role="alert">
