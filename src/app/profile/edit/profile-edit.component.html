@@ -1,0 +1,116 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/profile">{{ "Profile" | translate:locale.language }}</a></li>
+        <li class="breadcrumb-item active">{{ "EditProfile" | translate:locale.language }}</li>
+    </ol>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>{{ "EditProfile" | translate:locale.language }}</h2>
+        </div>
+    </div>
+
+    <!-- Change Name -->
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ "ChangeName" | translate:locale.language }}</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="nameForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="name">{{ "NewName" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="name" id="name" required type="text"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-grid">
+                                <button (click)="changeName()" class="btn btn-success" type="submit">
+                                    {{ "Save" | translate:locale.language }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Email -->
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ "ChangeEmail" | translate:locale.language }}</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="emailForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="newEmail">{{ "NewEmail" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="email" id="newEmail" required type="email"/>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="emailCurrentPassword">{{ "CurrentPassword" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="currentPassword" id="emailCurrentPassword" required type="password"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-text">{{ "ChangeEmailHint" | translate:locale.language }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-grid">
+                                <button (click)="changeEmail()" class="btn btn-success" type="submit">
+                                    {{ "Save" | translate:locale.language }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="row mt-3 mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ "ChangePassword" | translate:locale.language }}</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="passwordForm">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label" for="pwCurrentPassword">{{ "CurrentPassword" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="currentPassword" id="pwCurrentPassword" required type="password"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="newPassword">{{ "NewPassword" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="newPassword" id="newPassword" required type="password"/>
+                                <div class="form-text">{{ "PasswordMinLength" | translate:locale.language }}</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="newPasswordConfirm">{{ "NewPasswordConfirm" | translate:locale.language }}:</label>
+                                <input class="form-control" formControlName="newPasswordConfirm" id="newPasswordConfirm" required type="password"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 d-grid">
+                                <button (click)="changePassword()" class="btn btn-success" type="submit">
+                                    {{ "Save" | translate:locale.language }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

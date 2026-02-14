@@ -41,6 +41,14 @@ export class AuthService {
         return this.httpClient.get<{registrationMode: string}>(`${this.environment.apiUrl()}/registration-info`);
     }
 
+    requestPasswordReset(email: string): Observable<ServerMessage> {
+        return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/request-password-reset`, {email});
+    }
+
+    resetPassword(token: string, password: string): Observable<ServerMessage> {
+        return this.httpClient.post<ServerMessage>(`${this.environment.apiUrl()}/reset-password`, {token, password});
+    }
+
     checkAdminStatus(): Observable<{isAdmin: boolean}> {
         return this.httpClient.get<{isAdmin: boolean}>(`${this.environment.apiUrl()}/admin/status`);
     }

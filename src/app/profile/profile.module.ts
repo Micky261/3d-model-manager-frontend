@@ -15,6 +15,10 @@ import {RouterModule} from "@angular/router";
                 path: "accounts",
                 loadChildren: () => import("./accounts/accounts.module").then(m => m.AccountsModule)
             },
+            {
+                path: "edit",
+                loadChildren: () => import("./edit/profile-edit.module").then(m => m.ProfileEditModule)
+            },
         ])
     ]
 })

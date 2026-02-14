@@ -33,6 +33,14 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
                     loadChildren: () => import("./email-verify/email-verify.module").then(m => m.EmailVerifyModule)
                 },
                 {
+                    path: "forgot-password",
+                    loadChildren: () => import("./forgot-password/forgot-password.module").then(m => m.ForgotPasswordModule)
+                },
+                {
+                    path: "password-reset",
+                    loadChildren: () => import("./password-reset/password-reset.module").then(m => m.PasswordResetModule)
+                },
+                {
                     path: "model",
                     loadChildren: () => import("./model/model.module").then(m => m.ModelModule)
                 },
