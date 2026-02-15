@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit {
                 this.cookieService.set(
                     AuthService.sessionCookieName,
                     session.sessionId,
-                    new Date(session.sessionExpiry * 1000)
+                    new Date(session.sessionExpiry * 1000),
+                    "/"
                 );
 
                 this.toast.showSuccess("Login");

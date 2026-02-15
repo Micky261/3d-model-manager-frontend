@@ -22,23 +22,28 @@ import {AuthGuardService} from "./core/auth/auth-guard.service";
                 },
                 {
                     path: "model",
-                    loadChildren: () => import("./model/model.module").then(m => m.ModelModule)
+                    loadChildren: () => import("./model/model.module").then(m => m.ModelModule),
+                    canActivate: [AuthGuardService]
                 },
                 {
                     path: "collection",
-                    loadChildren: () => import("./collection/collection.module").then(m => m.CollectionModule)
+                    loadChildren: () => import("./collection/collection.module").then(m => m.CollectionModule),
+                    canActivate: [AuthGuardService]
                 },
                 {
                     path: "search",
-                    loadChildren: () => import("./search/search.module").then(m => m.SearchModule)
+                    loadChildren: () => import("./search/search.module").then(m => m.SearchModule),
+                    canActivate: [AuthGuardService]
                 },
                 {
                     path: "tags",
-                    loadChildren: () => import("./tags/tags.module").then(m => m.TagsModule)
+                    loadChildren: () => import("./tags/tags.module").then(m => m.TagsModule),
+                    canActivate: [AuthGuardService]
                 },
                 {
                     path: "profile",
-                    loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule)
+                    loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule),
+                    canActivate: [AuthGuardService]
                 },
                 {
                     path: "admin",
