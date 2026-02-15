@@ -80,35 +80,35 @@
                         <tbody>
                         <tr>
                             <td class="col-6">{{ "statistics.MostCommonImportSource" | translate:locale.language }}</td>
-                            <td class="col-6">{{ profileStats.mostCommonImportSource }}</td>
+                            <td class="col-6">{{ profileStats.mostCommonImportSource || "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.LargestFile" | translate:locale.language }}</td>
-                            <td>{{ profileStats.largestFileSize }}</td>
+                            <td>{{ profileStats.largestFileSize || "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.MostFrequentAuthor" | translate:locale.language }}</td>
-                            <td>{{ profileStats.mostFrequentAuthor }}</td>
+                            <td>{{ profileStats.mostFrequentAuthor || "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.ModelWithMostFiles" | translate:locale.language }}</td>
-                            <td>{{ profileStats.modelWithMostFilesCount }}</td>
+                            <td>{{ profileStats.modelWithMostFiles ? profileStats.modelWithMostFilesCount : "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.ModelWithMost3DModels" | translate:locale.language }}</td>
-                            <td>{{ profileStats.modelWithMost3DModelsCount }}</td>
+                            <td>{{ profileStats.modelWithMost3DModels ? profileStats.modelWithMost3DModelsCount : "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.FirstModel" | translate:locale.language }}</td>
-                            <td>{{ profileStats.firstModel.name }}</td>
+                            <td>{{ profileStats.firstModel?.name || "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.LatestModel" | translate:locale.language }}</td>
-                            <td>{{ profileStats.latestModel.name }}</td>
+                            <td>{{ profileStats.latestModel?.name || "-" }}</td>
                         </tr>
                         <tr>
                             <td>{{ "statistics.LastEditedModel" | translate:locale.language }}</td>
-                            <td>{{ profileStats.lastEditedModel.name }}</td>
+                            <td>{{ profileStats.lastEditedModel?.name || "-" }}</td>
                         </tr>
                         </tbody>
                     </table>
