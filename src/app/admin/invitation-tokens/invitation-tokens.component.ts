@@ -2,7 +2,8 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {AuthService} from "../../core/auth/auth.service";
 import {ToastService} from "../../core/error/toast.service";
-import {AdminService, InvitationToken} from "../../core/services/admin.service";
+import {AdminService} from "../../core/services/admin.service";
+import {InvitationToken} from "../../core/types/invitation-token.type";
 import {TitleService} from "../../core/services/title.service";
 
 @Component({

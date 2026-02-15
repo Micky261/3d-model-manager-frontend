@@ -2,19 +2,8 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
-
-export interface InvitationToken {
-    id: number;
-    token: string;
-    createdBy: number;
-    usedBy: number | null;
-    expiresAt: string | null;
-    usedAt: string | null;
-    createdAt: string;
-    isUsed: boolean;
-    isExpired: boolean;
-    isValid: boolean;
-}
+import {InvitationToken} from "../types/invitation-token.type";
+import {UserAdmin} from "../types/user-admin.type";
 
 export interface CreateInvitationTokenRequest {
     expiresInHours: number | null;
@@ -40,5 +29,17 @@ export class AdminService {
 
     deleteInvitationToken(id: number): Observable<any> {
         return this.httpClient.delete(`${this.environment.apiUrl()}/admin/invitation-tokens/${id}`);
+    }
+
+    getUsers(): Observable<UserAdmin[]> {
+        return this.httpClient.get<UserAdmin[]>(`${this.environment.apiUrl()}/admin/users`);
+    }
+
+    deleteUser(userId: number): Observable<any> {
+        return this.httpClient.delete(`${this.environment.apiUrl()}/admin/users/${userId}`);
+    }
+
+    changeUserEmail(userId: number, email: string): Observable<any> {
+        return this.httpClient.put(`${this.environment.apiUrl()}/admin/users/${userId}/email`, {email});
     }
 }

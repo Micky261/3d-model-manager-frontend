@@ -1,0 +1,70 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">{{ "UserManagement" | translate:locale.language }}</li>
+    </ol>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>{{ "UserManagement" | translate:locale.language }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ "Name" | translate:locale.language }}</th>
+                            <th>{{ "Email" | translate:locale.language }}</th>
+                            <th>{{ "RegisteredAt" | translate:locale.language }}</th>
+                            <th>{{ "Models" | translate:locale.language }}</th>
+                            <th>{{ "Storage" | translate:locale.language }}</th>
+                            <th>{{ "Actions" | translate:locale.language }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (user of users; track user.id) {
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>
+                                    @if (editingEmailUserId === user.id) {
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control" type="email" [(ngModel)]="editingEmailValue"
+                                                   (keydown.enter)="saveEmail(user.id)" (keydown.escape)="cancelEditEmail()"/>
+                                            <button class="btn btn-outline-success" (click)="saveEmail(user.id)"
+                                                    [title]="'Save' | translate:locale.language">
+                                                <span class="fas fa-check"></span>
+                                            </button>
+                                            <button class="btn btn-outline-secondary" (click)="cancelEditEmail()"
+                                                    [title]="'Abort' | translate:locale.language">
+                                                <span class="fas fa-xmark"></span>
+                                            </button>
+                                        </div>
+                                    } @else {
+                                        {{ user.email }}
+                                        <button class="btn btn-sm btn-outline-secondary ms-1" (click)="startEditEmail(user)"
+                                                [title]="'ChangeEmail' | translate:locale.language">
+                                            <span class="fas fa-pen"></span>
+                                        </button>
+                                    }
+                                </td>
+                                <td>{{ user.createdAt | date:"mediumDate" }}</td>
+                                <td>{{ user.modelCount }}</td>
+                                <td>{{ user.storageUsed | filesize }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user.id, user.name)"
+                                            [title]="'DeleteUser' | translate:locale.language">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

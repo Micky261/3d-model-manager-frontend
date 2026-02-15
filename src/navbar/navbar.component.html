@@ -142,6 +142,11 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><h6 class="dropdown-header">{{"Admin" | translate:locale.language}}</h6></li>
                 <li>
+                  <button class="dropdown-item" ngbDropdownItem routerLink="admin/users">
+                    <span class="fas fa-users"></span> {{"UserManagement" | translate:locale.language}}
+                  </button>
+                </li>
+                <li>
                   <button class="dropdown-item" ngbDropdownItem routerLink="admin/invitation-tokens">
                     <span class="fas fa-key"></span> {{"InvitationTokens" | translate:locale.language}}
                   </button>

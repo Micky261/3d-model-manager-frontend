@@ -19,6 +19,7 @@
     "CollectionName": "Collection name",
     "CollectionTitleWithName": "{{name}} (Collection)",
     "Collections": "Collections",
+    "ConfirmDeleteUser": "Are you sure you want to delete the user \"{{name}}\"? All models and files will be permanently deleted.",
     "ConfirmDeletionOfCollection": "Are you sure you want to delete the collection \"{{name}}\"?",
     "ConfirmDeletionOfFile": "Do you really want to delete the file?",
     "ConfirmDeletionOfModel": "Are you sure you want to delete the model \"{{name}}\"?",
@@ -42,6 +43,7 @@
     "DeleteFile": "Delete file",
     "DeleteModel": "Delete model",
     "DeleteToken": "Delete token",
+    "DeleteUser": "Delete User",
     "Description": "Description",
     "Diagrams": "Diagrams",
     "Download3DModels": "3D models",
@@ -139,6 +141,7 @@
     "Refresh": "Refresh",
     "RefreshList": "Refresh list",
     "Register": "Sign Up",
+    "RegisteredAt": "Registered",
     "RegistrationDisabledMessage": "Registration is currently disabled. Please contact the administrator.",
     "RegistrationDisabledTitle": "Registration Disabled",
     "RegistrationMode": "Registration Mode",
@@ -174,6 +177,7 @@
     "Sorting": "Sort",
     "StartImport": "Start import",
     "Statistics": "Statistics",
+    "Storage": "Storage",
     "StorageSpace": "Storage space",
     "SupportedRepositories": "Currently models can be imported from: Thingiverse, MyMiniFactory, Cults (Cults3D) and (not always) TinkerCAD",
     "Tags": "Tags",
@@ -190,6 +194,7 @@
     "UncollapseDescription": "Uncollapse description",
     "UpdatedAt": "Last updated on",
     "Upload": "Upload",
+    "UserManagement": "User Management",
     "VerificationFailedTitle": "Verification Failed",
     "VerifyEmail": "Verify Email",
     "VerifyingEmail": "Verifying your email address",
@@ -198,8 +203,10 @@
         "Unknown": "Unknown error",
         "VideoDoesntWork": "The video does not seem to be playable in this browser. You can download it in the file overview.",
         "backend": {
+            "AdminEmailChanged": "Email address changed.",
             "AlreadyVerified": "Your email is already verified.",
             "AuthError": "Authentication error. Please log in again.",
+            "CannotDeleteSelf": "You cannot delete your own account.",
             "CollectionCouldNotBeDeleted": "The collection could not be removed.",
             "CollectionCouldNotBeSet": "The collection could not be set.",
             "CollectionUpdateFailed": "The collection data could not be updated on the server.",
@@ -228,6 +235,7 @@
             "TagsNotReceived": "The models' tags could not be received.",
             "TargetAlreadyExists": "The target file already exists.",
             "UserDataIncorrect": "The e-mail address or password you entered were wrong. Could not login.",
+            "UserDeleted": "User was deleted.",
             "WrongPassword": "The current password is incorrect."
         },
         "validation": {
@@ -279,6 +287,7 @@
         "TotalFiles": "Total files"
     },
     "success": {
+        "AdminEmailChanged": "Email address changed.",
         "CollectionCreated": "Collection \"{{name}}\" created successfully.",
         "EmailChanged": "A verification email has been sent to your new email address. Your current email remains active until verified.",
         "FileDeleted": "The file was deleted successfully.",
@@ -288,6 +297,7 @@
         "PasswordChanged": "Your password has been changed successfully.",
         "PasswordReset": "Your password has been reset successfully. You can now log in.",
         "Unknown": "Unknown success",
+        "UserDeleted": "User deleted.",
         "VerificationResent": "Verification email has been sent."
     },
     "toast": {

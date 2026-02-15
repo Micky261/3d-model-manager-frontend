@@ -19,6 +19,7 @@
     "CollectionName": "Sammlungsname",
     "CollectionTitleWithName": "{{name}} (Sammlung)",
     "Collections": "Sammlungen",
+    "ConfirmDeleteUser": "Bist du sicher, dass du den Nutzer \"{{name}}\" löschen möchtest? Alle Modelle und Dateien werden unwiderruflich gelöscht.",
     "ConfirmDeletionOfCollection": "Soll die Sammlung \"{{name}}\" wirklich gelöscht werden?",
     "ConfirmDeletionOfFile": "Soll die Datei wirklich gelöscht werden?",
     "ConfirmDeletionOfModel": "Soll das Modell \"{{name}}\" wirklich gelöscht werden?",
@@ -42,6 +43,7 @@
     "DeleteFile": "Datei löschen",
     "DeleteModel": "Modell löschen",
     "DeleteToken": "Token löschen",
+    "DeleteUser": "Nutzer löschen",
     "Description": "Beschreibung",
     "Diagrams": "Diagramme",
     "Download3DModels": "3D Modelle",
@@ -139,6 +141,7 @@
     "Refresh": "Neuladen",
     "RefreshList": "Liste neuladen",
     "Register": "Registrieren",
+    "RegisteredAt": "Registriert",
     "RegistrationDisabledMessage": "Die Registrierung ist derzeit deaktiviert. Bitte kontaktiere den Administrator.",
     "RegistrationDisabledTitle": "Registrierung deaktiviert",
     "RegistrationMode": "Registrierungsmodus",
@@ -174,6 +177,7 @@
     "Sorting": "Sortieren",
     "StartImport": "Import starten",
     "Statistics": "Statistiken",
+    "Storage": "Speicher",
     "StorageSpace": "Speicherplatz",
     "SupportedRepositories": "Zurzeit werden folgende Quellen unterstützt: Thingiverse, MyMiniFactory, Cults (Cults3D) und (manchmal) TinkerCAD",
     "Tags": "Tags",
@@ -190,6 +194,7 @@
     "UncollapseDescription": "Beschreibung ausklappen",
     "UpdatedAt": "Zuletzt geändert am",
     "Upload": "Hochladen",
+    "UserManagement": "Nutzerverwaltung",
     "VerificationFailedTitle": "Bestätigung fehlgeschlagen",
     "VerifyEmail": "E-Mail bestätigen",
     "VerifyingEmail": "E-Mail-Adresse wird bestätigt",
@@ -198,8 +203,10 @@
         "Unknown": "Unbekannter Fehler",
         "VideoDoesntWork": "Das Video scheint in diesem Browser nicht abspielbar zu sein. Du kannst es dir in der Dateiübersicht herunterladen.",
         "backend": {
+            "AdminEmailChanged": "E-Mail-Adresse geändert.",
             "AlreadyVerified": "Deine E-Mail-Adresse ist bereits bestätigt.",
             "AuthError": "Authentifizierungsfehler. Bitte melde dich erneut an.",
+            "CannotDeleteSelf": "Du kannst deinen eigenen Account nicht löschen.",
             "CollectionCouldNotBeDeleted": "Die Sammlung konnte nicht entfernt werden.",
             "CollectionCouldNotBeSet": "Die Sammlung konnte nicht gesetzt werden.",
             "CollectionUpdateFailed": "Die Daten der Sammlung konnten auf dem Server nicht aktualisiert werden.",
@@ -228,6 +235,7 @@
             "TagsNotReceived": "Die Tags des Modells konnten nicht abgerufen werden.",
             "TargetAlreadyExists": "Die Zieldatei existiert bereits.",
             "UserDataIncorrect": "Deine E-Mail-Adresse oder dein Password wurde falsch eingegeben. Keine Anmeldung möglich.",
+            "UserDeleted": "Nutzer wurde gelöscht.",
             "WrongPassword": "Das aktuelle Passwort ist falsch."
         },
         "validation": {
@@ -279,6 +287,7 @@
         "TotalFiles": "Dateien insgesamt"
     },
     "success": {
+        "AdminEmailChanged": "E-Mail-Adresse geändert.",
         "CollectionCreated": "Sammlung \"{{name}}\" erfolgreich erstellt.",
         "EmailChanged": "Eine Verifikations-E-Mail wurde an deine neue E-Mail-Adresse gesendet. Deine aktuelle E-Mail bleibt aktiv, bis die neue verifiziert wurde.",
         "FileDeleted": "Die Datei wurde erfolgreich gelöscht.",
@@ -288,6 +297,7 @@
         "PasswordChanged": "Dein Passwort wurde erfolgreich geändert.",
         "PasswordReset": "Dein Passwort wurde erfolgreich zurückgesetzt. Du kannst dich jetzt anmelden.",
         "Unknown": "Unbekannter Erfolg",
+        "UserDeleted": "Nutzer gelöscht.",
         "VerificationResent": "Bestätigungs-E-Mail wurde gesendet."
     },
     "toast": {
