@@ -2,11 +2,11 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {AuthService} from "../core/auth/auth.service";
-import {ToastService} from "../core/error/toast.service";
-import {TitleService} from "../core/services/title.service";
-import {Register} from "../core/types/register.type";
-import {ServerMessage} from "../core/types/serverMessage.type";
+import {AuthService} from "../../core/auth/auth.service";
+import {ToastService} from "../../core/error/toast.service";
+import {TitleService} from "../../core/services/title.service";
+import {Register} from "../../core/types/register.type";
+import {ServerMessage} from "../../core/types/serverMessage.type";
 
 @Component({
     selector: "app-register",

@@ -20,7 +20,7 @@
                 <p class="mt-3">{{ "VerifyingEmail" | translate:locale.language }}...</p>
             </div>
         </div>
-    } @if (verificationStatus === 'success') {
+    } @else if (verificationStatus === 'success') {
     <div class="row">
         <div class="col">
             <div class="alert alert-success" role="alert">
@@ -28,12 +28,12 @@
                 <p>{{ "EmailVerifiedMessage" | translate:locale.language }}</p>
                 <hr>
                 <p class="mb-0">
-                    <a routerLink="/login" class="btn btn-primary">{{ "GoToLogin" | translate:locale.language }}</a>
+                    <a routerLink="/auth/login" class="btn btn-primary">{{ "GoToLogin" | translate:locale.language }}</a>
                 </p>
             </div>
         </div>
     </div>
-} @if (verificationStatus === 'error') {
+} @else if (verificationStatus === 'error') {
     <div class="row">
         <div class="col">
             <div class="alert alert-danger" role="alert">
@@ -41,9 +41,9 @@
                 <p>{{ "error.backend." + errorMessage | translate:locale.language }}</p>
                 <hr>
                 <p class="mb-0">
-                    <a routerLink="/login"
+                    <a routerLink="/auth/login"
                        class="btn btn-secondary me-2">{{ "GoToLogin" | translate:locale.language }}</a>
-                    <a routerLink="/register" class="btn btn-primary">{{ "Register" | translate:locale.language }}</a>
+                    <a routerLink="/auth/register" class="btn btn-primary">{{ "Register" | translate:locale.language }}</a>
                 </p>
             </div>
         </div>

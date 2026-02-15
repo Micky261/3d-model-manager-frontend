@@ -69,7 +69,7 @@ export class InvitationTokensComponent implements OnInit {
     }
 
     copyRegistrationLink(token: string): void {
-        const link = `${window.location.origin}/register?token=${token}`;
+        const link = `${window.location.origin}/auth/register?token=${token}`;
         void navigator.clipboard.writeText(link).then(() => {
             this.toast.showSuccess("TokenCopied");
         });

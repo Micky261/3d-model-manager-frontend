@@ -3,12 +3,12 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {CookieService} from "ngx-cookie-service";
-import {AuthService} from "../core/auth/auth.service";
-import {ToastService} from "../core/error/toast.service";
-import {TitleService} from "../core/services/title.service";
-import {Login} from "../core/types/login.type";
-import {ServerMessage} from "../core/types/serverMessage.type";
-import {Session} from "../core/types/session.type";
+import {AuthService} from "../../core/auth/auth.service";
+import {ToastService} from "../../core/error/toast.service";
+import {TitleService} from "../../core/services/title.service";
+import {Login} from "../../core/types/login.type";
+import {ServerMessage} from "../../core/types/serverMessage.type";
+import {Session} from "../../core/types/session.type";
 
 @Component({
     selector: "app-login",

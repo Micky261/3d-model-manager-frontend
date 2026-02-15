@@ -22,7 +22,7 @@
                 </button>
             </div>
         </div>
-    } @if (resendStatus === 'loading') {
+    } @else if (resendStatus === 'loading') {
     <div class="row">
         <div class="col text-center">
             <div class="spinner-border text-primary" role="status">
@@ -31,7 +31,7 @@
             <p class="mt-3">{{ "SendingEmail" | translate:locale.language }}...</p>
         </div>
     </div>
-} @if (resendStatus === 'success') {
+} @else if (resendStatus === 'success') {
     <div class="row">
         <div class="col">
             <div class="alert alert-success" role="alert">

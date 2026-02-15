@@ -59,6 +59,6 @@ export class NavbarComponent implements OnInit {
     logout(): void {
         this.cookieService.delete(AuthService.sessionCookieName);
         this.toast.showSuccess("Logout");
-        void this.router.navigate(["/login"]).then(() => true);
+        void this.router.navigate(["/auth/login"]).then(() => true);
     }
 }

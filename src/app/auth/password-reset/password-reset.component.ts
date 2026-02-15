@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {AuthService} from "../core/auth/auth.service";
-import {TitleService} from "../core/services/title.service";
-import {ServerMessage} from "../core/types/serverMessage.type";
+import {AuthService} from "../../core/auth/auth.service";
+import {TitleService} from "../../core/services/title.service";
+import {ServerMessage} from "../../core/types/serverMessage.type";
 
 @Component({
     selector: "app-password-reset",

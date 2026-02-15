@@ -1,8 +1,8 @@
 import {Component, Inject} from "@angular/core";
 import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
-import {AuthService} from "../core/auth/auth.service";
-import {TitleService} from "../core/services/title.service";
+import {AuthService} from "../../core/auth/auth.service";
+import {TitleService} from "../../core/services/title.service";
 
 @Component({
     selector: "app-forgot-password",
