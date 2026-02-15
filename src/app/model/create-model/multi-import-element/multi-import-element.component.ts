@@ -2,8 +2,10 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import "../../../../shared/array.extension";
 import {ImportSource} from "../../../core/enums/import-source.enum";
+import {ToastService} from "../../../core/error/toast.service";
 import {ImportService} from "../../../core/services/import.service";
 import {Model} from "../../../core/types/model.type";
+import {ServerMessage} from "../../../core/types/serverMessage.type";
 import {UrlMatcher} from "../../../core/utils/UrlMatcher";
 
 @Component({
@@ -26,7 +28,8 @@ export class MultiImportElementComponent implements OnInit {
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
-        private readonly importService: ImportService
+        private readonly importService: ImportService,
+        private readonly toast: ToastService
     ) {
     }
 
@@ -52,8 +55,7 @@ export class MultiImportElementComponent implements OnInit {
                 this.links.push({url: line, importer: result.importSource, id: result.id});
                 this.toBeImportedList.push({url: line, importer: result.importSource, id: result.id});
             } else {
-                // TODO: show error
-                console.log("error");
+                this.toast.showValidationError("InvalidUrl");
             }
         });
     }
@@ -77,8 +79,8 @@ export class MultiImportElementComponent implements OnInit {
                 this.linkImportInProgress = null;
             },
             error: error => {
-                // TODO: show error
-                console.log(error);
+                this.toast.showBackendError((error.error as ServerMessage).messageCode);
+                this.linkImportInProgress = null;
             }
         });
     }

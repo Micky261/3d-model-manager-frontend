@@ -5,6 +5,7 @@ import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../../core/error/toast.service";
 import {ModelService} from "../../../core/services/model.service";
 import {Model} from "../../../core/types/model.type";
+import {ServerMessage} from "../../../core/types/serverMessage.type";
 
 @Component({
     selector: "app-create-form-element",
@@ -56,7 +57,7 @@ export class CreateFormElementComponent implements OnInit {
                 void this.router.navigate(["/model", serverModel.id]).then(() => true);
             },
             error: error => {
-                console.log(error);
+                this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
     }

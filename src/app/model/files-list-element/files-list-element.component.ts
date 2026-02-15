@@ -62,7 +62,6 @@ export class FilesListElementComponent implements OnInit {
     downloadFile(file: ModelFile): void {
         this.modelFilesService.getFile(file.id).subscribe({
             next: response => {
-                console.log(response.headers.get("Content-Type"));
                 const blob = new Blob([response.body], {type: response.headers.get("Content-Type")});
 
                 DownloadHelper.download(blob, file.filename);

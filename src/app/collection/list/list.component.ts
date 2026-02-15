@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {L10N_LOCALE, L10nLocale} from "angular-l10n";
 import {ToastService} from "../../core/error/toast.service";
 import {CollectionService} from "../../core/services/collection.service";
+import {ServerMessage} from "../../core/types/serverMessage.type";
 import {TitleService} from "../../core/services/title.service";
 import {Collection} from "../../core/types/collection.type";
 import {Sorting} from "../../core/types/sorting.type";
@@ -76,7 +77,7 @@ export class ListComponent implements OnInit, OnChanges {
                 this.createCollectionForm.reset({name: "", description: ""});
             },
             error: error => {
-                console.log(error);
+                this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
     }

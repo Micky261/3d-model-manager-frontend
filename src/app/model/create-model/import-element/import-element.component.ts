@@ -63,7 +63,6 @@ export class ImportElementComponent implements OnInit {
             error: error => {
                 this.toast.showBackendError((error.error as ServerMessage).messageCode);
                 this.importInProgress = false;
-                console.log(error);
             }
         });
     }
