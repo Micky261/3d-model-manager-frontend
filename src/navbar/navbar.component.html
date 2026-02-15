@@ -125,17 +125,17 @@
               <li><h6 class="dropdown-header">{{"Profile" | translate:locale.language}}</h6></li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem routerLink="profile">
-                  <span class="far fa-circle-user fa-fw"></span> {{"ShowProfile" | translate:locale.language}}
+                  <span class="far fa-circle-user"></span> {{"ShowProfile" | translate:locale.language}}
                 </button>
               </li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem routerLink="profile/edit">
-                  <span class="fas fa-pen-to-square fa-fw"></span> {{"EditProfile" | translate:locale.language}}
+                  <span class="fas fa-pen-to-square"></span> {{"EditProfile" | translate:locale.language}}
                 </button>
               </li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem routerLink="profile/accounts">
-                  <span class="fas fa-users-gear fa-fw"></span> {{"ManageAccounts" | translate:locale.language}}
+                  <span class="fas fa-users-gear"></span> {{"ManageAccounts" | translate:locale.language}}
                 </button>
               </li>
               @if (isAdmin) {
@@ -143,14 +143,14 @@
                 <li><h6 class="dropdown-header">{{"Admin" | translate:locale.language}}</h6></li>
                 <li>
                   <button class="dropdown-item" ngbDropdownItem routerLink="admin/invitation-tokens">
-                    <span class="fas fa-key fa-fw"></span> {{"InvitationTokens" | translate:locale.language}}
+                    <span class="fas fa-key"></span> {{"InvitationTokens" | translate:locale.language}}
                   </button>
                 </li>
               }
               <li><hr class="dropdown-divider"></li>
               <li>
                 <button class="dropdown-item" ngbDropdownItem (click)="logout()">
-                  <span class="fas fa-sign-out-alt fa-fw"></span> {{"Logout" | translate:locale.language}}
+                  <span class="fas fa-sign-out-alt"></span> {{"Logout" | translate:locale.language}}
                 </button>
               </li>
             </ul>

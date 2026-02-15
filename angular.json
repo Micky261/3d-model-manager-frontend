@@ -65,7 +65,7 @@
                             "src/polyfills.ts"
                         ],
                         "scripts": [
-                            "node_modules/marked/marked.min.js",
+                            "node_modules/marked/lib/marked.umd.js",
                             "node_modules/prismjs/prism.js",
                             "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
                             "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
