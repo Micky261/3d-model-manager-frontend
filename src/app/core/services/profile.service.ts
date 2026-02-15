@@ -28,8 +28,8 @@ export class ProfileService {
         return this.httpClient.get<ProfileStats>(`${this.environment.apiUrl()}/profile/stats`);
     }
 
-    getProfile(): Observable<{name: string; email: string}> {
-        return this.httpClient.get<{name: string; email: string}>(`${this.environment.apiUrl()}/profile/me`);
+    getProfile(): Observable<{name: string; email: string; pendingEmail?: string}> {
+        return this.httpClient.get<{name: string; email: string; pendingEmail?: string}>(`${this.environment.apiUrl()}/profile/me`);
     }
 
     changePassword(currentPassword: string, newPassword: string): Observable<ServerMessage> {

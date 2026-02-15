@@ -65,6 +65,11 @@
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <div class="form-text">{{ "ChangeEmailHint" | translate:locale.language }}</div>
+                                @if (pendingEmail) {
+                                    <div class="alert alert-info mt-2 mb-0">
+                                        {{ "PendingEmailInfo" | translate:locale.language:{pendingEmail: pendingEmail} }}
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div class="row">

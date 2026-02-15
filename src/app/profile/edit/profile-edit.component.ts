@@ -28,6 +28,8 @@ export class ProfileEditComponent implements OnInit {
         newPasswordConfirm: ["", [Validators.required]],
     });
 
+    pendingEmail: string | null = null;
+
     isNameLoading = false;
     isEmailLoading = false;
     isPasswordLoading = false;
@@ -46,6 +48,7 @@ export class ProfileEditComponent implements OnInit {
             next: profile => {
                 this.nameForm.get("name").setValue(profile.name);
                 this.emailForm.get("email").setValue(profile.email);
+                this.pendingEmail = profile.pendingEmail ?? null;
             }
         });
     }
