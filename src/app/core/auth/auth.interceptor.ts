@@ -13,16 +13,19 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const locale = localStorage.getItem("locale") || "en-GB";
+        req = req.clone({
+            setHeaders: { "Accept-Language": locale }
+        });
+
         if (AuthInterceptor.getCookie(AuthService.sessionCookieName)) {
             req = req.clone({
                 setParams: {
                     "3DMM_Session": AuthInterceptor.getCookie(AuthService.sessionCookieName)
                 }
             });
-
-            return next.handle(req);
-        } else {
-            return next.handle(req);
         }
+
+        return next.handle(req);
     }
 }
