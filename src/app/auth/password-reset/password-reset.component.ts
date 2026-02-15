@@ -36,7 +36,7 @@ export class PasswordResetComponent implements OnInit {
 
         if (!this.token) {
             this.status = "error";
-            this.errorMessage = "INVALID_OR_EXPIRED_TOKEN";
+            this.errorMessage = "InvalidOrExpiredToken";
         }
     }
 
@@ -55,7 +55,7 @@ export class PasswordResetComponent implements OnInit {
             },
             error: error => {
                 this.status = "error";
-                this.errorMessage = (error.error as ServerMessage)?.messageCode || "INVALID_OR_EXPIRED_TOKEN";
+                this.errorMessage = (error.error as ServerMessage)?.messageCode || "InvalidOrExpiredToken";
             }
         });
     }

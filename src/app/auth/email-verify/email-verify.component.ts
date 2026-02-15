@@ -28,7 +28,7 @@ export class EmailVerifyComponent implements OnInit {
 
         if (!token) {
             this.verificationStatus = "error";
-            this.errorMessage = "INVALID_TOKEN";
+            this.errorMessage = "InvalidToken";
             return;
         }
 
@@ -38,7 +38,7 @@ export class EmailVerifyComponent implements OnInit {
             },
             error: error => {
                 this.verificationStatus = "error";
-                this.errorMessage = error.error?.messageCode || "VERIFICATION_FAILED";
+                this.errorMessage = error.error?.messageCode || "InvalidOrExpiredToken";
             }
         });
     }
