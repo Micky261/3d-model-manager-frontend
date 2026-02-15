@@ -29,7 +29,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 d-grid">
-                                <button (click)="changeName()" class="btn btn-success" type="submit">
+                                <button (click)="changeName()" class="btn btn-success" type="submit" [disabled]="isNameLoading">
+                                    @if (isNameLoading) {
+                                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                    }
                                     {{ "Save" | translate:locale.language }}
                                 </button>
                             </div>
@@ -66,7 +69,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 d-grid">
-                                <button (click)="changeEmail()" class="btn btn-success" type="submit">
+                                <button (click)="changeEmail()" class="btn btn-success" type="submit" [disabled]="isEmailLoading">
+                                    @if (isEmailLoading) {
+                                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                    }
                                     {{ "Save" | translate:locale.language }}
                                 </button>
                             </div>
@@ -103,7 +109,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 d-grid">
-                                <button (click)="changePassword()" class="btn btn-success" type="submit">
+                                <button (click)="changePassword()" class="btn btn-success" type="submit" [disabled]="isPasswordLoading">
+                                    @if (isPasswordLoading) {
+                                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                    }
                                     {{ "Save" | translate:locale.language }}
                                 </button>
                             </div>

@@ -65,7 +65,10 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12 d-grid">
-                            <button (click)="register()" class="btn btn-success" type="submit">
+                            <button (click)="register()" class="btn btn-success" type="submit" [disabled]="isLoading">
+                                @if (isLoading) {
+                                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                }
                                 {{ "Register" | translate:locale.language }}
                             </button>
                         </div>

@@ -28,6 +28,10 @@ export class ProfileEditComponent implements OnInit {
         newPasswordConfirm: ["", [Validators.required]],
     });
 
+    isNameLoading = false;
+    isEmailLoading = false;
+    isPasswordLoading = false;
+
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
         private readonly titleService: TitleService,
@@ -52,11 +56,14 @@ export class ProfileEditComponent implements OnInit {
             return;
         }
 
+        this.isNameLoading = true;
         this.profileService.changeName(this.nameForm.get("name").value).subscribe({
             next: () => {
+                this.isNameLoading = false;
                 this.toast.showSuccess("NameChanged");
             },
             error: error => {
+                this.isNameLoading = false;
                 this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
@@ -73,15 +80,18 @@ export class ProfileEditComponent implements OnInit {
             return;
         }
 
+        this.isEmailLoading = true;
         this.profileService.changeEmail(
             this.emailForm.get("email").value,
             this.emailForm.get("currentPassword").value
         ).subscribe({
             next: () => {
+                this.isEmailLoading = false;
                 this.toast.showSuccess("EmailChanged");
                 this.emailForm.get("currentPassword").reset();
             },
             error: error => {
+                this.isEmailLoading = false;
                 this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
@@ -103,15 +113,18 @@ export class ProfileEditComponent implements OnInit {
             return;
         }
 
+        this.isPasswordLoading = true;
         this.profileService.changePassword(
             this.passwordForm.get("currentPassword").value,
             this.passwordForm.get("newPassword").value
         ).subscribe({
             next: () => {
+                this.isPasswordLoading = false;
                 this.toast.showSuccess("PasswordChanged");
                 this.passwordForm.reset();
             },
             error: error => {
+                this.isPasswordLoading = false;
                 this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });

@@ -16,6 +16,7 @@ export class ForgotPasswordComponent {
     });
 
     status: "form" | "sent" = "form";
+    isLoading = false;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -30,6 +31,7 @@ export class ForgotPasswordComponent {
             return;
         }
 
+        this.isLoading = true;
         this.authService.requestPasswordReset(this.forgotPasswordForm.get("email").value).subscribe({
             next: () => {
                 this.status = "sent";

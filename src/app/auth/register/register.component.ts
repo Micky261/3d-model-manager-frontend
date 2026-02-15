@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
 
     registrationSuccess = false;
     registrationMode = "open";
+    isLoading = false;
 
     constructor(
         @Inject(L10N_LOCALE) public readonly locale: L10nLocale,
@@ -90,11 +91,13 @@ export class RegisterComponent implements OnInit {
             tokenValue ? tokenValue : undefined
         );
 
+        this.isLoading = true;
         this.authService.register(register).subscribe({
             next: () => {
                 this.registrationSuccess = true;
             },
             error: error => {
+                this.isLoading = false;
                 this.toast.showBackendError((error.error as ServerMessage).messageCode);
             }
         });
