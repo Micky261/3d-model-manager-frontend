@@ -268,9 +268,9 @@
                                     <div
                                         [class.col-md-6]="editMode == EditModes.SplitView"
                                         [class.col-md]="editMode == EditModes.OnlyEdit">
-                                        <!-- TODO: Add translation, there are more translations missing than this one -->
-                                        <label for="modelDescription" class="visually-hidden form-label">Edit
-                                            description</label>
+                                        <label for="modelDescription" class="visually-hidden form-label">
+                                            {{ "EditDescription" | translate:locale.language }}
+                                        </label>
                                         <textarea id="modelDescription" [(ngModel)]="model.description"
                                                   autosize [minRows]="10"
                                                   (change)="saveText($event)"
@@ -306,8 +306,9 @@
                                         <div
                                             [class.col-md-6]="editMode == EditModes.SplitView"
                                             [class.col-md]="editMode == EditModes.OnlyEdit">
-                                            <label for="modelNotes" class="visually-hidden form-label">Edit
-                                                notes</label>
+                                            <label for="modelNotes" class="visually-hidden form-label">
+                                                {{ "EditNotes" | translate:locale.language }}
+                                            </label>
                                             <textarea id="modelNotes" [(ngModel)]="model.notes"
                                                       autosize [minRows]="10"
                                                       (change)="saveText($event)"
