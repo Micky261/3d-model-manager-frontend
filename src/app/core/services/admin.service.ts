@@ -3,11 +3,8 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Environment} from "../../../environment";
 import {InvitationToken} from "../types/invitation-token.type";
+import {CreateInvitationTokenRequest} from "../types/requests/create-invitation-token-request.type";
 import {UserAdmin} from "../types/user-admin.type";
-
-export interface CreateInvitationTokenRequest {
-    expiresInHours: number | null;
-}
 
 @Injectable({
     providedIn: "root"
